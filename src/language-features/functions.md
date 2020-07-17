@@ -41,7 +41,7 @@ To define a function and assign it to a variable, the syntax is as follows:
 ## Boxing
 
 It is sometimes necessary to pass a block as a function rather than resolve it, so that it can be resolved elsewhere later on.
-This can be done using the **box operator** `[]`. Boxing a block produces an anonymous function, which is simply known as a **box** when created this way.
+This can be done using the **box operator** `[]`. Boxing a block produces an anonymous function, also simply known as a **box** when created this way.
 
 ```rant
 # Creates a box and places it on the output
@@ -52,16 +52,28 @@ A box cannot resolve as-is; in order for it to produce output, it has to be "unb
 
 ### Parameterized boxes
 
-If you want to assign parameters to a box, use this:
+If you want to assign parameters to a box, specify the parameter names separated by semicolons inside another set of brackets within the box operator:
 
 ```rant
 [[param1;param2]]{ ... }
 ```
 
-## Unboxing
+## Calling anonymous functions
 
-Forcing one or more boxed values to resolve is known as "unboxing". This is performed with the unbox operator `[!]` followed by a block containing what you want to unbox.
+Calling an anonymous function uses the same syntax as regular function calls, but the function name is replaced by the `!` operator followed by an expression that resolves to the function you want to call.
 
 ```rant
-[!]{[]{Heads|Tails}}    # Equivalent to {Heads|Tails}
+# Define a function that returns a parameterless box
+[$get-anon-func] {
+    []{Hello from anonymous function}
+}
+
+[![get-anon-func]]          # "Hello from anonymous function"
+
+# Define a function that returns a box with a single parameter
+[$get-greet-func] {
+    [[name]]{Hello, <name>!}
+}
+
+[![get-greet-func]:Rant]    # "Hello, Rant!"
 ```
