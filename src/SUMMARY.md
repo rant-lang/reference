@@ -17,4 +17,3 @@
         - [Case formatter](constructs/case-formatter.md)
         - [Number formatter](constructs/number-formatter.md)
         - [Whitespace formatter](constructs/whitespace-formatter.md)
-    - [Targets](constructs/targets.md)
