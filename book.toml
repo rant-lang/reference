@@ -1,0 +1,9 @@
+[book]
+authors = ["Nicholas Fleck"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Rant Reference"
+
+[output.html]
+#additional-js = ["theme/hljs_rant.js"]

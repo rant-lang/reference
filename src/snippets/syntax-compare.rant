@@ -1,0 +1,19 @@
+# Prints [5, 10] lines counting from 1 to [1, 10]
+
+# Classic
+[rs:[n:5;10];\n]
+{
+    [rs:[n:1;10];\s]{[rn]}
+}
+
+# Double-colon
+[rs::[n::5;10];\n]
+{
+    [rs::[n::1;10];\s]{[rn]}
+}
+
+# Sajid's syntax
+[rs([n(5;10)];\n)]
+{
+    [rs([n(1;10)];\s)]{[rn()]}
+}
