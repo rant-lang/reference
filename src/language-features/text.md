@@ -6,9 +6,9 @@ Any string of text is a valid Rant program.
 
 ## Fragments
 
-A fragment is defined as a contiguous series of any characters that:
-1. are not whitespace,
-2. do not contain any reserved characters (e.g. braces, brackets, etc.)
+A **fragment** is defined in Rant as any sequence of characters that:
+1. contains no whitespace,
+2. contains no reserved characters (e.g. braces, brackets, etc.)
 
 Rant will output any fragment verbatim.
 
@@ -19,29 +19,61 @@ Hello
 
 ## Whitespace
 
-Any continguous series of whitespace characters between two fragments (including line breaks) is normalized to a single space by default.
-Any other whitespace is ignored.
+All sequences of whitespace in a Rant program are normalized to a single space by default.
 
-To illustrate this behavior, consider the following Rant snippet:
+Rant is very selective about the whitespace it prints. By default, whitespace included in a Rant program is only printed if it is between any two of the following:
+* Fragments
+* Numbers
+* Getters
+
+All other whitespace (including line breaks) is ignored. Escaped whitespace (`\t`, `\s`, etc.) are exempt from this rule.
+
+> TODO: Add examples
+
+## Hinting
+
+Because Rant's whitespace rules are quite strict, it is sometimes necessary to give the compiler additional information about the structure of your output.
+
+This can be achieved by adding **hints** (symbolized by a `'`) to your code. 
+A hint informs the compiler that the next element of code will print to the output, and that the whitespace between it and another printing element should be included.
+
+The following elements are implicitly hinted:
+
+* Numbers
+* Variable getters
+* Blocks containing at least one fragment, number, getter, hinted element, or nested block that meets this requirement
+
+The act of a block inheriting a hint from its contents is known as "taking the hint."
 
 ```rant
-The
- Quick
-  Brown
-   Fox
-    Jumps
-     Over
-      The
-       Lazy
-        Dog.
+# Implicitly hinted (block contains fragments)
+The coin landed on {Heads|Tails}.
+
+# Explicitly hint the function call so the compiler knows it prints something
+Your lucky number is '[n:1;100].
 ```
 
-By default, Rant will print this as `The Quick Brown Fox Jumps Over The Lazy Dog.`
-Whitespace printing behavior can be customized through formatting functions (discussed later).
+## Sinking
+
+If you want to suppress the output of a code element, you can **sink** it with the `_` operator.
+
+Sinking an element has the opposite effect of hinting: it will be marked as "non-printing" and any whitespace between it and another non-printing element will also be ignored.
+
+Only fragments and numbers cannot be sinked; the `_` character will be interpreted as text in such contexts.
+
+Blocks that are sinked cannot take a hint.
+
+```rant
+{Now you see me...}     # Prints like normal
+_{Now you don't.}       # Prints nothing
+Goodbye _{cruel} world! # Prints "Goodbye world!"
+_Fragment               # Prints "_Fragment", as fragments cannot be sinked
+```
+
 
 ## String literals
 
-If you want to treat any string as a single fragment, you can wrap it in a string literal using double quotes:
+If you want to treat any text as a single fragment, you can wrap it in a string literal using double quotes:
 
 ```rant
 "    This text is indented"

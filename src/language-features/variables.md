@@ -24,7 +24,7 @@ Rant supports seven value types:
 
 All variable access operations are enclosed in angle brackets.
 
-Variable accessors have three possible functions: **definition**, **assignment**, and **retrieval**.
+Variable accessors have three subtypes: **definitions**, **assignments**, and **getters**.
 
 ### Definition
 
@@ -49,9 +49,9 @@ Variable assignments include a variable name and value separated by a `=` symbol
 <name = Nicholas>
 ```
 
-### Retrieval
+### Getter
 
-Variable retrieval only requires the name and adds the variable's value to the output.
+A variable getter only requires the name and adds the variable's value to the output.
 
 Attempting to retrieve a variable that does not exist results in a runtime error.
 

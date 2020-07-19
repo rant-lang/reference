@@ -1,3 +1,3 @@
 # Formatters
 
-Formatters are constructs that apply various formatting techniques to program output.
+Formatters are constructs that can apply various formatting filters to program output.

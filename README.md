@@ -17,3 +17,5 @@ Then build the book with:
 ```sh
 mdbook build
 ```
+
+The built book will be created in a `book` directory in the project root. 
