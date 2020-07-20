@@ -360,14 +360,15 @@ Here's a list of them:</p>
 <p>Rant programs can define and use variables of several types.</p>
 <p>Because Rant is a dynamically-typed langauge, variables have no type constraints; the type of a variable is determined by the type of its current value.</p>
 <h2><a class="header" href="#value-types" id="value-types">Value types</a></h2>
-<p>Rant supports seven value types:</p>
+<p>Rant supports eight value types:</p>
 <table><thead><tr><th>Type name</th><th>Description</th><th>Rant API</th></tr></thead><tbody>
 <tr><td><code>string</code></td><td>Sequence of UTF-8 characters</td><td><code>RantValue::String(&amp;str)</code></td></tr>
 <tr><td><code>integer</code></td><td>64-bit signed integer</td><td><code>RantValue::Integer(i64)</code></td></tr>
 <tr><td><code>float</code></td><td>64-bit double-precision float</td><td><code>RantValue::Float(f64)</code></td></tr>
 <tr><td><code>bool</code></td><td>Boolean value</td><td><code>RantValue::Bool(bool)</code></td></tr>
-<tr><td><code>list</code></td><td>List of values</td><td><code>RantValue::List(...)</code></td></tr>
-<tr><td><code>map</code></td><td>String-keyed collection of values</td><td><code>RantValue::Map(...)</code></td></tr>
+<tr><td><code>function</code></td><td>Function/closure</td><td><code>RantValue::Function(...)</code></td></tr>
+<tr><td><code>list</code></td><td>List of values</td><td><code>RantValue::List(Rc&lt;Vec&lt;RantValue&lt;'a&gt;&gt;&gt;)</code></td></tr>
+<tr><td><code>map</code></td><td>String-keyed collection of values</td><td><code>RantValue::Map(Rc&lt;RantMap&lt;'a&gt;&gt;)</code></td></tr>
 <tr><td><code>none</code></td><td>Null value</td><td><code>RantValue::None</code></td></tr>
 </tbody></table>
 <blockquote>
@@ -390,7 +391,7 @@ Here's a list of them:</p>
 <pre><code class="language-rant"># Overwrite value on existing variable `name`
 &lt;name = Nicholas&gt;
 </code></pre>
-<h3><a class="header" href="#getter" id="getter">Getter</a></h3>
+<h3><a class="header" href="#getters" id="getters">Getters</a></h3>
 <p>A variable getter only requires the name and adds the variable's value to the output.</p>
 <p>Attempting to retrieve a variable that does not exist results in a runtime error.</p>
 <pre><code class="language-rant"># Get value of `name` (note the lack of '$')
@@ -401,6 +402,9 @@ My name is &lt;name&gt;. # Prints &quot;My name is Nicholas.&quot;
 <pre><code class="language-rant">&lt;$nothing = &lt;&gt;&gt;   # i.e. &lt;$nothing&gt;
 [type:&lt;nothing&gt;]  # none
 </code></pre>
+<h2><a class="header" href="#boolean-values" id="boolean-values">Boolean values</a></h2>
+<p>The two boolean values are accessed through the reserved getters <code>&lt;true&gt;</code> and <code>&lt;false&gt;</code>.
+These variable names are reserved and evaluated at compile time.</p>
 <h2><a class="header" href="#implicit-type-coercion" id="implicit-type-coercion">Implicit type coercion</a></h2>
 <p>In order to resolve type ambiguities, Rant follows a few rules to infer types for certain kinds of values:</p>
 <h4><a class="header" href="#a-number-without-a-decimal-place-becomes-an-integer" id="a-number-without-a-decimal-place-becomes-an-integer">A number without a decimal place becomes an integer</a></h4>
