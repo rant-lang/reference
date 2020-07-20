@@ -25,6 +25,8 @@ Rant is very selective about the whitespace it prints. By default, whitespace in
 * Fragments
 * Numbers
 * Getters
+* Blocks containing any of the above
+* Blocks that satisfy the aforementioned requirement
 
 All other whitespace (including line breaks) is ignored. Escaped whitespace (`\t`, `\s`, etc.) are exempt from this rule.
 

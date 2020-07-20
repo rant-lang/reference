@@ -1,4 +1,4 @@
-# Rant
+# Introduction
 
 Rant is an all-purpose templating and procedural text generation language.
 

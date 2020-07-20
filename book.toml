@@ -7,3 +7,4 @@ title = "Rant Reference"
 
 [output.html]
 #additional-js = ["theme/hljs_rant.js"]
+git-repository-url = "https://github.com/rant-lang/reference"
