@@ -1,0 +1,698 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rant Reference</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="language-features.html"><strong aria-hidden="true">2.</strong> Language features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language-features/text.html"><strong aria-hidden="true">2.1.</strong> Text</a></li><li class="chapter-item expanded "><a href="language-features/blocks.html"><strong aria-hidden="true">2.2.</strong> Blocks</a></li><li class="chapter-item expanded "><a href="language-features/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="language-features/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="language-features/escape-sequences.html"><strong aria-hidden="true">2.5.</strong> Escape sequences</a></li><li class="chapter-item expanded "><a href="language-features/variables.html"><strong aria-hidden="true">2.6.</strong> Variables</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language-features/lists-and-maps.html"><strong aria-hidden="true">2.6.1.</strong> Lists and maps</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="constructs.html"><strong aria-hidden="true">3.</strong> Constructs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="constructs/block-attributes.html"><strong aria-hidden="true">3.1.</strong> Block attributes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="constructs/selectors.html"><strong aria-hidden="true">3.1.1.</strong> Selectors</a></li><li class="chapter-item expanded "><a href="constructs/repeaters.html"><strong aria-hidden="true">3.1.2.</strong> Repeaters</a></li></ol></li><li class="chapter-item expanded "><a href="constructs/formatters.html"><strong aria-hidden="true">3.2.</strong> Formatters</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="constructs/case-formatter.html"><strong aria-hidden="true">3.2.1.</strong> Case formatter</a></li><li class="chapter-item expanded "><a href="constructs/number-formatter.html"><strong aria-hidden="true">3.2.2.</strong> Number formatter</a></li><li class="chapter-item expanded "><a href="constructs/whitespace-formatter.html"><strong aria-hidden="true">3.2.3.</strong> Whitespace formatter</a></li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Output</li><li class="chapter-item expanded "><a href="standard-library.html"><strong aria-hidden="true">5.</strong> Standard library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="standard-library/basic-functions.html"><strong aria-hidden="true">5.1.</strong> Basic functions</a></li><li class="chapter-item expanded "><a href="standard-library/generators.html"><strong aria-hidden="true">5.2.</strong> Generators</a></li><li class="chapter-item expanded "><a href="standard-library/strings.html"><strong aria-hidden="true">5.3.</strong> Strings</a></li><li class="chapter-item expanded "><a href="standard-library/math.html"><strong aria-hidden="true">5.4.</strong> Math</a></li><li class="chapter-item expanded "><a href="standard-library/collections.html"><strong aria-hidden="true">5.5.</strong> Collections</a></li><li class="chapter-item expanded "><a href="standard-library/block-attributes.html"><strong aria-hidden="true">5.6.</strong> Block attributes</a></li><li class="chapter-item expanded "><a href="standard-library/channels.html"><strong aria-hidden="true">5.7.</strong> Channels</a></li><li class="chapter-item expanded "><a href="standard-library/dva.html"><strong aria-hidden="true">5.8.</strong> Dynamic variable access</a></li></ol></li><li class="chapter-item expanded "><a href="glossary.html"><strong aria-hidden="true">6.</strong> Glossary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Rant Reference</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/rant-lang/reference" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+<p>Rant is an all-purpose templating and procedural text generation language.</p>
+<blockquote>
+<p>This document is a work-in-progress and is not normative.
+It only applies to the upcoming version 4 of the Rant language.</p>
+</blockquote>
+<h1><a class="header" href="#language-features" id="language-features">Language features</a></h1>
+<h1><a class="header" href="#text" id="text">Text</a></h1>
+<p>In Rant, text is considered as a combination of two types of tokens: <strong>fragments</strong> and <strong>whitespace</strong>.</p>
+<p>Any string of text is a valid Rant program.</p>
+<h2><a class="header" href="#fragments" id="fragments">Fragments</a></h2>
+<p>A <strong>fragment</strong> is defined in Rant as any sequence of characters that:</p>
+<ol>
+<li>contains no whitespace,</li>
+<li>contains no reserved characters (e.g. braces, brackets, etc.)</li>
+</ol>
+<p>Rant will output any fragment verbatim.</p>
+<pre><code class="language-rant"># Prints &quot;Hello&quot;
+Hello
+</code></pre>
+<h2><a class="header" href="#whitespace" id="whitespace">Whitespace</a></h2>
+<p>All sequences of whitespace in a Rant program are normalized to a single space by default.</p>
+<p>Rant is very selective about the whitespace it prints. By default, whitespace included in a Rant program is only printed if it is between any two of the following:</p>
+<ul>
+<li>Fragments</li>
+<li>Numbers</li>
+<li>Getters</li>
+<li>Blocks containing any of the above</li>
+<li>Blocks that satisfy the aforementioned requirement</li>
+</ul>
+<p>All other whitespace (including line breaks) is ignored. Escaped whitespace (<code>\t</code>, <code>\s</code>, etc.) are exempt from this rule.</p>
+<blockquote>
+<p>TODO: Add examples</p>
+</blockquote>
+<h2><a class="header" href="#hinting" id="hinting">Hinting</a></h2>
+<p>Because Rant's whitespace rules are quite strict, it is sometimes necessary to give the compiler additional information about the structure of your output.</p>
+<p>This can be achieved by adding <strong>hints</strong> (symbolized by a <code>'</code>) to your code. 
+A hint informs the compiler that the next element of code will print to the output, and that the whitespace between it and another printing element should be included.</p>
+<p>The following elements are implicitly hinted:</p>
+<ul>
+<li>Numbers</li>
+<li>Variable getters</li>
+<li>Blocks containing at least one fragment, number, getter, hinted element, or nested block that meets this requirement</li>
+</ul>
+<p>The act of a block inheriting a hint from its contents is known as &quot;taking the hint.&quot;</p>
+<pre><code class="language-rant"># Implicitly hinted (block contains fragments)
+The coin landed on {Heads|Tails}.
+
+# Explicitly hint the function call so the compiler knows it prints something
+Your lucky number is '[n:1;100].
+</code></pre>
+<h2><a class="header" href="#sinking" id="sinking">Sinking</a></h2>
+<p>If you want to suppress the output of a code element, you can <strong>sink</strong> it with the <code>_</code> operator.</p>
+<p>Sinking an element has the opposite effect of hinting: it will be marked as &quot;non-printing&quot; and any whitespace between it and another non-printing element will also be ignored.</p>
+<p>Only fragments and numbers cannot be sinked; the <code>_</code> character will be interpreted as text in such contexts.</p>
+<p>Blocks that are sinked cannot take a hint.</p>
+<pre><code class="language-rant">{Now you see me...}     # Prints like normal
+_{Now you don't.}       # Prints nothing
+Goodbye _{cruel} world! # Prints &quot;Goodbye world!&quot;
+_Fragment               # Prints &quot;_Fragment&quot;, as fragments cannot be sinked
+</code></pre>
+<h2><a class="header" href="#string-literals" id="string-literals">String literals</a></h2>
+<p>If you want to treat any text as a single fragment, you can wrap it in a string literal using double quotes:</p>
+<pre><code class="language-rant">&quot;    This text is indented&quot;
+</code></pre>
+<p>They even work over several lines:</p>
+<pre><code class="language-rant">&quot;This
+text
+has
+several
+lines&quot;
+</code></pre>
+<h1><a class="header" href="#blocks" id="blocks">Blocks</a></h1>
+<p>A <strong>block</strong> is a unit of Rant code subdivided into zero or more parts.</p>
+<h2><a class="header" href="#syntax" id="syntax">Syntax</a></h2>
+<p>A block is defined by a set of braces containing zero or more sections of Rant code separated by vertical pipes (<code>|</code>). Here are a few examples:</p>
+<pre><code class="language-rant">{}          # Empty block
+{A}         # Block with one element
+{A|B}       # Block with multiple elements
+</code></pre>
+<h2><a class="header" href="#use-cases" id="use-cases">Use cases</a></h2>
+<p>Blocks serve several purposes in Rant, ranging from simple element selection to collections and even loops. They can contain any kind of Rant code—even other blocks.</p>
+<h3><a class="header" href="#item-selection" id="item-selection">Item selection</a></h3>
+<p>In their simplest form, blocks resolve a single element from their body and add it to the output.</p>
+<pre><code class="language-rant"># Randomly prints &quot;Heads&quot; or &quot;Tails&quot; with uniform probability
+{Heads|Tails}
+</code></pre>
+<p>By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a <a href="language-features//constructs/selectors.html">selector</a>.</p>
+<h3><a class="header" href="#variable-scope" id="variable-scope">Variable scope</a></h3>
+<p>Blocks also act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.</p>
+<h3><a class="header" href="#lists-and-maps" id="lists-and-maps">Lists and maps</a></h3>
+<p>Blocks can be turned into lists and maps using special syntax.</p>
+<pre><code class="language-rant"># Create a list of values
+@{cayenne|serrano|habanero}
+
+# Create a map of values
+@:{name:John|age:25}
+</code></pre>
+<h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+<p>Functions contain code that can be executed arbitrarily. The Rant standard library includes several native functions, but you can also define your own.</p>
+<h2><a class="header" href="#calling-functions" id="calling-functions">Calling functions</a></h2>
+<p>Function calls use the following syntax:</p>
+<pre><code class="language-rant"># Function with no arguments
+[func-name]
+
+# Function with one argument
+[func-name: arg1]
+
+# Function with multiple arguments, delimited by ';'
+[func-name: arg1; arg2]
+</code></pre>
+<h2><a class="header" href="#defining-functions" id="defining-functions">Defining functions</a></h2>
+<p>To define a function and assign it to a variable, the syntax is as follows:</p>
+<pre><code class="language-rant"># Define a parameterless function named `say-hello` that prints &quot;Hello&quot;
+[$say-hello] {
+    Hello
+}
+
+# Define a function `greet` with parameter `name` that prints a custom greeting
+[$greet: name] {
+    Hello, &lt;name&gt;!
+}
+
+# Define a function `flip-coin` that returns the value of either `heads` and `tails`
+[$flip-coin: heads; tails] {
+    {&lt;heads&gt;|&lt;tails&gt;}
+}
+</code></pre>
+<h2><a class="header" href="#boxing" id="boxing">Boxing</a></h2>
+<p>It is sometimes necessary to pass a block as a function rather than resolve it, so that it can be resolved elsewhere later on.
+This can be done using the <strong>box operator</strong> <code>[]</code>. Boxing a block produces an anonymous function, also simply known as a <strong>box</strong> when created this way.</p>
+<pre><code class="language-rant"># Creates a box and places it on the output
+[]{A|B|C|D}
+</code></pre>
+<p>A box cannot resolve as-is; in order for it to produce output, it has to be &quot;unboxed&quot; first.</p>
+<h3><a class="header" href="#parameterized-boxes" id="parameterized-boxes">Parameterized boxes</a></h3>
+<p>If you want to assign parameters to a box, specify the parameter names separated by semicolons inside another set of brackets within the box operator:</p>
+<pre><code class="language-rant">[[param1;param2]]{ ... }
+</code></pre>
+<h2><a class="header" href="#calling-anonymous-functions" id="calling-anonymous-functions">Calling anonymous functions</a></h2>
+<p>Calling an anonymous function uses the same syntax as regular function calls, but the function name is replaced by the <code>!</code> operator followed by an expression that resolves to the function you want to call.</p>
+<pre><code class="language-rant"># Define a function that returns a parameterless box
+[$get-anon-func] {
+    []{Hello from anonymous function}
+}
+
+[![get-anon-func]]          # &quot;Hello from anonymous function&quot;
+
+# Define a function that returns a box with a single parameter
+[$get-greet-func] {
+    [[name]]{Hello, &lt;name&gt;!}
+}
+
+[![get-greet-func]:Rant]    # &quot;Hello, Rant!&quot;
+</code></pre>
+<h1><a class="header" href="#comments" id="comments">Comments</a></h1>
+<p>Comments are used to annotate code without affecting its behavior.
+This is useful for adding descriptions to your code that offer further explanation of the functionality.</p>
+<p>There are two types of comments in Rant: single-line and multi-line.</p>
+<h2><a class="header" href="#single-line-comments" id="single-line-comments">Single-line comments</a></h2>
+<p>A single-line comment begins with the <code>#</code> character and terminates at the end of the current line.
+They do not have to start at the beginning of a line.</p>
+<pre><code class="language-rant"># This is a comment
+{A|B|C} # This is an inline comment
+</code></pre>
+<h2><a class="header" href="#multi-line-comments" id="multi-line-comments">Multi-line comments</a></h2>
+<p>A multi-line comment can span multiple lines and is enclosed by two <code>#</code> characters on each end:</p>
+<pre><code class="language-rant">##
+This is
+a multi-line
+comment
+##
+</code></pre>
+<h1><a class="header" href="#escape-sequences" id="escape-sequences">Escape sequences</a></h1>
+<p>It will, of course, be necessary to sometimes print reserved characters, or characters that cannot be typed on a standard keyboard.
+To this end, Rant offers escape sequences.</p>
+<h2><a class="header" href="#character-escape-sequences" id="character-escape-sequences">Character escape sequences</a></h2>
+<p>Any reserved (and most non-reserved) characters can be printed by prefixing each one with a backslash character:</p>
+<pre><code class="language-rant">\{This text will print with braces around it\}
+</code></pre>
+<h2><a class="header" href="#special-escape-sequences" id="special-escape-sequences">Special escape sequences</a></h2>
+<p>Certain characters are not interpreted verbatim when escaped, and instead have special meaning.
+Here's a list of them:</p>
+<table><thead><tr><th>Escape sequence</th><th>Output character</th></tr></thead><tbody>
+<tr><td><code>\r</code></td><td>Carriage return (U+000D)</td></tr>
+<tr><td><code>\n</code></td><td>Line feed (U+000A)</td></tr>
+<tr><td><code>\s</code></td><td>Space (U+0020)</td></tr>
+<tr><td><code>\t</code></td><td>Tab (U+0009)</td></tr>
+<tr><td><code>\0</code></td><td>Null character (U+0000)</td></tr>
+<tr><td><code>\xXX</code></td><td>UTF-8 character code <em>[See below]</em></td></tr>
+</tbody></table>
+<h2><a class="header" href="#unicode-escape-sequences" id="unicode-escape-sequences">Unicode escape sequences</a></h2>
+<p>Escape sequences can also be used to print characters by their Unicode code point in hexicedimal format:</p>
+<pre><code class="language-rant">\xE4    # 'ä'
+</code></pre>
+<h1><a class="header" href="#variables" id="variables">Variables</a></h1>
+<p>Rant programs can define and use variables of several types.</p>
+<p>Because Rant is a dynamically-typed langauge, variables have no type constraints; the type of a variable is determined by the type of its current value.</p>
+<h2><a class="header" href="#value-types" id="value-types">Value types</a></h2>
+<p>Rant supports seven value types:</p>
+<table><thead><tr><th>Type name</th><th>Description</th><th>Rant API</th></tr></thead><tbody>
+<tr><td><code>string</code></td><td>Sequence of UTF-8 characters</td><td><code>RantValue::String(&amp;str)</code></td></tr>
+<tr><td><code>integer</code></td><td>64-bit signed integer</td><td><code>RantValue::Integer(i64)</code></td></tr>
+<tr><td><code>float</code></td><td>64-bit double-precision float</td><td><code>RantValue::Float(f64)</code></td></tr>
+<tr><td><code>bool</code></td><td>Boolean value</td><td><code>RantValue::Bool(bool)</code></td></tr>
+<tr><td><code>list</code></td><td>List of values</td><td><code>RantValue::List(...)</code></td></tr>
+<tr><td><code>map</code></td><td>String-keyed collection of values</td><td><code>RantValue::Map(...)</code></td></tr>
+<tr><td><code>none</code></td><td>Null value</td><td><code>RantValue::None</code></td></tr>
+</tbody></table>
+<blockquote>
+<p>TODO: Finalize equivalent Rust RantValue types</p>
+</blockquote>
+<h2><a class="header" href="#basic-syntax" id="basic-syntax">Basic syntax</a></h2>
+<p>All variable access operations are enclosed in angle brackets.</p>
+<p>Variable accessors have three subtypes: <strong>definitions</strong>, <strong>assignments</strong>, and <strong>getters</strong>.</p>
+<h3><a class="header" href="#definition" id="definition">Definition</a></h3>
+<p>Defining a variable creates it in the current scope, but may not necessarily initialize it with a value.</p>
+<p>All variable definitions begin with the <code>$</code> symbol.</p>
+<pre><code class="language-rant"># Define a variable `name` but leave it empty (value is `none`)
+&lt;$name&gt;
+
+# Define a variable `name` and assign it the string &quot;Nick&quot;
+&lt;$name = Nick&gt;
+</code></pre>
+<h3><a class="header" href="#assignment" id="assignment">Assignment</a></h3>
+<p>Variable assignments include a variable name and value separated by a <code>=</code> symbol.</p>
+<pre><code class="language-rant"># Overwrite value on existing variable `name`
+&lt;name = Nicholas&gt;
+</code></pre>
+<h3><a class="header" href="#getter" id="getter">Getter</a></h3>
+<p>A variable getter only requires the name and adds the variable's value to the output.</p>
+<p>Attempting to retrieve a variable that does not exist results in a runtime error.</p>
+<pre><code class="language-rant"># Get value of `name` (note the lack of '$')
+My name is &lt;name&gt;. # Prints &quot;My name is Nicholas.&quot;
+</code></pre>
+<h2><a class="header" href="#the-none-type" id="the-none-type">The <code>none</code> type</a></h2>
+<p>To represent the lack of a value, Rant has the <code>none</code> type, which has only one possible value, represented as the token <code>&lt;&gt;</code>.</p>
+<pre><code class="language-rant">&lt;$nothing = &lt;&gt;&gt;   # i.e. &lt;$nothing&gt;
+[type:&lt;nothing&gt;]  # none
+</code></pre>
+<h2><a class="header" href="#implicit-type-coercion" id="implicit-type-coercion">Implicit type coercion</a></h2>
+<p>In order to resolve type ambiguities, Rant follows a few rules to infer types for certain kinds of values:</p>
+<h4><a class="header" href="#a-number-without-a-decimal-place-becomes-an-integer" id="a-number-without-a-decimal-place-becomes-an-integer">A number without a decimal place becomes an integer</a></h4>
+<pre><code class="language-rant">&lt;$val = 123&gt;
+[type:&lt;val&gt;]  # integer
+</code></pre>
+<h4><a class="header" href="#a-number-with-a-decimal-place-becomes-a-float" id="a-number-with-a-decimal-place-becomes-a-float">A number with a decimal place becomes a float</a></h4>
+<pre><code class="language-rant">&lt;$val = 123.0&gt;
+[type:&lt;val&gt;]  # float
+</code></pre>
+<h4><a class="header" href="#any-value-containing-fragments-or-whitespace-is-always-coerced-to-a-string" id="any-value-containing-fragments-or-whitespace-is-always-coerced-to-a-string">Any value containing fragments or whitespace is always coerced to a string</a></h4>
+<pre><code class="language-rant">&lt;val = 99 bottles of beer&gt;
+# Since there are fragments and whitespace, it's a string
+[type:&lt;val&gt;]  # string
+
+&lt;val = 99 99&gt;
+# Since there is whitespace between the numbers, the value is still a string
+[type:&lt;val&gt;]  # string
+</code></pre>
+<h4><a class="header" href="#multiple-values-of-any-type-are-always-coerced-to-a-single-string-as-long-as-one-of-the-values-isnt" id="multiple-values-of-any-type-are-always-coerced-to-a-single-string-as-long-as-one-of-the-values-isnt">Multiple values of any type are always coerced to a single string, as long as one of the values isn't <code>&lt;&gt;</code></a></h4>
+<pre><code class="language-rant">&lt;$val = 10 20 30 40 50&gt;
+# Even though they are all integer tokens, they are treated as text
+[type:&lt;val&gt;]  # string
+</code></pre>
+<h4><a class="header" href="#multiple--values-are-coerced-to" id="multiple--values-are-coerced-to">Multiple <code>&lt;&gt;</code> values are coerced to <code>&lt;&gt;</code></a></h4>
+<pre><code class="language-rant">[type:&lt;&gt;&lt;&gt;]   # none
+</code></pre>
+<h3><a class="header" href="#overriding-variables-from-a-parent-scope" id="overriding-variables-from-a-parent-scope">Overriding variables from a parent scope</a></h3>
+<p>Variables in a parent scope can be non-destructively overridden in child scopes by defining a variable of the same name.</p>
+<pre><code class="language-rant"># Define variable `a` in parent scope
+&lt;$a = foo&gt;
+a = &lt;a&gt;\n
+{
+    # Define another variable `a` in child scope
+    # Parent variable is not affected
+    &lt;$a = bar&gt;
+    a = &lt;a&gt;\n
+}
+# Parent variable takes over after child scope exits
+a = &lt;a&gt;
+
+##
+    Output:
+
+    a = foo
+    a = bar
+    a = foo
+##
+</code></pre>
+<h1><a class="header" href="#lists-and-maps-1" id="lists-and-maps-1">Lists and maps</a></h1>
+<p>Rant's variable system has two collection types: <strong>lists</strong> and <strong>maps</strong>.</p>
+<h2><a class="header" href="#lists" id="lists">Lists</a></h2>
+<p>Lists are editable arrays. Lists may contain multiple types of values.</p>
+<p>A list is created by placing the list operator <code>@</code> before a block containing the contents of the list.</p>
+<pre><code class="language-rant"># Create an empty list
+&lt;$empty-list = @{}&gt;
+
+# Create a list of numbers
+&lt;$lucky-numbers = @{1|2|3|5|7|11|13}&gt;
+
+# Create a list of lists
+&lt;$important-letters = @{
+    @{A|B|C} | @{D|E|F}
+}&gt;
+</code></pre>
+<h2><a class="header" href="#maps" id="maps">Maps</a></h2>
+<p>Maps are like lists, but store their values as key-value pairs. Map keys are always strings.</p>
+<p>Map creation uses slightly different syntax from lists: instead of <code>@</code> before the block, <code>@:</code> is used instead.</p>
+<p>The block elements must each also contain both a key and value, separated by a <code>:</code> character.
+If any element of the block is empty or only contains a single component, a compiler error will occur.</p>
+<p>Map keys can contain any Rant code, which will be coerced to a string after resolving.</p>
+<pre><code class="language-rant"># Create an empty map
+&lt;$empty-map = @:{}&gt;
+
+# Create a map with various value types
+&lt;$person = @:{
+    name: John|
+    age: 25
+}&gt;
+</code></pre>
+<h2><a class="header" href="#retrieving-values-from-lists-and-maps" id="retrieving-values-from-lists-and-maps">Retrieving values from lists and maps</a></h2>
+<p>Variable accessors can also access individual elements in lists and maps by using the <code>/</code> operator:</p>
+<pre><code class="language-rant">&lt;$person = @:{
+    name: Bob|
+    age: 30|
+    hobbies: @{programming|hiking}
+}&gt;
+
+name = &lt;person/name&gt;\n
+age = &lt;person/age&gt;\n
+hobbies = [join:&lt;person/hobbies&gt;;,\s]
+
+##
+    Output:
+
+    name = Bob
+    age = 30
+    hobbies = programming, hiking
+##
+</code></pre>
+<h1><a class="header" href="#constructs" id="constructs">Constructs</a></h1>
+<p><strong>Constructs</strong> refer to special runtime variables that Rant can natively interact with to tailor the output of a program.
+There are several construct types currently supported in Rant, which are divided into the following categories:</p>
+<ul>
+<li><a href="/constructs/block-attributes.html">Block attributes</a></li>
+<li><a href="/constructs/formatters.html">Formatters</a></li>
+<li><a href="/constructs/targets.html">Targets</a></li>
+</ul>
+<h1><a class="header" href="#block-attributes" id="block-attributes">Block attributes</a></h1>
+<p><strong>Block attributes</strong> are a set of constructs that control various aspects of block behavior.</p>
+<h2><a class="header" href="#variables-1" id="variables-1">Variables</a></h2>
+<p>All block attributes are stored in a map variable called <code>__BATTRS</code>, which is created in the current local variable scope as soon as any block attribute is assigned.</p>
+<p><code>__BATTRS</code> may contain the following keys:</p>
+<table><thead><tr><th>Key</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>reps</code></td><td><code>integer</code></td><td>Repetitions</td></tr>
+<tr><td><code>rep-special</code></td><td><code>string</code> | <code>none</code></td><td>Special repetition type; see below.</td></tr>
+<tr><td><code>sep</code></td><td><code>integer</code> | <code>float</code> | <code>string</code></td><td>Separator</td></tr>
+<tr><td><code>sel</code></td><td><code>map</code></td><td></td></tr>
+</tbody></table>
+<p>Possible values for <code>__BATTRS/rep-special</code>:</p>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>&quot;all&quot;</code></td><td>Run as many times as there are elements in the block.</td></tr>
+<tr><td><code>&quot;forever&quot;</code></td><td>Repeat forever.</td></tr>
+</tbody></table>
+<h1><a class="header" href="#selectors" id="selectors">Selectors</a></h1>
+<p>A <strong>selector</strong> is a block attribute type that controls how a block selects items.</p>
+<p>In earlier versions of Rant, they were known as &quot;synchronizers.&quot;</p>
+<pre><code class="language-rant"># Create selector `x`
+[mksel: x; reverse]
+# Set repetitions to a random number in the range [10, 20]
+[rep:[n:10;20]]
+# Set separator to space
+[sep:\s]
+# Set selector to `x`
+[sel:x]
+{A|B|C|D|E|F|G|H}
+</code></pre>
+<h1><a class="header" href="#repeaters" id="repeaters">Repeaters</a></h1>
+<p>A <strong>repeater</strong> is a collection of block attributes that controls several aspects of block resolution, namely:</p>
+<ol>
+<li>How many times the block resolves in sequence,</li>
+<li>Any code that runs before, between, and after each iteration,</li>
+<li>Any code that runs before and after all iterations,</li>
+<li>Any conditions that determine whether the block should continue running</li>
+</ol>
+<h2><a class="header" href="#variables-2" id="variables-2">Variables</a></h2>
+<p>During a repeater's lifetime, it will store some state information in a local variable named <code>__REPSTATE</code> scoped to its associated block.</p>
+<table><thead><tr><th>Key</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>index</code></td><td>integer</td><td>Number of elapsed iterations</td></tr>
+<tr><td><code>max</code></td><td>integer</td><td>Maximum iterations (<code>0</code> if infinite)</td></tr>
+</tbody></table>
+<h1><a class="header" href="#formatters" id="formatters">Formatters</a></h1>
+<p>Formatters are constructs that can apply various formatting filters to program output.</p>
+<h1><a class="header" href="#case-formatter" id="case-formatter">Case formatter</a></h1>
+<h1><a class="header" href="#number-formatter" id="number-formatter">Number formatter</a></h1>
+<p>The <strong>number formatter</strong> controls how Rant converts numeric values (integers and floats) to strings in the program output.</p>
+<h1><a class="header" href="#whitespace-formatter" id="whitespace-formatter">Whitespace formatter</a></h1>
+<p>The <strong>whitespace formatter</strong> controls how whitespace is written to the program output.</p>
+<h1><a class="header" href="#standard-library" id="standard-library">Standard library</a></h1>
+<p>The Rant Standard Library contains many useful and some essential functions that are natively implemented in the Rant runtime itself.</p>
+<h1><a class="header" href="#basic-functions" id="basic-functions">Basic functions</a></h1>
+<h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
+<p>Returns the seed value that the program was run with.</p>
+<h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
+<p>Returns the name of <code>value</code>'s type. The type name can be any of the following:</p>
+<ul>
+<li><code>string</code></li>
+<li><code>float</code></li>
+<li><code>integer</code></li>
+<li><code>bool</code></li>
+<li><code>function</code></li>
+<li><code>list</code></li>
+<li><code>map</code></li>
+<li><code>none</code></li>
+</ul>
+<h3><a class="header" href="#return-value" id="return-value">[return: value]</a></h3>
+<p>Immediately exits the current function and returns <code>value</code> to the caller instead of the current output.</p>
+<p>If <code>[return]</code> is called without an argument, the output from the function will be returned instead.</p>
+<h1><a class="header" href="#generators" id="generators">Generators</a></h1>
+<h3><a class="header" href="#n-min-max" id="n-min-max">[n: min; max]</a></h3>
+<p>Prints a random integer between <code>min</code> and <code>max</code> (both inclusive).</p>
+<h4><a class="header" href="#example" id="example">Example</a></h4>
+<pre><code class="language-rant">You roll the dice and get '[n:1;6] and '[n:1;6].
+# You roll the dice and get 2 and 5.
+</code></pre>
+<h1><a class="header" href="#string-manipulation" id="string-manipulation">String manipulation</a></h1>
+<h1><a class="header" href="#math-functions" id="math-functions">Math functions</a></h1>
+<h1><a class="header" href="#collection-functions" id="collection-functions">Collection functions</a></h1>
+<h1><a class="header" href="#block-attributes-1" id="block-attributes-1">Block attributes</a></h1>
+<h3><a class="header" href="#r-reps" id="r-reps">[r: reps]</a></h3>
+<p>Sets the repetition count (<code>__BATTRS/reps</code>) for the next block to <code>reps</code>.
+The value of <code>reps</code> must be non-negative.</p>
+<h4><a class="header" href="#example-1" id="example-1">Example</a></h4>
+<pre><code class="language-rant"># Print the fragment 3 times
+[r:3]{ha}
+# hahaha
+
+# Print the fragment between 3 and 8 times
+[r:[n:3;8]]{ha}
+# hahahaha
+# hahahahahahaha
+# hahaha
+# hahahahaha
+# ...
+</code></pre>
+<h3><a class="header" href="#s-sep" id="s-sep">[s: sep]</a></h3>
+<p>Sets the separator value (<code>__BATTRS/sep</code>) for the next block to <code>sep</code>.
+The value of <code>sep</code> may be a string, number, or function.
+If it is a function, it will be called separately for each usage and its return value will be printed.</p>
+<h1><a class="header" href="#channel-access" id="channel-access">Channel access</a></h1>
+<h1><a class="header" href="#dynamic-variable-access" id="dynamic-variable-access">Dynamic variable access</a></h1>
+<h1><a class="header" href="#glossary" id="glossary">Glossary</a></h1>
+<h3><a class="header" href="#block" id="block">Block</a></h3>
+<p>A block is a section of a Rant program subdivided into zero or more parts.
+Blocks act as variable scopes and can be combined with various constructs to produce a wide variety of behaviors.</p>
+<h3><a class="header" href="#block-attributes-2" id="block-attributes-2">Block attributes</a></h3>
+<p>Block attributes provide a way to customize the resolver's behavior through the variable system, such as changing iteration count.</p>
+<h3><a class="header" href="#channel" id="channel">Channel</a></h3>
+<p>A channel is an independent stream of output from a Rant program. Programs may have more than one channel.</p>
+<h3><a class="header" href="#construct" id="construct">Construct</a></h3>
+<p>A construct is a group of one or more runtime variables can be used to interact with the Rant runtime 
+and customize various aspects of program behavior.</p>
+<h3><a class="header" href="#formatter" id="formatter">Formatter</a></h3>
+<p>A formatter is a runtime component that mutates output in some way.</p>
+<h3><a class="header" href="#fragment" id="fragment">Fragment</a></h3>
+<p>A fragment is a sequence of any non-whitespace, non-reserved characters found in a Rant program.</p>
+<h3><a class="header" href="#hint" id="hint">Hint</a></h3>
+<p>A hint is a compile-time operation that informs the Rant compiler that the next program element is expected to print to the output.</p>
+<h3><a class="header" href="#resolution" id="resolution">Resolution</a></h3>
+<p>Resolution refers to the process of producing an output from a block, after which the block is referred to as 'resolved.' </p>
+<h3><a class="header" href="#resolver" id="resolver">Resolver</a></h3>
+<p>The component of the Rant runtime that handles block resolution.</p>
+<h3><a class="header" href="#sink" id="sink">Sink</a></h3>
+<p>A sink is an operation that suppresses the output of a program element while still allowing its execution.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
