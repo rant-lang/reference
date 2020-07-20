@@ -6,7 +6,7 @@ Because Rant is a dynamically-typed langauge, variables have no type constraints
 
 ## Value types
 
-Rant supports seven value types:
+Rant supports eight value types:
 
 |Type name|Description|Rant API|
 |---------|-----------|--------|
@@ -14,8 +14,9 @@ Rant supports seven value types:
 |`integer`|64-bit signed integer|`RantValue::Integer(i64)`|
 |`float`|64-bit double-precision float|`RantValue::Float(f64)`|
 |`bool`|Boolean value|`RantValue::Bool(bool)`|
-|`list`|List of values|`RantValue::List(...)`|
-|`map`|String-keyed collection of values|`RantValue::Map(...)`||
+|`function`|Function/closure|`RantValue::Function(...)`|
+|`list`|List of values|`RantValue::List(Rc<Vec<RantValue<'a>>>)`|
+|`map`|String-keyed collection of values|`RantValue::Map(Rc<RantMap<'a>>)`||
 |`none`|Null value|`RantValue::None`|
 
 > TODO: Finalize equivalent Rust RantValue types
@@ -49,7 +50,7 @@ Variable assignments include a variable name and value separated by a `=` symbol
 <name = Nicholas>
 ```
 
-### Getter
+### Getters
 
 A variable getter only requires the name and adds the variable's value to the output.
 
@@ -69,6 +70,11 @@ To represent the lack of a value, Rant has the `none` type, which has only one p
 <$nothing = <>>   # i.e. <$nothing>
 [type:<nothing>]  # none
 ```
+
+## Boolean values
+
+The two boolean values are accessed through the reserved getters `<true>` and `<false>`.
+These variable names are reserved and evaluated at compile time.
 
 ## Implicit type coercion
 
