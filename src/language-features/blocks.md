@@ -26,11 +26,29 @@ In their simplest form, blocks resolve a single element from their body and add 
 
 By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a [selector](/constructs/selectors.md).
 
+### Entanglement
+
+A group of blocks can be "entangled" so that they all coordinate their selections.
+
+
+```rant
+# Create a selector named 'a'
+[mksel:a]
+# Both blocks use the 'a' selector, so they're entangled
+[sel:a]{Dogs|Cats} say \"[sel:a]{woof|meow}!\"
+
+##
+Possible outputs:
+- Dogs say "woof!"
+- Cats say "meow!"
+##
+```
+
 ### Variable scope
 
 Blocks also act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.
 
-### Lists and maps
+### Collection initialization
 
 Blocks can be turned into lists and maps using special syntax.
 

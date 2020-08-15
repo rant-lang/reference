@@ -13,7 +13,7 @@ Rant supports eight value types:
 |`string`|Sequence of UTF-8 characters|`RantValue::String(&str)`|
 |`integer`|64-bit signed integer|`RantValue::Integer(i64)`|
 |`float`|64-bit double-precision float|`RantValue::Float(f64)`|
-|`bool`|Boolean value|`RantValue::Bool(bool)`|
+|`bool`|Boolean value|`RantValue::Boolean(bool)`|
 |`function`|Function/closure|`RantValue::Function(...)`|
 |`list`|List of values|`RantValue::List(Rc<Vec<RantValue<'a>>>)`|
 |`map`|String-keyed collection of values|`RantValue::Map(Rc<RantMap<'a>>)`||

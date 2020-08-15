@@ -38,42 +38,23 @@ To define a function and assign it to a variable, the syntax is as follows:
 }
 ```
 
-## Boxing
+### Optional parameters
 
-It is sometimes necessary to pass a block as a function rather than resolve it, so that it can be resolved elsewhere later on.
-This can be done using the **box operator** `[]`. Boxing a block produces an anonymous function, also simply known as a **box** when created this way.
+A function parameter can be marked as optional using the `?` symbol. When the function is called and no value is passed to the parameter, it will default to `<>`.
 
 ```rant
-# Creates a box and places it on the output
-[]{A|B|C|D}
+[$]
 ```
 
-A box cannot resolve as-is; in order for it to produce output, it has to be "unboxed" first.
+### Variadic parameters
 
-### Parameterized boxes
-
-If you want to assign parameters to a box, specify the parameter names separated by semicolons inside another set of brackets within the box operator:
-
-```rant
-[[param1;param2]]{ ... }
-```
-
-## Calling anonymous functions
-
-Calling an anonymous function uses the same syntax as regular function calls, but the function name is replaced by the `!` operator followed by an expression that resolves to the function you want to call.
+Functions support variadic parameters with the special symbols `*` and `+`. It must be the last parameter in the function signature.
+Since the `*` variable is a list object, it can be treated like any other list; it cannot, however, be set by the user.
 
 ```rant
-# Define a function that returns a parameterless box
-[$get-anon-func] {
-    []{Hello from anonymous function}
+[$how-many:items*] {
+    [len:<items>]
 }
 
-[![get-anon-func]]          # "Hello from anonymous function"
-
-# Define a function that returns a box with a single parameter
-[$get-greet-func] {
-    [[name]]{Hello, <name>!}
-}
-
-[![get-greet-func]:Rant]    # "Hello, Rant!"
+[how-many: foo; bar; baz] # Outputs "3"
 ```

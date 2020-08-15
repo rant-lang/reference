@@ -1,4 +1,4 @@
-# Lists and maps
+# Collections
 
 Rant's variable system has two collection types: **lists** and **maps**.
 
@@ -23,7 +23,7 @@ A list is created by placing the list operator `@` before a block containing the
 
 ## Maps
 
-Maps are like lists, but store their values as key-value pairs. Map keys are always strings.
+Maps are like lists, but store their values as key-value pairs. Map keys are always strings-- assigning a non-string key will coerce it to a string.
 
 Map creation uses slightly different syntax from lists: instead of `@` before the block, `@:` is used instead.
 
@@ -43,9 +43,9 @@ Map keys can contain any Rant code, which will be coerced to a string after reso
 }>
 ```
 
-## Retrieving values from lists and maps
+## Retrieving values from collections
 
-Variable accessors can also access individual elements in lists and maps by using the `/` operator:
+Variable accessors can also access individual elements in lists and maps by using the access operator `/`.
 
 ```rant
 <$person = @:{
@@ -65,4 +65,25 @@ hobbies = [join:<person/hobbies>;,\s]
     age = 30
     hobbies = programming, hiking
 ##
+```
+
+Additionally, a variable access path does not need to be made out of entirely constants. You can use a block to resolve to a key or index.
+
+**Map example**
+
+```rant
+<$my-map = @:{
+    a: foo | b: bar | c: baz
+}>
+
+<my-map/{a|b|c}>
+# Outputs "foo", "bar", or "baz"
+```
+
+**List example**
+```rant
+<$my-list = @{foo|bar|baz}>
+
+<my-list/{[n:0;2]}>
+# Outputs "foo", "bar", or "baz"
 ```
