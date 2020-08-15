@@ -21,6 +21,7 @@ jobs:
       - name: Generate book from markdown
         run: |
             mdbook build
+            echo "docs.rant-lang.org" > ./book/CNAME
 
       - name: Publish HTML
         uses: peaceiris/actions-gh-pages@v3
