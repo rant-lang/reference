@@ -27,7 +27,7 @@ Here's a list of them:
 
 ## Unicode escape sequences
 
-Escape sequences can also be used to print characters by their Unicode code point in hexicedimal format:
+Escape sequences can also be used to print characters by their Unicode code point in hexadecimal format:
 
 ```rant
 \xE4    # 'ä'
