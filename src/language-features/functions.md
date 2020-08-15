@@ -40,16 +40,27 @@ To define a function and assign it to a variable, the syntax is as follows:
 
 ### Optional parameters
 
-A function parameter can be marked as optional using the `?` symbol. When the function is called and no value is passed to the parameter, it will default to `<>`.
+A function parameter can be marked as optional using the `?` symbol.
+When the argument is omitted for an optional parameter, it will default to the empty value `<>`.
+Please note that any optional parameters must appear after all required parameters, and before any variadic parameter.
 
 ```rant
-[$]
+# Generates a map for a pet with a name and species (defaults to "dog")
+[$gen-pet: name; species?] {
+    @:{
+        name: <name>|
+        species: [alt: <species>; dog]
+    }
+}
 ```
 
 ### Variadic parameters
 
-Functions support variadic parameters with the special symbols `*` and `+`. It must be the last parameter in the function signature.
-Since the `*` variable is a list object, it can be treated like any other list; it cannot, however, be set by the user.
+Functions support variadic parameters with the special symbols `*` and `+`.
+
+A `*` parameter is optional and defaults to an empty list, while a `+` parameter is required and must contain at least one element.
+
+Functions may only have up to one variadic parameter, and it must appear last in the signature.
 
 ```rant
 [$how-many:items*] {

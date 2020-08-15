@@ -1,5 +1,9 @@
 # Basic functions
 
+### [alt: a; b+]
+
+Prints the first argument that isn't the empty value `<>`.
+
 ### [seed]
 
 Returns the seed value that the program was run with.
