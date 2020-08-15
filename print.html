@@ -303,12 +303,21 @@ Possible outputs:
 }
 </code></pre>
 <h3><a class="header" href="#optional-parameters" id="optional-parameters">Optional parameters</a></h3>
-<p>A function parameter can be marked as optional using the <code>?</code> symbol. When the function is called and no value is passed to the parameter, it will default to <code>&lt;&gt;</code>.</p>
-<pre><code class="language-rant">[$]
+<p>A function parameter can be marked as optional using the <code>?</code> symbol.
+When the argument is omitted for an optional parameter, it will default to the empty value <code>&lt;&gt;</code>.
+Please note that any optional parameters must appear after all required parameters, and before any variadic parameter.</p>
+<pre><code class="language-rant"># Generates a map for a pet with a name and species (defaults to &quot;dog&quot;)
+[$gen-pet: name; species?] {
+    @:{
+        name: &lt;name&gt;|
+        species: [alt: &lt;species&gt;; dog]
+    }
+}
 </code></pre>
 <h3><a class="header" href="#variadic-parameters" id="variadic-parameters">Variadic parameters</a></h3>
-<p>Functions support variadic parameters with the special symbols <code>*</code> and <code>+</code>. It must be the last parameter in the function signature.
-Since the <code>*</code> variable is a list object, it can be treated like any other list; it cannot, however, be set by the user.</p>
+<p>Functions support variadic parameters with the special symbols <code>*</code> and <code>+</code>.</p>
+<p>A <code>*</code> parameter is optional and defaults to an empty list, while a <code>+</code> parameter is required and must contain at least one element.</p>
+<p>Functions may only have up to one variadic parameter, and it must appear last in the signature.</p>
 <pre><code class="language-rant">[$how-many:items*] {
     [len:&lt;items&gt;]
 }
@@ -610,6 +619,8 @@ There are several construct types currently supported in Rant, which are divided
 <h1><a class="header" href="#standard-library" id="standard-library">Standard library</a></h1>
 <p>The Rant Standard Library contains many useful and some essential functions that are natively implemented in the Rant runtime itself.</p>
 <h1><a class="header" href="#basic-functions" id="basic-functions">Basic functions</a></h1>
+<h3><a class="header" href="#alt-a-b" id="alt-a-b">[alt: a; b+]</a></h3>
+<p>Prints the first argument that isn't the empty value <code>&lt;&gt;</code>.</p>
 <h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
 <p>Returns the seed value that the program was run with.</p>
 <h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
