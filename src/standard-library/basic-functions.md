@@ -19,7 +19,7 @@ Returns the name of `value`'s type. The type name can be any of the following:
 * `function`
 * `list`
 * `map`
-* `none`
+* `empty`
 
 ### [return: value]
 

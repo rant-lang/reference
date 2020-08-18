@@ -8,18 +8,16 @@ Because Rant is a dynamically-typed langauge, variables have no type constraints
 
 Rant supports eight value types:
 
-|Type name|Description|Rant API|
-|---------|-----------|--------|
-|`string`|Sequence of UTF-8 characters|`RantValue::String(&str)`|
-|`integer`|64-bit signed integer|`RantValue::Integer(i64)`|
-|`float`|64-bit double-precision float|`RantValue::Float(f64)`|
-|`bool`|Boolean value|`RantValue::Boolean(bool)`|
-|`function`|Function/closure|`RantValue::Function(...)`|
-|`list`|List of values|`RantValue::List(Rc<Vec<RantValue<'a>>>)`|
-|`map`|String-keyed collection of values|`RantValue::Map(Rc<RantMap<'a>>)`||
-|`none`|Null value|`RantValue::None`|
-
-> TODO: Finalize equivalent Rust RantValue types
+|Type name|Description|
+|---------|-----------|
+|`string`|Sequence of UTF-8 characters|
+|`integer`|64-bit signed integer|
+|`float`|64-bit double-precision float|
+|`bool`|Boolean value|
+|`function`|Function/closure|
+|`list`|List of values|
+|`map`|String-keyed collection of values|
+|`empty`|Unit type representing "null" value|
 
 ## Basic syntax
 
@@ -34,7 +32,7 @@ Defining a variable creates it in the current scope, but may not necessarily ini
 All variable definitions begin with the `$` symbol.
 
 ```rant
-# Define a variable `name` but leave it empty (value is `none`)
+# Define a variable `name` but leave it empty (value is `<>`)
 <$name>
 
 # Define a variable `name` and assign it the string "Nick"
@@ -62,19 +60,20 @@ My name is <name>. # Prints "My name is Nicholas."
 ```
 
 
-## The `none` type
+## The `empty` type
 
-To represent the lack of a value, Rant has the `none` type, which has only one possible value, represented as the token `<>`.
+To represent the lack of a value, Rant has the `empty` type, which has only one possible value, represented by the token `<>`.
 
 ```rant
 <$nothing = <>>   # i.e. <$nothing>
-[type:<nothing>]  # none
+[type:<nothing>]  # empty
 ```
 
 ## Boolean values
 
-The two boolean values are accessed through the reserved getters `<true>` and `<false>`.
-These variable names are reserved and evaluated at compile time.
+The two boolean values are represented by the keywords `true` and `false`.
+These keywords can still be used as fragments when not used alone, as their string representations are simply `"true"` and `"false"`;
+however, if they are passed on their own and need to be strings, you will need to put them in a string literal.
 
 ## Implicit type coercion
 
@@ -113,9 +112,9 @@ In order to resolve type ambiguities, Rant follows a few rules to infer types fo
 [type:<val>]  # string
 ```
 
-#### Multiple `<>` values are coerced to `<>`
+#### Multiple empties are coerced to a single `<>`
 ```rant
-[type:<><>]   # none
+[type:<><>]   # empty
 ```
 
 
