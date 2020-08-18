@@ -399,26 +399,23 @@ Here's a list of them:</p>
 <p>Because Rant is a dynamically-typed langauge, variables have no type constraints; the type of a variable is determined by the type of its current value.</p>
 <h2><a class="header" href="#value-types" id="value-types">Value types</a></h2>
 <p>Rant supports eight value types:</p>
-<table><thead><tr><th>Type name</th><th>Description</th><th>Rant API</th></tr></thead><tbody>
-<tr><td><code>string</code></td><td>Sequence of UTF-8 characters</td><td><code>RantValue::String(&amp;str)</code></td></tr>
-<tr><td><code>integer</code></td><td>64-bit signed integer</td><td><code>RantValue::Integer(i64)</code></td></tr>
-<tr><td><code>float</code></td><td>64-bit double-precision float</td><td><code>RantValue::Float(f64)</code></td></tr>
-<tr><td><code>bool</code></td><td>Boolean value</td><td><code>RantValue::Boolean(bool)</code></td></tr>
-<tr><td><code>function</code></td><td>Function/closure</td><td><code>RantValue::Function(...)</code></td></tr>
-<tr><td><code>list</code></td><td>List of values</td><td><code>RantValue::List(Rc&lt;Vec&lt;RantValue&lt;'a&gt;&gt;&gt;)</code></td></tr>
-<tr><td><code>map</code></td><td>String-keyed collection of values</td><td><code>RantValue::Map(Rc&lt;RantMap&lt;'a&gt;&gt;)</code></td></tr>
-<tr><td><code>none</code></td><td>Null value</td><td><code>RantValue::None</code></td></tr>
+<table><thead><tr><th>Type name</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>string</code></td><td>Sequence of UTF-8 characters</td></tr>
+<tr><td><code>integer</code></td><td>64-bit signed integer</td></tr>
+<tr><td><code>float</code></td><td>64-bit double-precision float</td></tr>
+<tr><td><code>bool</code></td><td>Boolean value</td></tr>
+<tr><td><code>function</code></td><td>Function/closure</td></tr>
+<tr><td><code>list</code></td><td>List of values</td></tr>
+<tr><td><code>map</code></td><td>String-keyed collection of values</td></tr>
+<tr><td><code>empty</code></td><td>Unit type representing &quot;null&quot; value</td></tr>
 </tbody></table>
-<blockquote>
-<p>TODO: Finalize equivalent Rust RantValue types</p>
-</blockquote>
 <h2><a class="header" href="#basic-syntax" id="basic-syntax">Basic syntax</a></h2>
 <p>All variable access operations are enclosed in angle brackets.</p>
 <p>Variable accessors have three subtypes: <strong>definitions</strong>, <strong>assignments</strong>, and <strong>getters</strong>.</p>
 <h3><a class="header" href="#definition" id="definition">Definition</a></h3>
 <p>Defining a variable creates it in the current scope, but may not necessarily initialize it with a value.</p>
 <p>All variable definitions begin with the <code>$</code> symbol.</p>
-<pre><code class="language-rant"># Define a variable `name` but leave it empty (value is `none`)
+<pre><code class="language-rant"># Define a variable `name` but leave it empty (value is `&lt;&gt;`)
 &lt;$name&gt;
 
 # Define a variable `name` and assign it the string &quot;Nick&quot;
@@ -435,14 +432,15 @@ Here's a list of them:</p>
 <pre><code class="language-rant"># Get value of `name` (note the lack of '$')
 My name is &lt;name&gt;. # Prints &quot;My name is Nicholas.&quot;
 </code></pre>
-<h2><a class="header" href="#the-none-type" id="the-none-type">The <code>none</code> type</a></h2>
-<p>To represent the lack of a value, Rant has the <code>none</code> type, which has only one possible value, represented as the token <code>&lt;&gt;</code>.</p>
+<h2><a class="header" href="#the-empty-type" id="the-empty-type">The <code>empty</code> type</a></h2>
+<p>To represent the lack of a value, Rant has the <code>empty</code> type, which has only one possible value, represented by the token <code>&lt;&gt;</code>.</p>
 <pre><code class="language-rant">&lt;$nothing = &lt;&gt;&gt;   # i.e. &lt;$nothing&gt;
-[type:&lt;nothing&gt;]  # none
+[type:&lt;nothing&gt;]  # empty
 </code></pre>
 <h2><a class="header" href="#boolean-values" id="boolean-values">Boolean values</a></h2>
-<p>The two boolean values are accessed through the reserved getters <code>&lt;true&gt;</code> and <code>&lt;false&gt;</code>.
-These variable names are reserved and evaluated at compile time.</p>
+<p>The two boolean values are represented by the keywords <code>true</code> and <code>false</code>.
+These keywords can still be used as fragments when not used alone, as their string representations are simply <code>&quot;true&quot;</code> and <code>&quot;false&quot;</code>;
+however, if they are passed on their own and need to be strings, you will need to put them in a string literal.</p>
 <h2><a class="header" href="#implicit-type-coercion" id="implicit-type-coercion">Implicit type coercion</a></h2>
 <p>In order to resolve type ambiguities, Rant follows a few rules to infer types for certain kinds of values:</p>
 <h4><a class="header" href="#a-number-without-a-decimal-place-becomes-an-integer" id="a-number-without-a-decimal-place-becomes-an-integer">A number without a decimal place becomes an integer</a></h4>
@@ -467,8 +465,8 @@ These variable names are reserved and evaluated at compile time.</p>
 # Even though they are all integer tokens, they are treated as text
 [type:&lt;val&gt;]  # string
 </code></pre>
-<h4><a class="header" href="#multiple--values-are-coerced-to" id="multiple--values-are-coerced-to">Multiple <code>&lt;&gt;</code> values are coerced to <code>&lt;&gt;</code></a></h4>
-<pre><code class="language-rant">[type:&lt;&gt;&lt;&gt;]   # none
+<h4><a class="header" href="#multiple-empties-are-coerced-to-a-single" id="multiple-empties-are-coerced-to-a-single">Multiple empties are coerced to a single <code>&lt;&gt;</code></a></h4>
+<pre><code class="language-rant">[type:&lt;&gt;&lt;&gt;]   # empty
 </code></pre>
 <h3><a class="header" href="#overriding-variables-from-a-parent-scope" id="overriding-variables-from-a-parent-scope">Overriding variables from a parent scope</a></h3>
 <p>Variables in a parent scope can be non-destructively overridden in child scopes by defining a variable of the same name.</p>
@@ -633,7 +631,7 @@ There are several construct types currently supported in Rant, which are divided
 <li><code>function</code></li>
 <li><code>list</code></li>
 <li><code>map</code></li>
-<li><code>none</code></li>
+<li><code>empty</code></li>
 </ul>
 <h3><a class="header" href="#return-value" id="return-value">[return: value]</a></h3>
 <p>Immediately exits the current function and returns <code>value</code> to the caller instead of the current output.</p>
