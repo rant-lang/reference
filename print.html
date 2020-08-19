@@ -493,41 +493,54 @@ a = &lt;a&gt;
 <h1><a class="header" href="#collections" id="collections">Collections</a></h1>
 <p>Rant's variable system has two collection types: <strong>lists</strong> and <strong>maps</strong>.</p>
 <h2><a class="header" href="#lists" id="lists">Lists</a></h2>
-<p>Lists are editable arrays. Lists may contain multiple types of values.</p>
-<p>A list is created by placing the list operator <code>@</code> before a block containing the contents of the list.</p>
-<pre><code class="language-rant"># Create an empty list
-&lt;$empty-list = @{}&gt;
+<p>Lists are resizable arrays of values. They may contain multiple types of values.</p>
+<p>Lists are initialized using a pair of parentheses containing the list elements, separated by semicolons:</p>
+<pre><code class="language-rant"># A pair of parentheses is treated like an empty list
+&lt;$empty-list = ()&gt;
+
+# Initialize a list with one empty element
+&lt;$one-empty = (&lt;&gt;)&gt;
+
+# Create a list with two empty elements
+&lt;$two-empty = (;)&gt; # Short for (&lt;&gt;;&lt;&gt;)
 
 # Create a list of numbers
-&lt;$lucky-numbers = @{1|2|3|5|7|11|13}&gt;
+&lt;$lucky-numbers = (1; 2; 3; 5; 7; 11; 13)&gt;
 
 # Create a list of lists
-&lt;$important-letters = @{
-    @{A|B|C} | @{D|E|F}
-}&gt;
+&lt;$important-lists = ((A; B; C); (D; E; F))&gt;
 </code></pre>
 <h2><a class="header" href="#maps" id="maps">Maps</a></h2>
 <p>Maps are like lists, but store their values as key-value pairs. Map keys are always strings-- assigning a non-string key will coerce it to a string.</p>
-<p>Map creation uses slightly different syntax from lists: instead of <code>@</code> before the block, <code>@:</code> is used instead.</p>
-<p>The block elements must each also contain both a key and value, separated by a <code>:</code> character.
-If any element of the block is empty or only contains a single component, a compiler error will occur.</p>
-<p>Map keys can contain any Rant code, which will be coerced to a string after resolving.</p>
+<p>Maps use similar syntax to lists, but with some extra requirements:</p>
+<ul>
+<li>The <code>@</code> symbol must appear before the opening <code>(</code> to identify the collection as a map.</li>
+<li>Each element must be a key-value pair, with the key and value separated by an <code>=</code> symbol.</li>
+</ul>
+<p>Map keys come in two flavors:</p>
+<ul>
+<li><strong>Static keys:</strong> Evaluated at compile-time. They must be identifiers or string literals.</li>
+<li><strong>Dynamic keys:</strong> Evaluated at run-time. They must be blocks.</li>
+</ul>
 <pre><code class="language-rant"># Create an empty map
-&lt;$empty-map = @:{}&gt;
+&lt;$empty-map = @()&gt;
 
 # Create a map with various value types
-&lt;$person = @:{
-    name: John|
-    age: 25
-}&gt;
+&lt;$secret-key = occupation&gt;
+&lt;$person = @(
+    name = John;
+    age = 25;
+    &quot;favorite color&quot; = {red|green|blue};
+    {&lt;secret-key&gt;} = programmer
+)&gt;
 </code></pre>
 <h2><a class="header" href="#retrieving-values-from-collections" id="retrieving-values-from-collections">Retrieving values from collections</a></h2>
 <p>Variable accessors can also access individual elements in lists and maps by using the access operator <code>/</code>.</p>
-<pre><code class="language-rant">&lt;$person = @:{
-    name: Bob|
-    age: 30|
-    hobbies: @{programming|hiking}
-}&gt;
+<pre><code class="language-rant">&lt;$person = @(
+    name = Bob;
+    age = 30;
+    hobbies = (programming;hiking)
+)&gt;
 
 name = &lt;person/name&gt;\n
 age = &lt;person/age&gt;\n
@@ -543,15 +556,15 @@ hobbies = [join:&lt;person/hobbies&gt;;,\s]
 </code></pre>
 <p>Additionally, a variable access path does not need to be made out of entirely constants. You can use a block to resolve to a key or index.</p>
 <p><strong>Map example</strong></p>
-<pre><code class="language-rant">&lt;$my-map = @:{
-    a: foo | b: bar | c: baz
-}&gt;
+<pre><code class="language-rant">&lt;$my-map = @(
+    a = foo; b = bar; c = baz
+)&gt;
 
 &lt;my-map/{a|b|c}&gt;
 # Outputs &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
 </code></pre>
 <p><strong>List example</strong></p>
-<pre><code class="language-rant">&lt;$my-list = @{foo|bar|baz}&gt;
+<pre><code class="language-rant">&lt;$my-list = (foo;bar;baz)&gt;
 
 &lt;my-list/{[n:0;2]}&gt;
 # Outputs &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
