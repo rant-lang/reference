@@ -93,6 +93,8 @@ Additionally, a variable access path does not need to be made out of entirely co
 ```rant
 <$my-list = (foo;bar;baz)>
 
-<my-list/{[n:0;2]}>
-# Outputs "foo", "bar", or "baz"
+<my-list/0>             # "foo"
+<my-list/1>             # "bar"
+<my-list/2>             # "baz"
+<my-list/{[n:0;2]}>     # "foo", "bar", or "baz"
 ```
