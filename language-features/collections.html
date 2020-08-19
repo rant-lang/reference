@@ -235,8 +235,10 @@ hobbies = [join:&lt;person/hobbies&gt;;,\s]
 <p><strong>List example</strong></p>
 <pre><code class="language-rant">&lt;$my-list = (foo;bar;baz)&gt;
 
-&lt;my-list/{[n:0;2]}&gt;
-# Outputs &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
+&lt;my-list/0&gt;             # &quot;foo&quot;
+&lt;my-list/1&gt;             # &quot;bar&quot;
+&lt;my-list/2&gt;             # &quot;baz&quot;
+&lt;my-list/{[n:0;2]}&gt;     # &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
 </code></pre>
 
                     </main>
