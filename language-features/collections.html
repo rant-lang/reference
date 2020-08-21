@@ -180,7 +180,8 @@
 &lt;$important-lists = ((A; B; C); (D; E; F))&gt;
 </code></pre>
 <h2><a class="header" href="#maps" id="maps">Maps</a></h2>
-<p>Maps are like lists, but store their values as key-value pairs. Map keys are always strings-- assigning a non-string key will coerce it to a string.</p>
+<p>Maps are un-ordered collections of key-value pairs, where each key is unique.
+Map keys are always strings: even if you try to use a non-string as a map key, it will be automatically converted to a string first.</p>
 <p>Maps use similar syntax to lists, but with some extra requirements:</p>
 <ul>
 <li>The <code>@</code> symbol must appear before the opening <code>(</code> to identify the collection as a map.</li>

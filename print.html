@@ -264,14 +264,6 @@ Possible outputs:
 </code></pre>
 <h3><a class="header" href="#variable-scope" id="variable-scope">Variable scope</a></h3>
 <p>Blocks also act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.</p>
-<h3><a class="header" href="#collection-initialization" id="collection-initialization">Collection initialization</a></h3>
-<p>Blocks can be turned into lists and maps using special syntax.</p>
-<pre><code class="language-rant"># Create a list of values
-@{cayenne|serrano|habanero}
-
-# Create a map of values
-@:{name:John|age:25}
-</code></pre>
 <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
 <p>Functions contain code that can be executed arbitrarily. The Rant standard library includes several native functions, but you can also define your own.</p>
 <h2><a class="header" href="#calling-functions" id="calling-functions">Calling functions</a></h2>
@@ -511,7 +503,8 @@ a = &lt;a&gt;
 &lt;$important-lists = ((A; B; C); (D; E; F))&gt;
 </code></pre>
 <h2><a class="header" href="#maps" id="maps">Maps</a></h2>
-<p>Maps are like lists, but store their values as key-value pairs. Map keys are always strings-- assigning a non-string key will coerce it to a string.</p>
+<p>Maps are un-ordered collections of key-value pairs, where each key is unique.
+Map keys are always strings: even if you try to use a non-string as a map key, it will be automatically converted to a string first.</p>
 <p>Maps use similar syntax to lists, but with some extra requirements:</p>
 <ul>
 <li>The <code>@</code> symbol must appear before the opening <code>(</code> to identify the collection as a map.</li>
