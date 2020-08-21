@@ -27,7 +27,8 @@ Lists are initialized using a pair of parentheses containing the list elements, 
 
 ## Maps
 
-Maps are like lists, but store their values as key-value pairs. Map keys are always strings-- assigning a non-string key will coerce it to a string.
+Maps are un-ordered collections of key-value pairs, where each key is unique.
+Map keys are always strings: even if you try to use a non-string as a map key, it will be automatically converted to a string first.
 
 Maps use similar syntax to lists, but with some extra requirements:
 

@@ -47,15 +47,3 @@ Possible outputs:
 ### Variable scope
 
 Blocks also act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.
-
-### Collection initialization
-
-Blocks can be turned into lists and maps using special syntax.
-
-```rant
-# Create a list of values
-@{cayenne|serrano|habanero}
-
-# Create a map of values
-@:{name:John|age:25}
-```
