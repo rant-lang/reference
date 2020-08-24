@@ -56,7 +56,7 @@ Causes a runtime error if any of the following are true:
 
 #### Errors
 
-Causes a runtime error if the index is out of range or the `list` is not a list.
+Causes a runtime error if `collection` is a list and the `pos` is out of range.
 
 ### [clear: collection]
 
