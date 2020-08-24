@@ -12,8 +12,6 @@
     - [Collections](language-features/collections.md)
 - [Constructs](constructs.md)
     - [Block attributes](constructs/block-attributes.md)
-        - [Selectors](constructs/selectors.md)
-        - [Repeaters](constructs/repeaters.md)
     - [Formatters](constructs/formatters.md)
         - [Case formatter](constructs/case-formatter.md)
         - [Number formatter](constructs/number-formatter.md)

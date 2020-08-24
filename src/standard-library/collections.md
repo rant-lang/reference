@@ -1,5 +1,9 @@
 # Collection functions
 
+### [join: separator; list]
+
+Prints the elements of a list in order separated by the `separator` value.
+
 ### [len: obj]
 
 Prints the length of `obj` as an integer.

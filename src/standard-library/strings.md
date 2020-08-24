@@ -1,6 +1,6 @@
 # String manipulation
 
-### [split: text; sep]
+### [split: text; sep?]
 
 Splits the input text by `sep` into a list of strings. If `sep` is omitted, splits into characters.
 
