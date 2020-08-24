@@ -26,6 +26,5 @@
     - [Math](standard-library/math.md)
     - [Collections](standard-library/collections.md)
     - [Block attributes](standard-library/block-attributes.md)
-    - [Channels](standard-library/channels.md)
     - [Dynamic variable access](standard-library/dva.md)
 - [Glossary](glossary.md)

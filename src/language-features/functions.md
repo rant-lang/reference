@@ -47,10 +47,10 @@ Please note that any optional parameters must appear after all required paramete
 ```rant
 # Generates a map for a pet with a name and species (defaults to "dog")
 [$gen-pet: name; species?] {
-    @:{
-        name: <name>|
-        species: [alt: <species>; dog]
-    }
+    @(
+        name = <name>|
+        species = [alt: <species>; dog]
+    )
 }
 ```
 

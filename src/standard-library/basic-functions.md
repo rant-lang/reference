@@ -23,6 +23,6 @@ Returns the name of `value`'s type. The type name can be any of the following:
 
 ### [return: value]
 
-Immediately exits the current function and returns `value` to the caller instead of the current output.
+Immediately exits the current scope and returns `value` to the caller instead of the current output.
 
 If `[return]` is called without an argument, the output from the function will be returned instead.

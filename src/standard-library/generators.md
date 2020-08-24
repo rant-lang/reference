@@ -1,11 +1,11 @@
 # Generators
 
 
-### [d: [count]]
+### [dec: count?]
 
 Prints a uniformly random decimal digit. If `count` is specified, repeats `count` times.
 
-### [h: [count]]
+### [hex: count?]
 
 Prints a uniformly random lowercase hexadecimal digit. If `count` is specified, repeats `count` times.
 
