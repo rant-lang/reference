@@ -4,6 +4,16 @@
 
 Prints the first argument that isn't the empty value `<>`.
 
+### [call: func; args]
+
+Calls the function `func` with the argument list `args`.
+
+#### Errors
+
+Causes a runtime error if either of the following are true:
+* `func` isn't a function
+* `args` isn't a list
+
 ### [seed]
 
 Returns the seed value that the program was run with.
@@ -19,6 +29,7 @@ Returns the name of `value`'s type. The type name can be any of the following:
 * `function`
 * `list`
 * `map`
+* `special`
 * `empty`
 
 ### [return: value]
