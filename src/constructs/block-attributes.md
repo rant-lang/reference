@@ -43,22 +43,17 @@ It just keeps {going}...
 
 ## Selector
 
-The selector attribute controls how Rant chooses which branch of the block to take. A selector can be reused for several blocks to coordinate their behavior.
-
-Selectors require slightly more setup, as they are actually persistent state machines that must be created with a separate function before use.
-They must be assigned a name, which is then used to refer to it when applying it to blocks.
-
-In most cases, selector states are considered global objects. However, you can limit their scope using **attribute frames**, discussed later.
+The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.
 
 ### Example
 
 ```rant
 # Print every element of the block in a random order with no duplicates
 
-[mksel:a;deck]  # Create a "deck" selector
-[sel:a]         # Apply the selector
-[rep-each]      # Set repetitions
-[sep:,\s]       # Set separator
+<$s=[mksel:deck]>  # Create a "deck" selector
+[sel:<s>]          # Apply the selector
+[rep:all]          # Set repetitions
+[sep:,\s]          # Set separator
 {A|B|C|D|E|F|G|H}
 
 # Output
