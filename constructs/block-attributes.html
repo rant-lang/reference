@@ -191,17 +191,14 @@ It just keeps {going}...
 # It just keeps going and going and going and going...
 </code></pre>
 <h2><a class="header" href="#selector" id="selector">Selector</a></h2>
-<p>The selector attribute controls how Rant chooses which branch of the block to take. A selector can be reused for several blocks to coordinate their behavior.</p>
-<p>Selectors require slightly more setup, as they are actually persistent state machines that must be created with a separate function before use.
-They must be assigned a name, which is then used to refer to it when applying it to blocks.</p>
-<p>In most cases, selector states are considered global objects. However, you can limit their scope using <strong>attribute frames</strong>, discussed later.</p>
+<p>The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.</p>
 <h3><a class="header" href="#example-2" id="example-2">Example</a></h3>
 <pre><code class="language-rant"># Print every element of the block in a random order with no duplicates
 
-[mksel:a;deck]  # Create a &quot;deck&quot; selector
-[sel:a]         # Apply the selector
-[rep-each]      # Set repetitions
-[sep:,\s]       # Set separator
+&lt;$s=[mksel:deck]&gt;  # Create a &quot;deck&quot; selector
+[sel:&lt;s&gt;]          # Apply the selector
+[rep:all]          # Set repetitions
+[sep:,\s]          # Set separator
 {A|B|C|D|E|F|G|H}
 
 # Output
