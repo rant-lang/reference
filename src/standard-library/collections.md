@@ -17,7 +17,7 @@ Removes the last value from a list and prints it.
 Inserts `value` into a list or map at the position `pos`.
 
 If `collection` is a list, `pos` must be an integer.<br>
-If `collection` is a map, `pos` may be either an integer or string.
+If `collection` is a map, `pos` may be any non-empty value.
 
 #### Errors
 
@@ -26,21 +26,45 @@ Causes a runtime error if any of the following are true:
 * `pos` is an unsupported type for the provided collection
 * `collection` is a list and `pos` is out of range
 
-### [remove: list; index]
+### [remove: collection; pos]
 
-Removes the value at the specified index from a list.
+Removes the value at the `pos` from a list or map.
 
-### [take: list; index]
+If `collection` is a list, `pos` must be an integer.<br>
+If `collection` is a map, `pos` may be any non-empty value.
 
-Removes the value at the specified index from a list and prints it.
+#### Errors
+
+Causes a runtime error if any of the following are true:
+* `collection` is not a list or map
+* `pos` is an unsupported type for the provided collection
+* `collection` is a list and `pos` is out of range
+
+### [take: collection; pos]
+
+Removes the value at `pos` from a list or map and prints it.
+
+If `collection` is a list, `pos` must be an integer.<br>
+If `collection` is a map, `pos` may be any non-empty value.
+
+#### Errors
+
+Causes a runtime error if any of the following are true:
+* `collection` is not a list or map
+* `pos` is an unsupported type for the provided collection
+* `collection` is a list and `pos` is out of range
 
 #### Errors
 
 Causes a runtime error if the index is out of range or the `list` is not a list.
 
-### [clear: list]
+### [clear: collection]
 
-Removes all elements from a list.
+Removes all elements from a list or map.
+
+#### Errors
+
+Causes a runtime error if `collection` is not a list or map.
 
 ### [len: obj]
 
