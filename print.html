@@ -635,6 +635,14 @@ This stack can be used to limit the scope of block attributes.</p>
 <h1><a class="header" href="#basic-functions" id="basic-functions">Basic functions</a></h1>
 <h3><a class="header" href="#alt-a-b" id="alt-a-b">[alt: a; b+]</a></h3>
 <p>Prints the first argument that isn't the empty value <code>&lt;&gt;</code>.</p>
+<h3><a class="header" href="#call-func-args" id="call-func-args">[call: func; args]</a></h3>
+<p>Calls the function <code>func</code> with the argument list <code>args</code>.</p>
+<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
+<p>Causes a runtime error if either of the following are true:</p>
+<ul>
+<li><code>func</code> isn't a function</li>
+<li><code>args</code> isn't a list</li>
+</ul>
 <h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
 <p>Returns the seed value that the program was run with.</p>
 <h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
@@ -647,6 +655,7 @@ This stack can be used to limit the scope of block attributes.</p>
 <li><code>function</code></li>
 <li><code>list</code></li>
 <li><code>map</code></li>
+<li><code>special</code></li>
 <li><code>empty</code></li>
 </ul>
 <h3><a class="header" href="#return-value" id="return-value">[return: value]</a></h3>
@@ -698,7 +707,7 @@ This stack can be used to limit the scope of block attributes.</p>
 <p>Inserts <code>value</code> into a list or map at the position <code>pos</code>.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
+<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
@@ -709,7 +718,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <p>Removes the value at the <code>pos</code> from a list or map.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
+<h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
@@ -720,18 +729,18 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <p>Removes the value at <code>pos</code> from a list or map and prints it.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
+<h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
 <li><code>pos</code> is an unsupported type for the provided collection</li>
 <li><code>collection</code> is a list and <code>pos</code> is out of range</li>
 </ul>
-<h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
+<h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
 <p>Causes a runtime error if <code>collection</code> is a list and the <code>pos</code> is out of range.</p>
 <h3><a class="header" href="#clear-collection" id="clear-collection">[clear: collection]</a></h3>
 <p>Removes all elements from a list or map.</p>
-<h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
+<h4><a class="header" href="#errors-5" id="errors-5">Errors</a></h4>
 <p>Causes a runtime error if <code>collection</code> is not a list or map.</p>
 <h3><a class="header" href="#len-obj" id="len-obj">[len: obj]</a></h3>
 <p>Prints the length of <code>obj</code> as an integer.</p>
@@ -742,7 +751,7 @@ All other value types give a length of 0.</p>
 <p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
 <h3><a class="header" href="#af-pop" id="af-pop">[af-pop]</a></h3>
 <p>Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.</p>
-<h4><a class="header" href="#errors-5" id="errors-5">Errors</a></h4>
+<h4><a class="header" href="#errors-6" id="errors-6">Errors</a></h4>
 <p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#af-count" id="af-count">[af-count]</a></h3>
 <p>Prints the current size of the attribute frame stack.</p>

@@ -162,6 +162,14 @@
                         <h1><a class="header" href="#basic-functions" id="basic-functions">Basic functions</a></h1>
 <h3><a class="header" href="#alt-a-b" id="alt-a-b">[alt: a; b+]</a></h3>
 <p>Prints the first argument that isn't the empty value <code>&lt;&gt;</code>.</p>
+<h3><a class="header" href="#call-func-args" id="call-func-args">[call: func; args]</a></h3>
+<p>Calls the function <code>func</code> with the argument list <code>args</code>.</p>
+<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
+<p>Causes a runtime error if either of the following are true:</p>
+<ul>
+<li><code>func</code> isn't a function</li>
+<li><code>args</code> isn't a list</li>
+</ul>
 <h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
 <p>Returns the seed value that the program was run with.</p>
 <h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
@@ -174,6 +182,7 @@
 <li><code>function</code></li>
 <li><code>list</code></li>
 <li><code>map</code></li>
+<li><code>special</code></li>
 <li><code>empty</code></li>
 </ul>
 <h3><a class="header" href="#return-value" id="return-value">[return: value]</a></h3>
