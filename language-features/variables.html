@@ -163,16 +163,17 @@
 <p>Rant programs can define and use variables of several types.</p>
 <p>Because Rant is a dynamically-typed langauge, variables have no type constraints; the type of a variable is determined by the type of its current value.</p>
 <h2><a class="header" href="#value-types" id="value-types">Value types</a></h2>
-<p>Rant supports eight value types:</p>
-<table><thead><tr><th>Type name</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>string</code></td><td>Sequence of UTF-8 characters</td></tr>
-<tr><td><code>integer</code></td><td>64-bit signed integer</td></tr>
-<tr><td><code>float</code></td><td>64-bit double-precision float</td></tr>
-<tr><td><code>bool</code></td><td>Boolean value</td></tr>
-<tr><td><code>function</code></td><td>Function/closure</td></tr>
-<tr><td><code>list</code></td><td>List of values</td></tr>
-<tr><td><code>map</code></td><td>String-keyed collection of values</td></tr>
-<tr><td><code>empty</code></td><td>Unit type representing &quot;null&quot; value</td></tr>
+<p>Rant currently supports nine value types:</p>
+<table><thead><tr><th>Type name</th><th>Description</th><th>Pass type</th></tr></thead><tbody>
+<tr><td><code>string</code></td><td>Sequence of UTF-8 characters</td><td>by-value</td></tr>
+<tr><td><code>integer</code></td><td>64-bit signed integer</td><td>by-value</td></tr>
+<tr><td><code>float</code></td><td>64-bit double-precision float</td><td>by-value</td></tr>
+<tr><td><code>bool</code></td><td>Boolean value</td><td>by-value</td></tr>
+<tr><td><code>function</code></td><td>Function/closure</td><td>by-ref</td></tr>
+<tr><td><code>list</code></td><td>List of values</td><td>by-ref</td></tr>
+<tr><td><code>map</code></td><td>String-keyed collection of values</td><td>by-ref</td></tr>
+<tr><td><code>strange</code></td><td>Handle to special internal data, such as a selector</td><td>by-ref</td></tr>
+<tr><td><code>empty</code></td><td>Unit type representing &quot;null&quot; value</td><td>by-value</td></tr>
 </tbody></table>
 <h2><a class="header" href="#basic-syntax" id="basic-syntax">Basic syntax</a></h2>
 <p>All variable access operations are enclosed in angle brackets.</p>
