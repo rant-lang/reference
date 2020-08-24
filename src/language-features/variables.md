@@ -6,18 +6,19 @@ Because Rant is a dynamically-typed langauge, variables have no type constraints
 
 ## Value types
 
-Rant supports eight value types:
+Rant currently supports nine value types:
 
-|Type name|Description|
-|---------|-----------|
-|`string`|Sequence of UTF-8 characters|
-|`integer`|64-bit signed integer|
-|`float`|64-bit double-precision float|
-|`bool`|Boolean value|
-|`function`|Function/closure|
-|`list`|List of values|
-|`map`|String-keyed collection of values|
-|`empty`|Unit type representing "null" value|
+|Type name |Description                                        |Pass type|
+|----------|---------------------------------------------------|---------|
+|`string`  |Sequence of UTF-8 characters                       |by-value |
+|`integer` |64-bit signed integer                              |by-value |
+|`float`   |64-bit double-precision float                      |by-value |
+|`bool`    |Boolean value                                      |by-value | 
+|`function`|Function/closure                                   |by-ref   |
+|`list`    |List of values                                     |by-ref   |
+|`map`     |String-keyed collection of values                  |by-ref   |
+|`strange` |Handle to special internal data, such as a selector|by-ref   |
+|`empty`   |Unit type representing "null" value                |by-value |
 
 ## Basic syntax
 
