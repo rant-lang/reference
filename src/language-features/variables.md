@@ -17,7 +17,7 @@ Rant currently supports nine value types:
 |`function`|Function/closure                                   |by-ref   |
 |`list`    |List of values                                     |by-ref   |
 |`map`     |String-keyed collection of values                  |by-ref   |
-|`strange` |Handle to special internal data, such as a selector|by-ref   |
+|`special` |Handle to internal runtime data, such as a selector|by-ref   |
 |`empty`   |Unit type representing "null" value                |by-value |
 
 ## Basic syntax
