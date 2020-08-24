@@ -169,7 +169,7 @@
 <h3><a class="header" href="#insert-collection-value-pos" id="insert-collection-value-pos">[insert: collection; value; pos]</a></h3>
 <p>Inserts <code>value</code> into a list or map at the position <code>pos</code>.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
-If <code>collection</code> is a map, <code>pos</code> may be either an integer or string.</p>
+If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
 <h4><a class="header" href="#errors" id="errors">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
@@ -177,14 +177,34 @@ If <code>collection</code> is a map, <code>pos</code> may be either an integer o
 <li><code>pos</code> is an unsupported type for the provided collection</li>
 <li><code>collection</code> is a list and <code>pos</code> is out of range</li>
 </ul>
-<h3><a class="header" href="#remove-list-index" id="remove-list-index">[remove: list; index]</a></h3>
-<p>Removes the value at the specified index from a list.</p>
-<h3><a class="header" href="#take-list-index" id="take-list-index">[take: list; index]</a></h3>
-<p>Removes the value at the specified index from a list and prints it.</p>
+<h3><a class="header" href="#remove-collection-pos" id="remove-collection-pos">[remove: collection; pos]</a></h3>
+<p>Removes the value at the <code>pos</code> from a list or map.</p>
+<p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
+If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
 <h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
+<p>Causes a runtime error if any of the following are true:</p>
+<ul>
+<li><code>collection</code> is not a list or map</li>
+<li><code>pos</code> is an unsupported type for the provided collection</li>
+<li><code>collection</code> is a list and <code>pos</code> is out of range</li>
+</ul>
+<h3><a class="header" href="#take-collection-pos" id="take-collection-pos">[take: collection; pos]</a></h3>
+<p>Removes the value at <code>pos</code> from a list or map and prints it.</p>
+<p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
+If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
+<h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
+<p>Causes a runtime error if any of the following are true:</p>
+<ul>
+<li><code>collection</code> is not a list or map</li>
+<li><code>pos</code> is an unsupported type for the provided collection</li>
+<li><code>collection</code> is a list and <code>pos</code> is out of range</li>
+</ul>
+<h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
 <p>Causes a runtime error if the index is out of range or the <code>list</code> is not a list.</p>
-<h3><a class="header" href="#clear-list" id="clear-list">[clear: list]</a></h3>
-<p>Removes all elements from a list.</p>
+<h3><a class="header" href="#clear-collection" id="clear-collection">[clear: collection]</a></h3>
+<p>Removes all elements from a list or map.</p>
+<h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
+<p>Causes a runtime error if <code>collection</code> is not a list or map.</p>
 <h3><a class="header" href="#len-obj" id="len-obj">[len: obj]</a></h3>
 <p>Prints the length of <code>obj</code> as an integer.</p>
 <p>For strings, this is the number of bytes; for lists and maps, this is the number of elements.
