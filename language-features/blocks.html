@@ -178,9 +178,9 @@
 <h3><a class="header" href="#entanglement" id="entanglement">Entanglement</a></h3>
 <p>A group of blocks can be &quot;entangled&quot; so that they all coordinate their selections.</p>
 <pre><code class="language-rant"># Create a selector named 'a'
-[mksel:a]
-# Both blocks use the 'a' selector, so they're entangled
-[sel:a]{Dogs|Cats} say \&quot;[sel:a]{woof|meow}!\&quot;
+&lt;$sync = [mksel:one]&gt;
+# Both blocks use the `sync` selector, so they're entangled
+[sel:&lt;sync&gt;]{Dogs|Cats} say \&quot;[sel:&lt;sync&gt;]{woof|meow}!\&quot;
 
 ##
 Possible outputs:
