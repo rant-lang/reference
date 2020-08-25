@@ -251,7 +251,7 @@ lines&quot;
 <p>By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a <a href="language-features//constructs/selectors.html">selector</a>.</p>
 <h3><a class="header" href="#entanglement" id="entanglement">Entanglement</a></h3>
 <p>A group of blocks can be &quot;entangled&quot; so that they all coordinate their selections.</p>
-<pre><code class="language-rant"># Create a selector named 'a'
+<pre><code class="language-rant"># Create a selector and store it in a variable
 &lt;$sync = [mksel:one]&gt;
 # Both blocks use the `sync` selector, so they're entangled
 [sel:&lt;sync&gt;]{Dogs|Cats} say \&quot;[sel:&lt;sync&gt;]{woof|meow}!\&quot;
