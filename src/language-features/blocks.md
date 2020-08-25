@@ -32,7 +32,7 @@ A group of blocks can be "entangled" so that they all coordinate their selection
 
 
 ```rant
-# Create a selector named 'a'
+# Create a selector and store it in a variable
 <$sync = [mksel:one]>
 # Both blocks use the `sync` selector, so they're entangled
 [sel:<sync>]{Dogs|Cats} say \"[sel:<sync>]{woof|meow}!\"
