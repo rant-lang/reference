@@ -33,9 +33,9 @@ A group of blocks can be "entangled" so that they all coordinate their selection
 
 ```rant
 # Create a selector named 'a'
-[mksel:a]
-# Both blocks use the 'a' selector, so they're entangled
-[sel:a]{Dogs|Cats} say \"[sel:a]{woof|meow}!\"
+<$sync = [mksel:one]>
+# Both blocks use the `sync` selector, so they're entangled
+[sel:<sync>]{Dogs|Cats} say \"[sel:<sync>]{woof|meow}!\"
 
 ##
 Possible outputs:
