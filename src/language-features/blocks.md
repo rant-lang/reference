@@ -53,4 +53,4 @@ Blocks also act as scopes for local variables. Any variables created inside of a
 Blocks used as function bodies and dynamic accessor keys are "linear" blocks: they can only contain one element and do not consume block attributes.
 Attempting to use a multi-element block in these contexts will cause a compiler error.
 
-This design consideration prevents function calls and accessors from unintentionally consumiung block attributes unless the user explicitly adds an inner block.
+This design consideration prevents function calls and accessors from unintentionally consuming block attributes unless the user explicitly adds an inner block.
