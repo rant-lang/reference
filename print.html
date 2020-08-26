@@ -670,6 +670,9 @@ This stack can be used to limit the scope of block attributes.</p>
 <p>Prints a uniformly random decimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
 <h3><a class="header" href="#hex-count" id="hex-count">[hex: count?]</a></h3>
 <p>Prints a uniformly random lowercase hexadecimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
+<h3><a class="header" href="#maybe-p" id="maybe-p">[maybe: p?]</a></h3>
+<p>Returns a <code>bool</code> value with <code>p</code> probability of being true.</p>
+<p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
 <h3><a class="header" href="#n-min-max" id="n-min-max">[n: min; max]</a></h3>
 <p>Prints a random integer with uniform distribution between <code>min</code> and <code>max</code> (both inclusive).</p>
 <h4><a class="header" href="#example-3" id="example-3">Example</a></h4>
@@ -759,6 +762,8 @@ All other value types give a length of 0.</p>
 <p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#af-count" id="af-count">[af-count]</a></h3>
 <p>Prints the current size of the attribute frame stack.</p>
+<h3><a class="header" href="#if-condition" id="if-condition">[if: condition]</a></h3>
+<p>Skips the next block if <code>condition</code> is false.</p>
 <h3><a class="header" href="#mksel-selector-type" id="mksel-selector-type">[mksel: selector-type]</a></h3>
 <p>Creates and returns a selector of the specified type.</p>
 <h3><a class="header" href="#selector-types" id="selector-types">Selector types</a></h3>
