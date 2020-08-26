@@ -20,23 +20,26 @@ Prints the current size of the attribute frame stack.
 
 Skips the next block if `condition` is false.
 
-### [mksel: selector-type]
+### [mksel: selector-mode]
 
-Creates and returns a selector of the specified type.
+Creates and returns a selector with the specified mode.
 
-### Selector types
+### Selector modes
 
-|Type name      |Description                                                                  |
-|---------------|-----------------------------------------------------------------------------|
-|`one`          |Selects the same, random element each time.                                  |
-|`forward`      |Selects each element in a wrapping sequence from left to right.              |
-|`reverse`      |Selects each element in a wrapping reverse sequence from right to left.      |
-|`deck`         |Selects each element once in a random sequence, then reshuffles.             |
-|`deck-loop`    |Selects each element once in a wrapping random sequence, without reshuffling.|
-|`deck-clamp`   |Selects each element once in a random sequence, repeating the final element. |
-|`forward-clamp`|Selects each element from left to right, then repeats the right-most element.|
-|`reverse-clamp`|Selects each element from right to left, then repeats the left-most element. |
-|`no-double`    |Ensures that no one element index is selected twice in a row.                |
+|Mode name      |Description                                                                        |
+|---------------|-----------------------------------------------------------------------------------|
+|`random`       |Selects a random element each time.                                                |
+|`one`          |Selects the same, random element each time.                                        |
+|`forward`      |Selects in a wrapping sequence from left to right.                                 |
+|`reverse`      |Selects in a wrapping reverse sequence from right to left.                         |
+|`deck`         |Selects each element once in a random sequence, then reshuffles.                   |
+|`deck-loop`    |Selects each element once in a wrapping random sequence, without reshuffling.      |
+|`deck-clamp`   |Selects each element once in a random sequence, repeating the final element.       |
+|`forward-clamp`|Selects from left to right, then repeats the right-most element.                   |
+|`reverse-clamp`|Selects from right to left, then repeats the left-most element.                    |
+|`ping`         |Selects from left to right, switching directions when a boundary is reached.       |
+|`pong`         |Selects from left to right, switching directions when a boundary is reached.       |
+|`no-double`    |Ensures that no one element index is selected twice in a row.                      |
 
 ### [rep: reps]
 
