@@ -66,4 +66,4 @@ The Rant runtime maintains a stack of "attribute frames", which store block attr
 The resolver always reads attributes from the topmost frame in the attribute frame stack. 
 This stack can be used to limit the scope of block attributes.
 
-The attribute frame stack can be accessed with the `[af-*]` class of functions.
+The attribute frame stack can be manipulated with the `[push-attrs]` and `[pop-attrs]` functions.

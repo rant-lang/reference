@@ -1,4 +1,4 @@
-# String manipulation
+# String functions
 
 ### [split: text; sep?]
 

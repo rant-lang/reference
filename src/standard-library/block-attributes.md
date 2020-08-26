@@ -1,10 +1,10 @@
 # Block attributes
 
-### [af-push]
+### [push-attrs]
 
 Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.
 
-### [af-pop]
+### [pop-attrs]
 
 Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.
 
@@ -12,7 +12,7 @@ Removes the topmost attribute frame from the attribute frame stack, handing cont
 
 Popping the last attribute frame results in a runtime error.
 
-### [af-count]
+### [count-attrs]
 
 Prints the current size of the attribute frame stack.
 
