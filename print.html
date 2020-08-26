@@ -773,18 +773,21 @@ All other value types give a length of 0.</p>
 <p>Prints the current size of the attribute frame stack.</p>
 <h3><a class="header" href="#if-condition" id="if-condition">[if: condition]</a></h3>
 <p>Skips the next block if <code>condition</code> is false.</p>
-<h3><a class="header" href="#mksel-selector-type" id="mksel-selector-type">[mksel: selector-type]</a></h3>
-<p>Creates and returns a selector of the specified type.</p>
-<h3><a class="header" href="#selector-types" id="selector-types">Selector types</a></h3>
-<table><thead><tr><th>Type name</th><th>Description</th></tr></thead><tbody>
+<h3><a class="header" href="#mksel-selector-mode" id="mksel-selector-mode">[mksel: selector-mode]</a></h3>
+<p>Creates and returns a selector with the specified mode.</p>
+<h3><a class="header" href="#selector-modes" id="selector-modes">Selector modes</a></h3>
+<table><thead><tr><th>Mode name</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>random</code></td><td>Selects a random element each time.</td></tr>
 <tr><td><code>one</code></td><td>Selects the same, random element each time.</td></tr>
-<tr><td><code>forward</code></td><td>Selects each element in a wrapping sequence from left to right.</td></tr>
-<tr><td><code>reverse</code></td><td>Selects each element in a wrapping reverse sequence from right to left.</td></tr>
+<tr><td><code>forward</code></td><td>Selects in a wrapping sequence from left to right.</td></tr>
+<tr><td><code>reverse</code></td><td>Selects in a wrapping reverse sequence from right to left.</td></tr>
 <tr><td><code>deck</code></td><td>Selects each element once in a random sequence, then reshuffles.</td></tr>
 <tr><td><code>deck-loop</code></td><td>Selects each element once in a wrapping random sequence, without reshuffling.</td></tr>
 <tr><td><code>deck-clamp</code></td><td>Selects each element once in a random sequence, repeating the final element.</td></tr>
-<tr><td><code>forward-clamp</code></td><td>Selects each element from left to right, then repeats the right-most element.</td></tr>
-<tr><td><code>reverse-clamp</code></td><td>Selects each element from right to left, then repeats the left-most element.</td></tr>
+<tr><td><code>forward-clamp</code></td><td>Selects from left to right, then repeats the right-most element.</td></tr>
+<tr><td><code>reverse-clamp</code></td><td>Selects from right to left, then repeats the left-most element.</td></tr>
+<tr><td><code>ping</code></td><td>Selects from left to right, switching directions when a boundary is reached.</td></tr>
+<tr><td><code>pong</code></td><td>Selects from left to right, switching directions when a boundary is reached.</td></tr>
 <tr><td><code>no-double</code></td><td>Ensures that no one element index is selected twice in a row.</td></tr>
 </tbody></table>
 <h3><a class="header" href="#rep-reps" id="rep-reps">[rep: reps]</a></h3>
