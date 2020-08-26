@@ -16,6 +16,10 @@ Popping the last attribute frame results in a runtime error.
 
 Prints the current size of the attribute frame stack.
 
+### [if: condition]
+
+Skips the next block if `condition` is false.
+
 ### [mksel: selector-type]
 
 Creates and returns a selector of the specified type.

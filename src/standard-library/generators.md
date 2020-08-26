@@ -9,6 +9,12 @@ Prints a uniformly random decimal digit. If `count` is specified, repeats `count
 
 Prints a uniformly random lowercase hexadecimal digit. If `count` is specified, repeats `count` times.
 
+### [maybe: p?]
+
+Returns a `bool` value with `p` probability of being true.
+
+`p` must be either a `float` or `empty`. If omitted, it will default to `0.5`.
+
 ### [n: min; max]
 
 Prints a random integer with uniform distribution between `min` and `max` (both inclusive).
