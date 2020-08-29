@@ -29,7 +29,7 @@ let rant_def = {
         begin: /\b\d+(\.\d+)?/,
       },
       {
-        // None
+        // Empty
         className: 'keyword',
         begin: /\<\>/
       },
@@ -51,7 +51,7 @@ let rant_def = {
       {
         // Map operator
         className: 'keyword',
-        begin: /\@?/
+        begin: /\@/
       },
       {
         // Function definition
