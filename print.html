@@ -166,6 +166,7 @@
 <blockquote>
 <p>This document is a work-in-progress and is not normative.
 It only applies to the upcoming version 4 of the Rant language.</p>
+<p>Found an error? Want something improved? <a href="https://github.com/rant-lang/reference/issues">Submit an issue</a> or a pull request!</p>
 </blockquote>
 <h1><a class="header" href="#language-features" id="language-features">Language features</a></h1>
 <h1><a class="header" href="#text" id="text">Text</a></h1>
@@ -264,10 +265,24 @@ Possible outputs:
 </code></pre>
 <h3><a class="header" href="#variable-scope" id="variable-scope">Variable scope</a></h3>
 <p>Blocks also act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.</p>
-<h2><a class="header" href="#restrictions" id="restrictions">Restrictions</a></h2>
-<p>Blocks used as function bodies and dynamic accessor keys are &quot;linear&quot; blocks: they can only contain one element and do not consume block attributes.
+<h3><a class="header" href="#stored-blocks" id="stored-blocks">Stored blocks</a></h3>
+<p>Blocks can also be stored in variables for later use. To treat a block like a value instead of resolving, you need to prefix it with the <code>*</code> symbol.
+If the block requires a hint or sink, the <code>*</code> must appear after it.</p>
+<pre><code class="language-rant">&lt;$cool-block = *{Ohhh yeah!}&gt;
+</code></pre>
+<p>Then you can resolve it later with the <code>[resolve]</code> function:</p>
+<pre><code class="language-rant">[resolve:&lt;cool-block&gt;] # &quot;Ohhh yeah!&quot;
+</code></pre>
+<p>Blocks are similar to closures when used this way, but only in that they contain code you can store and run later. Stored blocks make several guarantees that closures and functions cannot:</p>
+<ol>
+<li>They never require arguments</li>
+<li>They never capture variables</li>
+<li>They will always consume block attributes</li>
+</ol>
+<h2><a class="header" href="#restrictions-on-function-bodies-and-dynamic-keys" id="restrictions-on-function-bodies-and-dynamic-keys">Restrictions on function bodies and dynamic keys</a></h2>
+<p>Blocks used as function bodies and dynamic accessor keys are &quot;linear&quot; blocks: they can only contain one element and never consume block attributes.
 Attempting to use a multi-element block in these contexts will cause a compiler error.</p>
-<p>This design consideration prevents function calls and accessors from unintentionally consuming block attributes unless the user explicitly adds an inner block.</p>
+<p>This design consideration prevents function calls and accessors from unintentionally consuming block attributes unless the user explicitly requests it by adding an inner block.</p>
 <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
 <p>Functions contain code that can be executed arbitrarily. The Rant standard library includes several native functions, but you can also define your own.</p>
 <h2><a class="header" href="#calling-functions" id="calling-functions">Calling functions</a></h2>
@@ -647,6 +662,8 @@ This stack can be used to limit the scope of block attributes.</p>
 <li><code>func</code> isn't a function</li>
 <li><code>args</code> isn't a list</li>
 </ul>
+<h3><a class="header" href="#nop-args" id="nop-args">[nop: args*]</a></h3>
+<p>Does absolutely nothing. Intended for use as a default/placeholder callback.</p>
 <h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
 <p>Returns the seed value that the program was run with.</p>
 <h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
@@ -662,9 +679,6 @@ This stack can be used to limit the scope of block attributes.</p>
 <li><code>special</code></li>
 <li><code>empty</code></li>
 </ul>
-<h3><a class="header" href="#return-value" id="return-value">[return: value]</a></h3>
-<p>Immediately exits the current scope and returns <code>value</code> to the caller instead of the current output.</p>
-<p>If <code>[return]</code> is called without an argument, the output from the function will be returned instead.</p>
 <h1><a class="header" href="#generators" id="generators">Generators</a></h1>
 <h3><a class="header" href="#dec-count" id="dec-count">[dec: count?]</a></h3>
 <p>Prints a uniformly random decimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
@@ -763,16 +777,18 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <p>For strings, this is the number of bytes; for lists and maps, this is the number of elements.
 All other value types give a length of 0.</p>
 <h1><a class="header" href="#block-attributes-1" id="block-attributes-1">Block attributes</a></h1>
-<h3><a class="header" href="#push-attrs" id="push-attrs">[push-attrs]</a></h3>
-<p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
-<h3><a class="header" href="#pop-attrs" id="pop-attrs">[pop-attrs]</a></h3>
-<p>Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.</p>
-<h4><a class="header" href="#errors-6" id="errors-6">Errors</a></h4>
-<p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#count-attrs" id="count-attrs">[count-attrs]</a></h3>
 <p>Prints the current size of the attribute frame stack.</p>
+<h3><a class="header" href="#else" id="else">[else]</a></h3>
+<p>Marks the next block as conditional and causes it to resolve iff the last block was conditional and its condition evaluated to false.</p>
+<h3><a class="header" href="#else-if-condition" id="else-if-condition">[else-if: condition]</a></h3>
+<p>Marks the next block as conditional and causes it to resolve iff the following are true:</p>
+<ul>
+<li><code>condition</code> is true</li>
+<li>The last block was conditional and its condition evaluated to false</li>
+</ul>
 <h3><a class="header" href="#if-condition" id="if-condition">[if: condition]</a></h3>
-<p>Skips the next block if <code>condition</code> is false.</p>
+<p>Marks the next block as conditional and causes it to resolve iff <code>condition</code> is true.</p>
 <h3><a class="header" href="#mksel-selector-mode" id="mksel-selector-mode">[mksel: selector-mode]</a></h3>
 <p>Creates and returns a selector with the specified mode.</p>
 <h3><a class="header" href="#selector-modes" id="selector-modes">Selector modes</a></h3>
@@ -790,6 +806,12 @@ All other value types give a length of 0.</p>
 <tr><td><code>pong</code></td><td>Selects from left to right, switching directions when a boundary is reached.</td></tr>
 <tr><td><code>no-double</code></td><td>Ensures that no one element index is selected twice in a row.</td></tr>
 </tbody></table>
+<h3><a class="header" href="#push-attrs" id="push-attrs">[push-attrs]</a></h3>
+<p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
+<h3><a class="header" href="#pop-attrs" id="pop-attrs">[pop-attrs]</a></h3>
+<p>Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.</p>
+<h4><a class="header" href="#errors-6" id="errors-6">Errors</a></h4>
+<p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#rep-reps" id="rep-reps">[rep: reps]</a></h3>
 <p>Sets the repetition count for the next block to <code>reps</code>.
 The value of <code>reps</code> must be non-negative.</p>

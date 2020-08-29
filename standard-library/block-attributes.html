@@ -160,16 +160,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#block-attributes" id="block-attributes">Block attributes</a></h1>
-<h3><a class="header" href="#push-attrs" id="push-attrs">[push-attrs]</a></h3>
-<p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
-<h3><a class="header" href="#pop-attrs" id="pop-attrs">[pop-attrs]</a></h3>
-<p>Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.</p>
-<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
-<p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#count-attrs" id="count-attrs">[count-attrs]</a></h3>
 <p>Prints the current size of the attribute frame stack.</p>
+<h3><a class="header" href="#else" id="else">[else]</a></h3>
+<p>Marks the next block as conditional and causes it to resolve iff the last block was conditional and its condition evaluated to false.</p>
+<h3><a class="header" href="#else-if-condition" id="else-if-condition">[else-if: condition]</a></h3>
+<p>Marks the next block as conditional and causes it to resolve iff the following are true:</p>
+<ul>
+<li><code>condition</code> is true</li>
+<li>The last block was conditional and its condition evaluated to false</li>
+</ul>
 <h3><a class="header" href="#if-condition" id="if-condition">[if: condition]</a></h3>
-<p>Skips the next block if <code>condition</code> is false.</p>
+<p>Marks the next block as conditional and causes it to resolve iff <code>condition</code> is true.</p>
 <h3><a class="header" href="#mksel-selector-mode" id="mksel-selector-mode">[mksel: selector-mode]</a></h3>
 <p>Creates and returns a selector with the specified mode.</p>
 <h3><a class="header" href="#selector-modes" id="selector-modes">Selector modes</a></h3>
@@ -187,6 +189,12 @@
 <tr><td><code>pong</code></td><td>Selects from left to right, switching directions when a boundary is reached.</td></tr>
 <tr><td><code>no-double</code></td><td>Ensures that no one element index is selected twice in a row.</td></tr>
 </tbody></table>
+<h3><a class="header" href="#push-attrs" id="push-attrs">[push-attrs]</a></h3>
+<p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
+<h3><a class="header" href="#pop-attrs" id="pop-attrs">[pop-attrs]</a></h3>
+<p>Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.</p>
+<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
+<p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#rep-reps" id="rep-reps">[rep: reps]</a></h3>
 <p>Sets the repetition count for the next block to <code>reps</code>.
 The value of <code>reps</code> must be non-negative.</p>
