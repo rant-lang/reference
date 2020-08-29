@@ -1,24 +1,22 @@
 # Block attributes
 
-### [push-attrs]
-
-Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.
-
-### [pop-attrs]
-
-Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.
-
-#### Errors
-
-Popping the last attribute frame results in a runtime error.
-
 ### [count-attrs]
 
 Prints the current size of the attribute frame stack.
 
+### [else]
+
+Marks the next block as conditional and causes it to resolve iff the last block was conditional and its condition evaluated to false.
+
+### [else-if: condition]
+
+Marks the next block as conditional and causes it to resolve iff the following are true:
+* `condition` is true
+* The last block was conditional and its condition evaluated to false
+
 ### [if: condition]
 
-Skips the next block if `condition` is false.
+Marks the next block as conditional and causes it to resolve iff `condition` is true.
 
 ### [mksel: selector-mode]
 
@@ -40,6 +38,18 @@ Creates and returns a selector with the specified mode.
 |`ping`         |Selects from left to right, switching directions when a boundary is reached.       |
 |`pong`         |Selects from left to right, switching directions when a boundary is reached.       |
 |`no-double`    |Ensures that no one element index is selected twice in a row.                      |
+
+### [push-attrs]
+
+Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.
+
+### [pop-attrs]
+
+Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.
+
+#### Errors
+
+Popping the last attribute frame results in a runtime error.
 
 ### [rep: reps]
 

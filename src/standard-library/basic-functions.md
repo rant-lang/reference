@@ -14,6 +14,10 @@ Causes a runtime error if either of the following are true:
 * `func` isn't a function
 * `args` isn't a list
 
+### [nop: args*]
+
+Does absolutely nothing. Intended for use as a default/placeholder callback.
+
 ### [seed]
 
 Returns the seed value that the program was run with.
@@ -31,9 +35,3 @@ Returns the name of `value`'s type. The type name can be any of the following:
 * `map`
 * `special`
 * `empty`
-
-### [return: value]
-
-Immediately exits the current scope and returns `value` to the caller instead of the current output.
-
-If `[return]` is called without an argument, the output from the function will be returned instead.

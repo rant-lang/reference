@@ -39,25 +39,19 @@ let rant_def = {
         begin: /\\(x[a-fA-F0-9]{2}|\S)/
       },
       {
-        // Parameterized box
+        // Closure
         className: 'keyword',
-        begin: /\[\[/,
-        end: /\]\]/,
+        begin: /\[\?\:?/,
+        end: /\]/,
         contains: [{
-          //className: 'plain',
           begin: /[\w-_]+/,
           end: /\;?/,
         }]
       },
       {
-        // List/map operator
+        // Map operator
         className: 'keyword',
-        begin: /\@\:?/
-      },
-      {
-        // Box operator
-        className: 'keyword',
-        begin: /\[\]/,
+        begin: /\@?/
       },
       {
         // Function definition
