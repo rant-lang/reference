@@ -663,6 +663,10 @@ This stack can be used to limit the scope of block attributes.</p>
 </ul>
 <h3><a class="header" href="#nop-args" id="nop-args">[nop: args*]</a></h3>
 <p>Does absolutely nothing. Intended for use as a default/placeholder callback.</p>
+<h3><a class="header" href="#resolve-block" id="resolve-block">[resolve: block]</a></h3>
+<p>Resolves the specified block.</p>
+<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
+<p>Causes a runtime error if the provided value is not a block.</p>
 <h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
 <p>Returns the seed value that the program was run with.</p>
 <h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
@@ -736,7 +740,7 @@ This stack can be used to limit the scope of block attributes.</p>
 <p>Inserts <code>value</code> into a list or map at the position <code>pos</code>.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
+<h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
@@ -747,7 +751,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <p>Removes the value at the <code>pos</code> from a list or map.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
+<h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
@@ -758,18 +762,18 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <p>Removes the value at <code>pos</code> from a list or map and prints it.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
+<h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
 <li><code>pos</code> is an unsupported type for the provided collection</li>
 <li><code>collection</code> is a list and <code>pos</code> is out of range</li>
 </ul>
-<h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
+<h4><a class="header" href="#errors-5" id="errors-5">Errors</a></h4>
 <p>Causes a runtime error if <code>collection</code> is a list and the <code>pos</code> is out of range.</p>
 <h3><a class="header" href="#clear-collection" id="clear-collection">[clear: collection]</a></h3>
 <p>Removes all elements from a list or map.</p>
-<h4><a class="header" href="#errors-5" id="errors-5">Errors</a></h4>
+<h4><a class="header" href="#errors-6" id="errors-6">Errors</a></h4>
 <p>Causes a runtime error if <code>collection</code> is not a list or map.</p>
 <h3><a class="header" href="#len-obj" id="len-obj">[len: obj]</a></h3>
 <p>Prints the length of <code>obj</code> as an integer.</p>
@@ -809,7 +813,7 @@ All other value types give a length of 0.</p>
 <p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
 <h3><a class="header" href="#pop-attrs" id="pop-attrs">[pop-attrs]</a></h3>
 <p>Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.</p>
-<h4><a class="header" href="#errors-6" id="errors-6">Errors</a></h4>
+<h4><a class="header" href="#errors-7" id="errors-7">Errors</a></h4>
 <p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#rep-reps" id="rep-reps">[rep: reps]</a></h3>
 <p>Sets the repetition count for the next block to <code>reps</code>.
