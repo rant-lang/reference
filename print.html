@@ -599,8 +599,7 @@ There are several block attributes available that the user can set via the stand
 <p>By setting the repetitions attribute, you can control how many times the next encountered block will run.
 This attribute is set with the <code>[rep]</code> function.</p>
 <h3><a class="header" href="#example" id="example">Example</a></h3>
-<pre><code class="language-rant">[rep:10]
-{ [rep-n]\n }
+<pre><code class="language-rant">[rep:10]{[step]\n}
 # Output:
 # 1
 # 2
@@ -687,13 +686,13 @@ This stack can be used to limit the scope of block attributes.</p>
 <h3><a class="header" href="#maybe-p" id="maybe-p">[maybe: p?]</a></h3>
 <p>Returns a <code>bool</code> value with <code>p</code> probability of being true.</p>
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
-<h3><a class="header" href="#n-min-max" id="n-min-max">[n: min; max]</a></h3>
+<h3><a class="header" href="#num-min-max" id="num-min-max">[num: min; max]</a></h3>
 <p>Prints a random integer with uniform distribution between <code>min</code> and <code>max</code> (both inclusive).</p>
 <h4><a class="header" href="#example-3" id="example-3">Example</a></h4>
 <pre><code class="language-rant">You roll the dice and get '[n:1;6] and '[n:1;6].
 # You roll the dice and get 2 and 5.
 </code></pre>
-<h3><a class="header" href="#nf-min-max" id="nf-min-max">[nf: min; max]</a></h3>
+<h3><a class="header" href="#numf-min-max" id="numf-min-max">[numf: min; max]</a></h3>
 <p>Prints a random float with uniform distribution between <code>min</code> (inclusive) and <code>max</code> (exclusive).</p>
 <h1><a class="header" href="#string-functions" id="string-functions">String functions</a></h1>
 <h3><a class="header" href="#split-text-sep" id="split-text-sep">[split: text; sep?]</a></h3>
