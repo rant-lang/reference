@@ -18,6 +18,14 @@ Causes a runtime error if either of the following are true:
 
 Does absolutely nothing. Intended for use as a default/placeholder callback.
 
+### [resolve: block]
+
+Resolves the specified block.
+
+#### Errors
+
+Causes a runtime error if the provided value is not a block.
+
 ### [seed]
 
 Returns the seed value that the program was run with.
