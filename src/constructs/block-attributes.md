@@ -11,8 +11,7 @@ This attribute is set with the `[rep]` function.
 ### Example
 
 ```rant
-[rep:10]
-{ [rep-n]\n }
+[rep:10]{[step]\n}
 # Output:
 # 1
 # 2

@@ -15,7 +15,7 @@ Returns a `bool` value with `p` probability of being true.
 
 `p` must be either a `float` or `empty`. If omitted, it will default to `0.5`.
 
-### [n: min; max]
+### [num: min; max]
 
 Prints a random integer with uniform distribution between `min` and `max` (both inclusive).
 
@@ -26,7 +26,7 @@ You roll the dice and get '[n:1;6] and '[n:1;6].
 # You roll the dice and get 2 and 5.
 ```
 
-### [nf: min; max]
+### [numf: min; max]
 
 Prints a random float with uniform distribution between `min` (inclusive) and `max` (exclusive).
 
