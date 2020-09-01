@@ -52,7 +52,7 @@ The act of a block inheriting a hint from its contents is known as "taking the h
 The coin landed on {Heads|Tails}.
 
 # Explicitly hint the function call so the compiler knows it prints something
-Your lucky number is '[n:1;100].
+Your lucky number is '[num:1;100].
 ```
 
 ## Sinking
