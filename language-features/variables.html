@@ -191,7 +191,7 @@ You can leave the assignment part out and it will be initialized to the empty va
 <p>A getter retrieves some value from a variable or expression and prints it to the output.</p>
 <p>Attempting to retrieve a variable that does not exist results in a runtime error.</p>
 <pre><code class="language-rant"># Get value of `name` (note the lack of '$')
-&lt;name = Robin&gt;
+&lt;$name = Robin&gt;
 My name is &lt;name&gt;. # Prints &quot;My name is Robin.&quot;
 </code></pre>
 <p>You can also use getters to access an index or key on the value of an expression by making the expression the first part of the path:</p>
@@ -218,7 +218,7 @@ As soon as a scope is finished running, all variables defined within it are disc
 }
 </code></pre>
 <h3><a class="header" href="#shadowing" id="shadowing">Shadowing</a></h3>
-<p>Variables in a parent scope can be temporarily overridden (&quot;shadowed&quot;) by defining a variable of the same name in a child scope.</p>
+<p>Variables in a parent scope can be temporarily hidden (&quot;shadowed&quot;) by defining a variable of the same name in a child scope.</p>
 <p>When the child variable goes out of scope, the shadowed parent variable will once again become accessible.</p>
 <pre><code class="language-rant"># Define variable `a` in parent scope
 &lt;$a = foo&gt;
