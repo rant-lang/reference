@@ -1,34 +1,20 @@
-# Variables
+# Variables and accessors
 
-Rant programs can define and use variables of several types.
+Variables enable you to store and retrieve values.
 
-Because Rant is a dynamically-typed langauge, variables have no type constraints; the type of a variable is determined by the type of its current value.
+Rant is a dynamically-typed language, meaning that variables have no set type;
+for example, you can initialize a variable with an integer, and change it later on to a string.
 
-## Value types
+## Accessors
 
-Rant currently supports nine value types:
+Variables are defined, written to, and retrieved using **accessors**, which are written inside angle brackets.
 
-|Type name |Description                                        |Pass type|
-|----------|---------------------------------------------------|---------|
-|`string`  |Sequence of UTF-8 characters                       |by-value |
-|`integer` |64-bit signed integer                              |by-value |
-|`float`   |64-bit double-precision float                      |by-value |
-|`bool`    |Boolean value                                      |by-value | 
-|`function`|Function/closure                                   |by-ref   |
-|`list`    |List of values                                     |by-ref   |
-|`map`     |String-keyed collection of values                  |by-ref   |
-|`special` |Handle to internal runtime data, such as a selector|by-ref   |
-|`empty`   |Unit type representing "null" value                |by-value |
+Accessors have three subtypes: **definitions**, **setters**, and **getters**.
 
-## Basic syntax
+### Definitions
 
-All variable access operations are enclosed in angle brackets.
-
-Variable accessors have three subtypes: **definitions**, **assignments**, and **getters**.
-
-### Definition
-
-Defining a variable creates it in the current scope, but may not necessarily initialize it with a value.
+Defining a variable creates it in the current scope, but is not required to initialize it with a value.
+You can leave the assignment part out and it will be initialized to the empty value (`<>`).
 
 All variable definitions begin with the `$` symbol.
 
@@ -40,107 +26,143 @@ All variable definitions begin with the `$` symbol.
 <$name = Nick>
 ```
 
-### Assignment
+### Setters
 
-Variable assignments include a variable name and value separated by a `=` symbol.
+Setters are very similar to definitions, but they only work on existing variables.
 
 ```rant
+# Define a variable
+<$name = Bob>
 # Overwrite value on existing variable `name`
-<name = Nicholas>
+<name = Susan>
+```
+
+Along with setting variables, setters can also write to specific elements of collections.
+
+```rant
+<$numbers = (1; 2; 3)>
+<numbers/0 = 4> # list is now (4; 2; 3)
 ```
 
 ### Getters
 
-A variable getter only requires the name and adds the variable's value to the output.
+A getter retrieves some value from a variable or expression and prints it to the output.
 
 Attempting to retrieve a variable that does not exist results in a runtime error.
 
 ```rant
 # Get value of `name` (note the lack of '$')
-My name is <name>. # Prints "My name is Nicholas."
+<name = Robin>
+My name is <name>. # Prints "My name is Robin."
 ```
 
-
-## The `empty` type
-
-To represent the lack of a value, Rant has the `empty` type, which has only one possible value, represented by the token `<>`.
+You can also use getters to access an index or key on the value of an expression by making the expression the first part of the path:
 
 ```rant
-<$nothing = <>>   # i.e. <$nothing>
-[type:<nothing>]  # empty
+[$gen-test-map] {@(foo=bar)}
+<{[gen-test-map]}/foo> # Prints "bar"
 ```
 
-## Boolean values
+### Multi-part accessors
 
-The two boolean values are represented by the keywords `true` and `false`.
-These keywords can still be used as fragments when not used alone, as their string representations are simply `"true"` and `"false"`;
-however, if they are passed on their own and need to be strings, you will need to put them in a string literal.
-
-## Implicit type coercion
-
-In order to resolve type ambiguities, Rant follows a few rules to infer types for certain kinds of values:
-
-#### A number without a decimal place becomes an integer
+To aid readability, Rant also allows you to place several access operations in a single accessor block.
+Simply end each operation with a semicolon; the final semicolon is optional and may be omitted.
 
 ```rant
-<$val = 123>
-[type:<val>]  # integer
+<$first-name = John; $last-name = Smith; $full-name = <first-name>\s<last-name>;>
 ```
 
-#### A number with a decimal place becomes a float
+## Variable scope
+
+Variables only live as long as the expression or block in which they are defined.
+
+Blocks, function arguments, setter expressions, dynamic keys, and function bodies are all examples of variable scopes.
+As soon as a scope is finished running, all variables defined within it are discarded.
+
+### Child scopes
+
+Child scopes inherit variables from parent scopes. In addition, they may define their own variables.
 
 ```rant
-<$val = 123.0>
-[type:<val>]  # float
+{
+    <$a = 1>
+    {
+        <$b = 2>
+        [add: <a>; <b>] # Outputs "3"
+    }
+}
 ```
 
-#### Any value containing fragments or whitespace is always coerced to a string
+### Shadowing
 
-```rant
-<val = 99 bottles of beer>
-# Since there are fragments and whitespace, it's a string
-[type:<val>]  # string
+Variables in a parent scope can be temporarily overridden ("shadowed") by defining a variable of the same name in a child scope.
 
-<val = 99 99>
-# Since there is whitespace between the numbers, the value is still a string
-[type:<val>]  # string
-```
-
-#### Multiple values of any type are always coerced to a single string, as long as one of the values isn't `<>`
-```rant
-<$val = 10 20 30 40 50>
-# Even though they are all integer tokens, they are treated as text
-[type:<val>]  # string
-```
-
-#### Multiple empties are coerced to a single `<>`
-```rant
-[type:<><>]   # empty
-```
-
-
-### Overriding variables from a parent scope
-
-Variables in a parent scope can be non-destructively overridden in child scopes by defining a variable of the same name.
+When the child variable goes out of scope, the shadowed parent variable will once again become accessible.
 
 ```rant
 # Define variable `a` in parent scope
 <$a = foo>
-a = <a>\n
+a is <a>\n
 {
     # Define another variable `a` in child scope
     # Parent variable is not affected
     <$a = bar>
-    a = <a>\n
+    a is <a>\n
 }
 # Parent variable takes over after child scope exits
-a = <a>
+a is <a>
 
 ##
     Output:
 
-    a = foo
-    a = bar
-    a = foo
+    a is foo
+    a is bar
+    a is foo
+##
+```
+
+### The 'descope' operator
+
+If a child scope shadows a parent variable and you want to access the parent variable explicitly, you can use the **descope operator**.
+
+To do this, prefix the variable name with a `^` character. Adding more than one `^` character in a row will skip up to that many scopes.
+
+```rant
+<$a = foo>
+{
+    <$a = bar>
+    Shadowed: <a>\n
+    Descoped: <^a>\n
+}
+
+##
+    Output:
+
+    Shadowed: bar
+    Descoped: foo
+##
+```
+
+### Explicitly accessing global variables
+
+The top level of a Rant program implicitly defines a local variable scope; 
+because of this, top-level variables will only persist for the duration of the program.
+
+To explicitly access a variable in the global scope, prefix the path with the `/` character.
+
+Similarly to the descope operator, this method also allows you to override shadowing on globals.
+
+```rant
+<$foo = Hello from program scope!>
+<$/foo = Hello from global scope!>
+
+Local: <foo>\n
+Global: </foo>\n
+
+##
+    Output:
+
+    Local: Hello from program scope!
+    Global: Hello from global scope!
 ##
 ```
