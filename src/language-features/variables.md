@@ -52,7 +52,7 @@ Attempting to retrieve a variable that does not exist results in a runtime error
 
 ```rant
 # Get value of `name` (note the lack of '$')
-<name = Robin>
+<$name = Robin>
 My name is <name>. # Prints "My name is Robin."
 ```
 
@@ -95,7 +95,7 @@ Child scopes inherit variables from parent scopes. In addition, they may define 
 
 ### Shadowing
 
-Variables in a parent scope can be temporarily overridden ("shadowed") by defining a variable of the same name in a child scope.
+Variables in a parent scope can be temporarily hidden ("shadowed") by defining a variable of the same name in a child scope.
 
 When the child variable goes out of scope, the shadowed parent variable will once again become accessible.
 
