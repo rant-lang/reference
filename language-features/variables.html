@@ -242,7 +242,7 @@ a is &lt;a&gt;
 </code></pre>
 <h3><a class="header" href="#the-descope-operator" id="the-descope-operator">The 'descope' operator</a></h3>
 <p>If a child scope shadows a parent variable and you want to access the parent variable explicitly, you can use the <strong>descope operator</strong>.</p>
-<p>To do this, prefix the variable name with a <code>^</code> character. Adding more than one <code>^</code> character in a row will skip up to that many scopes.</p>
+<p>To do this, prefix the variable name with a <code>^</code> character.</p>
 <pre><code class="language-rant">&lt;$a = foo&gt;
 {
     &lt;$a = bar&gt;
@@ -256,6 +256,36 @@ a is &lt;a&gt;
     Shadowed: bar
     Descoped: foo
 ##
+</code></pre>
+<p>Adding more than one <code>^</code> character in a row will skip up to that many scopes.
+These operations are called &quot;<em>n</em>-descopes&quot;, where <em>n</em> is the number of scopes skipped:
+For example, <code>&lt;^^foo&gt;</code> is a 2-descope, <code>&lt;^^^foo&gt;</code> is a 3-descope, and so on.</p>
+<pre><code class="language-rant"># Define `test`
+&lt;$test = foo&gt;
+{
+    # Shadow `test`
+    &lt;$test = bar&gt;
+    {
+        # Shadow `test` again
+        &lt;$test = baz&gt;
+        &lt;^^test&gt; &lt;^test&gt; &lt;test&gt;
+    }
+}
+## Output: &quot;foo bar baz&quot;
+</code></pre>
+<p>While the compiler imposes no explicit limit on descope depth, use cases for large descope depths are rare and it is recommended to avoid them when possible.</p>
+<pre><code class="language-rant"># An example of a 360-descope.
+`&lt;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+foo&gt;`
 </code></pre>
 <h3><a class="header" href="#explicitly-accessing-global-variables" id="explicitly-accessing-global-variables">Explicitly accessing global variables</a></h3>
 <p>The top level of a Rant program implicitly defines a local variable scope; 
