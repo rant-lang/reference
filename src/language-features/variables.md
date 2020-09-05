@@ -125,7 +125,7 @@ a is <a>
 
 If a child scope shadows a parent variable and you want to access the parent variable explicitly, you can use the **descope operator**.
 
-To do this, prefix the variable name with a `^` character. Adding more than one `^` character in a row will skip up to that many scopes.
+To do this, prefix the variable name with a `^` character.
 
 ```rant
 <$a = foo>
@@ -141,6 +141,42 @@ To do this, prefix the variable name with a `^` character. Adding more than one 
     Shadowed: bar
     Descoped: foo
 ##
+```
+
+Adding more than one `^` character in a row will skip up to that many scopes.
+These operations are called "_n_-descopes", where _n_ is the number of scopes skipped:
+For example, `<^^foo>` is a 2-descope, `<^^^foo>` is a 3-descope, and so on.
+
+```rant
+# Define `test`
+<$test = foo>
+{
+    # Shadow `test`
+    <$test = bar>
+    {
+        # Shadow `test` again
+        <$test = baz>
+        <^^test> <^test> <test>
+    }
+}
+## Output: "foo bar baz"
+```
+
+While the compiler imposes no explicit limit on descope depth, use cases for large descope depths are rare and it is recommended to avoid them when possible.
+
+```rant
+# An example of a 360-descope.
+`<^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+foo>`
 ```
 
 ### Explicitly accessing global variables
