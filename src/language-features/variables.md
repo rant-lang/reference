@@ -166,7 +166,7 @@ While the compiler imposes no explicit limit on descope depth, use cases for lar
 
 ```rant
 # An example of a 360-descope.
-`<^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -176,7 +176,7 @@ While the compiler imposes no explicit limit on descope depth, use cases for lar
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-foo>`
+foo>
 ```
 
 ### Explicitly accessing global variables
