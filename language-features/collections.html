@@ -214,7 +214,7 @@ Map keys are always strings: even if you try to use a non-string as a map key, i
 
 name = &lt;person/name&gt;\n
 age = &lt;person/age&gt;\n
-hobbies = [join:&lt;person/hobbies&gt;;,\s]
+hobbies = [join:,\s;&lt;person/hobbies&gt;]
 
 ##
     Output:
@@ -239,7 +239,7 @@ hobbies = [join:&lt;person/hobbies&gt;;,\s]
 &lt;my-list/0&gt;             # &quot;foo&quot;
 &lt;my-list/1&gt;             # &quot;bar&quot;
 &lt;my-list/2&gt;             # &quot;baz&quot;
-&lt;my-list/{[n:0;2]}&gt;     # &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
+&lt;my-list/{[num:0;2]}&gt;   # &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
 </code></pre>
 
                     </main>
