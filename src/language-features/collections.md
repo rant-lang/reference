@@ -66,7 +66,7 @@ Variable accessors can also access individual elements in lists and maps by usin
 
 name = <person/name>\n
 age = <person/age>\n
-hobbies = [join:<person/hobbies>;,\s]
+hobbies = [join:,\s;<person/hobbies>]
 
 ##
     Output:
@@ -97,5 +97,5 @@ Additionally, a variable access path does not need to be made out of entirely co
 <my-list/0>             # "foo"
 <my-list/1>             # "bar"
 <my-list/2>             # "baz"
-<my-list/{[n:0;2]}>     # "foo", "bar", or "baz"
+<my-list/{[num:0;2]}>   # "foo", "bar", or "baz"
 ```
