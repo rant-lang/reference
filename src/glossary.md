@@ -1,5 +1,15 @@
 # Glossary
 
+### Accessor
+
+Accessors are program elements that read or write values. They are the primary means of interacting with variables.
+
+There are three types of accessors: **getters**, **setters**, and **definitions**.
+
+### Access path
+
+An access path is used to access variables or items in collections. They consist of `/`-delimited series of identifiers, keys, and indices. 
+
 ### Block
 
 A block is a section of a Rant program subdivided into zero or more parts.
@@ -9,26 +19,60 @@ Blocks act as variable scopes and can be combined with various constructs to pro
 
 Block attributes provide a way to customize the resolver's behavior through the variable system, such as changing iteration count.
 
-### Channel
+### Closure
 
-A channel is an independent stream of output from a Rant program. Programs may have more than one channel.
+A closure is a function that captures one or more variables from its environment.
 
 ### Construct
 
 A construct is a group of one or more runtime variables can be used to interact with the Rant runtime 
 and customize various aspects of program behavior.
 
+### Definition
+
+A definition is an accessor type that creates a new variable.
+
+### Dynamic key
+
+A dynamic key is an access path key, consisting of a single-element block, that must be resolved before the containing path can be read. 
+The block resolves to the final key or index that will be inserted into the path.
+
 ### Formatter
 
-A formatter is a runtime component that mutates output in some way.
+A formatter is a runtime component that passively changes the output in some way.
 
 ### Fragment
 
 A fragment is a sequence of any non-whitespace, non-reserved characters found in a Rant program.
 
+### Getter
+
+A getter is an accessor type that retrieves a value from a variable or collection.
+
 ### Hint
 
 A hint is a compile-time operation that informs the Rant compiler that the next program element is expected to print to the output.
+
+### Identifier
+
+A name for a variable or module.
+
+Identifiers enforce specific formatting requirements to ensure consistency:
+
+* Must contain **at least one** alphanumeric character.
+* Must only contain alphanumeric characters, underscores, and hyphens.
+
+### List
+
+A list is an ordered collection of values, accessible by index.
+
+### Map
+
+A map is a collection of key-value pairs, also known as an "associative array".
+
+### Module
+
+A module is a library of Rant functions that can be loaded into another program using the `[require]` function.
 
 ### Resolution
 
@@ -37,6 +81,10 @@ Resolution refers to the process of producing an output from a block, after whic
 ### Resolver
 
 The component of the Rant runtime that handles block resolution.
+
+### Setter
+
+A setter is an accessor type that writes to a variable or collection.
 
 ### Sink
 
