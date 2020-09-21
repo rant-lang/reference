@@ -17,6 +17,7 @@
         - [Case formatter](constructs/case-formatter.md)
         - [Number formatter](constructs/number-formatter.md)
         - [Whitespace formatter](constructs/whitespace-formatter.md)
+- [Modules](modules.md)
 - [Standard library](standard-library.md)
     - [Basic functions](standard-library/basic-functions.md)
     - [Formatting](standard-library/formatting.md)
