@@ -1018,26 +1018,53 @@ If it is a function, it will be called separately for each usage and its return 
 <h3><a class="header" href="#set-varname-value" id="set-varname-value">[set: varname; value]</a></h3>
 <p>Sets the variable <code>varname</code> to <code>value</code>.</p>
 <h1><a class="header" href="#glossary" id="glossary">Glossary</a></h1>
+<h3><a class="header" href="#accessor" id="accessor">Accessor</a></h3>
+<p>Accessors are program elements that read or write values. They are the primary means of interacting with variables.</p>
+<p>There are three types of accessors: <strong>getters</strong>, <strong>setters</strong>, and <strong>definitions</strong>.</p>
+<h3><a class="header" href="#access-path" id="access-path">Access path</a></h3>
+<p>An access path is used to access variables or items in collections. They consist of <code>/</code>-delimited series of identifiers, keys, and indices. </p>
 <h3><a class="header" href="#block" id="block">Block</a></h3>
 <p>A block is a section of a Rant program subdivided into zero or more parts.
 Blocks act as variable scopes and can be combined with various constructs to produce a wide variety of behaviors.</p>
 <h3><a class="header" href="#block-attributes-1" id="block-attributes-1">Block attributes</a></h3>
 <p>Block attributes provide a way to customize the resolver's behavior through the variable system, such as changing iteration count.</p>
-<h3><a class="header" href="#channel" id="channel">Channel</a></h3>
-<p>A channel is an independent stream of output from a Rant program. Programs may have more than one channel.</p>
+<h3><a class="header" href="#closure" id="closure">Closure</a></h3>
+<p>A closure is a function that captures one or more variables from its environment.</p>
 <h3><a class="header" href="#construct" id="construct">Construct</a></h3>
 <p>A construct is a group of one or more runtime variables can be used to interact with the Rant runtime 
 and customize various aspects of program behavior.</p>
+<h3><a class="header" href="#definition" id="definition">Definition</a></h3>
+<p>A definition is an accessor type that creates a new variable.</p>
+<h3><a class="header" href="#dynamic-key" id="dynamic-key">Dynamic key</a></h3>
+<p>A dynamic key is an access path key, consisting of a single-element block, that must be resolved before the containing path can be read. 
+The block resolves to the final key or index that will be inserted into the path.</p>
 <h3><a class="header" href="#formatter" id="formatter">Formatter</a></h3>
-<p>A formatter is a runtime component that mutates output in some way.</p>
+<p>A formatter is a runtime component that passively changes the output in some way.</p>
 <h3><a class="header" href="#fragment" id="fragment">Fragment</a></h3>
 <p>A fragment is a sequence of any non-whitespace, non-reserved characters found in a Rant program.</p>
+<h3><a class="header" href="#getter" id="getter">Getter</a></h3>
+<p>A getter is an accessor type that retrieves a value from a variable or collection.</p>
 <h3><a class="header" href="#hint" id="hint">Hint</a></h3>
 <p>A hint is a compile-time operation that informs the Rant compiler that the next program element is expected to print to the output.</p>
+<h3><a class="header" href="#identifier" id="identifier">Identifier</a></h3>
+<p>A name for a variable or module.</p>
+<p>Identifiers enforce specific formatting requirements to ensure consistency:</p>
+<ul>
+<li>Must contain <strong>at least one</strong> alphanumeric character.</li>
+<li>Must only contain alphanumeric characters, underscores, and hyphens.</li>
+</ul>
+<h3><a class="header" href="#list" id="list">List</a></h3>
+<p>A list is an ordered collection of values, accessible by index.</p>
+<h3><a class="header" href="#map" id="map">Map</a></h3>
+<p>A map is a collection of key-value pairs, also known as an &quot;associative array&quot;.</p>
+<h3><a class="header" href="#module" id="module">Module</a></h3>
+<p>A module is a library of Rant functions that can be loaded into another program using the <code>[require]</code> function.</p>
 <h3><a class="header" href="#resolution" id="resolution">Resolution</a></h3>
 <p>Resolution refers to the process of producing an output from a block, after which the block is referred to as 'resolved.' </p>
 <h3><a class="header" href="#resolver" id="resolver">Resolver</a></h3>
 <p>The component of the Rant runtime that handles block resolution.</p>
+<h3><a class="header" href="#setter" id="setter">Setter</a></h3>
+<p>A setter is an accessor type that writes to a variable or collection.</p>
 <h3><a class="header" href="#sink" id="sink">Sink</a></h3>
 <p>A sink is an operation that suppresses the output of a program element while still allowing its execution.</p>
 
