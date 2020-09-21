@@ -1,4 +1,4 @@
-# Boolean functions
+# Standard Library: Boolean functions
 
 ### [and: a; b; c*]
 

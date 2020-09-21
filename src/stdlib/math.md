@@ -1,4 +1,4 @@
-# Math functions
+# Standard Library: Math functions
 
 ### [add: lhs; rhs]
 

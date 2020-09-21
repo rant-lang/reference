@@ -1,4 +1,4 @@
-# Dynamic variable access
+# Standard Library: Dynamic variable access
 
 ### [def: varname; [value]]
 

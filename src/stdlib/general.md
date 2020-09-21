@@ -1,4 +1,4 @@
-# Basic functions
+# Standard Library: General functions
 
 ### [alt: a; b+]
 
@@ -16,7 +16,11 @@ Causes a runtime error if either of the following are true:
 
 ### [nop: args*]
 
-Does absolutely nothing. Intended for use as a default/placeholder callback.
+Does absolutely nothing. Intended as a convenience function for use as a default/placeholder callback.
+
+### [require: module-name]
+
+Imports the module with the specified name.
 
 ### [resolve: block]
 

@@ -1,4 +1,4 @@
-# Formatting
+# Standard Library: Formatting
 
 ### [whitespace-fmt: mode?; custom-value?]
 

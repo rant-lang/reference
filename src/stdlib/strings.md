@@ -1,4 +1,4 @@
-# String functions
+# Standard Library: String functions
 
 ### [split: text; sep?]
 

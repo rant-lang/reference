@@ -1,4 +1,4 @@
-# Collection functions
+# Standard Library: Collection functions
 
 ### [join: separator; list]
 
