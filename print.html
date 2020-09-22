@@ -338,9 +338,6 @@ Please note that any optional parameters must appear after all required paramete
 <h1><a class="header" href="#closures" id="closures">Closures</a></h1>
 <p>It is sometimes necessary to pass a function as a value rather than define it with a name, so that it can be called elsewhere later on.
 This can be done using <strong>closures</strong>, which are an implementation of anonymous functions with the ability to &quot;capture&quot; external variables.</p>
-<blockquote>
-<p>TODO: Provide variable capture examples</p>
-</blockquote>
 <p>Basic closure syntax with no parameters consists of a <code>?</code> symbol inside brackets preceding the function body. </p>
 <pre><code class="language-rant"># Creates a closure and places it on the output
 [?]{A|B|C|D}
@@ -364,6 +361,36 @@ This can be done using <strong>closures</strong>, which are an implementation of
 }
 
 [![get-greet-func]:Rant]    # &quot;Hello, Rant!&quot;
+</code></pre>
+<h2><a class="header" href="#behavior-of-captured-variables" id="behavior-of-captured-variables">Behavior of captured variables</a></h2>
+<p>As mentioned previously, a closure can access variables defined outside of its body.
+When this happens, it &quot;captures&quot; a reference to that variable for use inside the function.
+As a result, changes made to a captured variable persist between calls.</p>
+<p>Variable capturing can also be used to maintain a persistent state within a closure instance:
+even if the original variable falls out of scope, the closure still keeps it alive.</p>
+<pre><code class="language-rant"># Create a function with a persistent state
+{
+    &lt;$foo-num = 1&gt;
+    # Define a function [next-foo] in the parent scope
+    [$^next-foo] {
+        # Modify `foo-num` from inside the function
+        foo &lt;$n = &lt;foo-num&gt;; foo-num = [add: &lt;foo-num&gt;; 1]; n&gt;
+    }
+} # `foo-num` falls out of scope here, but [next-foo] can still access it
+
+# Call [next-foo] multiple times
+[rep:4][sep:\n]
+{
+    [next-foo]
+}
+##
+  Output:
+
+  foo 1
+  foo 2
+  foo 3
+  foo 4
+##
 </code></pre>
 <h1><a class="header" href="#comments" id="comments">Comments</a></h1>
 <p>Comments are used to annotate code without affecting its behavior.
