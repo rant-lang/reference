@@ -7,7 +7,7 @@ Basic closure syntax with no parameters consists of a `?` symbol inside brackets
 
 ```rant
 # Creates a closure and places it on the output
-[?]{A|B|C|D}
+[?]{Hello from closure!}
 ```
 
 ## Parameterized closures
@@ -15,7 +15,7 @@ Basic closure syntax with no parameters consists of a `?` symbol inside brackets
 If you want to add parameters to a closure, specify the parameter names as you would with a normal function inside the closure's signature:
 
 ```rant
-[?:param1;param2]{ ... }
+[?: param1; param2]{ ... }
 ```
 
 ## Calling anonymous functions
@@ -72,3 +72,8 @@ even if the original variable falls out of scope, the closure still keeps it ali
   foo 4
 ##
 ```
+
+## Limitations on variable capture
+
+Capturing is currently only supported on variables accessed locally from the function body.
+Descoped and explicit global accessors do not capture variables.
