@@ -164,11 +164,11 @@
 This can be done using <strong>closures</strong>, which are an implementation of anonymous functions with the ability to &quot;capture&quot; external variables.</p>
 <p>Basic closure syntax with no parameters consists of a <code>?</code> symbol inside brackets preceding the function body. </p>
 <pre><code class="language-rant"># Creates a closure and places it on the output
-[?]{A|B|C|D}
+[?]{Hello from closure!}
 </code></pre>
 <h2><a class="header" href="#parameterized-closures" id="parameterized-closures">Parameterized closures</a></h2>
 <p>If you want to add parameters to a closure, specify the parameter names as you would with a normal function inside the closure's signature:</p>
-<pre><code class="language-rant">[?:param1;param2]{ ... }
+<pre><code class="language-rant">[?: param1; param2]{ ... }
 </code></pre>
 <h2><a class="header" href="#calling-anonymous-functions" id="calling-anonymous-functions">Calling anonymous functions</a></h2>
 <p>Calling an anonymous function uses the same syntax as regular function calls, but the function name is replaced by the <code>!</code> symbol followed by an expression that provides the function (or closure) you want to call.</p>
@@ -216,6 +216,9 @@ even if the original variable falls out of scope, the closure still keeps it ali
   foo 4
 ##
 </code></pre>
+<h2><a class="header" href="#limitations-on-variable-capture" id="limitations-on-variable-capture">Limitations on variable capture</a></h2>
+<p>Capturing is currently only supported on variables accessed locally from the function body.
+Descoped and explicit global accessors do not capture variables.</p>
 
                     </main>
 
