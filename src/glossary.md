@@ -74,6 +74,10 @@ A map is a collection of key-value pairs, also known as an "associative array".
 
 A module is a library of Rant functions that can be loaded into another program using the `[require]` function.
 
+### Repeater
+
+A block that can iterate multiple times. Repeaters are created by calling `[rep]`.
+
 ### Resolution
 
 Resolution refers to the process of producing an output from a block, after which the block is referred to as 'resolved.' 

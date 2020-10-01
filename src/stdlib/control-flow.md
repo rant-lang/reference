@@ -1,4 +1,20 @@
-# Standard Library: Block attributes
+# Standard Library: Control flow
+
+### [break: value?]
+
+Exits the current repeater, optionally overwriting the iteration output with `value`. 
+
+#### Errors
+
+Causes a runtime error if called outside of a repeater.
+
+### [continue: value?]
+
+Interrupts execution of the current repeater iteration and proceeds with the next one, optionally overwriting the iteration output with `value`.
+
+#### Errors
+
+Causes a runtime error if called outside of a repeater.
 
 ### [count-attrs]
 
@@ -54,17 +70,27 @@ Popping the last attribute frame results in a runtime error.
 ### [rep: reps]
 
 Sets the repetition count for the next block to `reps`.
-The value of `reps` must be non-negative.
+The value of `reps` must either be a non-negative integer or one of the special modes listed below.
 
-#### Example
+### Special rep modes
+
+|Mode name      |Description                                                                        |
+|---------------|-----------------------------------------------------------------------------------|
+|`once`         |Run the block only once. (default behavior)                                        |
+|`forever`      |Repeat the next block until explicitly stopped.                                    |
+|`all`          |Repeat as many times as there are elements in the  next block.                     |
+
+#### Examples
 
 ```rant
 # Print the fragment 3 times
-[r:3]{ha}
+[rep:3]{ha}
 # hahaha
+```
 
+```rant
 # Print the fragment between 3 and 8 times
-[r:[n:3;8]]{ha}
+[rep:[num:3;8]]{ha}
 # hahahaha
 # hahahahahahaha
 # hahaha
@@ -81,3 +107,28 @@ Sets the selector for the next block.
 Sets the separator value for the next block to `separator`.
 The value of `separator` may be a string, number, or function.
 If it is a function, it will be called separately for each usage and its return value will be printed.
+
+#### Examples
+
+```rant
+# Print comma-separated list of numbers 1-10
+[rep:10][sep:,\s]{[step]}
+
+##
+  Output:
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+##
+```
+
+```rant
+# Print list of numbers 1-10 separated by random sequence of spaces and newlines
+[rep:10][sep:*{\n|\s}]{[step]}
+
+##
+  Output:
+  1 2 3
+  4 5 6 7 8
+  9
+  10
+##
+```
