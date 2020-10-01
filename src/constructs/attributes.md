@@ -1,7 +1,13 @@
-# Block attributes
+# Attributes
 
-**Block attributes** are a set of constructs that control various aspects of block behavior.
-There are several block attributes available that the user can set via the standard library.
+**Attributes** are special runtime settings that modify block behavior, such as how many times a block repeats or how it selects which element to run.
+
+Attributes are set by calling the standard library's **attribute functions** and stored in the program's **attribute stack**.
+Each frame of the attribute stack stores a full set of attributes.
+
+When a block resolves, it consumes attributes from the topmost attribute frame and replaces them with their default values.
+
+Frames can be added to and removed from the attribute stack to preserve sets of attributes for later use or limit their scope.
 
 ## Repetitions
 
@@ -61,7 +67,7 @@ The selector attribute controls how Rant chooses which branch of a block to take
 
 ## Attribute frames
 
-The Rant runtime maintains a stack of "attribute frames", which store block attributes.
+The Rant runtime maintains a stack of "attribute frames", which store set of attributes.
 The resolver always reads attributes from the topmost frame in the attribute frame stack. 
 This stack can be used to limit the scope of block attributes.
 

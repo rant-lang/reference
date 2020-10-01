@@ -66,11 +66,11 @@ Then you can resolve it later with the `[resolve]` function:
 Blocks are similar to closures when used this way, but only in that they contain code you can store and run later. Stored blocks make several guarantees that closures and functions cannot:
 1. They never require arguments
 3. They never capture variables
-2. They will always consume block attributes
+2. They will always consume attributes
 
 ## Restrictions on function bodies and dynamic keys
 
-Blocks used as function bodies and dynamic accessor keys are "linear" blocks: they can only contain one element and never consume block attributes.
+Blocks used as function bodies and dynamic accessor keys are "linear" blocks: they can only contain one element and never consume attributes.
 Attempting to use a multi-element block in these contexts will cause a compiler error.
 
-This design consideration prevents function calls and accessors from unintentionally consuming block attributes unless the user explicitly requests it by adding an inner block.
+This design consideration prevents function calls and accessors from unintentionally consuming attributes unless the user explicitly requests it by adding an inner block.

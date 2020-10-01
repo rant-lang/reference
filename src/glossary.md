@@ -10,14 +10,31 @@ There are three types of accessors: **getters**, **setters**, and **definitions*
 
 An access path is used to access variables or items in collections. They consist of `/`-delimited series of identifiers, keys, and indices. 
 
+### Attributes
+
+Attributes modify **block** behavior, such as how many times a block repeats or how it selects elements.
+
+Attributes can be set through **attribute functions**.
+
+### Attribute frame
+
+An attribute frame is a full set of all available attributes. A program's attribute stack always contains at least one frame.
+
+### Attribute functions
+
+A function that reads or writes an **attribute**.
+
+### Attribute stack
+
+Each program maintains an "attribute stack", which stores and provides **attributes** to **blocks**.
+When a block runs, it consumes the attributes in the topmost frame of the attribute stack, replacing them with their default values.
+
+The user can add and remove frames from the attribute stack to preserve attributes for later use.
+
 ### Block
 
 A block is a section of a Rant program subdivided into zero or more parts.
 Blocks act as variable scopes and can be combined with various constructs to produce a wide variety of behaviors.
-
-### Block attributes
-
-Block attributes provide a way to customize the resolver's behavior through the variable system, such as changing iteration count.
 
 ### Closure
 
@@ -55,7 +72,7 @@ A hint is a compile-time operation that informs the Rant compiler that the next 
 
 ### Identifier
 
-A name for a variable or module.
+A name assigned to a **variable** or **module**.
 
 Identifiers enforce specific formatting requirements to ensure consistency:
 

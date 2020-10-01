@@ -12,7 +12,7 @@
     - [Variables and accessors](language-features/variables.md)
     - [Collections](language-features/collections.md)
 - [Constructs](constructs.md)
-    - [Block attributes](constructs/block-attributes.md)
+    - [Attributes](constructs/attributes.md)
     - [Formatters](constructs/formatters.md)
         - [Case](constructs/case-formatter.md)
         - [Numbers](constructs/number-formatter.md)
