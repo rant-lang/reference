@@ -1,8 +1,8 @@
 # Formatters
 
-Formatters passively apply various filters to program output.
+Rant can passively apply various filters to program output.
 
-Rant currently supports the following formatters:
+The following formatters are currently supported:
 
 * Capitalization
 * Numbers

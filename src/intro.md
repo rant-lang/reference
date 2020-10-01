@@ -10,7 +10,12 @@ While every effort is made to make the documentation as approachable as possiblr
 
 ## Scope
 
-This documentation is divided into 
+This documentation is divided into the following chapters:
+
+* [**Language features:**](/language.md) Overview of Rant as a language. 
+* [**Runtime features:**](/runtime.md) Overview of features specific to the runtime.
+* [**Standard library:**](/stdlib.md) Reference for the functions found in the Rant Standard Library.
+* [**Glossary:**](/glossary.md) Familiarize yourself with Rant's terminology.
 
 ## Other helpful resources
 
