@@ -1,4 +1,4 @@
-# Standard Library: Control flow
+# Standard Library: Attributes & Control flow
 
 ### [break: value?]
 
@@ -97,6 +97,10 @@ The value of `reps` must either be a non-negative integer or one of the special 
 # hahahahaha
 # ...
 ```
+
+### [return: value?]
+
+Returns from the current function, optionally overriding the function's output with a value.
 
 ### [sel: selector]
 

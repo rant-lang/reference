@@ -1,6 +1,6 @@
 # Standard Library: Dynamic variable access
 
-### [def: varname; [value]]
+### [def: varname; value?]
 
 Defines the variable `varname` and sets it to `value`. If `value` is not specified, the variable is initialized to `<>`.
 

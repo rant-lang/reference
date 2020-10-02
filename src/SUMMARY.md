@@ -20,7 +20,7 @@
     - [Modules](modules.md)
 - [Standard library](stdlib.md)
     - [General](stdlib/general.md)
-    - [Control flow](stdlib/control-flow.md)
+    - [Attribues & Control flow](stdlib/control-flow.md)
     - [Formatting](stdlib/formatting.md)
     - [Generators](stdlib/generators.md)
     - [Strings](stdlib/strings.md)
