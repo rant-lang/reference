@@ -28,4 +28,5 @@
     - [Boolean](stdlib/boolean.md)
     - [Collections](stdlib/collections.md)
     - [Dynamic variable access](stdlib/dva.md)
+    - [Constants](stdlib/constants.md)
 - [Glossary](glossary.md)

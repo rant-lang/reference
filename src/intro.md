@@ -6,7 +6,7 @@
 > Found an error? Want something improved? [Submit an issue](https://github.com/rant-lang/reference/issues) or a pull request!
 
 This documentation is a reference for the language features, standard library, and major runtime features of version 4.x of Rant.
-While every effort is made to make the documentation as approachable as possiblr, it is not primarily intended to be a beginner's guide to the language.
+While every effort is made to make the documentation as approachable as possible, it is not primarily intended to be a beginner's guide to the language.
 
 ## Scope
 
