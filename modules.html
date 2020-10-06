@@ -163,7 +163,7 @@
 <p>Rant supports basic dependency management via a <strong>module</strong> system.
 Modules are libraries of Rant functions that you can write and load into other Rant programs for use. Each module resides in its own source file.</p>
 <h2><a class="header" href="#writing-modules" id="writing-modules">Writing modules</a></h2>
-<p>A module is simply a Rant program that returns a map containing the module's contents.</p>
+<p>A module is simply a Rant program that returns a map containing the module's contents. Similar to a regular Rant program, modules are expected have the <code>.rant</code> file extension.</p>
 <p>Below is a basic example of a very simple module:</p>
 <pre><code class="language-rant"># lol.rant: Laughter Generation Module
 
@@ -175,11 +175,11 @@ Modules are libraries of Rant functions that you can write and load into other R
 
 &lt;module&gt;
 </code></pre>
-<h2><a class="header" href="#importing-modules" id="importing-modules">Importing modules</a></h2>
+<h2><a class="header" href="#importing-and-using-modules" id="importing-and-using-modules">Importing and using modules</a></h2>
 <p>A module can be imported using the <code>[require]</code> function.
 For this example, we'll import the <code>lol</code> module previously shown.</p>
 <pre><code class="language-rant"># Looks for `lol.rant` and imports it as map variable `lol`.
-# You don't need to specify a file extension.
+# You don't need to specify the file extension.
 [require: lol]
 
 # Call the `[cackle]` function from the module
@@ -191,10 +191,34 @@ If you import the same module twice, it will be fetched from cache.</p>
 <h3><a class="header" href="#compiler-errors-in-modules" id="compiler-errors-in-modules">Compiler errors in modules</a></h3>
 <p>Rant needs to compile modules before they can be imported. If a module fails to compile, a runtime error will be triggered with the compiler error list.</p>
 <h2><a class="header" href="#where-rant-looks-for-modules" id="where-rant-looks-for-modules">Where Rant looks for modules</a></h2>
-<p>When you run <code>[require]</code>, Rant looks for the module in two places:</p>
-<p>First, Rant will check the <strong>local modules path</strong>. This is usually set up by the host application, but if it's not specified, it defaults to the working directory of the process.</p>
-<p>If a local module can't be located, Rant will check the path stored in the <code>RANT_MODULES_PATH</code> environment variable; this is your <strong>global modules path</strong>.
-If there is no matching module file there, the environment variable is not defined, or the path is otherwise inaccessible, Rant will trigger a runtime error.</p>
+<p>When you run <code>[require]</code>, Rant looks for the module in the following locations in-order:</p>
+<ol>
+<li>The requesting program's file location
+<ul>
+<li>Skipped if the program was not loaded from a file</li>
+</ul>
+</li>
+<li>The <strong>local modules path</strong>
+<ul>
+<li>Defaults to the current working directory, but the host app can reconfigure it</li>
+</ul>
+</li>
+<li>The <strong>global modules path</strong>
+<ul>
+<li>Set by the <code>RANT_MODULES_PATH</code> environment variable</li>
+<li>Can be disabled by the host app</li>
+</ul>
+</li>
+</ol>
+<p>If Rant cannot locate a module with a matching path and name, 
+it will trigger a runtime error.</p>
+<h3><a class="header" href="#relative-paths-in-require" id="relative-paths-in-require">Relative paths in <code>[require]</code></a></h3>
+<p>The <code>[require]</code> function can also accept a relative path to a module.
+This makes it possible to access modules in subfolders of any of the module search locations.</p>
+<p>For example, if your application has a <code>rant_modules</code> subfolder in its main directory, you can import modules from it like this:</p>
+<pre><code class="language-rant"># Imports `my-module`
+[require:rant_modules/my-module]
+</code></pre>
 
                     </main>
 

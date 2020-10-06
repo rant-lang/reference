@@ -801,7 +801,7 @@ This stack can be used to limit the scope of block attributes.</p>
 <p>Rant supports basic dependency management via a <strong>module</strong> system.
 Modules are libraries of Rant functions that you can write and load into other Rant programs for use. Each module resides in its own source file.</p>
 <h2><a class="header" href="#writing-modules" id="writing-modules">Writing modules</a></h2>
-<p>A module is simply a Rant program that returns a map containing the module's contents.</p>
+<p>A module is simply a Rant program that returns a map containing the module's contents. Similar to a regular Rant program, modules are expected have the <code>.rant</code> file extension.</p>
 <p>Below is a basic example of a very simple module:</p>
 <pre><code class="language-rant"># lol.rant: Laughter Generation Module
 
@@ -813,11 +813,11 @@ Modules are libraries of Rant functions that you can write and load into other R
 
 &lt;module&gt;
 </code></pre>
-<h2><a class="header" href="#importing-modules" id="importing-modules">Importing modules</a></h2>
+<h2><a class="header" href="#importing-and-using-modules" id="importing-and-using-modules">Importing and using modules</a></h2>
 <p>A module can be imported using the <code>[require]</code> function.
 For this example, we'll import the <code>lol</code> module previously shown.</p>
 <pre><code class="language-rant"># Looks for `lol.rant` and imports it as map variable `lol`.
-# You don't need to specify a file extension.
+# You don't need to specify the file extension.
 [require: lol]
 
 # Call the `[cackle]` function from the module
@@ -829,10 +829,34 @@ If you import the same module twice, it will be fetched from cache.</p>
 <h3><a class="header" href="#compiler-errors-in-modules" id="compiler-errors-in-modules">Compiler errors in modules</a></h3>
 <p>Rant needs to compile modules before they can be imported. If a module fails to compile, a runtime error will be triggered with the compiler error list.</p>
 <h2><a class="header" href="#where-rant-looks-for-modules" id="where-rant-looks-for-modules">Where Rant looks for modules</a></h2>
-<p>When you run <code>[require]</code>, Rant looks for the module in two places:</p>
-<p>First, Rant will check the <strong>local modules path</strong>. This is usually set up by the host application, but if it's not specified, it defaults to the working directory of the process.</p>
-<p>If a local module can't be located, Rant will check the path stored in the <code>RANT_MODULES_PATH</code> environment variable; this is your <strong>global modules path</strong>.
-If there is no matching module file there, the environment variable is not defined, or the path is otherwise inaccessible, Rant will trigger a runtime error.</p>
+<p>When you run <code>[require]</code>, Rant looks for the module in the following locations in-order:</p>
+<ol>
+<li>The requesting program's file location
+<ul>
+<li>Skipped if the program was not loaded from a file</li>
+</ul>
+</li>
+<li>The <strong>local modules path</strong>
+<ul>
+<li>Defaults to the current working directory, but the host app can reconfigure it</li>
+</ul>
+</li>
+<li>The <strong>global modules path</strong>
+<ul>
+<li>Set by the <code>RANT_MODULES_PATH</code> environment variable</li>
+<li>Can be disabled by the host app</li>
+</ul>
+</li>
+</ol>
+<p>If Rant cannot locate a module with a matching path and name, 
+it will trigger a runtime error.</p>
+<h3><a class="header" href="#relative-paths-in-require" id="relative-paths-in-require">Relative paths in <code>[require]</code></a></h3>
+<p>The <code>[require]</code> function can also accept a relative path to a module.
+This makes it possible to access modules in subfolders of any of the module search locations.</p>
+<p>For example, if your application has a <code>rant_modules</code> subfolder in its main directory, you can import modules from it like this:</p>
+<pre><code class="language-rant"># Imports `my-module`
+[require:rant_modules/my-module]
+</code></pre>
 <h1><a class="header" href="#rant-standard-library" id="rant-standard-library">Rant Standard Library</a></h1>
 <p>The Rant Standard Library (&quot;stdlib&quot;) contains many useful and some essential functions that are natively implemented in the Rant runtime itself.</p>
 <h1><a class="header" href="#standard-library-general-functions" id="standard-library-general-functions">Standard Library: General functions</a></h1>
@@ -862,8 +886,16 @@ If no seed is provided, a random one is generated.</p>
 </code></pre>
 <h3><a class="header" href="#nop-args" id="nop-args">[nop: args*]</a></h3>
 <p>Does absolutely nothing. Intended as a convenience function for use as a default/placeholder callback.</p>
-<h3><a class="header" href="#require-module-name" id="require-module-name">[require: module-name]</a></h3>
-<p>Imports the module with the specified name.</p>
+<h3><a class="header" href="#require-module-path" id="require-module-path">[require: module-path]</a></h3>
+<p>Imports the module at the specified relative path and assigns it to a local variable with a name matching the file name.</p>
+<p>Rant requires module files to have the <code>.rant</code> extension in order to load them; as such, it is not necessary to supply the file extension in the path.</p>
+<h4><a class="header" href="#example-4" id="example-4">Example</a></h4>
+<pre><code class="language-rant"># Import module `my-module`
+[require: my-module]
+
+# Call `hello-world` function in `my-module`
+[my-module/hello-world]
+</code></pre>
 <h3><a class="header" href="#resolve-block" id="resolve-block">[resolve: block]</a></h3>
 <p>Resolves the specified block.</p>
 <h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
@@ -991,7 +1023,7 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <tr><td><code>ignore-all</code></td><td>Ignores all printable whitespace.</td></tr>
 <tr><td><code>custom</code></td><td>Replaces all whitespace sequences with the <code>custom-value</code> argument.</td></tr>
 </tbody></table>
-<h4><a class="header" href="#example-4" id="example-4">Example</a></h4>
+<h4><a class="header" href="#example-5" id="example-5">Example</a></h4>
 <pre><code class="language-rant">[whitespace-fmt: default] The quick brown fox    jumps over the lazy dog.
 # Output: The quick brown fox jumps over the lazy dog.
 
@@ -1012,7 +1044,7 @@ This does not affect whitespace in escape sequences and string literals.</p>
 </code></pre>
 <h3><a class="header" href="#digh-count" id="digh-count">[digh: count?]</a></h3>
 <p>Prints a uniformly random lowercase hexadecimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
-<h4><a class="header" href="#example-5" id="example-5">Example</a></h4>
+<h4><a class="header" href="#example-6" id="example-6">Example</a></h4>
 <pre><code class="language-rant"># Generate a random 32-character hex string
 [digh:32] # ~&gt; f4e5bef31ea02eac22f220e68e837587
 </code></pre>
@@ -1026,7 +1058,7 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
 <h3><a class="header" href="#num-min-max" id="num-min-max">[num: min; max]</a></h3>
 <p>Prints a random integer with uniform distribution between <code>min</code> and <code>max</code> (both inclusive).</p>
-<h4><a class="header" href="#example-6" id="example-6">Example</a></h4>
+<h4><a class="header" href="#example-7" id="example-7">Example</a></h4>
 <pre><code class="language-rant">You roll the dice and get '[n:1;6] and '[n:1;6].
 # You roll the dice and get 2 and 5.
 </code></pre>
@@ -1041,7 +1073,7 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <li><code>input</code>, <code>count</code>, or <code>variance</code> is not a number</li>
 <li><code>count</code> is zero or negative</li>
 </ul>
-<h4><a class="header" href="#example-7" id="example-7">Example</a></h4>
+<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
 <pre><code class="language-rant"># Generate and print a list of 5 random numbers that add up to 1000
 &lt;$parts = [shred:1000;5;200]&gt;
 [join:,\s;&lt;parts&gt;]

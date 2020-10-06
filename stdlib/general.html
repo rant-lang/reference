@@ -186,8 +186,16 @@ If no seed is provided, a random one is generated.</p>
 </code></pre>
 <h3><a class="header" href="#nop-args" id="nop-args">[nop: args*]</a></h3>
 <p>Does absolutely nothing. Intended as a convenience function for use as a default/placeholder callback.</p>
-<h3><a class="header" href="#require-module-name" id="require-module-name">[require: module-name]</a></h3>
-<p>Imports the module with the specified name.</p>
+<h3><a class="header" href="#require-module-path" id="require-module-path">[require: module-path]</a></h3>
+<p>Imports the module at the specified relative path and assigns it to a local variable with a name matching the file name.</p>
+<p>Rant requires module files to have the <code>.rant</code> extension in order to load them; as such, it is not necessary to supply the file extension in the path.</p>
+<h4><a class="header" href="#example-1" id="example-1">Example</a></h4>
+<pre><code class="language-rant"># Import module `my-module`
+[require: my-module]
+
+# Call `hello-world` function in `my-module`
+[my-module/hello-world]
+</code></pre>
 <h3><a class="header" href="#resolve-block" id="resolve-block">[resolve: block]</a></h3>
 <p>Resolves the specified block.</p>
 <h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
