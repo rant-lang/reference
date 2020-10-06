@@ -5,7 +5,7 @@ Modules are libraries of Rant functions that you can write and load into other R
 
 ## Writing modules
 
-A module is simply a Rant program that returns a map containing the module's contents.
+A module is simply a Rant program that returns a map containing the module's contents. Similar to a regular Rant program, modules are expected have the `.rant` file extension.
 
 Below is a basic example of a very simple module:
 
@@ -21,14 +21,14 @@ Below is a basic example of a very simple module:
 <module>
 ```
 
-## Importing modules
+## Importing and using modules
 
 A module can be imported using the `[require]` function.
 For this example, we'll import the `lol` module previously shown.
 
 ```rant
 # Looks for `lol.rant` and imports it as map variable `lol`.
-# You don't need to specify a file extension.
+# You don't need to specify the file extension.
 [require: lol]
 
 # Call the `[cackle]` function from the module
@@ -45,9 +45,27 @@ Rant needs to compile modules before they can be imported. If a module fails to 
 
 ## Where Rant looks for modules
 
-When you run `[require]`, Rant looks for the module in two places:
+When you run `[require]`, Rant looks for the module in the following locations in-order:
 
-First, Rant will check the **local modules path**. This is usually set up by the host application, but if it's not specified, it defaults to the working directory of the process.
+1. The requesting program's file location
+    * Skipped if the program was not loaded from a file
+2. The **local modules path**
+    * Defaults to the current working directory, but the host app can reconfigure it
+3. The **global modules path**
+    * Set by the `RANT_MODULES_PATH` environment variable
+    * Can be disabled by the host app
 
-If a local module can't be located, Rant will check the path stored in the `RANT_MODULES_PATH` environment variable; this is your **global modules path**.
-If there is no matching module file there, the environment variable is not defined, or the path is otherwise inaccessible, Rant will trigger a runtime error.
+If Rant cannot locate a module with a matching path and name, 
+it will trigger a runtime error.
+
+### Relative paths in `[require]`
+
+The `[require]` function can also accept a relative path to a module.
+This makes it possible to access modules in subfolders of any of the module search locations.
+
+For example, if your application has a `rant_modules` subfolder in its main directory, you can import modules from it like this:
+
+```rant
+# Imports `my-module`
+[require:rant_modules/my-module]
+```

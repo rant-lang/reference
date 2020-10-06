@@ -40,9 +40,21 @@ Causes a runtime error if `seed` is neither an `integer` nor `string`.
 
 Does absolutely nothing. Intended as a convenience function for use as a default/placeholder callback.
 
-### [require: module-name]
+### [require: module-path]
 
-Imports the module with the specified name.
+Imports the module at the specified relative path and assigns it to a local variable with a name matching the file name.
+
+Rant requires module files to have the `.rant` extension in order to load them; as such, it is not necessary to supply the file extension in the path.
+
+#### Example
+
+```rant
+# Import module `my-module`
+[require: my-module]
+
+# Call `hello-world` function in `my-module`
+[my-module/hello-world]
+```
 
 ### [resolve: block]
 
