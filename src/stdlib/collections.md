@@ -106,6 +106,18 @@ Causes a runtime error if any of the following are true:
 
 Shuffles the elements of a list in-place.
 
+#### Example
+
+```rant
+# Shuffles a list of letters and concatenates them into a single string
+
+<$letters = (A;B;C;D;E;F;G;H;I;J;K;L)>
+
+[shuffle:<letters>]
+[join:;<letters>]
+# ~> GKIBCHLEJADF
+```
+
 ### [shuffled: list]
 
 Creates a shuffled copy of a list.
@@ -159,3 +171,51 @@ Causes a runtime error if any of the following are true:
 #### Errors
 
 Causes a runtime error if `collection` is a list and the `pos` is out of range.
+
+### [translate: list; map]
+
+Matches each item in a list to a map and returns a list with the corresponding map values. 
+Values that have no corresponding key in the map are passed through as-is.
+
+#### Example
+
+```rant
+# Constructs a substitution cipher function
+[$make-cipher: alphabet] {
+  <
+    $letters = [split: <alphabet>];
+    $sub-letters = [shuffled: <letters>];
+    $cipher = [assoc: <letters>; <sub-letters>];
+    $cipher-rev = [assoc: <sub-letters>; <letters>];
+  >
+  # Return cipher functions
+  @(
+    encode = [?: message] {
+      [sum: [translate: [split: <message>]; <cipher>]]
+    };
+    decode = [?: message] {
+      [sum: [translate: [split: <message>]; <cipher-rev>]]
+    };
+  )
+}
+
+# Create a cipher and encode/decode a message
+<$cipher = [make-cipher: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"]>
+<$secret-message = "The quick brown fox jumps over the lazy dog.">
+<$encoded-message = [cipher/encode: <secret-message>]>
+<$decoded-message = [cipher/decode: <encoded-message>]>
+
+# Finally, print the result
+Original: \"<secret-message>\"\n
+Encoded: \"<encoded-message>\"\n
+Decoded: \"<decoded-message>\"\n
+
+##
+  EXAMPLE OUTPUT:
+
+  Original: "The quick brown fox jumps over the lazy dog."
+  Encoded: "kWj KGvaF QcDiq HDx CGpMJ DOjc AWj Tsyt fDN."
+  Decoded: "The quick brown fox jumps over the lazy dog."
+##
+```
+
