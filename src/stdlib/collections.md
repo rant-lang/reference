@@ -110,6 +110,26 @@ Shuffles the elements of a list in-place.
 
 Creates a shuffled copy of a list.
 
+### [sift: list; target-size]
+
+Removes random elements from a list in-place until the number of elements in the list reaches `target-size`.
+If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
+
+### [sifted: list; target-size]
+
+Returns a copy of a list with random elements removed until the number of elements in the list copy reaches `target-size`.
+If the number of elements in the list is less than or equal to `target-size`, this function simply returns an exact copy of the original list.
+
+### [squish: list; target-size]
+
+Merges random adjacent elements in a list using addition until the number of elements in the list reaches `target-size`.
+If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
+
+### [squished: list; target-size]
+
+Returns a copy of a list with random adjacent elements merged using addition until the number of elements in the list copy reaches `target-size`.
+If the number of elements in the list is less than or equal to `target-size`, this function simply returns an exact copy of the original list.
+
 ### [sort: list]
 
 Sorts the elements of a list in-place in ascending order.
