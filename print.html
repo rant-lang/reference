@@ -1056,13 +1056,13 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <h3><a class="header" href="#maybe-p" id="maybe-p">[maybe: p?]</a></h3>
 <p>Returns a <code>bool</code> value with <code>p</code> probability of being true.</p>
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
-<h3><a class="header" href="#num-min-max" id="num-min-max">[num: min; max]</a></h3>
+<h3><a class="header" href="#rand-min-max" id="rand-min-max">[rand: min; max]</a></h3>
 <p>Prints a random integer with uniform distribution between <code>min</code> and <code>max</code> (both inclusive).</p>
 <h4><a class="header" href="#example-7" id="example-7">Example</a></h4>
-<pre><code class="language-rant">You roll the dice and get '[n:1;6] and '[n:1;6].
+<pre><code class="language-rant">You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 </code></pre>
-<h3><a class="header" href="#numf-min-max" id="numf-min-max">[numf: min; max]</a></h3>
+<h3><a class="header" href="#randf-min-max" id="randf-min-max">[randf: min; max]</a></h3>
 <p>Prints a random float with uniform distribution between <code>min</code> (inclusive) and <code>max</code> (exclusive).</p>
 <h3><a class="header" href="#shred-input-count-variance" id="shred-input-count-variance">[shred: input; count; variance]</a></h3>
 <p>Generates a list of <code>count</code> random numbers that vary from each other by <code>variance</code>, and whose sum equals <code>input</code>.</p>
@@ -1076,11 +1076,11 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
 <pre><code class="language-rant"># Generate and print a list of 5 random numbers that add up to 1000
 &lt;$parts = [shred:1000;5;200]&gt;
-[join:,\s;&lt;parts&gt;]
+[join:&quot; + &quot;;&lt;parts&gt;] = [sum:&lt;parts&gt;]
 
 ##
 Output:
-170, 378, 83, 189, 180
+170 + 378 + 83 + 189 + 180 = 1000
 ##
 </code></pre>
 <h1><a class="header" href="#standard-library-string-functions" id="standard-library-string-functions">Standard Library: String functions</a></h1>
@@ -1091,20 +1091,29 @@ Output:
 <h1><a class="header" href="#standard-library-math-functions" id="standard-library-math-functions">Standard Library: Math functions</a></h1>
 <h3><a class="header" href="#add-lhs-rhs" id="add-lhs-rhs">[add: lhs; rhs]</a></h3>
 <p>Adds two values.</p>
-<h3><a class="header" href="#sub-lhs-rhs" id="sub-lhs-rhs">[sub: lhs; rhs]</a></h3>
-<p>Subtracts two values.</p>
-<h3><a class="header" href="#mul-lhs-rhs" id="mul-lhs-rhs">[mul: lhs; rhs]</a></h3>
-<p>Multiplies two values.</p>
+<h3><a class="header" href="#ceil-val" id="ceil-val">[ceil: val]</a></h3>
+<p>Gets the smallest integer that is greater than or equal to <code>val</code>.</p>
+<p><code>val</code> must be a <code>float</code>.</p>
 <h3><a class="header" href="#div-lhs-rhs" id="div-lhs-rhs">[div: lhs; rhs]</a></h3>
 <p>Divides two values.</p>
+<h3><a class="header" href="#floor-val" id="floor-val">[floor: val]</a></h3>
+<p>Gets the largest integer that is less than or equal to <code>val</code>.</p>
+<p><code>val</code> must be a <code>float</code>.</p>
+<h3><a class="header" href="#frac-val" id="frac-val">[frac: val]</a></h3>
+<p>Gets the fractional part of <code>val</code>.</p>
+<p><code>val</code> must be a <code>float</code>.</p>
 <h3><a class="header" href="#mod-lhs-rhs" id="mod-lhs-rhs">[mod: lhs; rhs]</a></h3>
 <p>Gets the modulus of two values.</p>
+<h3><a class="header" href="#mul-lhs-rhs" id="mul-lhs-rhs">[mul: lhs; rhs]</a></h3>
+<p>Multiplies two values.</p>
 <h3><a class="header" href="#mul-add-lhs-rhs-add" id="mul-add-lhs-rhs-add">[mul-add: lhs; rhs; add]</a></h3>
 <p>Multiplies two values, then adds another value to the result.</p>
 <h3><a class="header" href="#neg-n" id="neg-n">[neg: n]</a></h3>
 <p>Negates a value.</p>
 <h3><a class="header" href="#recip-n" id="recip-n">[recip: n]</a></h3>
 <p>Gets the reciprocal of a value.</p>
+<h3><a class="header" href="#sub-lhs-rhs" id="sub-lhs-rhs">[sub: lhs; rhs]</a></h3>
+<p>Subtracts two values.</p>
 <h1><a class="header" href="#standard-library-boolean-functions" id="standard-library-boolean-functions">Standard Library: Boolean functions</a></h1>
 <h3><a class="header" href="#and-a-b-c" id="and-a-b-c">[and: a; b; c*]</a></h3>
 <p>Performs a short-circuiting boolean AND on the operands and returns the result.</p>
@@ -1115,6 +1124,39 @@ Output:
 <h3><a class="header" href="#xor-a-b" id="xor-a-b">[xor: a; b]</a></h3>
 <p>Performs a boolean XOR on the operands and returns the result.</p>
 <h1><a class="header" href="#standard-library-collection-functions" id="standard-library-collection-functions">Standard Library: Collection functions</a></h1>
+<h3><a class="header" href="#assoc-keys-values" id="assoc-keys-values">[assoc: keys; values]</a></h3>
+<p>Creates a map from a list of keys and a list of values.
+Each key in <code>keys</code> will be matched with the value at the same index in <code>values</code>.</p>
+<p>Raises a runtime error if the lists are not the same length.</p>
+<h4><a class="header" href="#example-9" id="example-9">Example</a></h4>
+<pre><code class="language-rant"># Generate a map of the &quot;Big Five&quot; personality traits
+# with random rating values that add up to 50
+&lt;$personality = 
+  [assoc:
+    (ope; con; ext; agr; neu);
+    [shred: 50; 5; [rand: 1; 10]] # Use random variance to reduce trait deviation
+  ]
+&gt;
+
+# Print the values
+[whitespace-fmt:verbatim]
+&quot;Openness to experience:&quot;   &lt;personality/ope&gt;\n
+&quot;Conscientiousness:&quot;        &lt;personality/con&gt;\n
+&quot;Extraversion:&quot;             &lt;personality/ext&gt;\n
+&quot;Agreeableness:&quot;            &lt;personality/agr&gt;\n
+&quot;Neuroticism:&quot;              &lt;personality/neu&gt;\n
+
+
+##
+  EXAMPLE OUTPUT:
+
+  Openness to experience:   7
+  Conscientiousness:        11
+  Extraversion:             5
+  Agreeableness:            12
+  Neuroticism:              15
+##
+</code></pre>
 <h3><a class="header" href="#clear-collection" id="clear-collection">[clear: collection]</a></h3>
 <p>Removes all elements from a list or map.</p>
 <h4><a class="header" href="#errors-7" id="errors-7">Errors</a></h4>

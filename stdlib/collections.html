@@ -160,6 +160,39 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#standard-library-collection-functions" id="standard-library-collection-functions">Standard Library: Collection functions</a></h1>
+<h3><a class="header" href="#assoc-keys-values" id="assoc-keys-values">[assoc: keys; values]</a></h3>
+<p>Creates a map from a list of keys and a list of values.
+Each key in <code>keys</code> will be matched with the value at the same index in <code>values</code>.</p>
+<p>Raises a runtime error if the lists are not the same length.</p>
+<h4><a class="header" href="#example" id="example">Example</a></h4>
+<pre><code class="language-rant"># Generate a map of the &quot;Big Five&quot; personality traits
+# with random rating values that add up to 50
+&lt;$personality = 
+  [assoc:
+    (ope; con; ext; agr; neu);
+    [shred: 50; 5; [rand: 1; 10]] # Use random variance to reduce trait deviation
+  ]
+&gt;
+
+# Print the values
+[whitespace-fmt:verbatim]
+&quot;Openness to experience:&quot;   &lt;personality/ope&gt;\n
+&quot;Conscientiousness:&quot;        &lt;personality/con&gt;\n
+&quot;Extraversion:&quot;             &lt;personality/ext&gt;\n
+&quot;Agreeableness:&quot;            &lt;personality/agr&gt;\n
+&quot;Neuroticism:&quot;              &lt;personality/neu&gt;\n
+
+
+##
+  EXAMPLE OUTPUT:
+
+  Openness to experience:   7
+  Conscientiousness:        11
+  Extraversion:             5
+  Agreeableness:            12
+  Neuroticism:              15
+##
+</code></pre>
 <h3><a class="header" href="#clear-collection" id="clear-collection">[clear: collection]</a></h3>
 <p>Removes all elements from a list or map.</p>
 <h4><a class="header" href="#errors" id="errors">Errors</a></h4>
