@@ -237,6 +237,18 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <p>Shuffles the elements of a list in-place.</p>
 <h3><a class="header" href="#shuffled-list" id="shuffled-list">[shuffled: list]</a></h3>
 <p>Creates a shuffled copy of a list.</p>
+<h3><a class="header" href="#sift-list-target-size" id="sift-list-target-size">[sift: list; target-size]</a></h3>
+<p>Removes random elements from a list in-place until the number of elements in the list reaches <code>target-size</code>.
+If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
+<h3><a class="header" href="#sifted-list-target-size" id="sifted-list-target-size">[sifted: list; target-size]</a></h3>
+<p>Returns a copy of a list with random elements removed until the number of elements in the list copy reaches <code>target-size</code>.
+If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
+<h3><a class="header" href="#squish-list-target-size" id="squish-list-target-size">[squish: list; target-size]</a></h3>
+<p>Merges random adjacent elements in a list using addition until the number of elements in the list reaches <code>target-size</code>.
+If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
+<h3><a class="header" href="#squished-list-target-size" id="squished-list-target-size">[squished: list; target-size]</a></h3>
+<p>Returns a copy of a list with random adjacent elements merged using addition until the number of elements in the list copy reaches <code>target-size</code>.
+If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
 <h3><a class="header" href="#sort-list" id="sort-list">[sort: list]</a></h3>
 <p>Sorts the elements of a list in-place in ascending order.</p>
 <h3><a class="header" href="#sorted-list" id="sorted-list">[sorted: list]</a></h3>
