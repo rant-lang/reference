@@ -36,18 +36,18 @@ Returns a `bool` value with `p` probability of being true.
 
 `p` must be either a `float` or `empty`. If omitted, it will default to `0.5`.
 
-### [num: min; max]
+### [rand: min; max]
 
 Prints a random integer with uniform distribution between `min` and `max` (both inclusive).
 
 #### Example
 
 ```rant
-You roll the dice and get '[n:1;6] and '[n:1;6].
+You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 ```
 
-### [numf: min; max]
+### [randf: min; max]
 
 Prints a random float with uniform distribution between `min` (inclusive) and `max` (exclusive).
 
@@ -70,10 +70,10 @@ Causes a runtime error if:
 ```rant
 # Generate and print a list of 5 random numbers that add up to 1000
 <$parts = [shred:1000;5;200]>
-[join:,\s;<parts>]
+[join:" + ";<parts>] = [sum:<parts>]
 
 ##
 Output:
-170, 378, 83, 189, 180
+170 + 378 + 83 + 189 + 180 = 1000
 ##
 ```

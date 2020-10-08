@@ -4,21 +4,35 @@
 
 Adds two values.
 
-### [sub: lhs; rhs]
+### [ceil: val]
 
-Subtracts two values.
+Gets the smallest integer that is greater than or equal to `val`.
 
-### [mul: lhs; rhs]
-
-Multiplies two values.
+`val` must be a `float`.
 
 ### [div: lhs; rhs]
 
 Divides two values.
 
+### [floor: val]
+
+Gets the largest integer that is less than or equal to `val`.
+
+`val` must be a `float`.
+
+### [frac: val]
+
+Gets the fractional part of `val`.
+
+`val` must be a `float`.
+
 ### [mod: lhs; rhs]
 
 Gets the modulus of two values.
+
+### [mul: lhs; rhs]
+
+Multiplies two values.
 
 ### [mul-add: lhs; rhs; add]
 
@@ -31,3 +45,7 @@ Negates a value.
 ### [recip: n]
 
 Gets the reciprocal of a value.
+
+### [sub: lhs; rhs]
+
+Subtracts two values.

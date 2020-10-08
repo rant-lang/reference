@@ -1,5 +1,44 @@
 # Standard Library: Collection functions
 
+### [assoc: keys; values]
+
+Creates a map from a list of keys and a list of values.
+Each key in `keys` will be matched with the value at the same index in `values`.
+
+Raises a runtime error if the lists are not the same length.
+
+#### Example
+
+```rant
+# Generate a map of the "Big Five" personality traits
+# with random rating values that add up to 50
+<$personality = 
+  [assoc:
+    (ope; con; ext; agr; neu);
+    [shred: 50; 5; [rand: 1; 10]] # Use random variance to reduce trait deviation
+  ]
+>
+
+# Print the values
+[whitespace-fmt:verbatim]
+"Openness to experience:"   <personality/ope>\n
+"Conscientiousness:"        <personality/con>\n
+"Extraversion:"             <personality/ext>\n
+"Agreeableness:"            <personality/agr>\n
+"Neuroticism:"              <personality/neu>\n
+
+
+##
+  EXAMPLE OUTPUT:
+
+  Openness to experience:   7
+  Conscientiousness:        11
+  Extraversion:             5
+  Agreeableness:            12
+  Neuroticism:              15
+##
+```
+
 ### [clear: collection]
 
 Removes all elements from a list or map.
