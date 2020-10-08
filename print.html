@@ -1201,24 +1201,93 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <p>Shuffles the elements of a list in-place.</p>
 <h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
 <pre><code class="language-rant"># Shuffles a list of letters and concatenates them into a single string
-
 &lt;$letters = (A;B;C;D;E;F;G;H;I;J;K;L)&gt;
+[shuffle: &lt;letters&gt;]
+[join: ; &lt;letters&gt;]
 
-[shuffle:&lt;letters&gt;]
-[join:;&lt;letters&gt;]
 # ~&gt; GKIBCHLEJADF
 </code></pre>
 <h3><a class="header" href="#shuffled-list" id="shuffled-list">[shuffled: list]</a></h3>
 <p>Creates a shuffled copy of a list.</p>
+<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
+<pre><code class="language-rant"># Shuffle the words in a string
+&lt;$message = &quot;the quick brown fox jumps over he lazy dog&quot;&gt;
+[join: \s; [shuffled: [split: &lt;message&gt;; \s]]]
+
+# ~&gt; jumps fox quick dog lazy the brown the over
+</code></pre>
 <h3><a class="header" href="#sift-list-target-size" id="sift-list-target-size">[sift: list; target-size]</a></h3>
 <p>Removes random elements from a list in-place until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
+<h4><a class="header" href="#example-12" id="example-12">Example</a></h4>
+<pre><code class="language-rant"># Remove a random element from a list and print the contents at each iteration
+&lt;$list = [split: &quot;Sphinx of black quartz, judge my vow.&quot;; \s]&gt;
+[rep: [len: &lt;list&gt;]]
+[sep: \n]
+{
+  # Print the current list contents
+  [join: \s; &lt;list&gt;]
+  # Sift the list to n - 1
+  [sift: &lt;list&gt;; [sub: [len: &lt;list&gt;]; 1]]
+}
+
+##
+  EXAMPLE OUTPUT:
+
+  Sphinx of black quartz, judge my vow.
+  Sphinx of black quartz, my vow.
+  Sphinx of black quartz, vow.
+  Sphinx of black vow.
+  Sphinx black vow.
+  Sphinx vow.
+  vow.
+##
+</code></pre>
 <h3><a class="header" href="#sifted-list-target-size" id="sifted-list-target-size">[sifted: list; target-size]</a></h3>
 <p>Returns a copy of a list with random elements removed until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
+<h4><a class="header" href="#example-13" id="example-13">Example</a></h4>
+<pre><code class="language-rant"># Create a random subset of abilities for a character
+
+&lt;$char-traits = (
+  berserk;    xray-vision;  speaks-to-bees; 
+  vampirism;  flying;       telekinesis; 
+  many-legs;  high-jump;    bee-allergy
+)&gt;
+
+&lt;$npc = @(
+  name = &quot;Foo Bar&quot;;
+  traits = [sifted: &lt;char-traits&gt;; 2];
+)&gt;
+
+# Print character info
+&lt;npc/name&gt;: '[join: ,\s; &lt;npc/traits&gt;]
+
+# ~&gt; Foo Bar: speaks-to-bees, many-legs
+</code></pre>
 <h3><a class="header" href="#squish-list-target-size" id="squish-list-target-size">[squish: list; target-size]</a></h3>
 <p>Merges random adjacent elements in a list using addition until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
+<h4><a class="header" href="#example-14" id="example-14">Example</a></h4>
+<pre><code class="language-rant"># Merge random items in a number list
+&lt;$numbers = (100; 100; 100; 100; 100; 100; 100; 100; 100; 100)&gt;
+
+# Print the original list
+Before: '[join: ,\s; &lt;numbers&gt;]\n
+
+# Squish the list down to 5 elements
+[squish: &lt;numbers&gt;; 5]
+
+# Print the modified list
+After: '[join: ,\s; &lt;numbers&gt;]\n
+
+##
+  EXAMPLE OUTPUT:
+
+  Before: 100, 100, 100, 100, 100, 100, 100, 100, 100, 100
+  After: 100, 200, 100, 400, 200
+##
+</code></pre>
 <h3><a class="header" href="#squished-list-target-size" id="squished-list-target-size">[squished: list; target-size]</a></h3>
 <p>Returns a copy of a list with random adjacent elements merged using addition until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
@@ -1244,7 +1313,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <h3><a class="header" href="#translate-list-map" id="translate-list-map">[translate: list; map]</a></h3>
 <p>Matches each item in a list to a map and returns a list with the corresponding map values. 
 Values that have no corresponding key in the map are passed through as-is.</p>
-<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
+<h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
 <pre><code class="language-rant"># Constructs a substitution cipher function
 [$make-cipher: alphabet] {
   &lt;
