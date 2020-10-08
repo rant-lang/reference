@@ -1199,6 +1199,15 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 </ul>
 <h3><a class="header" href="#shuffle-list" id="shuffle-list">[shuffle: list]</a></h3>
 <p>Shuffles the elements of a list in-place.</p>
+<h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
+<pre><code class="language-rant"># Shuffles a list of letters and concatenates them into a single string
+
+&lt;$letters = (A;B;C;D;E;F;G;H;I;J;K;L)&gt;
+
+[shuffle:&lt;letters&gt;]
+[join:;&lt;letters&gt;]
+# ~&gt; GKIBCHLEJADF
+</code></pre>
 <h3><a class="header" href="#shuffled-list" id="shuffled-list">[shuffled: list]</a></h3>
 <p>Creates a shuffled copy of a list.</p>
 <h3><a class="header" href="#sift-list-target-size" id="sift-list-target-size">[sift: list; target-size]</a></h3>
@@ -1232,6 +1241,48 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 </ul>
 <h4><a class="header" href="#errors-11" id="errors-11">Errors</a></h4>
 <p>Causes a runtime error if <code>collection</code> is a list and the <code>pos</code> is out of range.</p>
+<h3><a class="header" href="#translate-list-map" id="translate-list-map">[translate: list; map]</a></h3>
+<p>Matches each item in a list to a map and returns a list with the corresponding map values. 
+Values that have no corresponding key in the map are passed through as-is.</p>
+<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
+<pre><code class="language-rant"># Constructs a substitution cipher function
+[$make-cipher: alphabet] {
+  &lt;
+    $letters = [split: &lt;alphabet&gt;];
+    $sub-letters = [shuffled: &lt;letters&gt;];
+    $cipher = [assoc: &lt;letters&gt;; &lt;sub-letters&gt;];
+    $cipher-rev = [assoc: &lt;sub-letters&gt;; &lt;letters&gt;];
+  &gt;
+  # Return cipher functions
+  @(
+    encode = [?: message] {
+      [sum: [translate: [split: &lt;message&gt;]; &lt;cipher&gt;]]
+    };
+    decode = [?: message] {
+      [sum: [translate: [split: &lt;message&gt;]; &lt;cipher-rev&gt;]]
+    };
+  )
+}
+
+# Create a cipher and encode/decode a message
+&lt;$cipher = [make-cipher: &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&quot;]&gt;
+&lt;$secret-message = &quot;The quick brown fox jumps over the lazy dog.&quot;&gt;
+&lt;$encoded-message = [cipher/encode: &lt;secret-message&gt;]&gt;
+&lt;$decoded-message = [cipher/decode: &lt;encoded-message&gt;]&gt;
+
+# Finally, print the result
+Original: \&quot;&lt;secret-message&gt;\&quot;\n
+Encoded: \&quot;&lt;encoded-message&gt;\&quot;\n
+Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
+
+##
+  EXAMPLE OUTPUT:
+
+  Original: &quot;The quick brown fox jumps over the lazy dog.&quot;
+  Encoded: &quot;kWj KGvaF QcDiq HDx CGpMJ DOjc AWj Tsyt fDN.&quot;
+  Decoded: &quot;The quick brown fox jumps over the lazy dog.&quot;
+##
+</code></pre>
 <h1><a class="header" href="#standard-library-dynamic-variable-access" id="standard-library-dynamic-variable-access">Standard Library: Dynamic variable access</a></h1>
 <h3><a class="header" href="#def-varname-value" id="def-varname-value">[def: varname; value?]</a></h3>
 <p>Defines the variable <code>varname</code> and sets it to <code>value</code>. If <code>value</code> is not specified, the variable is initialized to <code>&lt;&gt;</code>.</p>
