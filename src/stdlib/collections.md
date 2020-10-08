@@ -110,11 +110,10 @@ Shuffles the elements of a list in-place.
 
 ```rant
 # Shuffles a list of letters and concatenates them into a single string
-
 <$letters = (A;B;C;D;E;F;G;H;I;J;K;L)>
+[shuffle: <letters>]
+[join: ; <letters>]
 
-[shuffle:<letters>]
-[join:;<letters>]
 # ~> GKIBCHLEJADF
 ```
 
@@ -122,20 +121,102 @@ Shuffles the elements of a list in-place.
 
 Creates a shuffled copy of a list.
 
+#### Example
+
+```rant
+# Shuffle the words in a string
+<$message = "the quick brown fox jumps over he lazy dog">
+[join: \s; [shuffled: [split: <message>; \s]]]
+
+# ~> jumps fox quick dog lazy the brown the over
+```
+
 ### [sift: list; target-size]
 
 Removes random elements from a list in-place until the number of elements in the list reaches `target-size`.
 If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
+
+#### Example
+
+```rant
+# Remove a random element from a list and print the contents at each iteration
+<$list = [split: "Sphinx of black quartz, judge my vow."; \s]>
+[rep: [len: <list>]]
+[sep: \n]
+{
+  # Print the current list contents
+  [join: \s; <list>]
+  # Sift the list to n - 1
+  [sift: <list>; [sub: [len: <list>]; 1]]
+}
+
+##
+  EXAMPLE OUTPUT:
+
+  Sphinx of black quartz, judge my vow.
+  Sphinx of black quartz, my vow.
+  Sphinx of black quartz, vow.
+  Sphinx of black vow.
+  Sphinx black vow.
+  Sphinx vow.
+  vow.
+##
+```
 
 ### [sifted: list; target-size]
 
 Returns a copy of a list with random elements removed until the number of elements in the list copy reaches `target-size`.
 If the number of elements in the list is less than or equal to `target-size`, this function simply returns an exact copy of the original list.
 
+#### Example
+
+```rant
+# Create a random subset of abilities for a character
+
+<$char-traits = (
+  berserk;    xray-vision;  speaks-to-bees; 
+  vampirism;  flying;       telekinesis; 
+  many-legs;  high-jump;    bee-allergy
+)>
+
+<$npc = @(
+  name = "Foo Bar";
+  traits = [sifted: <char-traits>; 2];
+)>
+
+# Print character info
+<npc/name>: '[join: ,\s; <npc/traits>]
+
+# ~> Foo Bar: speaks-to-bees, many-legs
+```
+
 ### [squish: list; target-size]
 
 Merges random adjacent elements in a list using addition until the number of elements in the list reaches `target-size`.
 If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
+
+#### Example
+
+```rant
+# Merge random items in a number list
+<$numbers = (100; 100; 100; 100; 100; 100; 100; 100; 100; 100)>
+
+# Print the original list
+Before: '[join: ,\s; <numbers>]\n
+
+# Squish the list down to 5 elements
+[squish: <numbers>; 5]
+
+# Print the modified list
+After: '[join: ,\s; <numbers>]\n
+
+##
+  EXAMPLE OUTPUT:
+
+  Before: 100, 100, 100, 100, 100, 100, 100, 100, 100, 100
+  After: 100, 200, 100, 400, 200
+##
+```
 
 ### [squished: list; target-size]
 
