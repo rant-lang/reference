@@ -1056,14 +1056,26 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <h3><a class="header" href="#maybe-p" id="maybe-p">[maybe: p?]</a></h3>
 <p>Returns a <code>bool</code> value with <code>p</code> probability of being true.</p>
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
-<h3><a class="header" href="#rand-min-max" id="rand-min-max">[rand: min; max]</a></h3>
-<p>Prints a random integer with uniform distribution between <code>min</code> and <code>max</code> (both inclusive).</p>
+<h3><a class="header" href="#rand-a-b" id="rand-a-b">[rand: a; b]</a></h3>
+<p>Prints a random integer with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
 <h4><a class="header" href="#example-7" id="example-7">Example</a></h4>
 <pre><code class="language-rant">You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 </code></pre>
-<h3><a class="header" href="#randf-min-max" id="randf-min-max">[randf: min; max]</a></h3>
-<p>Prints a random float with uniform distribution between <code>min</code> (inclusive) and <code>max</code> (exclusive).</p>
+<h3><a class="header" href="#randf-a-b" id="randf-a-b">[randf: a; b]</a></h3>
+<p>Prints a random float with uniform distribution between <code>a</code> (inclusive) and <code>b</code> (exclusive).</p>
+<h3><a class="header" href="#rand-list-a-b-n" id="rand-list-a-b-n">[rand-list: a; b; n]</a></h3>
+<p>Prints a list of <code>n</code> random integers with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
+<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
+<pre><code class="language-rant"># 2-dice roll
+
+&lt;$roll = [rand-list: 1; 6; 2]&gt;
+You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
+
+# ~&gt; You rolled 5 and 3 for a total of 8.
+</code></pre>
+<h3><a class="header" href="#randf-list-a-b-n" id="randf-list-a-b-n">[randf-list: a; b; n]</a></h3>
+<p>Prints a list of <code>n</code> random floats with uniform distribution between <code>a</code> (inclusive) and <code>b</code> (exclusive).</p>
 <h3><a class="header" href="#shred-input-count-variance" id="shred-input-count-variance">[shred: input; count; variance]</a></h3>
 <p>Generates a list of <code>count</code> random numbers that vary from each other by <code>variance</code>, and whose sum equals <code>input</code>.</p>
 <p>All three arguments must be numbers, and <code>count</code> must be an <code>integer</code>.</p>
@@ -1073,7 +1085,7 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <li><code>input</code>, <code>count</code>, or <code>variance</code> is not a number</li>
 <li><code>count</code> is zero or negative</li>
 </ul>
-<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
+<h4><a class="header" href="#example-9" id="example-9">Example</a></h4>
 <pre><code class="language-rant"># Generate and print a list of 5 random numbers that add up to 1000
 &lt;$parts = [shred:1000;5;200]&gt;
 [join:&quot; + &quot;;&lt;parts&gt;] = [sum:&lt;parts&gt;]
@@ -1128,7 +1140,7 @@ Output:
 <p>Creates a map from a list of keys and a list of values.
 Each key in <code>keys</code> will be matched with the value at the same index in <code>values</code>.</p>
 <p>Raises a runtime error if the lists are not the same length.</p>
-<h4><a class="header" href="#example-9" id="example-9">Example</a></h4>
+<h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
 <pre><code class="language-rant"># Generate a map of the &quot;Big Five&quot; personality traits
 # with random rating values that add up to 50
 &lt;$personality = 
@@ -1161,12 +1173,98 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 <p>Removes all elements from a list or map.</p>
 <h4><a class="header" href="#errors-7" id="errors-7">Errors</a></h4>
 <p>Causes a runtime error if <code>collection</code> is not a list or map.</p>
+<h3><a class="header" href="#filter-list-predicate" id="filter-list-predicate">[filter: list; predicate]</a></h3>
+<p>Runs a predicate function against all items in a list and returns another list containing only the values that the predicate returned <code>true</code> on.</p>
+<p>The predicate function must accept a single parameter and return a <code>bool</code> value.</p>
+<h4><a class="header" href="#examples-2" id="examples-2">Examples</a></h4>
+<h5><a class="header" href="#filter-a-list-of-numbers-by-only-those-divisible-by-3" id="filter-a-list-of-numbers-by-only-those-divisible-by-3">Filter a list of numbers by only those divisible by 3</a></h5>
+<pre><code class="language-rant">&lt;$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)&gt;
+&lt;$multiples-of-three = [filter: &lt;numbers&gt;; [?:x] { [is-factor: &lt;x&gt;; 3] }]&gt;
+[join: ,\s; &lt;multiples-of-three&gt;]
+# -&gt; 3, 6, 9, 12
+</code></pre>
+<h5><a class="header" href="#filter-a-list-of-numbers-by-only-odd-numbers" id="filter-a-list-of-numbers-by-only-odd-numbers">Filter a list of numbers by only odd numbers</a></h5>
+<pre><code class="language-rant">&lt;$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)&gt;
+# `is-odd` is a function, so we can simply pass it in as the predicate!
+&lt;$odd-numbers = [filter: &lt;numbers&gt;; &lt;is-odd&gt;]&gt;
+[join: ,\s; &lt;odd-numbers&gt;]
+# -&gt; 1, 3, 5, 7, 9, 11
+</code></pre>
+<h5><a class="header" href="#filter-a-list-of-words-to-only-those-that-are-3-letters-or-less" id="filter-a-list-of-words-to-only-those-that-are-3-letters-or-less">Filter a list of words to only those that are 3 letters or less</a></h5>
+<pre><code class="language-rant">&lt;$words = [split: &quot;the quick brown fox jumps over the lazy dog&quot;;\s]&gt;
+&lt;$short-words = [filter: &lt;words&gt;; [?:word] { [le: [len: &lt;word&gt;]; 3] }]&gt;
+[join: \s; &lt;short-words&gt;]
+# -&gt; the fox the dog
+</code></pre>
 <h3><a class="header" href="#join-separator-list" id="join-separator-list">[join: separator; list]</a></h3>
 <p>Prints the elements of a list in order separated by the <code>separator</code> value.</p>
+<h3><a class="header" href="#map-list-map-func" id="map-list-map-func">[map: list; map-func]</a></h3>
+<p>Applies a function to each item in a list and returns another list with the results in the same order.</p>
+<p>The predicate function must accept a single parameter, but can return anything.</p>
+<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
+<pre><code class="language-rant"># Multiple each element of a list by 10
+&lt;$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)&gt;
+&lt;$tens = [map: &lt;numbers&gt;; [?:x] { [mul: &lt;x&gt;; 10] }]&gt;
+[join: ,\s; &lt;tens&gt;]
+# -&gt; 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+</code></pre>
 <h3><a class="header" href="#min-list" id="min-list">[min: list]</a></h3>
 <p>Prints the smallest value of a list.</p>
 <h3><a class="header" href="#max-list" id="max-list">[max: list]</a></h3>
 <p>Prints the largest value of a list.</p>
+<h3><a class="header" href="#oxford-join-comma-conj-comma-conj-list" id="oxford-join-comma-conj-comma-conj-list">[oxford-join: comma; conj; comma-conj; list]</a></h3>
+<p>A variant of the <code>join</code> function for conveniently formatting comma-separated lists.</p>
+<p>Three distinct separator values are required:</p>
+<ul>
+<li><code>comma</code>: the <strong>comma</strong> value, which separates items except for the last two</li>
+<li><code>conj</code>: the <strong>conjunction</strong> value, which is only used to separate items in pairs (lists of 2)</li>
+<li><code>comma-conj</code>: the <strong>comma-conjunction</strong> value, which separates the final two values</li>
+</ul>
+<p>These arguments can be used to configure several aspects of list formatting-- namely, the inclusion of 
+the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the choice of conjunction separating the final two items.</p>
+<p>The separator values are applied as follows:</p>
+<ul>
+<li><strong>Lists of 1 item</strong> use no separators.</li>
+<li><strong>Lists of 2 items</strong> use <code>conj</code> to separate the two items.</li>
+<li><strong>Lists of 3 or more items</strong> separate the final two items with <code>comma-conj</code>; all others use <code>comma</code>.</li>
+</ul>
+<h4><a class="header" href="#examples-3" id="examples-3">Examples</a></h4>
+<h5><a class="header" href="#print-lists-with-oxford-comma" id="print-lists-with-oxford-comma">Print lists with Oxford comma</a></h5>
+<pre><code class="language-rant">&lt;$numbers = ()&gt;
+[rep: 5][sep: \n]
+{
+  [push: &lt;numbers&gt;; [step]]
+  [oxford-join: ,\s; \sand\s; ,\sand\s; &lt;numbers&gt;]
+}
+
+##
+  OUTPUT:
+
+  1
+  1 and 2
+  1, 2, and 3
+  1, 2, 3, and 4
+  1, 2, 3, 4, and 5
+##
+</code></pre>
+<h5><a class="header" href="#print-lists-without-oxford-comma" id="print-lists-without-oxford-comma">Print lists without Oxford comma</a></h5>
+<pre><code class="language-rant">&lt;$numbers = ()&gt;
+[rep: 5][sep: \n]
+{
+  [push: &lt;numbers&gt;; [step]]
+  [oxford-join: ,\s; \sand\s; \sand\s; &lt;numbers&gt;]
+}
+
+##
+  OUTPUT:
+
+  1
+  1 and 2
+  1, 2 and 3
+  1, 2, 3 and 4
+  1, 2, 3, 4 and 5
+##
+</code></pre>
 <h3><a class="header" href="#push-list-value" id="push-list-value">[push: list; value]</a></h3>
 <p>Appends a value to the end of a list.</p>
 <h3><a class="header" href="#pop-list" id="pop-list">[pop: list]</a></h3>
@@ -1199,7 +1297,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 </ul>
 <h3><a class="header" href="#shuffle-list" id="shuffle-list">[shuffle: list]</a></h3>
 <p>Shuffles the elements of a list in-place.</p>
-<h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
+<h4><a class="header" href="#example-12" id="example-12">Example</a></h4>
 <pre><code class="language-rant"># Shuffles a list of letters and concatenates them into a single string
 &lt;$letters = (A;B;C;D;E;F;G;H;I;J;K;L)&gt;
 [shuffle: &lt;letters&gt;]
@@ -1209,7 +1307,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 </code></pre>
 <h3><a class="header" href="#shuffled-list" id="shuffled-list">[shuffled: list]</a></h3>
 <p>Creates a shuffled copy of a list.</p>
-<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
+<h4><a class="header" href="#example-13" id="example-13">Example</a></h4>
 <pre><code class="language-rant"># Shuffle the words in a string
 &lt;$message = &quot;the quick brown fox jumps over he lazy dog&quot;&gt;
 [join: \s; [shuffled: [split: &lt;message&gt;; \s]]]
@@ -1219,7 +1317,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <h3><a class="header" href="#sift-list-target-size" id="sift-list-target-size">[sift: list; target-size]</a></h3>
 <p>Removes random elements from a list in-place until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h4><a class="header" href="#example-12" id="example-12">Example</a></h4>
+<h4><a class="header" href="#example-14" id="example-14">Example</a></h4>
 <pre><code class="language-rant"># Remove a random element from a list and print the contents at each iteration
 &lt;$list = [split: &quot;Sphinx of black quartz, judge my vow.&quot;; \s]&gt;
 [rep: [len: &lt;list&gt;]]
@@ -1246,7 +1344,7 @@ If the number of elements in the list is less than or equal to <code>target-size
 <h3><a class="header" href="#sifted-list-target-size" id="sifted-list-target-size">[sifted: list; target-size]</a></h3>
 <p>Returns a copy of a list with random elements removed until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
-<h4><a class="header" href="#example-13" id="example-13">Example</a></h4>
+<h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
 <pre><code class="language-rant"># Create a random subset of abilities for a character
 
 &lt;$char-traits = (
@@ -1268,7 +1366,7 @@ If the number of elements in the list is less than or equal to <code>target-size
 <h3><a class="header" href="#squish-list-target-size" id="squish-list-target-size">[squish: list; target-size]</a></h3>
 <p>Merges random adjacent elements in a list using addition until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h4><a class="header" href="#example-14" id="example-14">Example</a></h4>
+<h4><a class="header" href="#example-16" id="example-16">Example</a></h4>
 <pre><code class="language-rant"># Merge random items in a number list
 &lt;$numbers = (100; 100; 100; 100; 100; 100; 100; 100; 100; 100)&gt;
 
@@ -1313,7 +1411,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <h3><a class="header" href="#translate-list-map" id="translate-list-map">[translate: list; map]</a></h3>
 <p>Matches each item in a list to a map and returns a list with the corresponding map values. 
 Values that have no corresponding key in the map are passed through as-is.</p>
-<h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
+<h4><a class="header" href="#example-17" id="example-17">Example</a></h4>
 <pre><code class="language-rant"># Constructs a substitution cipher function
 [$make-cipher: alphabet] {
   &lt;
