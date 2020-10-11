@@ -47,9 +47,58 @@ Removes all elements from a list or map.
 
 Causes a runtime error if `collection` is not a list or map.
 
+### [filter: list; predicate]
+
+Runs a predicate function against all items in a list and returns another list containing only the values that the predicate returned `true` on.
+
+The predicate function must accept a single parameter and return a `bool` value.
+
+#### Examples
+
+##### Filter a list of numbers by only those divisible by 3
+```rant
+<$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)>
+<$multiples-of-three = [filter: <numbers>; [?:x] { [is-factor: <x>; 3] }]>
+[join: ,\s; <multiples-of-three>]
+# -> 3, 6, 9, 12
+```
+
+##### Filter a list of numbers by only odd numbers
+```rant
+<$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)>
+# `is-odd` is a function, so we can simply pass it in as the predicate!
+<$odd-numbers = [filter: <numbers>; <is-odd>]>
+[join: ,\s; <odd-numbers>]
+# -> 1, 3, 5, 7, 9, 11
+```
+
+##### Filter a list of words to only those that are 3 letters or less
+```rant
+<$words = [split: "the quick brown fox jumps over the lazy dog";\s]>
+<$short-words = [filter: <words>; [?:word] { [le: [len: <word>]; 3] }]>
+[join: \s; <short-words>]
+# -> the fox the dog
+```
+
 ### [join: separator; list]
 
 Prints the elements of a list in order separated by the `separator` value.
+
+### [map: list; map-func]
+
+Applies a function to each item in a list and returns another list with the results in the same order.
+
+The predicate function must accept a single parameter, but can return anything.
+
+#### Example
+
+```rant
+# Multiple each element of a list by 10
+<$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)>
+<$tens = [map: <numbers>; [?:x] { [mul: <x>; 10] }]>
+[join: ,\s; <tens>]
+# -> 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+```
 
 ### [min: list]
 
@@ -58,6 +107,67 @@ Prints the smallest value of a list.
 ### [max: list]
 
 Prints the largest value of a list.
+
+### [oxford-join: comma; conj; comma-conj; list]
+
+A variant of the `join` function for conveniently formatting comma-separated lists.
+
+Three distinct separator values are required:
+
+* `comma`: the **comma** value, which separates items except for the last two
+* `conj`: the **conjunction** value, which is only used to separate items in pairs (lists of 2)
+* `comma-conj`: the **comma-conjunction** value, which separates the final two values
+
+These arguments can be used to configure several aspects of list formatting-- namely, the inclusion of 
+the [Oxford comma](https://en.wikipedia.org/wiki/Serial_comma) or the choice of conjunction separating the final two items.
+
+The separator values are applied as follows:
+
+* **Lists of 1 item** use no separators.
+* **Lists of 2 items** use `conj` to separate the two items.
+* **Lists of 3 or more items** separate the final two items with `comma-conj`; all others use `comma`.
+
+#### Examples
+
+##### Print lists with Oxford comma
+```rant
+<$numbers = ()>
+[rep: 5][sep: \n]
+{
+  [push: <numbers>; [step]]
+  [oxford-join: ,\s; \sand\s; ,\sand\s; <numbers>]
+}
+
+##
+  OUTPUT:
+
+  1
+  1 and 2
+  1, 2, and 3
+  1, 2, 3, and 4
+  1, 2, 3, 4, and 5
+##
+```
+
+##### Print lists without Oxford comma
+```rant
+<$numbers = ()>
+[rep: 5][sep: \n]
+{
+  [push: <numbers>; [step]]
+  [oxford-join: ,\s; \sand\s; \sand\s; <numbers>]
+}
+
+##
+  OUTPUT:
+
+  1
+  1 and 2
+  1, 2 and 3
+  1, 2, 3 and 4
+  1, 2, 3, 4 and 5
+##
+```
 
 ### [push: list; value]
 

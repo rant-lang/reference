@@ -36,9 +36,9 @@ Returns a `bool` value with `p` probability of being true.
 
 `p` must be either a `float` or `empty`. If omitted, it will default to `0.5`.
 
-### [rand: min; max]
+### [rand: a; b]
 
-Prints a random integer with uniform distribution between `min` and `max` (both inclusive).
+Prints a random integer with uniform distribution between `a` and `b` (both inclusive).
 
 #### Example
 
@@ -47,10 +47,28 @@ You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 ```
 
-### [randf: min; max]
+### [randf: a; b]
 
-Prints a random float with uniform distribution between `min` (inclusive) and `max` (exclusive).
+Prints a random float with uniform distribution between `a` (inclusive) and `b` (exclusive).
 
+### [rand-list: a; b; n]
+
+Prints a list of `n` random integers with uniform distribution between `a` and `b` (both inclusive).
+
+#### Example
+
+```rant
+# 2-dice roll
+
+<$roll = [rand-list: 1; 6; 2]>
+You rolled '[join: \sand\s; <roll>] for a total of '[sum: <roll>].
+
+# ~> You rolled 5 and 3 for a total of 8.
+```
+
+### [randf-list: a; b; n]
+
+Prints a list of `n` random floats with uniform distribution between `a` (inclusive) and `b` (exclusive).
 
 ### [shred: input; count; variance]
 
