@@ -35,7 +35,7 @@ You can leave the assignment part out and it will be initialized to the empty va
 
 ### Setters
 
-A **setter** is very similar to a definition, but modifies an existing variable instead.
+A **setter** modifies an existing variable or value.
 
 ```rant
 # Define a variable
@@ -53,14 +53,14 @@ Along with setting variables, setters can also write to specific elements of col
 
 ### Getters
 
-A **getter** retrieves some value from a variable and prints it to the output.
+A **getter** retrieves some value and prints it to the output.
 
-Attempting to retrieve a variable that does not exist results in a runtime error.
+Attempting to retrieve a variable that does not exist causes a runtime error.
 
 ```rant
 # Get value of `name` (note the lack of '$')
 <$name = Robin>
-My name is <name>. # Prints "My name is Robin."
+My name is <name>.\n # Prints "My name is Robin."
 ```
 
 ### Multi-part accessors

@@ -25,9 +25,11 @@ Lists are initialized using a pair of parentheses containing the list elements, 
 <$important-lists = ((A; B; C); (D; E; F))>
 ```
 
-### Accessing list items
+### List indexing
 
-Getters and setters can read and modify individual list items by index:
+List indices start at 0 and can be accessed by adding the index to the accessor path.
+
+You can also use negative indices to access items relative to the end of a list, starting from -1 and going down.
 
 ```rant
 # Create a list
@@ -80,7 +82,7 @@ Map keys come in two flavors:
 
 ## Retrieving values from collections
 
-Variable accessors can also access individual elements in lists and maps by using the access operator `/`.
+Variable accessors can access individual elements in lists and maps by using the access operator `/`.
 
 ```rant
 <$person = @(
@@ -111,7 +113,7 @@ Additionally, a variable access path does not need to be made out of entirely co
     a = foo; b = bar; c = baz
 )>
 
-<my-map/{a|b|c}>
+<my-map/{{a|b|c}}>
 # Outputs "foo", "bar", or "baz"
 ```
 
