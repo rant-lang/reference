@@ -19,10 +19,11 @@ Accessors have three subtypes: **definitions**, **setters**, and **getters**.
 
 ### Definitions
 
-Defining a variable creates it in the current scope, but is not required to initialize it with a value.
-You can leave the assignment part out and it will be initialized to the empty value (`<>`).
+A **definition** creates a new variable in the current scope.
+They are denoted by placing a `$` symbol before the variable name.
 
-All variable definitions begin with the `$` symbol.
+It is optional to assign a value in a definition.
+You can leave the assignment part out and it will be initialized to the empty value (`<>`).
 
 ```rant
 # Define a variable `name` but leave it empty (value is `<>`)
@@ -34,7 +35,7 @@ All variable definitions begin with the `$` symbol.
 
 ### Setters
 
-Setters are very similar to definitions, but they only work on existing variables.
+A **setter** is very similar to a definition, but modifies an existing variable instead.
 
 ```rant
 # Define a variable
@@ -52,7 +53,7 @@ Along with setting variables, setters can also write to specific elements of col
 
 ### Getters
 
-A getter retrieves some value from a variable or expression and prints it to the output.
+A **getter** retrieves some value from a variable and prints it to the output.
 
 Attempting to retrieve a variable that does not exist results in a runtime error.
 
@@ -60,13 +61,6 @@ Attempting to retrieve a variable that does not exist results in a runtime error
 # Get value of `name` (note the lack of '$')
 <$name = Robin>
 My name is <name>. # Prints "My name is Robin."
-```
-
-You can also use getters to access an index or key on the value of an expression by making the expression the first part of the path:
-
-```rant
-[$gen-test-map] {@(foo=bar)}
-<{[gen-test-map]}/foo> # Prints "bar"
 ```
 
 ### Multi-part accessors
