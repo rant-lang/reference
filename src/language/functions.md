@@ -34,10 +34,10 @@ and then try to call it:
 
 Some people might (understandably) assume that this would crash the program, but this code actually still works!
 
-When this happens, Rant will perform what is known as a "trickle-down function lookup":
+When this happens, Rant will perform what is known as **function percolation**:
 the runtime will search each parent scope up to the global scope until it finds a function with the same name, and then call it as normal.
 
-This behavior only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.
+Function percolation only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.
 
 
 ## Defining functions

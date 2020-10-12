@@ -10,7 +10,16 @@ There are three types of accessors: **getters**, **setters**, and **definitions*
 
 An access path is used to access variables or items in collections. They consist of `/`-delimited series of identifiers, keys, and indices. 
 
-### Attributes
+### Associative block
+
+Associative blocks are a special block type dividing each element into left- and right-hand sides.
+
+The left-hand side (LHS) associaties some value (usually a weight or case value) with the element, 
+while the right-hand side (RHS) contains the code associated with the element.
+
+This block type is typically used for conditional or weighted branching.
+
+### Attribute
 
 Attributes modify **block** behavior, such as how many times a block repeats or how it selects elements.
 
@@ -49,6 +58,10 @@ and customize various aspects of program behavior.
 
 A definition is an accessor type that creates a new variable.
 
+### Descoping
+
+Descoping is a type of variable access that explicitly retrieves a variable from a parent scope, overriding **shadowing**.
+
 ### Dynamic key
 
 A dynamic key is an access path key, consisting of a single-element block, that must be resolved before the containing path can be read. 
@@ -61,6 +74,11 @@ A formatter is a runtime component that passively changes the output in some way
 ### Fragment
 
 A fragment is a sequence of any non-whitespace, non-reserved characters found in a Rant program.
+
+### Function percolation
+
+Function percolation is the ability of function calls to access functions from parent scopes despite **shadowing** by non-function variables.
+It is an implicit form of **descoping**.
 
 ### Getter
 
@@ -102,6 +120,10 @@ Resolution refers to the process of producing an output from a block, after whic
 ### Resolver
 
 The component of the Rant runtime that handles block resolution.
+
+### Shadowing
+
+A variable is **shadowed** (hidden) when it is overridden by a variable of the same name in a child scope.
 
 ### Setter
 
