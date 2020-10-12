@@ -9,7 +9,7 @@
     - [Comments](language/comments.md)
     - [Escape sequences](language/escape-sequences.md)
     - [Data types](language/data-types.md)
-    - [Variables and accessors](language/variables.md)
+    - [Variables and accessors](language/variables-and-accessors.md)
     - [Collections](language/collections.md)
 - [Runtime features](runtime.md)
     - [Attributes](runtime/attributes.md)
