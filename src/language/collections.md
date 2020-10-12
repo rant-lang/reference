@@ -25,6 +25,31 @@ Lists are initialized using a pair of parentheses containing the list elements, 
 <$important-lists = ((A; B; C); (D; E; F))>
 ```
 
+### Accessing list items
+
+Getters and setters can read and modify individual list items by index:
+
+```rant
+# Create a list
+<$list = (1;2;3;4;5;6;7;8;9)>
+
+# Get first item
+<list/0>\n      # 1
+
+# Get second item
+<list/1>\n      # 2
+
+# Get last item
+<list/-1>\n     # 9
+
+# Get second to last item
+<list/-2>\n     # 8
+
+# Change third item from 3 to -3
+<list/2 = -3>
+<list/2>        # -3
+```
+
 ## Maps
 
 Maps are un-ordered collections of key-value pairs, where each key is unique.
