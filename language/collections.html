@@ -179,8 +179,9 @@
 # Create a list of lists
 &lt;$important-lists = ((A; B; C); (D; E; F))&gt;
 </code></pre>
-<h3><a class="header" href="#accessing-list-items" id="accessing-list-items">Accessing list items</a></h3>
-<p>Getters and setters can read and modify individual list items by index:</p>
+<h3><a class="header" href="#list-indexing" id="list-indexing">List indexing</a></h3>
+<p>List indices start at 0 and can be accessed by adding the index to the accessor path.</p>
+<p>You can also use negative indices to access items relative to the end of a list, starting from -1 and going down.</p>
 <pre><code class="language-rant"># Create a list
 &lt;$list = (1;2;3;4;5;6;7;8;9)&gt;
 
@@ -226,7 +227,7 @@ Map keys are always strings: even if you try to use a non-string as a map key, i
 )&gt;
 </code></pre>
 <h2><a class="header" href="#retrieving-values-from-collections" id="retrieving-values-from-collections">Retrieving values from collections</a></h2>
-<p>Variable accessors can also access individual elements in lists and maps by using the access operator <code>/</code>.</p>
+<p>Variable accessors can access individual elements in lists and maps by using the access operator <code>/</code>.</p>
 <pre><code class="language-rant">&lt;$person = @(
     name = Bob;
     age = 30;
@@ -251,7 +252,7 @@ hobbies = [join:,\s;&lt;person/hobbies&gt;]
     a = foo; b = bar; c = baz
 )&gt;
 
-&lt;my-map/{a|b|c}&gt;
+&lt;my-map/{{a|b|c}}&gt;
 # Outputs &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
 </code></pre>
 <p><strong>List example</strong></p>

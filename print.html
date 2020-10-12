@@ -542,7 +542,7 @@ You can leave the assignment part out and it will be initialized to the empty va
 &lt;$name = Nick&gt;
 </code></pre>
 <h3><a class="header" href="#setters" id="setters">Setters</a></h3>
-<p>A <strong>setter</strong> is very similar to a definition, but modifies an existing variable instead.</p>
+<p>A <strong>setter</strong> modifies an existing variable or value.</p>
 <pre><code class="language-rant"># Define a variable
 &lt;$name = Bob&gt;
 # Overwrite value on existing variable `name`
@@ -553,11 +553,11 @@ You can leave the assignment part out and it will be initialized to the empty va
 &lt;numbers/0 = 4&gt; # list is now (4; 2; 3)
 </code></pre>
 <h3><a class="header" href="#getters" id="getters">Getters</a></h3>
-<p>A <strong>getter</strong> retrieves some value from a variable and prints it to the output.</p>
-<p>Attempting to retrieve a variable that does not exist results in a runtime error.</p>
+<p>A <strong>getter</strong> retrieves some value and prints it to the output.</p>
+<p>Attempting to retrieve a variable that does not exist causes a runtime error.</p>
 <pre><code class="language-rant"># Get value of `name` (note the lack of '$')
 &lt;$name = Robin&gt;
-My name is &lt;name&gt;. # Prints &quot;My name is Robin.&quot;
+My name is &lt;name&gt;.\n # Prints &quot;My name is Robin.&quot;
 </code></pre>
 <h3><a class="header" href="#multi-part-accessors" id="multi-part-accessors">Multi-part accessors</a></h3>
 <p>To aid readability, Rant also allows you to place several access operations in a single accessor block.
@@ -707,8 +707,9 @@ Global: &lt;/foo&gt;\n
 # Create a list of lists
 &lt;$important-lists = ((A; B; C); (D; E; F))&gt;
 </code></pre>
-<h3><a class="header" href="#accessing-list-items" id="accessing-list-items">Accessing list items</a></h3>
-<p>Getters and setters can read and modify individual list items by index:</p>
+<h3><a class="header" href="#list-indexing" id="list-indexing">List indexing</a></h3>
+<p>List indices start at 0 and can be accessed by adding the index to the accessor path.</p>
+<p>You can also use negative indices to access items relative to the end of a list, starting from -1 and going down.</p>
 <pre><code class="language-rant"># Create a list
 &lt;$list = (1;2;3;4;5;6;7;8;9)&gt;
 
@@ -754,7 +755,7 @@ Map keys are always strings: even if you try to use a non-string as a map key, i
 )&gt;
 </code></pre>
 <h2><a class="header" href="#retrieving-values-from-collections" id="retrieving-values-from-collections">Retrieving values from collections</a></h2>
-<p>Variable accessors can also access individual elements in lists and maps by using the access operator <code>/</code>.</p>
+<p>Variable accessors can access individual elements in lists and maps by using the access operator <code>/</code>.</p>
 <pre><code class="language-rant">&lt;$person = @(
     name = Bob;
     age = 30;
@@ -779,7 +780,7 @@ hobbies = [join:,\s;&lt;person/hobbies&gt;]
     a = foo; b = bar; c = baz
 )&gt;
 
-&lt;my-map/{a|b|c}&gt;
+&lt;my-map/{{a|b|c}}&gt;
 # Outputs &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
 </code></pre>
 <p><strong>List example</strong></p>
