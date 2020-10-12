@@ -707,6 +707,27 @@ Global: &lt;/foo&gt;\n
 # Create a list of lists
 &lt;$important-lists = ((A; B; C); (D; E; F))&gt;
 </code></pre>
+<h3><a class="header" href="#accessing-list-items" id="accessing-list-items">Accessing list items</a></h3>
+<p>Getters and setters can read and modify individual list items by index:</p>
+<pre><code class="language-rant"># Create a list
+&lt;$list = (1;2;3;4;5;6;7;8;9)&gt;
+
+# Get first item
+&lt;list/0&gt;\n      # 1
+
+# Get second item
+&lt;list/1&gt;\n      # 2
+
+# Get last item
+&lt;list/-1&gt;\n     # 9
+
+# Get second to last item
+&lt;list/-2&gt;\n     # 8
+
+# Change third item from 3 to -3
+&lt;list/2 = -3&gt;
+&lt;list/2&gt;        # -3
+</code></pre>
 <h2><a class="header" href="#maps" id="maps">Maps</a></h2>
 <p>Maps are un-ordered collections of key-value pairs, where each key is unique.
 Map keys are always strings: even if you try to use a non-string as a map key, it will be automatically converted to a string first.</p>
