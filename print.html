@@ -320,9 +320,9 @@ and then try to call it: </p>
 }
 </code></pre>
 <p>Some people might (understandably) assume that this would crash the program, but this code actually still works!</p>
-<p>When this happens, Rant will perform what is known as a &quot;trickle-down function lookup&quot;:
+<p>When this happens, Rant will perform what is known as <strong>function percolation</strong>:
 the runtime will search each parent scope up to the global scope until it finds a function with the same name, and then call it as normal.</p>
-<p>This behavior only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.</p>
+<p>Function percolation only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.</p>
 <h2><a class="header" href="#defining-functions" id="defining-functions">Defining functions</a></h2>
 <p>To define a function and assign it to a variable, the syntax is as follows:</p>
 <pre><code class="language-rant"># Define a parameterless function named `say-hello` that prints &quot;Hello&quot;
@@ -1475,7 +1475,12 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <p>There are three types of accessors: <strong>getters</strong>, <strong>setters</strong>, and <strong>definitions</strong>.</p>
 <h3><a class="header" href="#access-path" id="access-path">Access path</a></h3>
 <p>An access path is used to access variables or items in collections. They consist of <code>/</code>-delimited series of identifiers, keys, and indices. </p>
-<h3><a class="header" href="#attributes-1" id="attributes-1">Attributes</a></h3>
+<h3><a class="header" href="#associative-block" id="associative-block">Associative block</a></h3>
+<p>Associative blocks are a special block type dividing each element into left- and right-hand sides.</p>
+<p>The left-hand side (LHS) associaties some value (usually a weight or case value) with the element, 
+while the right-hand side (RHS) contains the code associated with the element.</p>
+<p>This block type is typically used for conditional or weighted branching.</p>
+<h3><a class="header" href="#attribute" id="attribute">Attribute</a></h3>
 <p>Attributes modify <strong>block</strong> behavior, such as how many times a block repeats or how it selects elements.</p>
 <p>Attributes can be set through <strong>attribute functions</strong>.</p>
 <h3><a class="header" href="#attribute-frame" id="attribute-frame">Attribute frame</a></h3>
@@ -1496,6 +1501,8 @@ Blocks act as variable scopes and can be combined with various constructs to pro
 and customize various aspects of program behavior.</p>
 <h3><a class="header" href="#definition" id="definition">Definition</a></h3>
 <p>A definition is an accessor type that creates a new variable.</p>
+<h3><a class="header" href="#descoping" id="descoping">Descoping</a></h3>
+<p>Descoping is a type of variable access that explicitly retrieves a variable from a parent scope, overriding <strong>shadowing</strong>.</p>
 <h3><a class="header" href="#dynamic-key" id="dynamic-key">Dynamic key</a></h3>
 <p>A dynamic key is an access path key, consisting of a single-element block, that must be resolved before the containing path can be read. 
 The block resolves to the final key or index that will be inserted into the path.</p>
@@ -1503,6 +1510,9 @@ The block resolves to the final key or index that will be inserted into the path
 <p>A formatter is a runtime component that passively changes the output in some way.</p>
 <h3><a class="header" href="#fragment" id="fragment">Fragment</a></h3>
 <p>A fragment is a sequence of any non-whitespace, non-reserved characters found in a Rant program.</p>
+<h3><a class="header" href="#function-percolation" id="function-percolation">Function percolation</a></h3>
+<p>Function percolation is the ability of function calls to access functions from parent scopes despite <strong>shadowing</strong> by non-function variables.
+It is an implicit form of <strong>descoping</strong>.</p>
 <h3><a class="header" href="#getter" id="getter">Getter</a></h3>
 <p>A getter is an accessor type that retrieves a value from a variable or collection.</p>
 <h3><a class="header" href="#hint" id="hint">Hint</a></h3>
@@ -1526,6 +1536,8 @@ The block resolves to the final key or index that will be inserted into the path
 <p>Resolution refers to the process of producing an output from a block, after which the block is referred to as 'resolved.' </p>
 <h3><a class="header" href="#resolver" id="resolver">Resolver</a></h3>
 <p>The component of the Rant runtime that handles block resolution.</p>
+<h3><a class="header" href="#shadowing-1" id="shadowing-1">Shadowing</a></h3>
+<p>A variable is <strong>shadowed</strong> (hidden) when it is overridden by a variable of the same name in a child scope.</p>
 <h3><a class="header" href="#setter" id="setter">Setter</a></h3>
 <p>A setter is an accessor type that writes to a variable or collection.</p>
 <h3><a class="header" href="#sink" id="sink">Sink</a></h3>
