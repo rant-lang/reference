@@ -16,6 +16,18 @@ Causes a runtime error if either of the following are true:
 * `func` isn't a function
 * `args` isn't a list
 
+### [copy: value]
+&rarr; `any`
+
+Returns a shallow clone of `value`.
+
+### [either: condition; true-val; false-val]
+&rarr; `any`
+
+Returns `true-val` if `condition` is `true`, or `false-val` if `condition` is `false`.
+
+`condition` must be of type `bool`.
+
 ### [fork: seed?]
 
 Forks (overrides) the current RNG with a new RNG seeded by both the old RNG's seed and the specified seed.

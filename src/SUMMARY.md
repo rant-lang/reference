@@ -28,6 +28,7 @@
     - [Boolean](stdlib/boolean.md)
     - [Comparison](stdlib/comparison.md)
     - [Math](stdlib/math.md)
+    - [Conversion](stdlib/conversion.md)
     - [Verification](stdlib/verification.md)
     - [Constants](stdlib/constants.md)
 - [Glossary](glossary.md)
