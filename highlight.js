@@ -31,7 +31,7 @@ let rant_def = {
       {
         // Empty
         className: 'keyword',
-        begin: /\<\>/
+        begin: /\~/
       },
       {
         // Escape sequence
