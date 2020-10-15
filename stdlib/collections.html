@@ -474,6 +474,18 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
   Decoded: &quot;The quick brown fox jumps over the lazy dog.&quot;
 ##
 </code></pre>
+<h3><a class="header" href="#zip-list-a-list-b-zip-func" id="zip-list-a-list-b-zip-func">[zip: list-a; list-b; zip-func]</a></h3>
+<p>Returns a new list that combines each pair of items from the two input lists using the specified function.
+The lists do not need to be the same length; if there is a difference, it will be made up with empty values.</p>
+<p>The <code>zip-func</code> must accept two parameters.</p>
+<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
+<h5><a class="header" href="#dot-product" id="dot-product">Dot product</a></h5>
+<pre><code class="language-rant">[$dot: a; b] {
+  [zip: &lt;a&gt;; &lt;b&gt;; &lt;mul&gt; &amp; sum]
+}
+
+[dot: (1; 2; 3); (4; 5; 6)] # 32
+</code></pre>
 
                     </main>
 

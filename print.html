@@ -323,6 +323,31 @@ and then try to call it: </p>
 <p>When this happens, Rant will perform what is known as <strong>function percolation</strong>:
 the runtime will search each parent scope up to the global scope until it finds a function with the same name, and then call it as normal.</p>
 <p>Function percolation only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.</p>
+<h3><a class="header" href="#function-composition" id="function-composition">Function composition</a></h3>
+<p>When function calls are nested inside each other, they can become difficult to read and understand at a glance:</p>
+<pre><code class="language-rant">[e: [d: [c: [b: [a: 1]; 2]; 3]; 4]; 5] # Welcome to bracket hell
+</code></pre>
+<p>An alternative way to write nested function calls is by using iterative (rather than recursive) syntax-- a method known as <strong>function composition</strong>.</p>
+<p>By using function composition, the same expression above can be rewritten with only a single pair of brackets:</p>
+<pre><code class="language-rant">[a: 1 &amp; b: 2 &amp; c: 3 &amp; d: 4 &amp; e: 5] # Much more readable!
+</code></pre>
+<p>In a composed function, the output of one function is fed into the next. By default, the output is inserted as the first argument;
+however, this can be changed by passing the <strong>composition value</strong> <code>[]</code> as an argument:</p>
+<pre><code class="language-rant">[$get-zipper] {
+    {&lt;add&gt;|&lt;sub&gt;}
+}
+
+# Pass the output of [get-zipper] as the third argument for [zip]
+[get-zipper &amp; zip: (1; 2; 3); (4; 5; 6); []]
+</code></pre>
+<p>If the composition value is a <code>function</code>, you can call it directly using an anonymous call:</p>
+<pre><code class="language-rant">[$get-math-func] {
+    {&lt;add&gt;|&lt;mul&gt;|&lt;sub&gt;|&lt;div&gt;}
+}
+
+# Get a random math function and call it, passing in two numbers
+[get-math-func &amp; ![]: 3.0; 2.0]
+</code></pre>
 <h2><a class="header" href="#defining-functions" id="defining-functions">Defining functions</a></h2>
 <p>To define a function and assign it to a variable, the syntax is as follows:</p>
 <pre><code class="language-rant"># Define a parameterless function named `say-hello` that prints &quot;Hello&quot;
@@ -558,6 +583,28 @@ You can leave the assignment part out and it will be initialized to the empty va
 <pre><code class="language-rant"># Get value of `name` (note the lack of '$')
 &lt;$name = Robin&gt;
 My name is &lt;name&gt;.\n # Prints &quot;My name is Robin.&quot;
+</code></pre>
+<h3><a class="header" href="#providing-a-default-value-when-a-getter-fails" id="providing-a-default-value-when-a-getter-fails">Providing a default value when a getter fails</a></h3>
+<p>If a getter fails (due to a missing variable, index, or key), the user may sometimes want to provide a default value to fall back on
+instead of raising an error. To do this, a <strong>fallback expression</strong> can be added to the end of the getter.</p>
+<p>A fallback expression only runs if the data requested by the associated getter is not found; otherwise, it is ignored completely.</p>
+<h4><a class="header" href="#example" id="example">Example</a></h4>
+<pre><code class="language-rant"># Store a value to use as a fallback
+&lt;$fallback = &quot;I don't exist!&quot;&gt;
+
+{
+    # Define a variable `foo`
+    &lt;$foo = &quot;I exist!&quot;&gt;
+
+    # Get `foo` with fallback
+    &lt;foo ? &lt;fallback&gt;&gt; # -&gt; &quot;I exist!&quot;
+}\n
+
+# Getting `foo` again out of scope will trigger the fallback
+&lt;foo ? &lt;fallback&gt;&gt; # -&gt; &quot;I don't exist!&quot;
+
+# Getting `foo` without a fallback here would crash the program
+&lt;foo&gt; # error
 </code></pre>
 <h3><a class="header" href="#multi-part-accessors" id="multi-part-accessors">Multi-part accessors</a></h3>
 <p>To aid readability, Rant also allows you to place several access operations in a single accessor block.
@@ -802,7 +849,7 @@ Each frame of the attribute stack stores a full set of attributes.</p>
 <h2><a class="header" href="#repetitions" id="repetitions">Repetitions</a></h2>
 <p>By setting the repetitions attribute, you can control how many times the next encountered block will run.
 This attribute is set with the <code>[rep]</code> function.</p>
-<h3><a class="header" href="#example" id="example">Example</a></h3>
+<h3><a class="header" href="#example-1" id="example-1">Example</a></h3>
 <pre><code class="language-rant">[rep:10]{[step]\n}
 # Output:
 # 1
@@ -819,7 +866,7 @@ This attribute is set with the <code>[rep]</code> function.</p>
 <h2><a class="header" href="#separator" id="separator">Separator</a></h2>
 <p>The separator attribute controls what is printed between each block repetition.
 It is set using the <code>[sep]</code> function.</p>
-<h3><a class="header" href="#example-1" id="example-1">Example</a></h3>
+<h3><a class="header" href="#example-2" id="example-2">Example</a></h3>
 <pre><code class="language-rant">[rep:4][sep:&quot; and &quot;]
 It just keeps {going}...
 
@@ -828,7 +875,7 @@ It just keeps {going}...
 </code></pre>
 <h2><a class="header" href="#selector" id="selector">Selector</a></h2>
 <p>The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.</p>
-<h3><a class="header" href="#example-2" id="example-2">Example</a></h3>
+<h3><a class="header" href="#example-3" id="example-3">Example</a></h3>
 <pre><code class="language-rant"># Print every element of the block in a random order with no duplicates
 
 &lt;$s=[mksel:deck]&gt;  # Create a &quot;deck&quot; selector
@@ -938,7 +985,7 @@ If no seed is provided, a random one is generated.</p>
 <p>The seed value must be an <code>integer</code> or <code>string</code>.</p>
 <h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
 <p>Causes a runtime error if <code>seed</code> is neither an <code>integer</code> nor <code>string</code>.</p>
-<h4><a class="header" href="#example-3" id="example-3">Example</a></h4>
+<h4><a class="header" href="#example-4" id="example-4">Example</a></h4>
 <pre><code class="language-rant"># Entangles {yee|woo} with {haw|hoo}, i.e. forces them both to pick the same index
 
 [fork:a]{yee|woo}[unfork]-
@@ -951,7 +998,7 @@ If no seed is provided, a random one is generated.</p>
 <h3><a class="header" href="#require-module-path" id="require-module-path">[require: module-path]</a></h3>
 <p>Imports the module at the specified relative path and assigns it to a local variable with a name matching the file name.</p>
 <p>Rant requires module files to have the <code>.rant</code> extension in order to load them; as such, it is not necessary to supply the file extension in the path.</p>
-<h4><a class="header" href="#example-4" id="example-4">Example</a></h4>
+<h4><a class="header" href="#example-5" id="example-5">Example</a></h4>
 <pre><code class="language-rant"># Import module `my-module`
 [require: my-module]
 
@@ -1078,7 +1125,7 @@ If it is a function, it will be called separately for each usage and its return 
 <p>Creates a map from a list of keys and a list of values.
 Each key in <code>keys</code> will be matched with the value at the same index in <code>values</code>.</p>
 <p>Raises a runtime error if the lists are not the same length.</p>
-<h4><a class="header" href="#example-5" id="example-5">Example</a></h4>
+<h4><a class="header" href="#example-6" id="example-6">Example</a></h4>
 <pre><code class="language-rant"># Generate a map of the &quot;Big Five&quot; personality traits
 # with random rating values that add up to 50
 &lt;$personality = 
@@ -1139,7 +1186,7 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 <h3><a class="header" href="#map-list-map-func" id="map-list-map-func">[map: list; map-func]</a></h3>
 <p>Applies a function to each item in a list and returns another list with the results in the same order.</p>
 <p>The predicate function must accept a single parameter, but can return anything.</p>
-<h4><a class="header" href="#example-6" id="example-6">Example</a></h4>
+<h4><a class="header" href="#example-7" id="example-7">Example</a></h4>
 <pre><code class="language-rant"># Multiple each element of a list by 10
 &lt;$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)&gt;
 &lt;$tens = [map: &lt;numbers&gt;; [?:x] { [mul: &lt;x&gt;; 10] }]&gt;
@@ -1235,7 +1282,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 </ul>
 <h3><a class="header" href="#shuffle-list" id="shuffle-list">[shuffle: list]</a></h3>
 <p>Shuffles the elements of a list in-place.</p>
-<h4><a class="header" href="#example-7" id="example-7">Example</a></h4>
+<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
 <pre><code class="language-rant"># Shuffles a list of letters and concatenates them into a single string
 &lt;$letters = (A;B;C;D;E;F;G;H;I;J;K;L)&gt;
 [shuffle: &lt;letters&gt;]
@@ -1245,7 +1292,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 </code></pre>
 <h3><a class="header" href="#shuffled-list" id="shuffled-list">[shuffled: list]</a></h3>
 <p>Creates a shuffled copy of a list.</p>
-<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
+<h4><a class="header" href="#example-9" id="example-9">Example</a></h4>
 <pre><code class="language-rant"># Shuffle the words in a string
 &lt;$message = &quot;the quick brown fox jumps over he lazy dog&quot;&gt;
 [join: \s; [shuffled: [split: &lt;message&gt;; \s]]]
@@ -1255,7 +1302,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <h3><a class="header" href="#sift-list-target-size" id="sift-list-target-size">[sift: list; target-size]</a></h3>
 <p>Removes random elements from a list in-place until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h4><a class="header" href="#example-9" id="example-9">Example</a></h4>
+<h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
 <pre><code class="language-rant"># Remove a random element from a list and print the contents at each iteration
 &lt;$list = [split: &quot;Sphinx of black quartz, judge my vow.&quot;; \s]&gt;
 [rep: [len: &lt;list&gt;]]
@@ -1282,7 +1329,7 @@ If the number of elements in the list is less than or equal to <code>target-size
 <h3><a class="header" href="#sifted-list-target-size" id="sifted-list-target-size">[sifted: list; target-size]</a></h3>
 <p>Returns a copy of a list with random elements removed until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
-<h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
+<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
 <pre><code class="language-rant"># Create a random subset of abilities for a character
 
 &lt;$char-traits = (
@@ -1304,7 +1351,7 @@ If the number of elements in the list is less than or equal to <code>target-size
 <h3><a class="header" href="#squish-list-target-size" id="squish-list-target-size">[squish: list; target-size]</a></h3>
 <p>Merges random adjacent elements in a list using addition until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
+<h4><a class="header" href="#example-12" id="example-12">Example</a></h4>
 <pre><code class="language-rant"># Merge random items in a number list
 &lt;$numbers = (100; 100; 100; 100; 100; 100; 100; 100; 100; 100)&gt;
 
@@ -1349,7 +1396,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <h3><a class="header" href="#translate-list-map" id="translate-list-map">[translate: list; map]</a></h3>
 <p>Matches each item in a list to a map and returns a list with the corresponding map values. 
 Values that have no corresponding key in the map are passed through as-is.</p>
-<h4><a class="header" href="#example-12" id="example-12">Example</a></h4>
+<h4><a class="header" href="#example-13" id="example-13">Example</a></h4>
 <pre><code class="language-rant"># Constructs a substitution cipher function
 [$make-cipher: alphabet] {
   &lt;
@@ -1388,6 +1435,18 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
   Decoded: &quot;The quick brown fox jumps over the lazy dog.&quot;
 ##
 </code></pre>
+<h3><a class="header" href="#zip-list-a-list-b-zip-func" id="zip-list-a-list-b-zip-func">[zip: list-a; list-b; zip-func]</a></h3>
+<p>Returns a new list that combines each pair of items from the two input lists using the specified function.
+The lists do not need to be the same length; if there is a difference, it will be made up with empty values.</p>
+<p>The <code>zip-func</code> must accept two parameters.</p>
+<h4><a class="header" href="#example-14" id="example-14">Example</a></h4>
+<h5><a class="header" href="#dot-product" id="dot-product">Dot product</a></h5>
+<pre><code class="language-rant">[$dot: a; b] {
+  [zip: &lt;a&gt;; &lt;b&gt;; &lt;mul&gt; &amp; sum]
+}
+
+[dot: (1; 2; 3); (4; 5; 6)] # 32
+</code></pre>
 <h1><a class="header" href="#standard-library-generators" id="standard-library-generators">Standard Library: Generators</a></h1>
 <h3><a class="header" href="#dig-count" id="dig-count">[dig: count?]</a></h3>
 <p>Prints a uniformly random decimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
@@ -1396,7 +1455,7 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
 </code></pre>
 <h3><a class="header" href="#digh-count" id="digh-count">[digh: count?]</a></h3>
 <p>Prints a uniformly random lowercase hexadecimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
-<h4><a class="header" href="#example-13" id="example-13">Example</a></h4>
+<h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
 <pre><code class="language-rant"># Generate a random 32-character hex string
 [digh:32] # ~&gt; f4e5bef31ea02eac22f220e68e837587
 </code></pre>
@@ -1410,7 +1469,7 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
 <h3><a class="header" href="#rand-a-b" id="rand-a-b">[rand: a; b]</a></h3>
 <p>Prints a random integer with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
-<h4><a class="header" href="#example-14" id="example-14">Example</a></h4>
+<h4><a class="header" href="#example-16" id="example-16">Example</a></h4>
 <pre><code class="language-rant">You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 </code></pre>
@@ -1418,7 +1477,7 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
 <p>Prints a random float with uniform distribution between <code>a</code> (inclusive) and <code>b</code> (exclusive).</p>
 <h3><a class="header" href="#rand-list-a-b-n" id="rand-list-a-b-n">[rand-list: a; b; n]</a></h3>
 <p>Prints a list of <code>n</code> random integers with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
-<h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
+<h4><a class="header" href="#example-17" id="example-17">Example</a></h4>
 <pre><code class="language-rant"># 2-dice roll
 
 &lt;$roll = [rand-list: 1; 6; 2]&gt;
@@ -1437,7 +1496,7 @@ You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
 <li><code>input</code>, <code>count</code>, or <code>variance</code> is not a number</li>
 <li><code>count</code> is zero or negative</li>
 </ul>
-<h4><a class="header" href="#example-16" id="example-16">Example</a></h4>
+<h4><a class="header" href="#example-18" id="example-18">Example</a></h4>
 <pre><code class="language-rant"># Generate and print a list of 5 random numbers that add up to 1000
 &lt;$parts = [shred:1000;5;200]&gt;
 [join:&quot; + &quot;;&lt;parts&gt;] = [sum:&lt;parts&gt;]
@@ -1459,7 +1518,7 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <tr><td><code>ignore-all</code></td><td>Ignores all printable whitespace.</td></tr>
 <tr><td><code>custom</code></td><td>Replaces all whitespace sequences with the <code>custom-value</code> argument.</td></tr>
 </tbody></table>
-<h4><a class="header" href="#example-17" id="example-17">Example</a></h4>
+<h4><a class="header" href="#example-19" id="example-19">Example</a></h4>
 <pre><code class="language-rant">[whitespace-fmt: default] The quick brown fox    jumps over the lazy dog.
 # Output: The quick brown fox jumps over the lazy dog.
 

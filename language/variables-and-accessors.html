@@ -202,6 +202,28 @@ You can leave the assignment part out and it will be initialized to the empty va
 &lt;$name = Robin&gt;
 My name is &lt;name&gt;.\n # Prints &quot;My name is Robin.&quot;
 </code></pre>
+<h3><a class="header" href="#providing-a-default-value-when-a-getter-fails" id="providing-a-default-value-when-a-getter-fails">Providing a default value when a getter fails</a></h3>
+<p>If a getter fails (due to a missing variable, index, or key), the user may sometimes want to provide a default value to fall back on
+instead of raising an error. To do this, a <strong>fallback expression</strong> can be added to the end of the getter.</p>
+<p>A fallback expression only runs if the data requested by the associated getter is not found; otherwise, it is ignored completely.</p>
+<h4><a class="header" href="#example" id="example">Example</a></h4>
+<pre><code class="language-rant"># Store a value to use as a fallback
+&lt;$fallback = &quot;I don't exist!&quot;&gt;
+
+{
+    # Define a variable `foo`
+    &lt;$foo = &quot;I exist!&quot;&gt;
+
+    # Get `foo` with fallback
+    &lt;foo ? &lt;fallback&gt;&gt; # -&gt; &quot;I exist!&quot;
+}\n
+
+# Getting `foo` again out of scope will trigger the fallback
+&lt;foo ? &lt;fallback&gt;&gt; # -&gt; &quot;I don't exist!&quot;
+
+# Getting `foo` without a fallback here would crash the program
+&lt;foo&gt; # error
+</code></pre>
 <h3><a class="header" href="#multi-part-accessors" id="multi-part-accessors">Multi-part accessors</a></h3>
 <p>To aid readability, Rant also allows you to place several access operations in a single accessor block.
 Simply end each operation with a semicolon; the final semicolon is optional and may be omitted.</p>

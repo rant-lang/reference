@@ -187,6 +187,31 @@ and then try to call it: </p>
 <p>When this happens, Rant will perform what is known as <strong>function percolation</strong>:
 the runtime will search each parent scope up to the global scope until it finds a function with the same name, and then call it as normal.</p>
 <p>Function percolation only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.</p>
+<h3><a class="header" href="#function-composition" id="function-composition">Function composition</a></h3>
+<p>When function calls are nested inside each other, they can become difficult to read and understand at a glance:</p>
+<pre><code class="language-rant">[e: [d: [c: [b: [a: 1]; 2]; 3]; 4]; 5] # Welcome to bracket hell
+</code></pre>
+<p>An alternative way to write nested function calls is by using iterative (rather than recursive) syntax-- a method known as <strong>function composition</strong>.</p>
+<p>By using function composition, the same expression above can be rewritten with only a single pair of brackets:</p>
+<pre><code class="language-rant">[a: 1 &amp; b: 2 &amp; c: 3 &amp; d: 4 &amp; e: 5] # Much more readable!
+</code></pre>
+<p>In a composed function, the output of one function is fed into the next. By default, the output is inserted as the first argument;
+however, this can be changed by passing the <strong>composition value</strong> <code>[]</code> as an argument:</p>
+<pre><code class="language-rant">[$get-zipper] {
+    {&lt;add&gt;|&lt;sub&gt;}
+}
+
+# Pass the output of [get-zipper] as the third argument for [zip]
+[get-zipper &amp; zip: (1; 2; 3); (4; 5; 6); []]
+</code></pre>
+<p>If the composition value is a <code>function</code>, you can call it directly using an anonymous call:</p>
+<pre><code class="language-rant">[$get-math-func] {
+    {&lt;add&gt;|&lt;mul&gt;|&lt;sub&gt;|&lt;div&gt;}
+}
+
+# Get a random math function and call it, passing in two numbers
+[get-math-func &amp; ![]: 3.0; 2.0]
+</code></pre>
 <h2><a class="header" href="#defining-functions" id="defining-functions">Defining functions</a></h2>
 <p>To define a function and assign it to a variable, the syntax is as follows:</p>
 <pre><code class="language-rant"># Define a parameterless function named `say-hello` that prints &quot;Hello&quot;
