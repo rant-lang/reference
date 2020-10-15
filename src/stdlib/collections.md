@@ -410,3 +410,21 @@ Decoded: \"<decoded-message>\"\n
 ##
 ```
 
+### [zip: list-a; list-b; zip-func]
+
+Returns a new list that combines each pair of items from the two input lists using the specified function.
+The lists do not need to be the same length; if there is a difference, it will be made up with empty values.
+
+The `zip-func` must accept two parameters.
+
+#### Example
+
+##### Dot product
+
+```rant
+[$dot: a; b] {
+  [zip: <a>; <b>; <mul> & sum]
+}
+
+[dot: (1; 2; 3); (4; 5; 6)] # 32
+```

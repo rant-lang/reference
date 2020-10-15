@@ -63,6 +63,34 @@ Attempting to retrieve a variable that does not exist causes a runtime error.
 My name is <name>.\n # Prints "My name is Robin."
 ```
 
+### Providing a default value when a getter fails
+
+If a getter fails (due to a missing variable, index, or key), the user may sometimes want to provide a default value to fall back on
+instead of raising an error. To do this, a **fallback expression** can be added to the end of the getter.
+
+A fallback expression only runs if the data requested by the associated getter is not found; otherwise, it is ignored completely.
+
+#### Example
+
+```rant
+# Store a value to use as a fallback
+<$fallback = "I don't exist!">
+
+{
+    # Define a variable `foo`
+    <$foo = "I exist!">
+
+    # Get `foo` with fallback
+    <foo ? <fallback>> # -> "I exist!"
+}\n
+
+# Getting `foo` again out of scope will trigger the fallback
+<foo ? <fallback>> # -> "I don't exist!"
+
+# Getting `foo` without a fallback here would crash the program
+<foo> # error
+```
+
 ### Multi-part accessors
 
 To aid readability, Rant also allows you to place several access operations in a single accessor block.
