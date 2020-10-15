@@ -1,10 +1,12 @@
 # Standard Library: General functions
 
 ### [alt: a; b+]
+&rarr; `any` or `empty`
 
-Prints the first argument that isn't the empty value `<>`.
+Prints the first argument that isn't the empty value `~`. If all arguments are `~`, prints `~`.
 
 ### [call: func; args]
+&rarr; `any` or `empty`
 
 Calls the function `func` with the argument list `args`.
 
@@ -57,6 +59,7 @@ Rant requires module files to have the `.rant` extension in order to load them; 
 ```
 
 ### [resolve: block]
+&rarr; `any` or `empty`
 
 Resolves the specified block.
 
@@ -65,10 +68,12 @@ Resolves the specified block.
 Causes a runtime error if the provided value is not a block.
 
 ### [seed]
+&rarr; `integer`
 
 Returns the seed value that the program was run with.
 
 ### [type: value]
+&rarr; `string`
 
 Returns the name of `value`'s type. The type name can be any of the following:
 

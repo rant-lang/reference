@@ -1,6 +1,7 @@
 # Standard Library: Formatting
 
 ### [whitespace-fmt: mode?; custom-value?]
+&rarr; `string` or `empty`
 
 Gets or sets the whitespace normalization mode.
 This does not affect whitespace in escape sequences and string literals.

@@ -17,6 +17,7 @@ Interrupts execution of the current repeater iteration and proceeds with the nex
 Causes a runtime error if called outside of a repeater.
 
 ### [count-attrs]
+&rarr; `integer`
 
 Prints the current size of the attribute frame stack.
 
@@ -35,6 +36,7 @@ Marks the next block as conditional and causes it to resolve iff the following a
 Marks the next block as conditional and causes it to resolve iff `condition` is true.
 
 ### [mksel: selector-mode]
+&rarr; `special`
 
 Creates and returns a selector with the specified mode.
 

@@ -17,10 +17,10 @@ Rant has 10 built-in data types:
 
 ## The `empty` type
 
-To represent the lack of a value, Rant has the `empty` type, which has only one possible value, represented by the token `<>`.
+To represent the lack of a value, Rant has the `empty` type, which has only one possible value, represented by the token `~`.
 
 ```rant
-<$nothing = <>>   # i.e. <$nothing>
+<$nothing = ~>    # i.e. <$nothing>
 [type:<nothing>]  # empty
 ```
 
@@ -80,7 +80,7 @@ Expressions containing only empties evaluate to the empty value.
 Expressions containing nothing also evaluate to the empty value.
 
 ```rant
-[type:<><>]     # empty
-[type:<>]       # empty
+[type:~~]       # empty
+[type:~]        # empty
 [type:]         # empty
 ```

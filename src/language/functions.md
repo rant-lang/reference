@@ -102,7 +102,7 @@ To define a function and assign it to a variable, the syntax is as follows:
 ### Optional parameters
 
 A function parameter can be marked as optional using the `?` symbol.
-When the argument is omitted for an optional parameter, it will default to the empty value `<>`.
+When the argument is omitted for an optional parameter, it will default to `~`.
 Please note that any optional parameters must appear after all required parameters, and before any variadic parameter.
 
 ```rant

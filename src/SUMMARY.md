@@ -26,6 +26,8 @@
     - [Formatting](stdlib/formatting.md)
     - [Strings](stdlib/strings.md)
     - [Boolean](stdlib/boolean.md)
+    - [Comparison](stdlib/comparison.md)
     - [Math](stdlib/math.md)
+    - [Verification](stdlib/verification.md)
     - [Constants](stdlib/constants.md)
 - [Glossary](glossary.md)

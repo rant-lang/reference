@@ -1,6 +1,7 @@
 # Standard Library: Collection functions
 
 ### [assoc: keys; values]
+&rarr; `map`
 
 Creates a map from a list of keys and a list of values.
 Each key in `keys` will be matched with the value at the same index in `values`.
@@ -48,6 +49,7 @@ Removes all elements from a list or map.
 Causes a runtime error if `collection` is not a list or map.
 
 ### [filter: list; predicate]
+&rarr; `list`
 
 Runs a predicate function against all items in a list and returns another list containing only the values that the predicate returned `true` on.
 
@@ -81,10 +83,12 @@ The predicate function must accept a single parameter and return a `bool` value.
 ```
 
 ### [join: separator; list]
+&rarr; `any*`
 
 Prints the elements of a list in order separated by the `separator` value.
 
 ### [map: list; map-func]
+&rarr; `list`
 
 Applies a function to each item in a list and returns another list with the results in the same order.
 
@@ -101,14 +105,17 @@ The predicate function must accept a single parameter, but can return anything.
 ```
 
 ### [min: list]
+&rarr; `any`
 
 Prints the smallest value of a list.
 
 ### [max: list]
+&rarr; `any`
 
 Prints the largest value of a list.
 
 ### [oxford-join: comma; conj; comma-conj; list]
+&rarr; `any*`
 
 A variant of the `join` function for conveniently formatting comma-separated lists.
 
@@ -174,6 +181,7 @@ The separator values are applied as follows:
 Appends a value to the end of a list.
 
 ### [pop: list]
+&rarr; `any`
 
 Removes the last value from a list and prints it.
 
@@ -192,6 +200,7 @@ Causes a runtime error if any of the following are true:
 * `collection` is a list and `pos` is out of range
 
 ### [len: obj]
+&rarr; `integer`
 
 Prints the length of `obj` as an integer.
 
@@ -228,6 +237,7 @@ Shuffles the elements of a list in-place.
 ```
 
 ### [shuffled: list]
+&rarr; `list`
 
 Creates a shuffled copy of a list.
 
@@ -274,6 +284,7 @@ If the number of elements in the list is less than or equal to `target-size`, th
 ```
 
 ### [sifted: list; target-size]
+&rarr; `list`
 
 Returns a copy of a list with random elements removed until the number of elements in the list copy reaches `target-size`.
 If the number of elements in the list is less than or equal to `target-size`, this function simply returns an exact copy of the original list.
@@ -329,6 +340,7 @@ After: '[join: ,\s; <numbers>]\n
 ```
 
 ### [squished: list; target-size]
+&rarr; `list`
 
 Returns a copy of a list with random adjacent elements merged using addition until the number of elements in the list copy reaches `target-size`.
 If the number of elements in the list is less than or equal to `target-size`, this function simply returns an exact copy of the original list.
@@ -338,14 +350,17 @@ If the number of elements in the list is less than or equal to `target-size`, th
 Sorts the elements of a list in-place in ascending order.
 
 ### [sorted: list]
+&rarr; `list`
 
 Creates a copy of a list with its elements sorted in ascending order.
 
 ### [sum: list]
+&rarr; `any`
 
 Adds the elements of a list together from left to right and prints the result.
 
 ### [take: collection; pos]
+&rarr; `any`
 
 Removes the value at `pos` from a list or map and prints it.
 
@@ -364,6 +379,7 @@ Causes a runtime error if any of the following are true:
 Causes a runtime error if `collection` is a list and the `pos` is out of range.
 
 ### [translate: list; map]
+&rarr; `list`
 
 Matches each item in a list to a map and returns a list with the corresponding map values. 
 Values that have no corresponding key in the map are passed through as-is.
@@ -411,17 +427,17 @@ Decoded: \"<decoded-message>\"\n
 ```
 
 ### [zip: list-a; list-b; zip-func]
+&rarr; `list`
 
 Returns a new list that combines each pair of items from the two input lists using the specified function.
 The lists do not need to be the same length; if there is a difference, it will be made up with empty values.
 
 The `zip-func` must accept two parameters.
 
-#### Example
-
-##### Dot product
+#### Examples
 
 ```rant
+# Dot product
 [$dot: a; b] {
   [zip: <a>; <b>; <mul> & sum]
 }

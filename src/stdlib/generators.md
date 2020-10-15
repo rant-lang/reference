@@ -2,6 +2,7 @@
 
 
 ### [dig: count?]
+&rarr; `string`
 
 Prints a uniformly random decimal digit. If `count` is specified, repeats `count` times.
 
@@ -11,6 +12,7 @@ Prints a uniformly random decimal digit. If `count` is specified, repeats `count
 ```
 
 ### [digh: count?]
+&rarr; `string`
 
 Prints a uniformly random lowercase hexadecimal digit. If `count` is specified, repeats `count` times.
 
@@ -22,6 +24,7 @@ Prints a uniformly random lowercase hexadecimal digit. If `count` is specified, 
 ```
 
 ### [dignz: count?]
+&rarr; `string`
 
 Prints a uniformly random non-zero decimal digit. If `count` is specified, repeats `count` times.
 
@@ -31,12 +34,14 @@ Prints a uniformly random non-zero decimal digit. If `count` is specified, repea
 ```
 
 ### [maybe: p?]
+&rarr; `bool`
 
 Returns a `bool` value with `p` probability of being true.
 
 `p` must be either a `float` or `empty`. If omitted, it will default to `0.5`.
 
 ### [rand: a; b]
+&rarr; `integer`
 
 Prints a random integer with uniform distribution between `a` and `b` (both inclusive).
 
@@ -48,10 +53,12 @@ You roll the dice and get '[rand:1;6] and '[rand:1;6].
 ```
 
 ### [randf: a; b]
+&rarr; `float`
 
 Prints a random float with uniform distribution between `a` (inclusive) and `b` (exclusive).
 
 ### [rand-list: a; b; n]
+&rarr; `list`
 
 Prints a list of `n` random integers with uniform distribution between `a` and `b` (both inclusive).
 
@@ -67,10 +74,12 @@ You rolled '[join: \sand\s; <roll>] for a total of '[sum: <roll>].
 ```
 
 ### [randf-list: a; b; n]
+&rarr; `list`
 
 Prints a list of `n` random floats with uniform distribution between `a` (inclusive) and `b` (exclusive).
 
 ### [shred: input; count; variance]
+&rarr; `list`
 
 Generates a list of `count` random numbers that vary from each other by `variance`, and whose sum equals `input`.
 
