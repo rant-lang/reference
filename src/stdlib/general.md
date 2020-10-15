@@ -82,7 +82,7 @@ Causes a runtime error if the provided value is not a block.
 ### [seed]
 &rarr; `integer`
 
-Returns the seed value that the program was run with.
+Returns the seed value of the currently active runtime RNG.
 
 ### [type: value]
 &rarr; `string`
