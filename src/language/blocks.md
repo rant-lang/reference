@@ -24,7 +24,7 @@ In their simplest form, blocks resolve a single element from their body and add 
 {Heads|Tails}
 ```
 
-By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a [selector](/constructs/selectors.md).
+By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a [selector](/runtime/attributes.md#selectors).
 
 ### Entanglement
 

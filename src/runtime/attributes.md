@@ -31,7 +31,7 @@ This attribute is set with the `[rep]` function.
 # 10
 ```
 
-## Separator
+## Separators
 
 The separator attribute controls what is printed between each block repetition.
 It is set using the `[sep]` function.
@@ -46,7 +46,7 @@ It just keeps {going}...
 # It just keeps going and going and going and going...
 ```
 
-## Selector
+## Selectors
 
 The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.
 
