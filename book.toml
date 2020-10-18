@@ -4,8 +4,8 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Rant Reference"
-google-analytics = "UA-179100611-2"
 
 [output.html]
 #additional-js = ["theme/hljs_rant.js"]
+google-analytics = "UA-179100611-2"
 git-repository-url = "https://github.com/rant-lang/reference"
