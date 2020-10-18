@@ -30,5 +30,6 @@
     - [Math](stdlib/math.md)
     - [Conversion](stdlib/conversion.md)
     - [Verification](stdlib/verification.md)
+    - [Assertion](stdlib/assertion.md)
     - [Constants](stdlib/constants.md)
 - [Glossary](glossary.md)

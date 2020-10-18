@@ -38,5 +38,8 @@ Functions for converting values to other types.
 #### [Verification functions](./stdlib/verification.md)
 Functions for testing values against various criteria.
 
+### [Assertion functions](./stdlib/assertion.md)
+Functions for verifying program state and function output.
+
 #### [Constants](./stdlib/constants.md)
 Special constant values, such as the language version in use.
