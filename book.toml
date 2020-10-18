@@ -1,11 +1,13 @@
 [book]
+title = "Rant Reference"
+description = "The Rant Reference documents the Rant language and standard library."
 authors = ["Nicholas Fleck"]
 language = "en"
-multilingual = false
 src = "src"
-title = "Rant Reference"
 
 [output.html]
 #additional-js = ["theme/hljs_rant.js"]
+cname = "docs.rant-lang.org"
+default-theme = "ayu"
 google-analytics = "UA-179100611-2"
 git-repository-url = "https://github.com/rant-lang/reference"
