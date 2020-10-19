@@ -40,6 +40,48 @@ Gets the fractional part of `val`.
 
 `val` must be a `float`.
 
+### [max: values+]
+&rarr; `any`
+
+Returns the largest value in `values`.
+
+Any elements of type `list` in `values` will be expanded to their individual elements
+before the maximum value is calculated.
+
+#### Examples
+
+```rant
+# Arguments can be single values
+[max: 3; 2 & assert-eq: 3]
+
+# Lists are treated as their individual elements
+[max: (3; 2) & assert-eq: 3]
+
+# Even alongside single values, lists are still expanded!
+[max: 3; (4; -2; 0; 10); 6 & assert-eq: 10]
+```
+
+### [min: values+]
+&rarr; `any`
+
+Returns the smallest value in `values`.
+
+Any elements of type `list` in `values` will be expanded to their individual elements
+before the minimum value is calculated.
+
+#### Examples
+
+```rant
+# Arguments can be single values
+[min: 3; 2 & assert-eq: 2]
+
+# Lists are treated as their individual elements
+[min: (3; 2) & assert-eq: 2]
+
+# Even alongside single values, lists are still expanded!
+[min: 3; (4; -2; 0; 10); 6 & assert-eq: -2]
+```
+
 ### [mod: lhs; rhs]
 &rarr; `any`
 

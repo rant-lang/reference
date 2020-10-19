@@ -82,10 +82,40 @@ The predicate function must accept a single parameter and return a `bool` value.
 # -> the fox the dog
 ```
 
+### [index-of: list; element]
+&rarr; `int` or `empty`
+
+Returns the index of the first occurrence of `element` in `list`.
+If no match is found, returns `~`.
+
+#### Examples
+
+```rant
+<$letters = (A; A; B; C; C; D; E)>
+[index-of: <letters>; A & assert-eq: 0]
+[index-of: <letters>; C & assert-eq: 3]
+[index-of: <letters>; E & assert-eq: 6]
+[index-of: <letters>; F & assert-eq: ~]
+```
+
 ### [join: separator; list]
 &rarr; `any*`
 
 Prints the elements of a list in order separated by the `separator` value.
+
+### [last-index-of: list; element]
+&rarr; `any`
+
+Returns the index of the last occurrence of `element` in `list`.
+If no match is found, returns `~`.
+
+```rant
+<$letters = (A; A; B; C; C; D; E)>
+[last-index-of: <letters>; A & assert-eq: 1]
+[last-index-of: <letters>; C & assert-eq: 4]
+[last-index-of: <letters>; E & assert-eq: 6]
+[last-index-of: <letters>; F & assert-eq: ~]
+```
 
 ### [map: list; map-func]
 &rarr; `list`
@@ -103,16 +133,6 @@ The predicate function must accept a single parameter, but can return anything.
 [join: ,\s; <tens>]
 # -> 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
 ```
-
-### [min: list]
-&rarr; `any`
-
-Prints the smallest value of a list.
-
-### [max: list]
-&rarr; `any`
-
-Prints the largest value of a list.
 
 ### [oxford-join: comma; conj; comma-conj; list]
 &rarr; `any*`
@@ -189,7 +209,7 @@ Removes the last value from a list and prints it.
 
 Inserts `value` into a list or map at the position `pos`.
 
-If `collection` is a list, `pos` must be an integer.<br>
+If `collection` is a list, `pos` must be an `int`.<br>
 If `collection` is a map, `pos` may be any non-empty value.
 
 #### Errors
@@ -200,18 +220,18 @@ Causes a runtime error if any of the following are true:
 * `collection` is a list and `pos` is out of range
 
 ### [len: obj]
-&rarr; `integer`
+&rarr; `int`
 
-Prints the length of `obj` as an integer.
+Prints the length of `obj`.
 
 For strings, this is the number of bytes; for lists and maps, this is the number of elements.
-All other value types give a length of 0.
+All other value types give a length of 1.
 
 ### [remove: collection; pos]
 
 Removes the value at the `pos` from a list or map.
 
-If `collection` is a list, `pos` must be an integer.<br>
+If `collection` is a list, `pos` must be an `int`.<br>
 If `collection` is a map, `pos` may be any non-empty value.
 
 #### Errors
@@ -364,8 +384,8 @@ Adds the elements of a list together from left to right and prints the result.
 
 Removes the value at `pos` from a list or map and prints it.
 
-If `collection` is a list, `pos` must be an integer.<br>
-If `collection` is a map, `pos` may be any non-empty value.
+If `collection` is a `list`, `pos` must be an `int`.<br>
+If `collection` is a `map`, `pos` may be any non-empty value.
 
 #### Errors
 
