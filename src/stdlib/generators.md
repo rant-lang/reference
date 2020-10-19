@@ -41,7 +41,7 @@ Returns a `bool` value with `p` probability of being true.
 `p` must be either a `float` or `empty`. If omitted, it will default to `0.5`.
 
 ### [rand: a; b]
-&rarr; `integer`
+&rarr; `int`
 
 Prints a random integer with uniform distribution between `a` and `b` (both inclusive).
 
@@ -83,7 +83,7 @@ Prints a list of `n` random floats with uniform distribution between `a` (inclus
 
 Generates a list of `count` random numbers that vary from each other by `variance`, and whose sum equals `input`.
 
-All three arguments must be numbers, and `count` must be an `integer`.
+All three arguments must be numbers, and `count` must be an `int`.
 
 #### Errors
 

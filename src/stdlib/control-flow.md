@@ -17,7 +17,7 @@ Interrupts execution of the current repeater iteration and proceeds with the nex
 Causes a runtime error if called outside of a repeater.
 
 ### [count-attrs]
-&rarr; `integer`
+&rarr; `int`
 
 Prints the current size of the attribute frame stack.
 
@@ -72,7 +72,7 @@ Popping the last attribute frame results in a runtime error.
 ### [rep: reps]
 
 Sets the repetition count for the next block to `reps`.
-The value of `reps` must either be a non-negative integer or one of the special modes listed below.
+The value of `reps` must either be a non-negative `int` or one of the special modes listed below.
 
 ### Special rep modes
 

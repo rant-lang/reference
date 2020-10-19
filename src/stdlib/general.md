@@ -33,11 +33,11 @@ Returns `true-val` if `condition` is `true`, or `false-val` if `condition` is `f
 Forks (overrides) the current RNG with a new RNG seeded by both the old RNG's seed and the specified seed.
 If no seed is provided, a random one is generated.
 
-The seed value must be an `integer` or `string`.
+The seed value must be an `int` or `string`.
 
 #### Errors
 
-Causes a runtime error if `seed` is neither an `integer` nor `string`.
+Causes a runtime error if `seed` is neither an `int` nor `string`.
 
 #### Example
 
@@ -80,7 +80,7 @@ Resolves the specified block.
 Causes a runtime error if the provided value is not a block.
 
 ### [seed]
-&rarr; `integer`
+&rarr; `int`
 
 Returns the seed value of the currently active runtime RNG.
 
@@ -91,7 +91,7 @@ Returns the name of `value`'s type. The type name can be any of the following:
 
 * `string`
 * `float`
-* `integer`
+* `int`
 * `bool`
 * `function`
 * `list`

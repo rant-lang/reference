@@ -7,9 +7,9 @@ Attempts to convert `value` to a `float` value and returns the result.
 If the conversion fails, returns `empty` value.
 
 ### [int: value]
-&rarr; `integer` or `empty`
+&rarr; `int` or `empty`
 
-Attempts to convert `value` to an `integer` value and returns the reuslt.
+Attempts to convert `value` to an `int` value and returns the reuslt.
 If the conversion fails, returns `empty` value.
 
 ### [string: value]

@@ -30,10 +30,10 @@ Returns `true` if `number` is an even number.
 
 Returns `true` if `value` is of type `float`.
 
-### [is-integer: value]
+### [is-int: value]
 &rarr; `bool`
 
-Returns `true` if `value` is of type `integer`.
+Returns `true` if `value` is of type `int`.
 
 ### [is-nan: value]
 &rarr; `bool`
@@ -43,7 +43,7 @@ Returns `true` if `value` is of type `float` and equal to NaN (Not a Number).
 ### [is-number: value]
 &rarr; `bool`
 
-Returns `true` if `value` is of type `integer` or `float`.
+Returns `true` if `value` is of type `int` or `float`.
 
 ### [is-odd: number]
 &rarr; `bool`

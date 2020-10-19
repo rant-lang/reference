@@ -5,7 +5,7 @@ Rant has 10 built-in data types:
 |Type name |Description                                        |Pass type|
 |----------|---------------------------------------------------|---------|
 |`string`  |Sequence of UTF-8 characters                       |by-value |
-|`integer` |64-bit signed integer                              |by-value |
+|`int`     |64-bit signed integer                              |by-value |
 |`float`   |64-bit double-precision float                      |by-value |
 |`bool`    |Boolean value                                      |by-value | 
 |`function`|Function/closure                                   |by-ref   |
@@ -36,15 +36,15 @@ In order to resolve type ambiguities, Rant makes a few basic assumptions:
 
 #### Integers
 
-Any number token without a decimal place becomes an integer.
+Any number token without a decimal place becomes an `int`.
 
 ```rant
-[type:123]  # integer
+[type:123]  # int
 ```
 
 #### Floats
 
-Any number token with a decimal place becomes a float.
+Any number token with a decimal place becomes a `float`.
 
 ```rant
 [type:123.0]  # float
