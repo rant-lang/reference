@@ -184,7 +184,7 @@
 <p>Returns a <code>bool</code> value with <code>p</code> probability of being true.</p>
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
 <h3><a class="header" href="#rand-a-b" id="rand-a-b">[rand: a; b]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Prints a random integer with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
 <h4><a class="header" href="#example-1" id="example-1">Example</a></h4>
 <pre><code class="language-rant">You roll the dice and get '[rand:1;6] and '[rand:1;6].
@@ -210,7 +210,7 @@ You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
 <h3><a class="header" href="#shred-input-count-variance" id="shred-input-count-variance">[shred: input; count; variance]</a></h3>
 <p>→ <code>list</code></p>
 <p>Generates a list of <code>count</code> random numbers that vary from each other by <code>variance</code>, and whose sum equals <code>input</code>.</p>
-<p>All three arguments must be numbers, and <code>count</code> must be an <code>integer</code>.</p>
+<p>All three arguments must be numbers, and <code>count</code> must be an <code>int</code>.</p>
 <h4><a class="header" href="#errors" id="errors">Errors</a></h4>
 <p>Causes a runtime error if:</p>
 <ul>

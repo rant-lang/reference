@@ -163,7 +163,7 @@
 <p>Rant has 10 built-in data types:</p>
 <table><thead><tr><th>Type name</th><th>Description</th><th>Pass type</th></tr></thead><tbody>
 <tr><td><code>string</code></td><td>Sequence of UTF-8 characters</td><td>by-value</td></tr>
-<tr><td><code>integer</code></td><td>64-bit signed integer</td><td>by-value</td></tr>
+<tr><td><code>int</code></td><td>64-bit signed integer</td><td>by-value</td></tr>
 <tr><td><code>float</code></td><td>64-bit double-precision float</td><td>by-value</td></tr>
 <tr><td><code>bool</code></td><td>Boolean value</td><td>by-value</td></tr>
 <tr><td><code>function</code></td><td>Function/closure</td><td>by-ref</td></tr>
@@ -185,11 +185,11 @@ however, if they are passed on their own and need to be strings, you will need t
 <h2><a class="header" href="#type-inference-for-expressions" id="type-inference-for-expressions">Type inference for expressions</a></h2>
 <p>In order to resolve type ambiguities, Rant makes a few basic assumptions:</p>
 <h4><a class="header" href="#integers" id="integers">Integers</a></h4>
-<p>Any number token without a decimal place becomes an integer.</p>
-<pre><code class="language-rant">[type:123]  # integer
+<p>Any number token without a decimal place becomes an <code>int</code>.</p>
+<pre><code class="language-rant">[type:123]  # int
 </code></pre>
 <h4><a class="header" href="#floats" id="floats">Floats</a></h4>
-<p>Any number token with a decimal place becomes a float.</p>
+<p>Any number token with a decimal place becomes a <code>float</code>.</p>
 <pre><code class="language-rant">[type:123.0]  # float
 </code></pre>
 <h4><a class="header" href="#top-level-fragments-or-whitespace" id="top-level-fragments-or-whitespace">Top-level fragments or whitespace</a></h4>

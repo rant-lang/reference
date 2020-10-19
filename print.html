@@ -491,7 +491,7 @@ Here's a list of them:</p>
 <p>Rant has 10 built-in data types:</p>
 <table><thead><tr><th>Type name</th><th>Description</th><th>Pass type</th></tr></thead><tbody>
 <tr><td><code>string</code></td><td>Sequence of UTF-8 characters</td><td>by-value</td></tr>
-<tr><td><code>integer</code></td><td>64-bit signed integer</td><td>by-value</td></tr>
+<tr><td><code>int</code></td><td>64-bit signed integer</td><td>by-value</td></tr>
 <tr><td><code>float</code></td><td>64-bit double-precision float</td><td>by-value</td></tr>
 <tr><td><code>bool</code></td><td>Boolean value</td><td>by-value</td></tr>
 <tr><td><code>function</code></td><td>Function/closure</td><td>by-ref</td></tr>
@@ -513,11 +513,11 @@ however, if they are passed on their own and need to be strings, you will need t
 <h2><a class="header" href="#type-inference-for-expressions" id="type-inference-for-expressions">Type inference for expressions</a></h2>
 <p>In order to resolve type ambiguities, Rant makes a few basic assumptions:</p>
 <h4><a class="header" href="#integers" id="integers">Integers</a></h4>
-<p>Any number token without a decimal place becomes an integer.</p>
-<pre><code class="language-rant">[type:123]  # integer
+<p>Any number token without a decimal place becomes an <code>int</code>.</p>
+<pre><code class="language-rant">[type:123]  # int
 </code></pre>
 <h4><a class="header" href="#floats" id="floats">Floats</a></h4>
-<p>Any number token with a decimal place becomes a float.</p>
+<p>Any number token with a decimal place becomes a <code>float</code>.</p>
 <pre><code class="language-rant">[type:123.0]  # float
 </code></pre>
 <h4><a class="header" href="#top-level-fragments-or-whitespace" id="top-level-fragments-or-whitespace">Top-level fragments or whitespace</a></h4>
@@ -1019,9 +1019,9 @@ This makes it possible to access modules in subfolders of any of the module sear
 <h3><a class="header" href="#fork-seed" id="fork-seed">[fork: seed?]</a></h3>
 <p>Forks (overrides) the current RNG with a new RNG seeded by both the old RNG's seed and the specified seed.
 If no seed is provided, a random one is generated.</p>
-<p>The seed value must be an <code>integer</code> or <code>string</code>.</p>
+<p>The seed value must be an <code>int</code> or <code>string</code>.</p>
 <h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
-<p>Causes a runtime error if <code>seed</code> is neither an <code>integer</code> nor <code>string</code>.</p>
+<p>Causes a runtime error if <code>seed</code> is neither an <code>int</code> nor <code>string</code>.</p>
 <h4><a class="header" href="#example-4" id="example-4">Example</a></h4>
 <pre><code class="language-rant"># Entangles {yee|woo} with {haw|hoo}, i.e. forces them both to pick the same index
 
@@ -1048,7 +1048,7 @@ If no seed is provided, a random one is generated.</p>
 <h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
 <p>Causes a runtime error if the provided value is not a block.</p>
 <h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Returns the seed value of the currently active runtime RNG.</p>
 <h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
 <p>→ <code>string</code></p>
@@ -1056,7 +1056,7 @@ If no seed is provided, a random one is generated.</p>
 <ul>
 <li><code>string</code></li>
 <li><code>float</code></li>
-<li><code>integer</code></li>
+<li><code>int</code></li>
 <li><code>bool</code></li>
 <li><code>function</code></li>
 <li><code>list</code></li>
@@ -1076,7 +1076,7 @@ If no seed is provided, a random one is generated.</p>
 <h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
 <p>Causes a runtime error if called outside of a repeater.</p>
 <h3><a class="header" href="#count-attrs" id="count-attrs">[count-attrs]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Prints the current size of the attribute frame stack.</p>
 <h3><a class="header" href="#else" id="else">[else]</a></h3>
 <p>Marks the next block as conditional and causes it to resolve iff the last block was conditional and its condition evaluated to false.</p>
@@ -1114,7 +1114,7 @@ If no seed is provided, a random one is generated.</p>
 <p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#rep-reps" id="rep-reps">[rep: reps]</a></h3>
 <p>Sets the repetition count for the next block to <code>reps</code>.
-The value of <code>reps</code> must either be a non-negative integer or one of the special modes listed below.</p>
+The value of <code>reps</code> must either be a non-negative <code>int</code> or one of the special modes listed below.</p>
 <h3><a class="header" href="#special-rep-modes" id="special-rep-modes">Special rep modes</a></h3>
 <table><thead><tr><th>Mode name</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>once</code></td><td>Run the block only once. (default behavior)</td></tr>
@@ -1225,9 +1225,30 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 [join: \s; &lt;short-words&gt;]
 # -&gt; the fox the dog
 </code></pre>
+<h3><a class="header" href="#index-of-list-element" id="index-of-list-element">[index-of: list; element]</a></h3>
+<p>→ <code>int</code> or <code>empty</code></p>
+<p>Returns the index of the first occurrence of <code>element</code> in <code>list</code>.
+If no match is found, returns <code>~</code>.</p>
+<h4><a class="header" href="#examples-3" id="examples-3">Examples</a></h4>
+<pre><code class="language-rant">&lt;$letters = (A; A; B; C; C; D; E)&gt;
+[index-of: &lt;letters&gt;; A &amp; assert-eq: 0]
+[index-of: &lt;letters&gt;; C &amp; assert-eq: 3]
+[index-of: &lt;letters&gt;; E &amp; assert-eq: 6]
+[index-of: &lt;letters&gt;; F &amp; assert-eq: ~]
+</code></pre>
 <h3><a class="header" href="#join-separator-list" id="join-separator-list">[join: separator; list]</a></h3>
 <p>→ <code>any*</code></p>
 <p>Prints the elements of a list in order separated by the <code>separator</code> value.</p>
+<h3><a class="header" href="#last-index-of-list-element" id="last-index-of-list-element">[last-index-of: list; element]</a></h3>
+<p>→ <code>any</code></p>
+<p>Returns the index of the last occurrence of <code>element</code> in <code>list</code>.
+If no match is found, returns <code>~</code>.</p>
+<pre><code class="language-rant">&lt;$letters = (A; A; B; C; C; D; E)&gt;
+[last-index-of: &lt;letters&gt;; A &amp; assert-eq: 1]
+[last-index-of: &lt;letters&gt;; C &amp; assert-eq: 4]
+[last-index-of: &lt;letters&gt;; E &amp; assert-eq: 6]
+[last-index-of: &lt;letters&gt;; F &amp; assert-eq: ~]
+</code></pre>
 <h3><a class="header" href="#map-list-map-func" id="map-list-map-func">[map: list; map-func]</a></h3>
 <p>→ <code>list</code></p>
 <p>Applies a function to each item in a list and returns another list with the results in the same order.</p>
@@ -1239,12 +1260,6 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 [join: ,\s; &lt;tens&gt;]
 # -&gt; 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
 </code></pre>
-<h3><a class="header" href="#min-list" id="min-list">[min: list]</a></h3>
-<p>→ <code>any</code></p>
-<p>Prints the smallest value of a list.</p>
-<h3><a class="header" href="#max-list" id="max-list">[max: list]</a></h3>
-<p>→ <code>any</code></p>
-<p>Prints the largest value of a list.</p>
 <h3><a class="header" href="#oxford-join-comma-conj-comma-conj-list" id="oxford-join-comma-conj-comma-conj-list">[oxford-join: comma; conj; comma-conj; list]</a></h3>
 <p>→ <code>any*</code></p>
 <p>A variant of the <code>join</code> function for conveniently formatting comma-separated lists.</p>
@@ -1262,7 +1277,7 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
 <li><strong>Lists of 2 items</strong> use <code>conj</code> to separate the two items.</li>
 <li><strong>Lists of 3 or more items</strong> separate the final two items with <code>comma-conj</code>; all others use <code>comma</code>.</li>
 </ul>
-<h4><a class="header" href="#examples-3" id="examples-3">Examples</a></h4>
+<h4><a class="header" href="#examples-4" id="examples-4">Examples</a></h4>
 <h5><a class="header" href="#print-lists-with-oxford-comma" id="print-lists-with-oxford-comma">Print lists with Oxford comma</a></h5>
 <pre><code class="language-rant">&lt;$numbers = ()&gt;
 [rep: 5][sep: \n]
@@ -1306,7 +1321,7 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
 <p>Removes the last value from a list and prints it.</p>
 <h3><a class="header" href="#insert-collection-value-pos" id="insert-collection-value-pos">[insert: collection; value; pos]</a></h3>
 <p>Inserts <code>value</code> into a list or map at the position <code>pos</code>.</p>
-<p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
+<p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
 <h4><a class="header" href="#errors-7" id="errors-7">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
@@ -1316,13 +1331,13 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <li><code>collection</code> is a list and <code>pos</code> is out of range</li>
 </ul>
 <h3><a class="header" href="#len-obj" id="len-obj">[len: obj]</a></h3>
-<p>→ <code>integer</code></p>
-<p>Prints the length of <code>obj</code> as an integer.</p>
+<p>→ <code>int</code></p>
+<p>Prints the length of <code>obj</code>.</p>
 <p>For strings, this is the number of bytes; for lists and maps, this is the number of elements.
-All other value types give a length of 0.</p>
+All other value types give a length of 1.</p>
 <h3><a class="header" href="#remove-collection-pos" id="remove-collection-pos">[remove: collection; pos]</a></h3>
 <p>Removes the value at the <code>pos</code> from a list or map.</p>
-<p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
+<p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
 <h4><a class="header" href="#errors-8" id="errors-8">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
@@ -1439,8 +1454,8 @@ If the number of elements in the list is less than or equal to <code>target-size
 <h3><a class="header" href="#take-collection-pos" id="take-collection-pos">[take: collection; pos]</a></h3>
 <p>→ <code>any</code></p>
 <p>Removes the value at <code>pos</code> from a list or map and prints it.</p>
-<p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
-If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
+<p>If <code>collection</code> is a <code>list</code>, <code>pos</code> must be an <code>int</code>.<br>
+If <code>collection</code> is a <code>map</code>, <code>pos</code> may be any non-empty value.</p>
 <h4><a class="header" href="#errors-9" id="errors-9">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
@@ -1498,7 +1513,7 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
 <p>Returns a new list that combines each pair of items from the two input lists using the specified function.
 The lists do not need to be the same length; if there is a difference, it will be made up with empty values.</p>
 <p>The <code>zip-func</code> must accept two parameters.</p>
-<h4><a class="header" href="#examples-4" id="examples-4">Examples</a></h4>
+<h4><a class="header" href="#examples-5" id="examples-5">Examples</a></h4>
 <pre><code class="language-rant"># Dot product
 [$dot: a; b] {
   [zip: &lt;a&gt;; &lt;b&gt;; &lt;mul&gt; &amp; sum]
@@ -1531,7 +1546,7 @@ The lists do not need to be the same length; if there is a difference, it will b
 <p>Returns a <code>bool</code> value with <code>p</code> probability of being true.</p>
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
 <h3><a class="header" href="#rand-a-b" id="rand-a-b">[rand: a; b]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Prints a random integer with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
 <h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
 <pre><code class="language-rant">You roll the dice and get '[rand:1;6] and '[rand:1;6].
@@ -1557,7 +1572,7 @@ You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
 <h3><a class="header" href="#shred-input-count-variance" id="shred-input-count-variance">[shred: input; count; variance]</a></h3>
 <p>→ <code>list</code></p>
 <p>Generates a list of <code>count</code> random numbers that vary from each other by <code>variance</code>, and whose sum equals <code>input</code>.</p>
-<p>All three arguments must be numbers, and <code>count</code> must be an <code>integer</code>.</p>
+<p>All three arguments must be numbers, and <code>count</code> must be an <code>int</code>.</p>
 <h4><a class="header" href="#errors-11" id="errors-11">Errors</a></h4>
 <p>Causes a runtime error if:</p>
 <ul>
@@ -1649,24 +1664,59 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>lhs</code> and <code>rhs</code> are not equal.</p>
 <h1><a class="header" href="#standard-library-math-functions" id="standard-library-math-functions">Standard Library: Math functions</a></h1>
+<h3><a class="header" href="#abs-num" id="abs-num">[abs: num]</a></h3>
+<p>→ <code>int</code> or <code>float</code></p>
+<p>Calculates the absolute value of <code>num</code>.</p>
+<h4><a class="header" href="#errors-12" id="errors-12">Errors</a></h4>
+<p>Raises an error if <code>num</code> is an integer and the absolute value overflows.</p>
 <h3><a class="header" href="#add-lhs-rhs" id="add-lhs-rhs">[add: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
 <p>Adds two values.</p>
 <h3><a class="header" href="#ceil-val" id="ceil-val">[ceil: val]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Gets the smallest integer that is greater than or equal to <code>val</code>.</p>
 <p><code>val</code> must be a <code>float</code>.</p>
 <h3><a class="header" href="#div-lhs-rhs" id="div-lhs-rhs">[div: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
 <p>Divides two values.</p>
 <h3><a class="header" href="#floor-val" id="floor-val">[floor: val]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Gets the largest integer that is less than or equal to <code>val</code>.</p>
 <p><code>val</code> must be a <code>float</code>.</p>
 <h3><a class="header" href="#frac-val" id="frac-val">[frac: val]</a></h3>
 <p>→ <code>float</code></p>
 <p>Gets the fractional part of <code>val</code>.</p>
 <p><code>val</code> must be a <code>float</code>.</p>
+<h3><a class="header" href="#max-values" id="max-values">[max: values+]</a></h3>
+<p>→ <code>any</code></p>
+<p>Returns the largest value in <code>values</code>.</p>
+<p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
+before the maximum value is calculated.</p>
+<h4><a class="header" href="#examples-6" id="examples-6">Examples</a></h4>
+<pre><code class="language-rant"># Arguments can be single values
+[max: 3; 2 &amp; assert-eq: 3]
+
+# Lists are treated as their individual elements
+[max: (3; 2) &amp; assert-eq: 3]
+
+# Even alongside single values, lists are still expanded!
+[max: 3; (4; -2; 0; 10); 6 &amp; assert-eq: 10]
+</code></pre>
+<h3><a class="header" href="#min-values" id="min-values">[min: values+]</a></h3>
+<p>→ <code>any</code></p>
+<p>Returns the smallest value in <code>values</code>.</p>
+<p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
+before the minimum value is calculated.</p>
+<h4><a class="header" href="#examples-7" id="examples-7">Examples</a></h4>
+<pre><code class="language-rant"># Arguments can be single values
+[min: 3; 2 &amp; assert-eq: 2]
+
+# Lists are treated as their individual elements
+[min: (3; 2) &amp; assert-eq: 2]
+
+# Even alongside single values, lists are still expanded!
+[min: 3; (4; -2; 0; 10); 6 &amp; assert-eq: -2]
+</code></pre>
 <h3><a class="header" href="#mod-lhs-rhs" id="mod-lhs-rhs">[mod: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
 <p>Gets the modulus of two values.</p>
@@ -1685,14 +1735,44 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <h3><a class="header" href="#sub-lhs-rhs" id="sub-lhs-rhs">[sub: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
 <p>Subtracts two values.</p>
+<h3><a class="header" href="#sin-x" id="sin-x">[sin: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the sine of <code>x</code> (in radians).</p>
+<h3><a class="header" href="#cos-x" id="cos-x">[cos: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the cosine of <code>x</code> (in radians).</p>
+<h3><a class="header" href="#tan-x" id="tan-x">[tan: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the tangent of <code>x</code> (in radians).</p>
+<h3><a class="header" href="#asin-x" id="asin-x">[asin: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the arcsine (in radians) of <code>x</code>.</p>
+<h3><a class="header" href="#acos-x" id="acos-x">[acos: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the arccosine (in radians) of <code>x</code>.</p>
+<h3><a class="header" href="#atan-x" id="atan-x">[atan: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the arctangent (in radians) of <code>x</code>.</p>
+<h3><a class="header" href="#atan2-y-x" id="atan2-y-x">[atan2: y; x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the four-quadrant arctangent (in radians) of <code>y / x</code>.</p>
+<h3><a class="header" href="#notes" id="notes">Notes</a></h3>
+<p>Returns 0 if <code>x</code> or <code>y</code> is 0.</p>
+<h3><a class="header" href="#sqrt-x" id="sqrt-x">[sqrt: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the square root of <code>x</code>.</p>
+<h3><a class="header" href="#pow-x-y" id="pow-x-y">[pow: x; y]</a></h3>
+<p>Raises <code>x</code> to the power of <code>y</code>. Both <code>x</code> and <code>y</code> can be <code>int</code> or <code>float</code>.</p>
+<h4><a class="header" href="#errors-13" id="errors-13">Errors</a></h4>
+<p>Raises an overflow error if a <code>x</code> is an <code>int</code> and <code>x ^ y</code> causes an overflow.</p>
 <h1><a class="header" href="#standard-library-conversion-functions" id="standard-library-conversion-functions">Standard Library: Conversion functions</a></h1>
 <h3><a class="header" href="#float-value" id="float-value">[float: value]</a></h3>
 <p>→ <code>float</code> or <code>empty</code></p>
 <p>Attempts to convert <code>value</code> to a <code>float</code> value and returns the result.
 If the conversion fails, returns <code>empty</code> value.</p>
 <h3><a class="header" href="#int-value" id="int-value">[int: value]</a></h3>
-<p>→ <code>integer</code> or <code>empty</code></p>
-<p>Attempts to convert <code>value</code> to an <code>integer</code> value and returns the reuslt.
+<p>→ <code>int</code> or <code>empty</code></p>
+<p>Attempts to convert <code>value</code> to an <code>int</code> value and returns the reuslt.
 If the conversion fails, returns <code>empty</code> value.</p>
 <h3><a class="header" href="#string-value" id="string-value">[string: value]</a></h3>
 <p>→ <code>string</code> or <code>empty</code></p>
@@ -1717,15 +1797,15 @@ If the conversion fails, returns <code>empty</code> value.</p>
 <h3><a class="header" href="#is-float-value" id="is-float-value">[is-float: value]</a></h3>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>float</code>.</p>
-<h3><a class="header" href="#is-integer-value" id="is-integer-value">[is-integer: value]</a></h3>
+<h3><a class="header" href="#is-int-value" id="is-int-value">[is-int: value]</a></h3>
 <p>→ <code>bool</code></p>
-<p>Returns <code>true</code> if <code>value</code> is of type <code>integer</code>.</p>
+<p>Returns <code>true</code> if <code>value</code> is of type <code>int</code>.</p>
 <h3><a class="header" href="#is-nan-value" id="is-nan-value">[is-nan: value]</a></h3>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>float</code> and equal to NaN (Not a Number).</p>
 <h3><a class="header" href="#is-number-value" id="is-number-value">[is-number: value]</a></h3>
 <p>→ <code>bool</code></p>
-<p>Returns <code>true</code> if <code>value</code> is of type <code>integer</code> or <code>float</code>.</p>
+<p>Returns <code>true</code> if <code>value</code> is of type <code>int</code> or <code>float</code>.</p>
 <h3><a class="header" href="#is-odd-number" id="is-odd-number">[is-odd: number]</a></h3>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>number</code> is an odd number.</p>
@@ -1737,7 +1817,7 @@ If the conversion fails, returns <code>empty</code> value.</p>
 <p>Asserts that <code>condition</code> is true.</p>
 <p>If <code>condition</code> is <code>false</code>, raises a runtime error; if <code>true</code>, does nothing.</p>
 <p>The message displayed in the runtime error can be customized by passing a string to <code>message</code>. </p>
-<h4><a class="header" href="#examples-5" id="examples-5">Examples</a></h4>
+<h4><a class="header" href="#examples-8" id="examples-8">Examples</a></h4>
 <pre><code class="language-rant"># does absolutely nothing
 [assert: true]
 

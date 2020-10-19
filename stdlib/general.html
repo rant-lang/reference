@@ -182,9 +182,9 @@
 <h3><a class="header" href="#fork-seed" id="fork-seed">[fork: seed?]</a></h3>
 <p>Forks (overrides) the current RNG with a new RNG seeded by both the old RNG's seed and the specified seed.
 If no seed is provided, a random one is generated.</p>
-<p>The seed value must be an <code>integer</code> or <code>string</code>.</p>
+<p>The seed value must be an <code>int</code> or <code>string</code>.</p>
 <h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
-<p>Causes a runtime error if <code>seed</code> is neither an <code>integer</code> nor <code>string</code>.</p>
+<p>Causes a runtime error if <code>seed</code> is neither an <code>int</code> nor <code>string</code>.</p>
 <h4><a class="header" href="#example" id="example">Example</a></h4>
 <pre><code class="language-rant"># Entangles {yee|woo} with {haw|hoo}, i.e. forces them both to pick the same index
 
@@ -211,7 +211,7 @@ If no seed is provided, a random one is generated.</p>
 <h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
 <p>Causes a runtime error if the provided value is not a block.</p>
 <h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Returns the seed value of the currently active runtime RNG.</p>
 <h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
 <p>→ <code>string</code></p>
@@ -219,7 +219,7 @@ If no seed is provided, a random one is generated.</p>
 <ul>
 <li><code>string</code></li>
 <li><code>float</code></li>
-<li><code>integer</code></li>
+<li><code>int</code></li>
 <li><code>bool</code></li>
 <li><code>function</code></li>
 <li><code>list</code></li>

@@ -160,24 +160,59 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#standard-library-math-functions" id="standard-library-math-functions">Standard Library: Math functions</a></h1>
+<h3><a class="header" href="#abs-num" id="abs-num">[abs: num]</a></h3>
+<p>→ <code>int</code> or <code>float</code></p>
+<p>Calculates the absolute value of <code>num</code>.</p>
+<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
+<p>Raises an error if <code>num</code> is an integer and the absolute value overflows.</p>
 <h3><a class="header" href="#add-lhs-rhs" id="add-lhs-rhs">[add: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
 <p>Adds two values.</p>
 <h3><a class="header" href="#ceil-val" id="ceil-val">[ceil: val]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Gets the smallest integer that is greater than or equal to <code>val</code>.</p>
 <p><code>val</code> must be a <code>float</code>.</p>
 <h3><a class="header" href="#div-lhs-rhs" id="div-lhs-rhs">[div: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
 <p>Divides two values.</p>
 <h3><a class="header" href="#floor-val" id="floor-val">[floor: val]</a></h3>
-<p>→ <code>integer</code></p>
+<p>→ <code>int</code></p>
 <p>Gets the largest integer that is less than or equal to <code>val</code>.</p>
 <p><code>val</code> must be a <code>float</code>.</p>
 <h3><a class="header" href="#frac-val" id="frac-val">[frac: val]</a></h3>
 <p>→ <code>float</code></p>
 <p>Gets the fractional part of <code>val</code>.</p>
 <p><code>val</code> must be a <code>float</code>.</p>
+<h3><a class="header" href="#max-values" id="max-values">[max: values+]</a></h3>
+<p>→ <code>any</code></p>
+<p>Returns the largest value in <code>values</code>.</p>
+<p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
+before the maximum value is calculated.</p>
+<h4><a class="header" href="#examples" id="examples">Examples</a></h4>
+<pre><code class="language-rant"># Arguments can be single values
+[max: 3; 2 &amp; assert-eq: 3]
+
+# Lists are treated as their individual elements
+[max: (3; 2) &amp; assert-eq: 3]
+
+# Even alongside single values, lists are still expanded!
+[max: 3; (4; -2; 0; 10); 6 &amp; assert-eq: 10]
+</code></pre>
+<h3><a class="header" href="#min-values" id="min-values">[min: values+]</a></h3>
+<p>→ <code>any</code></p>
+<p>Returns the smallest value in <code>values</code>.</p>
+<p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
+before the minimum value is calculated.</p>
+<h4><a class="header" href="#examples-1" id="examples-1">Examples</a></h4>
+<pre><code class="language-rant"># Arguments can be single values
+[min: 3; 2 &amp; assert-eq: 2]
+
+# Lists are treated as their individual elements
+[min: (3; 2) &amp; assert-eq: 2]
+
+# Even alongside single values, lists are still expanded!
+[min: 3; (4; -2; 0; 10); 6 &amp; assert-eq: -2]
+</code></pre>
 <h3><a class="header" href="#mod-lhs-rhs" id="mod-lhs-rhs">[mod: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
 <p>Gets the modulus of two values.</p>
@@ -196,6 +231,36 @@
 <h3><a class="header" href="#sub-lhs-rhs" id="sub-lhs-rhs">[sub: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
 <p>Subtracts two values.</p>
+<h3><a class="header" href="#sin-x" id="sin-x">[sin: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the sine of <code>x</code> (in radians).</p>
+<h3><a class="header" href="#cos-x" id="cos-x">[cos: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the cosine of <code>x</code> (in radians).</p>
+<h3><a class="header" href="#tan-x" id="tan-x">[tan: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the tangent of <code>x</code> (in radians).</p>
+<h3><a class="header" href="#asin-x" id="asin-x">[asin: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the arcsine (in radians) of <code>x</code>.</p>
+<h3><a class="header" href="#acos-x" id="acos-x">[acos: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the arccosine (in radians) of <code>x</code>.</p>
+<h3><a class="header" href="#atan-x" id="atan-x">[atan: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the arctangent (in radians) of <code>x</code>.</p>
+<h3><a class="header" href="#atan2-y-x" id="atan2-y-x">[atan2: y; x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the four-quadrant arctangent (in radians) of <code>y / x</code>.</p>
+<h3><a class="header" href="#notes" id="notes">Notes</a></h3>
+<p>Returns 0 if <code>x</code> or <code>y</code> is 0.</p>
+<h3><a class="header" href="#sqrt-x" id="sqrt-x">[sqrt: x]</a></h3>
+<p>→ <code>float</code></p>
+<p>Calculates the square root of <code>x</code>.</p>
+<h3><a class="header" href="#pow-x-y" id="pow-x-y">[pow: x; y]</a></h3>
+<p>Raises <code>x</code> to the power of <code>y</code>. Both <code>x</code> and <code>y</code> can be <code>int</code> or <code>float</code>.</p>
+<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
+<p>Raises an overflow error if a <code>x</code> is an <code>int</code> and <code>x ^ y</code> causes an overflow.</p>
 
                     </main>
 

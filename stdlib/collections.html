@@ -222,9 +222,30 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 [join: \s; &lt;short-words&gt;]
 # -&gt; the fox the dog
 </code></pre>
+<h3><a class="header" href="#index-of-list-element" id="index-of-list-element">[index-of: list; element]</a></h3>
+<p>→ <code>int</code> or <code>empty</code></p>
+<p>Returns the index of the first occurrence of <code>element</code> in <code>list</code>.
+If no match is found, returns <code>~</code>.</p>
+<h4><a class="header" href="#examples-1" id="examples-1">Examples</a></h4>
+<pre><code class="language-rant">&lt;$letters = (A; A; B; C; C; D; E)&gt;
+[index-of: &lt;letters&gt;; A &amp; assert-eq: 0]
+[index-of: &lt;letters&gt;; C &amp; assert-eq: 3]
+[index-of: &lt;letters&gt;; E &amp; assert-eq: 6]
+[index-of: &lt;letters&gt;; F &amp; assert-eq: ~]
+</code></pre>
 <h3><a class="header" href="#join-separator-list" id="join-separator-list">[join: separator; list]</a></h3>
 <p>→ <code>any*</code></p>
 <p>Prints the elements of a list in order separated by the <code>separator</code> value.</p>
+<h3><a class="header" href="#last-index-of-list-element" id="last-index-of-list-element">[last-index-of: list; element]</a></h3>
+<p>→ <code>any</code></p>
+<p>Returns the index of the last occurrence of <code>element</code> in <code>list</code>.
+If no match is found, returns <code>~</code>.</p>
+<pre><code class="language-rant">&lt;$letters = (A; A; B; C; C; D; E)&gt;
+[last-index-of: &lt;letters&gt;; A &amp; assert-eq: 1]
+[last-index-of: &lt;letters&gt;; C &amp; assert-eq: 4]
+[last-index-of: &lt;letters&gt;; E &amp; assert-eq: 6]
+[last-index-of: &lt;letters&gt;; F &amp; assert-eq: ~]
+</code></pre>
 <h3><a class="header" href="#map-list-map-func" id="map-list-map-func">[map: list; map-func]</a></h3>
 <p>→ <code>list</code></p>
 <p>Applies a function to each item in a list and returns another list with the results in the same order.</p>
@@ -236,12 +257,6 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 [join: ,\s; &lt;tens&gt;]
 # -&gt; 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
 </code></pre>
-<h3><a class="header" href="#min-list" id="min-list">[min: list]</a></h3>
-<p>→ <code>any</code></p>
-<p>Prints the smallest value of a list.</p>
-<h3><a class="header" href="#max-list" id="max-list">[max: list]</a></h3>
-<p>→ <code>any</code></p>
-<p>Prints the largest value of a list.</p>
 <h3><a class="header" href="#oxford-join-comma-conj-comma-conj-list" id="oxford-join-comma-conj-comma-conj-list">[oxford-join: comma; conj; comma-conj; list]</a></h3>
 <p>→ <code>any*</code></p>
 <p>A variant of the <code>join</code> function for conveniently formatting comma-separated lists.</p>
@@ -259,7 +274,7 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
 <li><strong>Lists of 2 items</strong> use <code>conj</code> to separate the two items.</li>
 <li><strong>Lists of 3 or more items</strong> separate the final two items with <code>comma-conj</code>; all others use <code>comma</code>.</li>
 </ul>
-<h4><a class="header" href="#examples-1" id="examples-1">Examples</a></h4>
+<h4><a class="header" href="#examples-2" id="examples-2">Examples</a></h4>
 <h5><a class="header" href="#print-lists-with-oxford-comma" id="print-lists-with-oxford-comma">Print lists with Oxford comma</a></h5>
 <pre><code class="language-rant">&lt;$numbers = ()&gt;
 [rep: 5][sep: \n]
@@ -303,7 +318,7 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
 <p>Removes the last value from a list and prints it.</p>
 <h3><a class="header" href="#insert-collection-value-pos" id="insert-collection-value-pos">[insert: collection; value; pos]</a></h3>
 <p>Inserts <code>value</code> into a list or map at the position <code>pos</code>.</p>
-<p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
+<p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
 <h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
@@ -313,13 +328,13 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <li><code>collection</code> is a list and <code>pos</code> is out of range</li>
 </ul>
 <h3><a class="header" href="#len-obj" id="len-obj">[len: obj]</a></h3>
-<p>→ <code>integer</code></p>
-<p>Prints the length of <code>obj</code> as an integer.</p>
+<p>→ <code>int</code></p>
+<p>Prints the length of <code>obj</code>.</p>
 <p>For strings, this is the number of bytes; for lists and maps, this is the number of elements.
-All other value types give a length of 0.</p>
+All other value types give a length of 1.</p>
 <h3><a class="header" href="#remove-collection-pos" id="remove-collection-pos">[remove: collection; pos]</a></h3>
 <p>Removes the value at the <code>pos</code> from a list or map.</p>
-<p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
+<p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
 <h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
@@ -436,8 +451,8 @@ If the number of elements in the list is less than or equal to <code>target-size
 <h3><a class="header" href="#take-collection-pos" id="take-collection-pos">[take: collection; pos]</a></h3>
 <p>→ <code>any</code></p>
 <p>Removes the value at <code>pos</code> from a list or map and prints it.</p>
-<p>If <code>collection</code> is a list, <code>pos</code> must be an integer.<br>
-If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
+<p>If <code>collection</code> is a <code>list</code>, <code>pos</code> must be an <code>int</code>.<br>
+If <code>collection</code> is a <code>map</code>, <code>pos</code> may be any non-empty value.</p>
 <h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
@@ -495,7 +510,7 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
 <p>Returns a new list that combines each pair of items from the two input lists using the specified function.
 The lists do not need to be the same length; if there is a difference, it will be made up with empty values.</p>
 <p>The <code>zip-func</code> must accept two parameters.</p>
-<h4><a class="header" href="#examples-2" id="examples-2">Examples</a></h4>
+<h4><a class="header" href="#examples-3" id="examples-3">Examples</a></h4>
 <pre><code class="language-rant"># Dot product
 [$dot: a; b] {
   [zip: &lt;a&gt;; &lt;b&gt;; &lt;mul&gt; &amp; sum]
