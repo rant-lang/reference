@@ -1,6 +1,6 @@
 # Rant Language Reference
 
-![Build status](https://github.com/rant-lang/reference/workflows/Book/badge.svg?event=status)
+![Book](https://github.com/rant-lang/reference/workflows/Book/badge.svg)
 
 The future home of the Rant 4 language reference.
 
