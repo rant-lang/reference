@@ -348,6 +348,23 @@ however, this can be changed by passing the <strong>composition value</strong> <
 # Get a random math function and call it, passing in two numbers
 [get-math-func &amp; ![]: 3.0; 2.0]
 </code></pre>
+<h3><a class="header" href="#spread-notation" id="spread-notation">Spread notation</a></h3>
+<p>Spread notation lets you use a list to pass multiple arguments at once to a function call.
+This is mostly useful for cases where the contents of a list need to be passed to a variadic parameter,
+but spread notation works on all parameters (required, optional, and variadic).</p>
+<p>There are no restrictions on the position of a spread within an argument list:
+you can add them to the start, end, middle, or even have multiple spreads sprinkled throughout.
+As long as the final argument list meets the requirements of the target function, it &quot;just works.&quot;</p>
+<p>Argument spreading is performed by prefixing an argument with <code>+</code>, as seen below:</p>
+<pre><code class="language-rant">[$concat-args: a*] {
+    [join: \s; &lt;a&gt;]
+}
+
+&lt;$extras = (baz; qux)&gt;
+[concat-args: foo; bar; +&lt;extras&gt;; boo]
+# Same as calling [concat-args: foo; bar; baz; qux; boo]
+</code></pre>
+<p>Attempting to spread a non-list will simply pass the value as a normal argument.</p>
 <h2><a class="header" href="#defining-functions" id="defining-functions">Defining functions</a></h2>
 <p>To define a function and assign it to a variable, the syntax is as follows:</p>
 <pre><code class="language-rant"># Define a parameterless function named `say-hello` that prints &quot;Hello&quot;
