@@ -78,6 +78,30 @@ If the composition value is a `function`, you can call it directly using an anon
 [get-math-func & ![]: 3.0; 2.0]
 ```
 
+### Spread notation
+
+Spread notation lets you use a list to pass multiple arguments at once to a function call.
+This is mostly useful for cases where the contents of a list need to be passed to a variadic parameter,
+but spread notation works on all parameters (required, optional, and variadic).
+
+There are no restrictions on the position of a spread within an argument list:
+you can add them to the start, end, middle, or even have multiple spreads sprinkled throughout.
+As long as the final argument list meets the requirements of the target function, it "just works."
+
+Argument spreading is performed by prefixing an argument with `+`, as seen below:
+
+```rant
+[$concat-args: a*] {
+    [join: \s; <a>]
+}
+
+<$extras = (baz; qux)>
+[concat-args: foo; bar; +<extras>; boo]
+# Same as calling [concat-args: foo; bar; baz; qux; boo]
+```
+
+Attempting to spread a non-list will simply pass the value as a normal argument.
+
 ## Defining functions
 
 To define a function and assign it to a variable, the syntax is as follows:
