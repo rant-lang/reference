@@ -91,7 +91,7 @@ A fallback expression only runs if the data requested by the associated getter i
 <foo> # error
 ```
 
-### Multi-part accessors
+## Multi-part accessors
 
 To aid readability, Rant also allows you to place several access operations in a single accessor block.
 Simply end each operation with a semicolon; the final semicolon is optional and may be omitted.
@@ -100,7 +100,7 @@ Simply end each operation with a semicolon; the final semicolon is optional and 
 <$first-name = John; $last-name = Smith; $full-name = <first-name>\s<last-name>;>
 ```
 
-### Anonymous accessors
+## Anonymous accessors
 
 In order to access a key or index on a value, it normally must be stored in a variable; 
 however, **anonymous accessors** remove this requirement by accepting a raw value instead of a variable name.
@@ -261,4 +261,48 @@ Global: </foo>\n
     Local: Hello from program scope!
     Global: Hello from global scope!
 ##
+```
+
+## Constants
+
+Constants are much like variables in that they are scoped the same way and store a value.
+Unlike variables, however, constants are immutable: they can only be assigned within a definition, and cannot be redefined.
+
+The syntax to define a constant is simple: where variable definitions use `$`, constant definitions use `%`:
+
+```rant
+# Variable definition
+<$mutable-value = 123>
+
+# Constant definition
+<%constant-value = 123>
+
+
+<mutable-value = 456>   # works as expected
+<constant-value = 456>  # error
+```
+
+Constants can still be shadowed by child scopes.
+
+```rant
+<%foo = 123>
+{
+    <$foo = 456>    # this is valid since we're not reassigning ^foo
+}
+```
+
+### By-ref constants have interior mutability
+
+Storing a by-ref type, such as a list or map, in a constant does not prevent its contents from being changed; 
+it only guarantees that the reference stored by the constant cannot change.
+
+```rant
+# Create a constant list
+<%special-list = (1; 2; 3)>
+
+# Modifying the contents is still allowed
+[push: <special-list>; 4]   # list now contains (1; 2; 3; 4)
+
+# Swapping out the list itself is not allowed
+<special-list = (7; 8; 9)>  # error!
 ```
