@@ -224,12 +224,12 @@ instead of raising an error. To do this, a <strong>fallback expression</strong> 
 # Getting `foo` without a fallback here would crash the program
 &lt;foo&gt; # error
 </code></pre>
-<h3><a class="header" href="#multi-part-accessors" id="multi-part-accessors">Multi-part accessors</a></h3>
+<h2><a class="header" href="#multi-part-accessors" id="multi-part-accessors">Multi-part accessors</a></h2>
 <p>To aid readability, Rant also allows you to place several access operations in a single accessor block.
 Simply end each operation with a semicolon; the final semicolon is optional and may be omitted.</p>
 <pre><code class="language-rant">&lt;$first-name = John; $last-name = Smith; $full-name = &lt;first-name&gt;\s&lt;last-name&gt;;&gt;
 </code></pre>
-<h3><a class="header" href="#anonymous-accessors" id="anonymous-accessors">Anonymous accessors</a></h3>
+<h2><a class="header" href="#anonymous-accessors" id="anonymous-accessors">Anonymous accessors</a></h2>
 <p>In order to access a key or index on a value, it normally must be stored in a variable; 
 however, <strong>anonymous accessors</strong> remove this requirement by accepting a raw value instead of a variable name.</p>
 <p>To create an anonymous accessor, replace the variable name in the accessor with <code>!</code> followed by a single expression 
@@ -351,6 +351,38 @@ Global: &lt;/foo&gt;\n
     Local: Hello from program scope!
     Global: Hello from global scope!
 ##
+</code></pre>
+<h2><a class="header" href="#constants" id="constants">Constants</a></h2>
+<p>Constants are much like variables in that they are scoped the same way and store a value.
+Unlike variables, however, constants are immutable: they can only be assigned within a definition, and cannot be redefined.</p>
+<p>The syntax to define a constant is simple: where variable definitions use <code>$</code>, constant definitions use <code>%</code>:</p>
+<pre><code class="language-rant"># Variable definition
+&lt;$mutable-value = 123&gt;
+
+# Constant definition
+&lt;%constant-value = 123&gt;
+
+
+&lt;mutable-value = 456&gt;   # works as expected
+&lt;constant-value = 456&gt;  # error
+</code></pre>
+<p>Constants can still be shadowed by child scopes.</p>
+<pre><code class="language-rant">&lt;%foo = 123&gt;
+{
+    &lt;$foo = 456&gt;    # this is valid since we're not reassigning ^foo
+}
+</code></pre>
+<h3><a class="header" href="#by-ref-constants-have-interior-mutability" id="by-ref-constants-have-interior-mutability">By-ref constants have interior mutability</a></h3>
+<p>Storing a by-ref type, such as a list or map, in a constant does not prevent its contents from being changed; 
+it only guarantees that the reference stored by the constant cannot change.</p>
+<pre><code class="language-rant"># Create a constant list
+&lt;%special-list = (1; 2; 3)&gt;
+
+# Modifying the contents is still allowed
+[push: &lt;special-list&gt;; 4]   # list now contains (1; 2; 3; 4)
+
+# Swapping out the list itself is not allowed
+&lt;special-list = (7; 8; 9)&gt;  # error!
 </code></pre>
 
                     </main>
