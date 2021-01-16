@@ -56,7 +56,7 @@ let rant_def = {
       {
         // Function definition
         className: 'variable',
-        begin: /(?<=\[)\$[\w-_]+/g
+        begin: /(?<=\[)[\$\%][\w-_]+/g
       },
       {
         // Function call
@@ -66,7 +66,7 @@ let rant_def = {
       {
         // Variable accessor start
         className: 'variable',
-        begin: /\<\$?/
+        begin: /\<[\$\%]?/
       },
       {
         // Variable accessor end

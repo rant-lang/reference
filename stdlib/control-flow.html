@@ -188,17 +188,20 @@
 <table><thead><tr><th>Mode name</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>random</code></td><td>Selects a random element each time.</td></tr>
 <tr><td><code>one</code></td><td>Selects the same, random element each time.</td></tr>
-<tr><td><code>forward</code></td><td>Selects in a wrapping sequence from left to right.</td></tr>
-<tr><td><code>reverse</code></td><td>Selects in a wrapping reverse sequence from right to left.</td></tr>
+<tr><td><code>forward</code></td><td>Selects in a wrapping sequence from first to last.</td></tr>
+<tr><td><code>reverse</code></td><td>Selects in a wrapping reverse sequence from last to first.</td></tr>
 <tr><td><code>deck</code></td><td>Selects each element once in a random sequence, then reshuffles.</td></tr>
 <tr><td><code>deck-loop</code></td><td>Selects each element once in a wrapping random sequence, without reshuffling.</td></tr>
 <tr><td><code>deck-clamp</code></td><td>Selects each element once in a random sequence, repeating the final element.</td></tr>
-<tr><td><code>forward-clamp</code></td><td>Selects from left to right, then repeats the right-most element.</td></tr>
-<tr><td><code>reverse-clamp</code></td><td>Selects from right to left, then repeats the left-most element.</td></tr>
-<tr><td><code>ping</code></td><td>Selects from left to right, switching directions when a boundary is reached.</td></tr>
-<tr><td><code>pong</code></td><td>Selects from left to right, switching directions when a boundary is reached.</td></tr>
-<tr><td><code>no-double</code></td><td>Ensures that no one element index is selected twice in a row.</td></tr>
+<tr><td><code>forward-clamp</code></td><td>Selects from first to last, then repeats the last element.</td></tr>
+<tr><td><code>reverse-clamp</code></td><td>Selects from last to first, then repeats the first element.</td></tr>
+<tr><td><code>ping</code></td><td>Selects from first to last, switching directions when a boundary is reached.</td></tr>
+<tr><td><code>pong</code></td><td>Selects from last to first, switching directions when a boundary is reached.</td></tr>
+<tr><td><code>no-double</code></td><td>Selects a random element each time, ensuring the same element never repeats twice in a row.</td></tr>
 </tbody></table>
+<h3><a class="header" href="#pipe-pipe-func" id="pipe-pipe-func">[pipe: pipe-func]</a></h3>
+<p>Sets the pipe function for the next block.</p>
+<p>The function passed to <code>pipe-func</code> must accept a single parameter (the element callback) in order to run properly.</p>
 <h3><a class="header" href="#push-attrs" id="push-attrs">[push-attrs]</a></h3>
 <p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
 <h3><a class="header" href="#pop-attrs" id="pop-attrs">[pop-attrs]</a></h3>
@@ -230,12 +233,39 @@ The value of <code>reps</code> must either be a non-negative <code>int</code> or
 <h3><a class="header" href="#return-value" id="return-value">[return: value?]</a></h3>
 <p>Returns from the current function, optionally overriding the function's output with a value.</p>
 <h3><a class="header" href="#sel-selector" id="sel-selector">[sel: selector]</a></h3>
-<p>Sets the selector for the next block.</p>
+<p>Sets the selector for the next block. </p>
+<p>The <code>selector</code> parameter can accept either a selector state object created via <code>[mksel]</code>, or a selector mode string (see <code>[mksel]</code> documentation for available modes).</p>
+<h4><a class="header" href="#examples-1" id="examples-1">Examples</a></h4>
+<pre><code class="language-rant"># Pass in an existing selector object so its state persists between uses
+&lt;%fwd = [mksel:forward]&gt;
+[sel:&lt;fwd&gt;]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+</code></pre>
+<pre><code class="language-rant"># Create a temporary selector using [mksel]
+[sel:[mksel:forward]]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+</code></pre>
+<pre><code class="language-rant"># Automatically create a temporary selector from a mode name
+[sel:forward]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+</code></pre>
 <h3><a class="header" href="#sep-separator" id="sep-separator">[sep: separator]</a></h3>
 <p>Sets the separator value for the next block to <code>separator</code>.
 The value of <code>separator</code> may be a string, number, or function.
 If it is a function, it will be called separately for each usage and its return value will be printed.</p>
-<h4><a class="header" href="#examples-1" id="examples-1">Examples</a></h4>
+<h4><a class="header" href="#examples-2" id="examples-2">Examples</a></h4>
 <pre><code class="language-rant"># Print comma-separated list of numbers 1-10
 [rep:10][sep:,\s]{[step]}
 

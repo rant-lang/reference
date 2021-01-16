@@ -202,9 +202,40 @@ however, if they are passed on their own and need to be strings, you will need t
 [type:99 99]  # string
 </code></pre>
 <h4><a class="header" href="#multiple-values-in-a-sequence" id="multiple-values-in-a-sequence">Multiple values in a sequence</a></h4>
-<p>If there are multiple values in an expression and at least one is non-empty, it evaluates to a string.</p>
+<p>A sequence will evaluate to a string if the following are true:</p>
+<ol>
+<li>There are multiple values in the expression</li>
+<li>At least one value is non-empty</li>
+<li>The sequence is not all lists or all maps</li>
+</ol>
+<p>When these conditions are met, all values printed by the sequences are converted to their string representations and concatenated.</p>
 <pre><code class="language-rant"># Even though they are all integer tokens, they are treated as text
 [type:10 20 30 40 50]  # string
+</code></pre>
+<h4><a class="header" href="#lists" id="lists">Lists</a></h4>
+<p>A sequence that is entirely made of lists will return a single list containing the concatenation of the input lists.</p>
+<pre><code class="language-rant">(1; 2) (3; 4) # same as (1; 2; 3; 4)
+</code></pre>
+<p>This rule also applies when the sequence contains any expression that returns a list:</p>
+<pre><code class="language-rant">[rep:10] {
+    ([step])
+}
+# returns (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+</code></pre>
+<h4><a class="header" href="#maps" id="maps">Maps</a></h4>
+<p>A sequence that is entirely made of maps will return a single map containing the key/value pairs of the input maps. 
+Any duplicate keys are overwritten.</p>
+<pre><code class="language-rant">&lt;%my-map = 
+    @(a = 1)
+    @(b = 2)
+&gt;
+# returns @(a = 1; b = 2)
+</code></pre>
+<p>As with list sequences, this also applies with expressions that return maps:</p>
+<pre><code class="language-rant">[rep:3]{
+    @(item_{[step]}) = [step]
+}
+# returns @(item_1 = 1; item_2 = 2; item_3 = 3)
 </code></pre>
 <h4><a class="header" href="#empties" id="empties">Empties</a></h4>
 <p>Expressions containing only empties evaluate to the empty value.</p>

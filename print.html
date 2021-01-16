@@ -262,6 +262,14 @@ lines&quot;
 {Heads|Tails}
 </code></pre>
 <p>By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a <a href="language//runtime/attributes.html#selectors">selector</a>.</p>
+<h3><a class="header" href="#collection-generation" id="collection-generation">Collection generation</a></h3>
+<p>Blocks can be used to easily generate lists and maps with conditional, repeating, or probabilistic elements.</p>
+<pre><code class="language-rant"># Evaluates to (A; B; C) or (A; D; E)
+(A) { (B; C) | (D; E) }
+</code></pre>
+<pre><code class="language-rant"># Evaluates to (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+[rep:10]{ ([step]) }
+</code></pre>
 <h3><a class="header" href="#entanglement" id="entanglement">Entanglement</a></h3>
 <p>A group of blocks can be &quot;entangled&quot; so that they all coordinate their selections.</p>
 <pre><code class="language-rant"># Create a selector and store it in a variable
@@ -547,9 +555,40 @@ however, if they are passed on their own and need to be strings, you will need t
 [type:99 99]  # string
 </code></pre>
 <h4><a class="header" href="#multiple-values-in-a-sequence" id="multiple-values-in-a-sequence">Multiple values in a sequence</a></h4>
-<p>If there are multiple values in an expression and at least one is non-empty, it evaluates to a string.</p>
+<p>A sequence will evaluate to a string if the following are true:</p>
+<ol>
+<li>There are multiple values in the expression</li>
+<li>At least one value is non-empty</li>
+<li>The sequence is not all lists or all maps</li>
+</ol>
+<p>When these conditions are met, all values printed by the sequences are converted to their string representations and concatenated.</p>
 <pre><code class="language-rant"># Even though they are all integer tokens, they are treated as text
 [type:10 20 30 40 50]  # string
+</code></pre>
+<h4><a class="header" href="#lists" id="lists">Lists</a></h4>
+<p>A sequence that is entirely made of lists will return a single list containing the concatenation of the input lists.</p>
+<pre><code class="language-rant">(1; 2) (3; 4) # same as (1; 2; 3; 4)
+</code></pre>
+<p>This rule also applies when the sequence contains any expression that returns a list:</p>
+<pre><code class="language-rant">[rep:10] {
+    ([step])
+}
+# returns (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+</code></pre>
+<h4><a class="header" href="#maps" id="maps">Maps</a></h4>
+<p>A sequence that is entirely made of maps will return a single map containing the key/value pairs of the input maps. 
+Any duplicate keys are overwritten.</p>
+<pre><code class="language-rant">&lt;%my-map = 
+    @(a = 1)
+    @(b = 2)
+&gt;
+# returns @(a = 1; b = 2)
+</code></pre>
+<p>As with list sequences, this also applies with expressions that return maps:</p>
+<pre><code class="language-rant">[rep:3]{
+    @(item_{[step]}) = [step]
+}
+# returns @(item_1 = 1; item_2 = 2; item_3 = 3)
 </code></pre>
 <h4><a class="header" href="#empties" id="empties">Empties</a></h4>
 <p>Expressions containing only empties evaluate to the empty value.</p>
@@ -785,7 +824,7 @@ it only guarantees that the reference stored by the constant cannot change.</p>
 </code></pre>
 <h1><a class="header" href="#collections" id="collections">Collections</a></h1>
 <p>Rant's variable system has two collection types: <strong>lists</strong> and <strong>maps</strong>.</p>
-<h2><a class="header" href="#lists" id="lists">Lists</a></h2>
+<h2><a class="header" href="#lists-1" id="lists-1">Lists</a></h2>
 <p>Lists are resizable arrays of values. They may contain multiple types of values.</p>
 <p>Lists are initialized using a pair of parentheses containing the list elements, separated by semicolons:</p>
 <pre><code class="language-rant"># A pair of parentheses is treated like an empty list
@@ -825,7 +864,7 @@ it only guarantees that the reference stored by the constant cannot change.</p>
 &lt;list/2 = -3&gt;
 &lt;list/2&gt;        # -3
 </code></pre>
-<h2><a class="header" href="#maps" id="maps">Maps</a></h2>
+<h2><a class="header" href="#maps-1" id="maps-1">Maps</a></h2>
 <p>Maps are un-ordered collections of key-value pairs, where each key is unique.
 Map keys are always strings: even if you try to use a non-string as a map key, it will be automatically converted to a string first.</p>
 <p>Maps use similar syntax to lists, but with some extra requirements:</p>
@@ -887,6 +926,36 @@ hobbies = [join:,\s;&lt;person/hobbies&gt;]
 &lt;my-list/2&gt;             # &quot;baz&quot;
 &lt;my-list/{[num:0;2]}&gt;   # &quot;foo&quot;, &quot;bar&quot;, or &quot;baz&quot;
 </code></pre>
+<h2><a class="header" href="#collection-auto-concatenation" id="collection-auto-concatenation">Collection auto-concatenation</a></h2>
+<p>Multiple collections of the same type are automatically concatenated or merged when printed alone in the same sequence.
+This significantly reduces the amount of boilerplate required when generating collections with varying amount of elements, or elements that are conditionally included.</p>
+<h3><a class="header" href="#examples" id="examples">Examples</a></h3>
+<pre><code class="language-rant"># List auto-concatenation
+[assert-eq: (A)(B); (A; B)]
+</code></pre>
+<pre><code class="language-rant"># Probabilistic list generation
+&lt;%strange-list = { (A; B) | (C; D) } { (E; F) | (G; H) }&gt;
+##
+&lt;strange-list&gt; will be one of:
+  * (A; B; E; F)
+  * (A; B; G; H)
+  * (C; D; E; F)
+  * (C; D; G; H)
+##
+</code></pre>
+<pre><code class="language-rant"># Automatically combine two maps
+&lt;%data = 
+    @(
+        foo = 1
+    )
+    @(
+        bar = 2
+    )
+&gt;
+
+[assert-eq: &lt;data/foo?&gt;; 1]
+[assert-eq: &lt;data/bar?&gt;; 2]
+</code></pre>
 <h1><a class="header" href="#runtime-features" id="runtime-features">Runtime features</a></h1>
 <p>This section deals with features specific to the Rant runtime.</p>
 <h1><a class="header" href="#attributes" id="attributes">Attributes</a></h1>
@@ -894,7 +963,7 @@ hobbies = [join:,\s;&lt;person/hobbies&gt;]
 <p>Attributes are set by calling the standard library's <strong>attribute functions</strong> and stored in the program's <strong>attribute stack</strong>.
 Each frame of the attribute stack stores a full set of attributes.</p>
 <p>When a block resolves, it consumes attributes from the topmost attribute frame and replaces them with their default values.</p>
-<p>Frames can be added to and removed from the attribute stack to preserve sets of attributes for later use or limit their scope.</p>
+<p>Frames can be added to and removed from the attribute stack using <code>[push-attrs]</code> and <code>[pop-attrs]</code>.</p>
 <h2><a class="header" href="#repetitions" id="repetitions">Repetitions</a></h2>
 <p>By setting the repetitions attribute, you can control how many times the next encountered block will run.
 This attribute is set with the <code>[rep]</code> function.</p>
@@ -912,7 +981,7 @@ This attribute is set with the <code>[rep]</code> function.</p>
 # 9
 # 10
 </code></pre>
-<h2><a class="header" href="#separators" id="separators">Separators</a></h2>
+<h2><a class="header" href="#separator" id="separator">Separator</a></h2>
 <p>The separator attribute controls what is printed between each block repetition.
 It is set using the <code>[sep]</code> function.</p>
 <h3><a class="header" href="#example-2" id="example-2">Example</a></h3>
@@ -922,7 +991,7 @@ It just keeps {going}...
 # Output:
 # It just keeps going and going and going and going...
 </code></pre>
-<h2><a class="header" href="#selectors" id="selectors">Selectors</a></h2>
+<h2><a class="header" href="#selector" id="selector">Selector</a></h2>
 <p>The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.</p>
 <h3><a class="header" href="#example-3" id="example-3">Example</a></h3>
 <pre><code class="language-rant"># Print every element of the block in a random order with no duplicates
@@ -936,11 +1005,18 @@ It just keeps {going}...
 # Output
 # F, C, E, G, B, H, D, A
 </code></pre>
-<h2><a class="header" href="#attribute-frames" id="attribute-frames">Attribute frames</a></h2>
-<p>The Rant runtime maintains a stack of &quot;attribute frames&quot;, which store set of attributes.
-The resolver always reads attributes from the topmost frame in the attribute frame stack. 
-This stack can be used to limit the scope of block attributes.</p>
-<p>The attribute frame stack can be manipulated with the <code>[push-attrs]</code> and <code>[pop-attrs]</code> functions.</p>
+<h2><a class="header" href="#pipe" id="pipe">Pipe</a></h2>
+<p>The pipe attribute allows the user to supply a function (known as the &quot;pipe function&quot;) that is called in place of each iteration of the block.
+The pipe function accepts the current block element as a callback parameter, which it can then call to produce output for that iteration.</p>
+<p>This is extremely useful for applying filters or post-processing to a block at a per-iteration level.</p>
+<pre><code class="language-rant">[rep: all]
+[sep: \n]
+[pipe: [?:elem] { [elem]! }] # Just adds an exclamation point
+[mksel: forward &amp; sel]
+{
+    One | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten
+}
+</code></pre>
 <h1><a class="header" href="#formatters" id="formatters">Formatters</a></h1>
 <p>Rant can passively apply various filters to program output.</p>
 <p>The following formatters are currently supported:</p>
@@ -1144,17 +1220,20 @@ If no seed is provided, a random one is generated.</p>
 <table><thead><tr><th>Mode name</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>random</code></td><td>Selects a random element each time.</td></tr>
 <tr><td><code>one</code></td><td>Selects the same, random element each time.</td></tr>
-<tr><td><code>forward</code></td><td>Selects in a wrapping sequence from left to right.</td></tr>
-<tr><td><code>reverse</code></td><td>Selects in a wrapping reverse sequence from right to left.</td></tr>
+<tr><td><code>forward</code></td><td>Selects in a wrapping sequence from first to last.</td></tr>
+<tr><td><code>reverse</code></td><td>Selects in a wrapping reverse sequence from last to first.</td></tr>
 <tr><td><code>deck</code></td><td>Selects each element once in a random sequence, then reshuffles.</td></tr>
 <tr><td><code>deck-loop</code></td><td>Selects each element once in a wrapping random sequence, without reshuffling.</td></tr>
 <tr><td><code>deck-clamp</code></td><td>Selects each element once in a random sequence, repeating the final element.</td></tr>
-<tr><td><code>forward-clamp</code></td><td>Selects from left to right, then repeats the right-most element.</td></tr>
-<tr><td><code>reverse-clamp</code></td><td>Selects from right to left, then repeats the left-most element.</td></tr>
-<tr><td><code>ping</code></td><td>Selects from left to right, switching directions when a boundary is reached.</td></tr>
-<tr><td><code>pong</code></td><td>Selects from left to right, switching directions when a boundary is reached.</td></tr>
-<tr><td><code>no-double</code></td><td>Ensures that no one element index is selected twice in a row.</td></tr>
+<tr><td><code>forward-clamp</code></td><td>Selects from first to last, then repeats the last element.</td></tr>
+<tr><td><code>reverse-clamp</code></td><td>Selects from last to first, then repeats the first element.</td></tr>
+<tr><td><code>ping</code></td><td>Selects from first to last, switching directions when a boundary is reached.</td></tr>
+<tr><td><code>pong</code></td><td>Selects from last to first, switching directions when a boundary is reached.</td></tr>
+<tr><td><code>no-double</code></td><td>Selects a random element each time, ensuring the same element never repeats twice in a row.</td></tr>
 </tbody></table>
+<h3><a class="header" href="#pipe-pipe-func" id="pipe-pipe-func">[pipe: pipe-func]</a></h3>
+<p>Sets the pipe function for the next block.</p>
+<p>The function passed to <code>pipe-func</code> must accept a single parameter (the element callback) in order to run properly.</p>
 <h3><a class="header" href="#push-attrs" id="push-attrs">[push-attrs]</a></h3>
 <p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
 <h3><a class="header" href="#pop-attrs" id="pop-attrs">[pop-attrs]</a></h3>
@@ -1170,7 +1249,7 @@ The value of <code>reps</code> must either be a non-negative <code>int</code> or
 <tr><td><code>forever</code></td><td>Repeat the next block until explicitly stopped.</td></tr>
 <tr><td><code>all</code></td><td>Repeat as many times as there are elements in the  next block.</td></tr>
 </tbody></table>
-<h4><a class="header" href="#examples" id="examples">Examples</a></h4>
+<h4><a class="header" href="#examples-1" id="examples-1">Examples</a></h4>
 <pre><code class="language-rant"># Print the fragment 3 times
 [rep:3]{ha}
 # hahaha
@@ -1186,12 +1265,39 @@ The value of <code>reps</code> must either be a non-negative <code>int</code> or
 <h3><a class="header" href="#return-value" id="return-value">[return: value?]</a></h3>
 <p>Returns from the current function, optionally overriding the function's output with a value.</p>
 <h3><a class="header" href="#sel-selector" id="sel-selector">[sel: selector]</a></h3>
-<p>Sets the selector for the next block.</p>
+<p>Sets the selector for the next block. </p>
+<p>The <code>selector</code> parameter can accept either a selector state object created via <code>[mksel]</code>, or a selector mode string (see <code>[mksel]</code> documentation for available modes).</p>
+<h4><a class="header" href="#examples-2" id="examples-2">Examples</a></h4>
+<pre><code class="language-rant"># Pass in an existing selector object so its state persists between uses
+&lt;%fwd = [mksel:forward]&gt;
+[sel:&lt;fwd&gt;]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+</code></pre>
+<pre><code class="language-rant"># Create a temporary selector using [mksel]
+[sel:[mksel:forward]]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+</code></pre>
+<pre><code class="language-rant"># Automatically create a temporary selector from a mode name
+[sel:forward]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+</code></pre>
 <h3><a class="header" href="#sep-separator" id="sep-separator">[sep: separator]</a></h3>
 <p>Sets the separator value for the next block to <code>separator</code>.
 The value of <code>separator</code> may be a string, number, or function.
 If it is a function, it will be called separately for each usage and its return value will be printed.</p>
-<h4><a class="header" href="#examples-1" id="examples-1">Examples</a></h4>
+<h4><a class="header" href="#examples-3" id="examples-3">Examples</a></h4>
 <pre><code class="language-rant"># Print comma-separated list of numbers 1-10
 [rep:10][sep:,\s]{[step]}
 
@@ -1254,7 +1360,7 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 <p>→ <code>list</code></p>
 <p>Runs a predicate function against all items in a list and returns another list containing only the values that the predicate returned <code>true</code> on.</p>
 <p>The predicate function must accept a single parameter and return a <code>bool</code> value.</p>
-<h4><a class="header" href="#examples-2" id="examples-2">Examples</a></h4>
+<h4><a class="header" href="#examples-4" id="examples-4">Examples</a></h4>
 <h5><a class="header" href="#filter-a-list-of-numbers-by-only-those-divisible-by-3" id="filter-a-list-of-numbers-by-only-those-divisible-by-3">Filter a list of numbers by only those divisible by 3</a></h5>
 <pre><code class="language-rant">&lt;$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)&gt;
 &lt;$multiples-of-three = [filter: &lt;numbers&gt;; [?:x] { [is-factor: &lt;x&gt;; 3] }]&gt;
@@ -1278,7 +1384,7 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 <p>→ <code>int</code> or <code>empty</code></p>
 <p>Returns the index of the first occurrence of <code>element</code> in <code>list</code>.
 If no match is found, returns <code>~</code>.</p>
-<h4><a class="header" href="#examples-3" id="examples-3">Examples</a></h4>
+<h4><a class="header" href="#examples-5" id="examples-5">Examples</a></h4>
 <pre><code class="language-rant">&lt;$letters = (A; A; B; C; C; D; E)&gt;
 [index-of: &lt;letters&gt;; A &amp; assert-eq: 0]
 [index-of: &lt;letters&gt;; C &amp; assert-eq: 3]
@@ -1326,7 +1432,7 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
 <li><strong>Lists of 2 items</strong> use <code>conj</code> to separate the two items.</li>
 <li><strong>Lists of 3 or more items</strong> separate the final two items with <code>comma-conj</code>; all others use <code>comma</code>.</li>
 </ul>
-<h4><a class="header" href="#examples-4" id="examples-4">Examples</a></h4>
+<h4><a class="header" href="#examples-6" id="examples-6">Examples</a></h4>
 <h5><a class="header" href="#print-lists-with-oxford-comma" id="print-lists-with-oxford-comma">Print lists with Oxford comma</a></h5>
 <pre><code class="language-rant">&lt;$numbers = ()&gt;
 [rep: 5][sep: \n]
@@ -1562,7 +1668,7 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
 <p>Returns a new list that combines each pair of items from the two input lists using the specified function.
 The lists do not need to be the same length; if there is a difference, it will be made up with empty values.</p>
 <p>The <code>zip-func</code> must accept two parameters.</p>
-<h4><a class="header" href="#examples-5" id="examples-5">Examples</a></h4>
+<h4><a class="header" href="#examples-7" id="examples-7">Examples</a></h4>
 <pre><code class="language-rant"># Dot product
 [$dot: a; b] {
   [zip: &lt;a&gt;; &lt;b&gt;; &lt;mul&gt; &amp; sum]
@@ -1741,7 +1847,7 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <p>Returns the largest value in <code>values</code>.</p>
 <p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
 before the maximum value is calculated.</p>
-<h4><a class="header" href="#examples-6" id="examples-6">Examples</a></h4>
+<h4><a class="header" href="#examples-8" id="examples-8">Examples</a></h4>
 <pre><code class="language-rant"># Arguments can be single values
 [max: 3; 2 &amp; assert-eq: 3]
 
@@ -1756,7 +1862,7 @@ before the maximum value is calculated.</p>
 <p>Returns the smallest value in <code>values</code>.</p>
 <p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
 before the minimum value is calculated.</p>
-<h4><a class="header" href="#examples-7" id="examples-7">Examples</a></h4>
+<h4><a class="header" href="#examples-9" id="examples-9">Examples</a></h4>
 <pre><code class="language-rant"># Arguments can be single values
 [min: 3; 2 &amp; assert-eq: 2]
 
@@ -1866,7 +1972,7 @@ If the conversion fails, returns <code>empty</code> value.</p>
 <p>Asserts that <code>condition</code> is true.</p>
 <p>If <code>condition</code> is <code>false</code>, raises a runtime error; if <code>true</code>, does nothing.</p>
 <p>The message displayed in the runtime error can be customized by passing a string to <code>message</code>. </p>
-<h4><a class="header" href="#examples-8" id="examples-8">Examples</a></h4>
+<h4><a class="header" href="#examples-10" id="examples-10">Examples</a></h4>
 <pre><code class="language-rant"># does absolutely nothing
 [assert: true]
 

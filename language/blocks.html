@@ -175,6 +175,14 @@
 {Heads|Tails}
 </code></pre>
 <p>By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a <a href="/runtime/attributes.html#selectors">selector</a>.</p>
+<h3><a class="header" href="#collection-generation" id="collection-generation">Collection generation</a></h3>
+<p>Blocks can be used to easily generate lists and maps with conditional, repeating, or probabilistic elements.</p>
+<pre><code class="language-rant"># Evaluates to (A; B; C) or (A; D; E)
+(A) { (B; C) | (D; E) }
+</code></pre>
+<pre><code class="language-rant"># Evaluates to (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+[rep:10]{ ([step]) }
+</code></pre>
 <h3><a class="header" href="#entanglement" id="entanglement">Entanglement</a></h3>
 <p>A group of blocks can be &quot;entangled&quot; so that they all coordinate their selections.</p>
 <pre><code class="language-rant"># Create a selector and store it in a variable

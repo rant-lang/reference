@@ -164,7 +164,7 @@
 <p>Attributes are set by calling the standard library's <strong>attribute functions</strong> and stored in the program's <strong>attribute stack</strong>.
 Each frame of the attribute stack stores a full set of attributes.</p>
 <p>When a block resolves, it consumes attributes from the topmost attribute frame and replaces them with their default values.</p>
-<p>Frames can be added to and removed from the attribute stack to preserve sets of attributes for later use or limit their scope.</p>
+<p>Frames can be added to and removed from the attribute stack using <code>[push-attrs]</code> and <code>[pop-attrs]</code>.</p>
 <h2><a class="header" href="#repetitions" id="repetitions">Repetitions</a></h2>
 <p>By setting the repetitions attribute, you can control how many times the next encountered block will run.
 This attribute is set with the <code>[rep]</code> function.</p>
@@ -182,7 +182,7 @@ This attribute is set with the <code>[rep]</code> function.</p>
 # 9
 # 10
 </code></pre>
-<h2><a class="header" href="#separators" id="separators">Separators</a></h2>
+<h2><a class="header" href="#separator" id="separator">Separator</a></h2>
 <p>The separator attribute controls what is printed between each block repetition.
 It is set using the <code>[sep]</code> function.</p>
 <h3><a class="header" href="#example-1" id="example-1">Example</a></h3>
@@ -192,7 +192,7 @@ It just keeps {going}...
 # Output:
 # It just keeps going and going and going and going...
 </code></pre>
-<h2><a class="header" href="#selectors" id="selectors">Selectors</a></h2>
+<h2><a class="header" href="#selector" id="selector">Selector</a></h2>
 <p>The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.</p>
 <h3><a class="header" href="#example-2" id="example-2">Example</a></h3>
 <pre><code class="language-rant"># Print every element of the block in a random order with no duplicates
@@ -206,11 +206,18 @@ It just keeps {going}...
 # Output
 # F, C, E, G, B, H, D, A
 </code></pre>
-<h2><a class="header" href="#attribute-frames" id="attribute-frames">Attribute frames</a></h2>
-<p>The Rant runtime maintains a stack of &quot;attribute frames&quot;, which store set of attributes.
-The resolver always reads attributes from the topmost frame in the attribute frame stack. 
-This stack can be used to limit the scope of block attributes.</p>
-<p>The attribute frame stack can be manipulated with the <code>[push-attrs]</code> and <code>[pop-attrs]</code> functions.</p>
+<h2><a class="header" href="#pipe" id="pipe">Pipe</a></h2>
+<p>The pipe attribute allows the user to supply a function (known as the &quot;pipe function&quot;) that is called in place of each iteration of the block.
+The pipe function accepts the current block element as a callback parameter, which it can then call to produce output for that iteration.</p>
+<p>This is extremely useful for applying filters or post-processing to a block at a per-iteration level.</p>
+<pre><code class="language-rant">[rep: all]
+[sep: \n]
+[pipe: [?:elem] { [elem]! }] # Just adds an exclamation point
+[mksel: forward &amp; sel]
+{
+    One | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten
+}
+</code></pre>
 
                     </main>
 
