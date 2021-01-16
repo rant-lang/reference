@@ -26,6 +26,20 @@ In their simplest form, blocks resolve a single element from their body and add 
 
 By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a [selector](/runtime/attributes.md#selectors).
 
+### Collection generation
+
+Blocks can be used to easily generate lists and maps with conditional, repeating, or probabilistic elements.
+
+```rant
+# Evaluates to (A; B; C) or (A; D; E)
+(A) { (B; C) | (D; E) }
+```
+
+```rant
+# Evaluates to (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+[rep:10]{ ([step]) }
+```
+
 ### Entanglement
 
 A group of blocks can be "entangled" so that they all coordinate their selections.

@@ -66,11 +66,56 @@ Whitespace at the start or end of an expression is ignored.
 
 #### Multiple values in a sequence
 
-If there are multiple values in an expression and at least one is non-empty, it evaluates to a string.
+A sequence will evaluate to a string if the following are true:
+
+1. There are multiple values in the expression
+2. At least one value is non-empty
+3. The sequence is not all lists or all maps
+
+When these conditions are met, all values printed by the sequences are converted to their string representations and concatenated.
 
 ```rant
 # Even though they are all integer tokens, they are treated as text
 [type:10 20 30 40 50]  # string
+```
+
+#### Lists
+
+A sequence that is entirely made of lists will return a single list containing the concatenation of the input lists.
+
+```rant
+(1; 2) (3; 4) # same as (1; 2; 3; 4)
+```
+
+This rule also applies when the sequence contains any expression that returns a list:
+
+```rant
+[rep:10] {
+    ([step])
+}
+# returns (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+```
+
+#### Maps
+
+A sequence that is entirely made of maps will return a single map containing the key/value pairs of the input maps. 
+Any duplicate keys are overwritten.
+
+```rant
+<%my-map = 
+    @(a = 1)
+    @(b = 2)
+>
+# returns @(a = 1; b = 2)
+```
+
+As with list sequences, this also applies with expressions that return maps:
+
+```rant
+[rep:3]{
+    @(item_{[step]}) = [step]
+}
+# returns @(item_1 = 1; item_2 = 2; item_3 = 3)
 ```
 
 #### Empties

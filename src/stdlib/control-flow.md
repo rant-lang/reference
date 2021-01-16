@@ -42,20 +42,26 @@ Creates and returns a selector with the specified mode.
 
 ### Selector modes
 
-|Mode name      |Description                                                                        |
-|---------------|-----------------------------------------------------------------------------------|
-|`random`       |Selects a random element each time.                                                |
-|`one`          |Selects the same, random element each time.                                        |
-|`forward`      |Selects in a wrapping sequence from left to right.                                 |
-|`reverse`      |Selects in a wrapping reverse sequence from right to left.                         |
-|`deck`         |Selects each element once in a random sequence, then reshuffles.                   |
-|`deck-loop`    |Selects each element once in a wrapping random sequence, without reshuffling.      |
-|`deck-clamp`   |Selects each element once in a random sequence, repeating the final element.       |
-|`forward-clamp`|Selects from left to right, then repeats the right-most element.                   |
-|`reverse-clamp`|Selects from right to left, then repeats the left-most element.                    |
-|`ping`         |Selects from left to right, switching directions when a boundary is reached.       |
-|`pong`         |Selects from left to right, switching directions when a boundary is reached.       |
-|`no-double`    |Ensures that no one element index is selected twice in a row.                      |
+|Mode name      |Description                                                                                |
+|---------------|-------------------------------------------------------------------------------------------|
+|`random`       |Selects a random element each time.                                                        |
+|`one`          |Selects the same, random element each time.                                                |
+|`forward`      |Selects in a wrapping sequence from first to last.                                         |
+|`reverse`      |Selects in a wrapping reverse sequence from last to first.                                 |
+|`deck`         |Selects each element once in a random sequence, then reshuffles.                           |
+|`deck-loop`    |Selects each element once in a wrapping random sequence, without reshuffling.              |
+|`deck-clamp`   |Selects each element once in a random sequence, repeating the final element.               |
+|`forward-clamp`|Selects from first to last, then repeats the last element.                                 |
+|`reverse-clamp`|Selects from last to first, then repeats the first element.                                |
+|`ping`         |Selects from first to last, switching directions when a boundary is reached.               |
+|`pong`         |Selects from last to first, switching directions when a boundary is reached.               |
+|`no-double`    |Selects a random element each time, ensuring the same element never repeats twice in a row.|
+
+### [pipe: pipe-func]
+
+Sets the pipe function for the next block.
+
+The function passed to `pipe-func` must accept a single parameter (the element callback) in order to run properly.
 
 ### [push-attrs]
 
@@ -106,7 +112,42 @@ Returns from the current function, optionally overriding the function's output w
 
 ### [sel: selector]
 
-Sets the selector for the next block.
+Sets the selector for the next block. 
+
+The `selector` parameter can accept either a selector state object created via `[mksel]`, or a selector mode string (see `[mksel]` documentation for available modes).
+
+#### Examples
+
+```rant
+# Pass in an existing selector object so its state persists between uses
+<%fwd = [mksel:forward]>
+[sel:<fwd>]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+```
+
+```rant
+# Create a temporary selector using [mksel]
+[sel:[mksel:forward]]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+```
+
+```rant
+# Automatically create a temporary selector from a mode name
+[sel:forward]
+[rep:all]
+[sep:\s]
+{
+  A | B | C | D
+}
+```
 
 ### [sep: separator]
 

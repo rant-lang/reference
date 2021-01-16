@@ -7,7 +7,7 @@ Each frame of the attribute stack stores a full set of attributes.
 
 When a block resolves, it consumes attributes from the topmost attribute frame and replaces them with their default values.
 
-Frames can be added to and removed from the attribute stack to preserve sets of attributes for later use or limit their scope.
+Frames can be added to and removed from the attribute stack using `[push-attrs]` and `[pop-attrs]`.
 
 ## Repetitions
 
@@ -31,7 +31,7 @@ This attribute is set with the `[rep]` function.
 # 10
 ```
 
-## Separators
+## Separator
 
 The separator attribute controls what is printed between each block repetition.
 It is set using the `[sep]` function.
@@ -46,7 +46,7 @@ It just keeps {going}...
 # It just keeps going and going and going and going...
 ```
 
-## Selectors
+## Selector
 
 The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.
 
@@ -65,10 +65,19 @@ The selector attribute controls how Rant chooses which branch of a block to take
 # F, C, E, G, B, H, D, A
 ```
 
-## Attribute frames
+## Pipe
 
-The Rant runtime maintains a stack of "attribute frames", which store set of attributes.
-The resolver always reads attributes from the topmost frame in the attribute frame stack. 
-This stack can be used to limit the scope of block attributes.
+The pipe attribute allows the user to supply a function (known as the "pipe function") that is called in place of each iteration of the block.
+The pipe function accepts the current block element as a callback parameter, which it can then call to produce output for that iteration.
 
-The attribute frame stack can be manipulated with the `[push-attrs]` and `[pop-attrs]` functions.
+This is extremely useful for applying filters or post-processing to a block at a per-iteration level.
+
+```rant
+[rep: all]
+[sep: \n]
+[pipe: [?:elem] { [elem]! }] # Just adds an exclamation point
+[mksel: forward & sel]
+{
+    One | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten
+}
+```

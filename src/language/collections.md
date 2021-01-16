@@ -126,3 +126,42 @@ Additionally, a variable access path does not need to be made out of entirely co
 <my-list/2>             # "baz"
 <my-list/{[num:0;2]}>   # "foo", "bar", or "baz"
 ```
+
+## Collection auto-concatenation
+
+Multiple collections of the same type are automatically concatenated or merged when printed alone in the same sequence.
+This significantly reduces the amount of boilerplate required when generating collections with varying amount of elements, or elements that are conditionally included.
+
+### Examples
+
+```rant
+# List auto-concatenation
+[assert-eq: (A)(B); (A; B)]
+```
+
+```rant
+# Probabilistic list generation
+<%strange-list = { (A; B) | (C; D) } { (E; F) | (G; H) }>
+##
+<strange-list> will be one of:
+  * (A; B; E; F)
+  * (A; B; G; H)
+  * (C; D; E; F)
+  * (C; D; G; H)
+##
+```
+
+```rant
+# Automatically combine two maps
+<%data = 
+    @(
+        foo = 1
+    )
+    @(
+        bar = 2
+    )
+>
+
+[assert-eq: <data/foo?>; 1]
+[assert-eq: <data/bar?>; 2]
+```
