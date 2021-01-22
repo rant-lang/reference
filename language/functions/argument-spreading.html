@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Argument spreading - Rant Reference</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="The Rant Reference documents the Rant language and standard library.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+        <link rel="stylesheet" href="../../theme/custom.css">
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../language.html"><strong aria-hidden="true">2.</strong> Language Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/text.html"><strong aria-hidden="true">2.1.</strong> Text</a></li><li class="chapter-item expanded "><a href="../../language/blocks.html"><strong aria-hidden="true">2.2.</strong> Blocks</a></li><li class="chapter-item expanded "><a href="../../language/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/functions/closures.html"><strong aria-hidden="true">2.3.1.</strong> Closures</a></li><li class="chapter-item expanded "><a href="../../language/functions/argument-spreading.html" class="active"><strong aria-hidden="true">2.3.2.</strong> Argument spreading</a></li><li class="chapter-item expanded "><a href="../../language/functions/composition.html"><strong aria-hidden="true">2.3.3.</strong> Composition</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../../language/escape-sequences.html"><strong aria-hidden="true">2.5.</strong> Escape Sequences</a></li><li class="chapter-item expanded "><a href="../../language/data-types.html"><strong aria-hidden="true">2.6.</strong> Data types</a></li><li class="chapter-item expanded "><a href="../../language/variables-and-accessors.html"><strong aria-hidden="true">2.7.</strong> Variables and Accessors</a></li><li class="chapter-item expanded "><a href="../../language/collections.html"><strong aria-hidden="true">2.8.</strong> Collections</a></li></ol></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">3.</strong> Runtime Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../runtime/attributes.html"><strong aria-hidden="true">3.1.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="../../runtime/formatters.html"><strong aria-hidden="true">3.2.</strong> Formatters</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../runtime/case-formatter.html"><strong aria-hidden="true">3.2.1.</strong> Case</a></li><li class="chapter-item expanded "><a href="../../runtime/number-formatter.html"><strong aria-hidden="true">3.2.2.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="../../runtime/whitespace-formatter.html"><strong aria-hidden="true">3.2.3.</strong> Whitespace</a></li></ol></li><li class="chapter-item expanded "><a href="../../modules.html"><strong aria-hidden="true">3.3.</strong> Modules</a></li></ol></li><li class="chapter-item expanded "><a href="../../stdlib.html"><strong aria-hidden="true">4.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../stdlib/general.html"><strong aria-hidden="true">4.1.</strong> General</a></li><li class="chapter-item expanded "><a href="../../stdlib/control-flow.html"><strong aria-hidden="true">4.2.</strong> Attributes &amp; Control Flow</a></li><li class="chapter-item expanded "><a href="../../stdlib/collections.html"><strong aria-hidden="true">4.3.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../stdlib/generators.html"><strong aria-hidden="true">4.4.</strong> Generators</a></li><li class="chapter-item expanded "><a href="../../stdlib/formatting.html"><strong aria-hidden="true">4.5.</strong> Formatting</a></li><li class="chapter-item expanded "><a href="../../stdlib/strings.html"><strong aria-hidden="true">4.6.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../stdlib/boolean.html"><strong aria-hidden="true">4.7.</strong> Boolean</a></li><li class="chapter-item expanded "><a href="../../stdlib/comparison.html"><strong aria-hidden="true">4.8.</strong> Comparison</a></li><li class="chapter-item expanded "><a href="../../stdlib/math.html"><strong aria-hidden="true">4.9.</strong> Math</a></li><li class="chapter-item expanded "><a href="../../stdlib/conversion.html"><strong aria-hidden="true">4.10.</strong> Conversion</a></li><li class="chapter-item expanded "><a href="../../stdlib/verification.html"><strong aria-hidden="true">4.11.</strong> Verification</a></li><li class="chapter-item expanded "><a href="../../stdlib/assertion.html"><strong aria-hidden="true">4.12.</strong> Assertion</a></li><li class="chapter-item expanded "><a href="../../stdlib/constants.html"><strong aria-hidden="true">4.13.</strong> Constants</a></li></ol></li><li class="chapter-item expanded "><a href="../../glossary.html"><strong aria-hidden="true">5.</strong> Glossary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Rant Reference</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/rant-lang/reference" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#argument-spreading" id="argument-spreading">Argument spreading</a></h1>
+<p>Argument spreading enables you to deconstruct a list argument into multiple individual arguments.</p>
+<p>Rant exposes this functionality through two spread operators: <strong>parametric spread</strong> (<code>*</code>), and <strong>temporal spread</strong> (<code>**</code>).</p>
+<h2><a class="header" href="#parametric-spread" id="parametric-spread">Parametric spread</a></h2>
+<p>The <strong>parametric spread operator</strong> lets you use a list to pass multiple arguments at once to a single function call.
+This operation is referred to in Rant as &quot;parametric spreading&quot; or simply &quot;spreading.&quot;</p>
+<p>Spreading is mostly useful for cases where the contents of a list need to be passed to a variadic parameter,
+but it will work on any other parameter (required, optional, or variadic).</p>
+<p>There are no restrictions on the position of a spread within an argument list;
+you can add them to the start, end, middle, or even have multiple spreads sprinkled throughout.
+As long as the final argument list meets the requirements of the target function, it &quot;just works.&quot;</p>
+<p>Argument spreading is performed by prefixing an argument with <code>*</code>, as seen below:</p>
+<pre><code class="language-rant">[$concat-args: a*] {
+    [join: \s; &lt;a&gt;]
+}
+
+&lt;$extras = (baz; qux)&gt;
+[concat-args: foo; bar; * &lt;extras&gt;; boo]
+# Same as calling [concat-args: foo; bar; baz; qux; boo]
+</code></pre>
+<p>Attempting to spread a non-list will simply pass the value as a normal argument.</p>
+<h2><a class="header" href="#temporal-spread" id="temporal-spread">Temporal spread</a></h2>
+<p>Rant has a second spread operatior, the <strong>temporal spread operator</strong> (<code>**</code>), which behaves differently from a parametric spread.</p>
+<p>Instead of spreading across parameters, it spreads across time itself:
+the target function is called once <strong>for each value</strong> in the temporally spread list argument (known as a &quot;temporal argument&quot;), passing in the current list item as the argument value.
+This essentially turns the function call into a loop.</p>
+<p>This is best explained with the following example:</p>
+<pre><code class="language-rant"># Simple function that prints tab-separated values with a newline at the end
+[%println: cols*] {
+    [join: &lt;cols&gt;; \t]\n
+}
+
+&lt;%items = (foo; bar; baz)&gt;
+
+NORMAL SPREAD:\n
+[println: * &lt;items&gt;]\n
+# -&gt; [println: foo; bar; baz]
+
+TEMPORAL SPREAD:\n
+[println: ** &lt;items&gt;]\n
+# -&gt; [println: foo]
+# -&gt; [println: bar]
+# -&gt; [println: baz]
+</code></pre>
+<p>This produces the following output:</p>
+<pre><code>NORMAL SPREAD:
+foo     bar     baz
+
+TEMPORAL SPREAD:
+foo
+bar
+baz
+</code></pre>
+<p>As with parametric spreading, using a temporal spread on a non-list argument simply passes it as a regular argument.</p>
+<h3><a class="header" href="#multiple-temporal-arguments" id="multiple-temporal-arguments">Multiple temporal arguments</a></h3>
+<p>A function call can have more than one temporal argument. When this happens,
+Rant will call the function once for each possible combination of values from all temporal arguments.</p>
+<p>When iterating through the combinations, Rant will increment the selection for the leftmost temporal argument first. 
+When it rolls back over to the first item, the selection of the second temporal argument is incremented, then the third, and so on.
+The total number of iterations will be equal to the product of the lengths of all temporal arguments.</p>
+<p>The following example demonstrates how this works:</p>
+<pre><code class="language-rant"># Print out every combination (disgusting or not) of two lists of seasonings
+[concat: **(salt; pepper; sugar); \t; **(cinnamon; cilantro; basil; cloves); \n]
+</code></pre>
+<p>This produces the following output:</p>
+<pre><code>salt    cinnamon
+pepper  cinnamon
+sugar   cinnamon
+salt    cilantro
+pepper  cilantro
+sugar   cilantro
+salt    basil
+pepper  basil
+sugar   basil
+salt    cloves
+pepper  cloves
+sugar   cloves
+</code></pre>
+<h3><a class="header" href="#temporal-argument-synchronization" id="temporal-argument-synchronization">Temporal argument synchronization</a></h3>
+<p>In some cases it may be desirable to perform an operation only on elements with matching indices from two or more lists (often called a &quot;zip&quot; operation).
+Thankfully, this is easy to do with temporal arguments by adding a <strong>label</strong> to the temporal spread operators you want to synchronize.</p>
+<p>To add a label to a temporal spread operator, simply add any sequence of alphanumeric characters, understores, and hyphens between the two <code>*</code> characters, like this:</p>
+<pre><code class="language-rant">[concat: *a* (1; 2; 3); *a* (A; B; C); \n]
+</code></pre>
+<p>Doing this produces only 3 iterations:</p>
+<pre><code>1A
+2B
+3C
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../../language/functions/closures.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../../language/functions/composition.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../../language/functions/closures.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../../language/functions/composition.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-179100611-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
