@@ -92,10 +92,10 @@ If no match is found, returns `~`.
 
 ```rant
 <$letters = (A; A; B; C; C; D; E)>
-[index-of: <letters>; A & assert-eq: 0]
-[index-of: <letters>; C & assert-eq: 3]
-[index-of: <letters>; E & assert-eq: 6]
-[index-of: <letters>; F & assert-eq: ~]
+[index-of: <letters>; A |> assert-eq: 0]
+[index-of: <letters>; C |> assert-eq: 3]
+[index-of: <letters>; E |> assert-eq: 6]
+[index-of: <letters>; F |> assert-eq: ~]
 ```
 
 ### [join: separator; list]
@@ -111,10 +111,10 @@ If no match is found, returns `~`.
 
 ```rant
 <$letters = (A; A; B; C; C; D; E)>
-[last-index-of: <letters>; A & assert-eq: 1]
-[last-index-of: <letters>; C & assert-eq: 4]
-[last-index-of: <letters>; E & assert-eq: 6]
-[last-index-of: <letters>; F & assert-eq: ~]
+[last-index-of: <letters>; A |> assert-eq: 1]
+[last-index-of: <letters>; C |> assert-eq: 4]
+[last-index-of: <letters>; E |> assert-eq: 6]
+[last-index-of: <letters>; F |> assert-eq: ~]
 ```
 
 ### [map: list; map-func]
@@ -459,7 +459,7 @@ The `zip-func` must accept two parameters.
 ```rant
 # Dot product
 [$dot: a; b] {
-  [zip: <a>; <b>; <mul> & sum]
+  [zip: <a>; <b>; <mul> |> sum]
 }
 
 [dot: (1; 2; 3); (4; 5; 6)] # 32

@@ -76,7 +76,7 @@ This is extremely useful for applying filters or post-processing to a block at a
 [rep: all]
 [sep: \n]
 [pipe: [?:elem] { [elem]! }] # Just adds an exclamation point
-[mksel: forward & sel]
+[mksel: forward |> sel]
 {
     One | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten
 }

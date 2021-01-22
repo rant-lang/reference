@@ -54,14 +54,29 @@ let rant_def = {
         begin: /\@/
       },
       {
+        // Compose operator
+        className: 'addition',
+        begin: /\|\>/
+      },
+      {
+        // Compose value
+        className: 'addition',
+        begin: /\[\]/
+      },
+      {
+        // Spread operators
+        className: 'name',
+        begin: /\*([\w\-_]*\*)?/
+      },
+      {
         // Function definition
         className: 'variable',
-        begin: /(?<=\[)[\$\%][\w-_]+/g
+        begin: /(?<=\[)[\$\%]\^*[\w-_]+/g
       },
       {
         // Function call
         className: 'title',
-        begin: /(?<=\[)([\w-_]+|\!)/g
+        begin: /(?<=\[|\|\>\s*)([\w-_]+|\!)/g
       },
       {
         // Variable accessor start

@@ -16,6 +16,11 @@ Causes a runtime error if either of the following are true:
 * `func` isn't a function
 * `args` isn't a list
 
+### [concat: values*]
+&rarr; `any*`
+
+Prints the provided arguments in order.
+
 ### [copy: value]
 &rarr; `any`
 

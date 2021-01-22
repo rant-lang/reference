@@ -6,6 +6,7 @@ language = "en"
 src = "src"
 
 [output.html]
+additional-css = ["theme/custom.css"]
 #additional-js = ["theme/hljs_rant.js"]
 cname = "docs.rant-lang.org"
 default-theme = "ayu"

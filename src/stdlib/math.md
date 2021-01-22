@@ -52,13 +52,13 @@ before the maximum value is calculated.
 
 ```rant
 # Arguments can be single values
-[max: 3; 2 & assert-eq: 3]
+[max: 3; 2 |> assert-eq: 3]
 
 # Lists are treated as their individual elements
-[max: (3; 2) & assert-eq: 3]
+[max: (3; 2) |> assert-eq: 3]
 
 # Even alongside single values, lists are still expanded!
-[max: 3; (4; -2; 0; 10); 6 & assert-eq: 10]
+[max: 3; (4; -2; 0; 10); 6 |> assert-eq: 10]
 ```
 
 ### [min: values+]
@@ -73,13 +73,13 @@ before the minimum value is calculated.
 
 ```rant
 # Arguments can be single values
-[min: 3; 2 & assert-eq: 2]
+[min: 3; 2 |> assert-eq: 2]
 
 # Lists are treated as their individual elements
-[min: (3; 2) & assert-eq: 2]
+[min: (3; 2) |> assert-eq: 2]
 
 # Even alongside single values, lists are still expanded!
-[min: 3; (4; -2; 0; 10); 6 & assert-eq: -2]
+[min: 3; (4; -2; 0; 10); 6 |> assert-eq: -2]
 ```
 
 ### [mod: lhs; rhs]
