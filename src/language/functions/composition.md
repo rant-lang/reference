@@ -39,8 +39,6 @@ If the composition value is a `function`, you can call it directly using an anon
 
 ## Behavior with temporal arguments
 
-> **Note:** This section discusses a runtime feature that is not yet implemented.
-
 Temporal arguments in composed function calls behave differently than those in nested function calls.
 
 To illustrate this, suppose we have a call to `[foo]` that passes its return value into `[bar]`.
