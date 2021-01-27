@@ -173,13 +173,9 @@ but it will work on any other parameter (required, optional, or variadic).</p>
 you can add them to the start, end, middle, or even have multiple spreads sprinkled throughout.
 As long as the final argument list meets the requirements of the target function, it &quot;just works.&quot;</p>
 <p>Argument spreading is performed by prefixing an argument with <code>*</code>, as seen below:</p>
-<pre><code class="language-rant">[$concat-args: a*] {
-    [join: \s; &lt;a&gt;]
-}
-
-&lt;$extras = (baz; qux)&gt;
-[concat-args: foo; bar; * &lt;extras&gt;; boo]
-# Same as calling [concat-args: foo; bar; baz; qux; boo]
+<pre><code class="language-rant">&lt;$extras = (baz; qux)&gt;
+[concat: foo; bar; * &lt;extras&gt;; boo]
+# -&gt; [concat: foo; bar; baz; qux; boo]
 </code></pre>
 <p>Attempting to spread a non-list will simply pass the value as a normal argument.</p>
 <h2><a class="header" href="#temporal-spread" id="temporal-spread">Temporal spread</a></h2>
@@ -244,6 +240,9 @@ sugar   cloves
 Thankfully, this is easy to do with temporal arguments by adding a <strong>label</strong> to the temporal spread operators you want to synchronize.</p>
 <p>To add a label to a temporal spread operator, simply add any sequence of alphanumeric characters, understores, and hyphens between the two <code>*</code> characters, like this:</p>
 <pre><code class="language-rant">[concat: *a* (1; 2; 3); *a* (A; B; C); \n]
+# -&gt; [concat: 1; A; \n]
+# -&gt; [concat: 2; B; \n]
+# -&gt; [concat: 3; C; \n]
 </code></pre>
 <p>Doing this produces only 3 iterations:</p>
 <pre><code>1A
