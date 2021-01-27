@@ -19,13 +19,9 @@ As long as the final argument list meets the requirements of the target function
 Argument spreading is performed by prefixing an argument with `*`, as seen below:
 
 ```rant
-[$concat-args: a*] {
-    [join: \s; <a>]
-}
-
 <$extras = (baz; qux)>
-[concat-args: foo; bar; * <extras>; boo]
-# Same as calling [concat-args: foo; bar; baz; qux; boo]
+[concat: foo; bar; * <extras>; boo]
+# -> [concat: foo; bar; baz; qux; boo]
 ```
 
 Attempting to spread a non-list will simply pass the value as a normal argument.
@@ -112,6 +108,9 @@ To add a label to a temporal spread operator, simply add any sequence of alphanu
 
 ```rant
 [concat: *a* (1; 2; 3); *a* (A; B; C); \n]
+# -> [concat: 1; A; \n]
+# -> [concat: 2; B; \n]
+# -> [concat: 3; C; \n]
 ```
 
 Doing this produces only 3 iterations:
