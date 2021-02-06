@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Collection Access - Rant Reference</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="The Rant Reference documents the Rant language and standard library.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+        <link rel="stylesheet" href="../../theme/custom.css">
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../language.html"><strong aria-hidden="true">2.</strong> Language Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/text.html"><strong aria-hidden="true">2.1.</strong> Text</a></li><li class="chapter-item expanded "><a href="../../language/blocks.html"><strong aria-hidden="true">2.2.</strong> Blocks</a></li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">2.2.1.</strong> Weighted Blocks</li><li class="chapter-item expanded "><a href="../../language/blocks/stored-blocks.html"><strong aria-hidden="true">2.2.2.</strong> Stored Blocks</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/functions/closures.html"><strong aria-hidden="true">2.3.1.</strong> Closures</a></li><li class="chapter-item expanded "><a href="../../language/functions/argument-spreading.html"><strong aria-hidden="true">2.3.2.</strong> Argument spreading</a></li><li class="chapter-item expanded "><a href="../../language/functions/composition.html"><strong aria-hidden="true">2.3.3.</strong> Composition</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../../language/escape-sequences.html"><strong aria-hidden="true">2.5.</strong> Escape Sequences</a></li><li class="chapter-item expanded "><a href="../../language/accessors.html"><strong aria-hidden="true">2.6.</strong> Accessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/accessors/collection-access.html" class="active"><strong aria-hidden="true">2.6.1.</strong> Collection Access</a></li><li class="chapter-item expanded "><a href="../../language/accessors/anonymous.html"><strong aria-hidden="true">2.6.2.</strong> Anonymous Accessors</a></li><li class="chapter-item expanded "><a href="../../language/accessors/fallbacks.html"><strong aria-hidden="true">2.6.3.</strong> Fallbacks</a></li><li class="chapter-item expanded "><a href="../../language/accessors/globals-descoping.html"><strong aria-hidden="true">2.6.4.</strong> Globals &amp; Descoping</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/collections.html"><strong aria-hidden="true">2.7.</strong> Collections</a></li></ol></li><li class="chapter-item expanded "><a href="../../variables-types.html"><strong aria-hidden="true">3.</strong> Variables &amp; Data Types</a></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">4.</strong> Runtime Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../runtime/attributes.html"><strong aria-hidden="true">4.1.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="../../runtime/formatters.html"><strong aria-hidden="true">4.2.</strong> Formatters</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../runtime/case-formatter.html"><strong aria-hidden="true">4.2.1.</strong> Case</a></li><li class="chapter-item expanded "><a href="../../runtime/number-formatter.html"><strong aria-hidden="true">4.2.2.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="../../runtime/whitespace-formatter.html"><strong aria-hidden="true">4.2.3.</strong> Whitespace</a></li></ol></li><li class="chapter-item expanded "><a href="../../modules.html"><strong aria-hidden="true">4.3.</strong> Modules</a></li></ol></li><li class="chapter-item expanded "><a href="../../stdlib.html"><strong aria-hidden="true">5.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../stdlib/general.html"><strong aria-hidden="true">5.1.</strong> General</a></li><li class="chapter-item expanded "><a href="../../stdlib/control-flow.html"><strong aria-hidden="true">5.2.</strong> Attributes &amp; Control Flow</a></li><li class="chapter-item expanded "><a href="../../stdlib/collections.html"><strong aria-hidden="true">5.3.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../stdlib/generators.html"><strong aria-hidden="true">5.4.</strong> Generators</a></li><li class="chapter-item expanded "><a href="../../stdlib/formatting.html"><strong aria-hidden="true">5.5.</strong> Formatting</a></li><li class="chapter-item expanded "><a href="../../stdlib/strings.html"><strong aria-hidden="true">5.6.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../stdlib/boolean.html"><strong aria-hidden="true">5.7.</strong> Boolean</a></li><li class="chapter-item expanded "><a href="../../stdlib/comparison.html"><strong aria-hidden="true">5.8.</strong> Comparison</a></li><li class="chapter-item expanded "><a href="../../stdlib/math.html"><strong aria-hidden="true">5.9.</strong> Math</a></li><li class="chapter-item expanded "><a href="../../stdlib/conversion.html"><strong aria-hidden="true">5.10.</strong> Conversion</a></li><li class="chapter-item expanded "><a href="../../stdlib/verification.html"><strong aria-hidden="true">5.11.</strong> Verification</a></li><li class="chapter-item expanded "><a href="../../stdlib/assertion.html"><strong aria-hidden="true">5.12.</strong> Assertion</a></li><li class="chapter-item expanded "><a href="../../stdlib/constants.html"><strong aria-hidden="true">5.13.</strong> Constants</a></li></ol></li><li class="chapter-item expanded "><a href="../../glossary.html"><strong aria-hidden="true">6.</strong> Glossary</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Rant Reference</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/rant-lang/reference" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#collection-access" id="collection-access">Collection Access</a></h1>
+<p>An accessor can operate on specific elements of collections (lists, maps, strings, and ranges) using an <strong>access path</strong>.</p>
+<p>An access path is made up of one or more <strong>access path components</strong>, of which there are several types: <strong>indices</strong>, <strong>keys</strong>, <strong>dynamic keys</strong>, and <strong>slices</strong>.
+These are separated by the path separator token <code>/</code>.</p>
+<h2><a class="header" href="#indexing" id="indexing">Indexing</a></h2>
+<p>Accessing elements in ordered collections (lists, strings, and ranges) is known as <strong>indexing</strong>.
+All Rant collections use &quot;zero-based indexing&quot;; in other words, the first element starts at index 0, the second at index 1, and so on.</p>
+<pre><code class="language-rant">&lt;%numbers = (1; 3; 5; 7; 9)&gt;
+
+# Set the first number to 1
+&lt;numbers/0 = 100&gt;
+
+# Get the first number
+&lt;numbers/0&gt; # -&gt; 100
+</code></pre>
+<p>Negative indices are relative to the end of the collection. This means <code>-1</code> represents the last element, <code>-2</code> the penultimate element, and so on.</p>
+<pre><code class="language-rant">&lt;%msg = &quot;hello&quot;&gt;
+Last char: &lt;msg/-1&gt;\n # same as &lt;msg/4&gt; or &lt;msg/{[sub: [len: &lt;msg&gt;]; 1]}&gt;
+
+# Last char: o
+</code></pre>
+<h2><a class="header" href="#keying" id="keying">Keying</a></h2>
+<p>Accessing elements in maps is known as <strong>keying</strong>. 
+Simply specify the desired map key after the <code>/</code> to access the map element with that key:</p>
+<pre><code class="language-rant">&lt;%citizen = @(
+    name = &quot;Steve&quot;;
+    age = 50;
+    mood = &quot;angry&quot;;
+)&gt;
+
+# Set &lt;citizen/age&gt; to 150
+&lt;citizen/age = 150&gt;
+
+&lt;citizen/name&gt;\n    # -&gt; Steve
+&lt;citizen/age&gt;\n     # -&gt; 150
+&lt;citizen/mood&gt;\n    # -&gt; angry
+</code></pre>
+<p>Keys follow the same naming rules as variables, unless specified as a dynamic key (see below).</p>
+<h2><a class="header" href="#dynamic-keys" id="dynamic-keys">Dynamic keys</a></h2>
+<p>Where an index or key must be calculated at runtime, a dynamic key may be used. Dynamic keys are single-element blocks that returns an <code>int</code> or <code>string</code>.</p>
+<pre><code class="language-rant">&lt;%fruits = (apple; orange; banana; tomato)&gt;
+
+&lt;fruits/{ [len: &lt;fruits&gt; |&gt; sub: 1 |&gt; rand: 0; []] }&gt; # returns a random fruit
+</code></pre>
+<p>The value of a dynamic key must be compatible with the type of collection being accessed: for example, a <code>string</code> cannot be used to index a <code>list</code>, but an <code>int</code> can be used to key a <code>map</code> because its conversion to a string is infallible (in other words, all <code>int</code> values have a valid <code>string</code> conversion).</p>
+<h3><a class="header" href="#dynamic-key-type-compatibility" id="dynamic-key-type-compatibility">Dynamic key type compatibility</a></h3>
+<table><thead><tr><th align="center">Collection type</th><th align="center">Key is <code>string</code></th><th align="center">Key is <code>int</code></th></tr></thead><tbody>
+<tr><td align="center"><code>list</code></td><td align="center">🔴</td><td align="center">🟢</td></tr>
+<tr><td align="center"><code>range</code></td><td align="center">🔴</td><td align="center">🟢</td></tr>
+<tr><td align="center"><code>string</code></td><td align="center">🔴</td><td align="center">🟢</td></tr>
+<tr><td align="center"><code>map</code></td><td align="center">🟢</td><td align="center">🟠</td></tr>
+</tbody></table>
+<p></p>
+<table><thead><tr><th align="center">Legend</th></tr></thead><tbody>
+<tr><td align="center">🟢 = valid; 🟠 = coerced; 🔴 = invalid</td></tr>
+</tbody></table>
+<h2><a class="header" href="#slicing" id="slicing">Slicing</a></h2>
+<p>Accessing a contiguous range of elements in an ordered collection is known as <strong>slicing</strong>. 
+Slices can be fully-bounded (having start + end points), half-bounded (having a start or end point but not both), or unbounded (all elements).</p>
+<p>When you get a slice of a collection, the accessor returns a new copy of the collection containing the slice contents.</p>
+<p>Slice notation takes the following forms:</p>
+<pre><code class="language-rant"># fully-bounded
+&lt;my-list/2:5&gt;   # get all elements between index 2 (inclusive) and index 5 (exclusive)
+
+# start-bounded
+&lt;my-list/2:&gt;    # get all emements starting at index 2 (inclusive)
+
+# end-bounded
+&lt;my-list/:5&gt;    # get all elements until index 5 (exclusive)
+
+# unbounded
+&lt;my-list/:&gt;     # get all elements (equivalent to a shallow-clone)
+</code></pre>
+<h4><a class="header" href="#splicing" id="splicing">Splicing</a></h4>
+<p>You can also set a slice on mutable collection types, an operation also known as <strong>splicing</strong>:</p>
+<pre><code class="language-rant">&lt;$my-list = (1; 2; 3)&gt;
+&lt;my-list/1:2 = (a; b)&gt; # the splice doesn't have to be the same size!
+&lt;my-list&gt; # -&gt; (1; a; b; 3)
+</code></pre>
+<h4><a class="header" href="#dynamic-slices" id="dynamic-slices">Dynamic slices</a></h4>
+<p>Slices also support dynamic bounds; just replace any slice bound index with a single-element block that returns an <code>int</code> value.</p>
+<pre><code class="language-rant">&lt;%message = &quot;fantastic&quot;&gt;
+[rep: [len: &lt;message&gt;]]
+{
+    # Use the current repeater step to slice the message
+    &lt;message/:{[step]}&gt;\n
+}
+</code></pre>
+<p>This produces the following output:</p>
+<pre><code>f 
+fa
+fan
+fant
+fanta
+fantas
+fantast
+fantasti
+fantastic
+</code></pre>
+<h2><a class="header" href="#nested-access-paths" id="nested-access-paths">Nested access paths</a></h2>
+<p>Access paths can be nested. This means if you have an array in a map and you want to access an element of that array, you most certainly can; just add another component to the path.</p>
+<pre><code class="language-rant">&lt;%arrays = @(
+    odd-numbers = (1; 3; 5; 7; 9);
+    even-numbers = (0; 2; 4; 6; 8);
+)&gt;
+
+# Get the last element of &lt;arrays/odd-numbers&gt;
+&lt;arrays/odd-numbers/-1&gt;
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../../language/accessors.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../../language/accessors/anonymous.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../../language/accessors.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../../language/accessors/anonymous.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-179100611-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
