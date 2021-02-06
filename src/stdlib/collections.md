@@ -48,6 +48,11 @@ Removes all elements from a list or map.
 
 Causes a runtime error if `collection` is not a list or map.
 
+### [collect: values*]
+&rarr; `list`
+
+Returns a `list` containing the arguments.
+
 ### [filter: list; predicate]
 &rarr; `list`
 
@@ -224,7 +229,7 @@ Causes a runtime error if any of the following are true:
 
 Prints the length of `obj`.
 
-For strings, this is the number of bytes; for lists and maps, this is the number of elements.
+For `string`, this is the number of graphemes; for `list`, `map`, and `range`, the number of elements.
 All other value types give a length of 1.
 
 ### [remove: collection; pos]

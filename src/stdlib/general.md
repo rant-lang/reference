@@ -59,6 +59,18 @@ Causes a runtime error if `seed` is neither an `int` nor `string`.
 
 Does absolutely nothing. Intended as a convenience function for use as a default/placeholder callback.
 
+### [range: a; b?; step?]
+&rarr; `range`
+
+Creates a new `range` with the specified bounds and step value.
+
+* If `a` and `b` are present, range will start at `a` (inclusive) and end at `b` (exclusive).
+* If `a` is present but `b` is omitted, range will start at 0 (inclusive) and end at `a` (exclusive).
+
+The `step` value determines the spacing of the range values and must be a positive integer. A step value of 0 defaults to 1.
+
+The `step` value does not affect the first value in the range and is only applied on subsequent values.
+
 ### [require: module-path]
 
 Imports the module at the specified relative path and assigns it to a local variable with a name matching the file name.

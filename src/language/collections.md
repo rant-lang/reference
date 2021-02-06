@@ -1,10 +1,10 @@
 # Collections
 
-Rant's variable system has two collection types: **lists** and **maps**.
+Rant's variable system has 4 collection types: `list`, `map`, `string`, and `range`.
 
-## Lists
+## List
 
-Lists are resizable arrays of values. They may contain multiple types of values.
+The `list` type represents a mutable, resizable, ordered collection of zero or more values.
 
 Lists are initialized using a pair of parentheses containing the list elements, separated by semicolons:
 
@@ -52,10 +52,11 @@ You can also use negative indices to access items relative to the end of a list,
 <list/2>        # -3
 ```
 
-## Maps
+## Map
 
-Maps are un-ordered collections of key-value pairs, where each key is unique.
-Map keys are always strings: even if you try to use a non-string as a map key, it will be automatically converted to a string first.
+The `map` type represents an unordered, mutable, resizable collection of zero or more key-value pairs, where each key is a unique string.
+
+Map keys are always coerced to strings; if you try to access a map using a non-string key, the key will be automatically coerced to a string before use.
 
 Maps use similar syntax to lists, but with some extra requirements:
 
@@ -93,7 +94,7 @@ Variable accessors can access individual elements in lists and maps by using the
 
 name = <person/name>\n
 age = <person/age>\n
-hobbies = [join:,\s;<person/hobbies>]
+hobbies = [join: <person/hobbies>; ,\s]
 
 ##
     Output:
@@ -124,7 +125,7 @@ Additionally, a variable access path does not need to be made out of entirely co
 <my-list/0>             # "foo"
 <my-list/1>             # "bar"
 <my-list/2>             # "baz"
-<my-list/{[num:0;2]}>   # "foo", "bar", or "baz"
+<my-list/{[rand:0;2]}>   # "foo", "bar", or "baz"
 ```
 
 ## Collection auto-concatenation
