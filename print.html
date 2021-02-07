@@ -1401,6 +1401,15 @@ This makes it possible to access modules in subfolders of any of the module sear
 <p>→ <code>any</code></p>
 <p>Returns <code>true-val</code> if <code>condition</code> is <code>true</code>, or <code>false-val</code> if <code>condition</code> is <code>false</code>.</p>
 <p><code>condition</code> must be of type <code>bool</code>.</p>
+<h3><a class="header" href="#irange-a-b-step" id="irange-a-b-step">[irange: a; b?; step?]</a></h3>
+<p>→ <code>range</code></p>
+<p>Creates a new <strong>inclusive</strong> <code>range</code> with the specified bounds and step value.</p>
+<ul>
+<li>If <code>a</code> and <code>b</code> are present, range will start at <code>a</code> (inclusive) and end at <code>b</code> (inclusive).</li>
+<li>If <code>a</code> is present but <code>b</code> is omitted, range will start at 0 (inclusive) and end at <code>a</code> (inclusive).</li>
+</ul>
+<p>The <code>step</code> value determines the spacing of the range values and must be a positive integer. A step value of 0 defaults to 1.</p>
+<p>The <code>step</code> value does not affect the first value in the range and is only applied on subsequent values.</p>
 <h3><a class="header" href="#fork-seed" id="fork-seed">[fork: seed?]</a></h3>
 <p>Forks (overrides) the current RNG with a new RNG seeded by both the old RNG's seed and the specified seed.
 If no seed is provided, a random one is generated.</p>
@@ -1419,7 +1428,7 @@ If no seed is provided, a random one is generated.</p>
 <p>Does absolutely nothing. Intended as a convenience function for use as a default/placeholder callback.</p>
 <h3><a class="header" href="#range-a-b-step" id="range-a-b-step">[range: a; b?; step?]</a></h3>
 <p>→ <code>range</code></p>
-<p>Creates a new <code>range</code> with the specified bounds and step value.</p>
+<p>Creates a new <strong>exclusive</strong> <code>range</code> with the specified bounds and step value.</p>
 <ul>
 <li>If <code>a</code> and <code>b</code> are present, range will start at <code>a</code> (inclusive) and end at <code>b</code> (exclusive).</li>
 <li>If <code>a</code> is present but <code>b</code> is omitted, range will start at 0 (inclusive) and end at <code>a</code> (exclusive).</li>
@@ -1773,9 +1782,15 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <li><code>pos</code> is an unsupported type for the provided collection</li>
 <li><code>collection</code> is a list and <code>pos</code> is out of range</li>
 </ul>
+<h3><a class="header" href="#rev-collection" id="rev-collection">[rev: collection]</a></h3>
+<p>Creates a reversed copy of the input collection.</p>
+<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
+<pre><code class="language-rant">[rev: (foo; bar)]
+# -&gt; (bar; foo)
+</code></pre>
 <h3><a class="header" href="#shuffle-list" id="shuffle-list">[shuffle: list]</a></h3>
 <p>Shuffles the elements of a list in-place.</p>
-<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
+<h4><a class="header" href="#example-9" id="example-9">Example</a></h4>
 <pre><code class="language-rant"># Shuffles a list of letters and concatenates them into a single string
 &lt;$letters = (A;B;C;D;E;F;G;H;I;J;K;L)&gt;
 [shuffle: &lt;letters&gt;]
@@ -1786,7 +1801,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <h3><a class="header" href="#shuffled-list" id="shuffled-list">[shuffled: list]</a></h3>
 <p>→ <code>list</code></p>
 <p>Creates a shuffled copy of a list.</p>
-<h4><a class="header" href="#example-9" id="example-9">Example</a></h4>
+<h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
 <pre><code class="language-rant"># Shuffle the words in a string
 &lt;$message = &quot;the quick brown fox jumps over he lazy dog&quot;&gt;
 [join: \s; [shuffled: [split: &lt;message&gt;; \s]]]
@@ -1796,7 +1811,7 @@ If <code>collection</code> is a map, <code>pos</code> may be any non-empty value
 <h3><a class="header" href="#sift-list-target-size" id="sift-list-target-size">[sift: list; target-size]</a></h3>
 <p>Removes random elements from a list in-place until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
+<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
 <pre><code class="language-rant"># Remove a random element from a list and print the contents at each iteration
 &lt;$list = [split: &quot;Sphinx of black quartz, judge my vow.&quot;; \s]&gt;
 [rep: [len: &lt;list&gt;]]
@@ -1824,7 +1839,7 @@ If the number of elements in the list is less than or equal to <code>target-size
 <p>→ <code>list</code></p>
 <p>Returns a copy of a list with random elements removed until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
-<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
+<h4><a class="header" href="#example-12" id="example-12">Example</a></h4>
 <pre><code class="language-rant"># Create a random subset of abilities for a character
 
 &lt;$char-traits = (
@@ -1846,7 +1861,7 @@ If the number of elements in the list is less than or equal to <code>target-size
 <h3><a class="header" href="#squish-list-target-size" id="squish-list-target-size">[squish: list; target-size]</a></h3>
 <p>Merges random adjacent elements in a list using addition until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h4><a class="header" href="#example-12" id="example-12">Example</a></h4>
+<h4><a class="header" href="#example-13" id="example-13">Example</a></h4>
 <pre><code class="language-rant"># Merge random items in a number list
 &lt;$numbers = (100; 100; 100; 100; 100; 100; 100; 100; 100; 100)&gt;
 
@@ -1896,7 +1911,7 @@ If <code>collection</code> is a <code>map</code>, <code>pos</code> may be any no
 <p>→ <code>list</code></p>
 <p>Matches each item in a list to a map and returns a list with the corresponding map values. 
 Values that have no corresponding key in the map are passed through as-is.</p>
-<h4><a class="header" href="#example-13" id="example-13">Example</a></h4>
+<h4><a class="header" href="#example-14" id="example-14">Example</a></h4>
 <pre><code class="language-rant"># Constructs a substitution cipher function
 [$make-cipher: alphabet] {
   &lt;
@@ -1958,7 +1973,7 @@ The lists do not need to be the same length; if there is a difference, it will b
 <h3><a class="header" href="#digh-count" id="digh-count">[digh: count?]</a></h3>
 <p>→ <code>string</code></p>
 <p>Prints a uniformly random lowercase hexadecimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
-<h4><a class="header" href="#example-14" id="example-14">Example</a></h4>
+<h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
 <pre><code class="language-rant"># Generate a random 32-character hex string
 [digh:32] # ~&gt; f4e5bef31ea02eac22f220e68e837587
 </code></pre>
@@ -1975,7 +1990,7 @@ The lists do not need to be the same length; if there is a difference, it will b
 <h3><a class="header" href="#rand-a-b" id="rand-a-b">[rand: a; b]</a></h3>
 <p>→ <code>int</code></p>
 <p>Prints a random integer with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
-<h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
+<h4><a class="header" href="#example-16" id="example-16">Example</a></h4>
 <pre><code class="language-rant">You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 </code></pre>
@@ -1985,7 +2000,7 @@ The lists do not need to be the same length; if there is a difference, it will b
 <h3><a class="header" href="#rand-list-a-b-n" id="rand-list-a-b-n">[rand-list: a; b; n]</a></h3>
 <p>→ <code>list</code></p>
 <p>Prints a list of <code>n</code> random integers with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
-<h4><a class="header" href="#example-16" id="example-16">Example</a></h4>
+<h4><a class="header" href="#example-17" id="example-17">Example</a></h4>
 <pre><code class="language-rant"># 2-dice roll
 
 &lt;$roll = [rand-list: 1; 6; 2]&gt;
@@ -2006,7 +2021,7 @@ You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
 <li><code>input</code>, <code>count</code>, or <code>variance</code> is not a number</li>
 <li><code>count</code> is zero or negative</li>
 </ul>
-<h4><a class="header" href="#example-17" id="example-17">Example</a></h4>
+<h4><a class="header" href="#example-18" id="example-18">Example</a></h4>
 <pre><code class="language-rant"># Generate and print a list of 5 random numbers that add up to 1000
 &lt;$parts = [shred:1000;5;200]&gt;
 [join:&quot; + &quot;;&lt;parts&gt;] = [sum:&lt;parts&gt;]
@@ -2029,7 +2044,7 @@ This does not affect whitespace in escape sequences and string literals.</p>
 <tr><td><code>ignore-all</code></td><td>Ignores all printable whitespace.</td></tr>
 <tr><td><code>custom</code></td><td>Replaces all whitespace sequences with the <code>custom-value</code> argument.</td></tr>
 </tbody></table>
-<h4><a class="header" href="#example-18" id="example-18">Example</a></h4>
+<h4><a class="header" href="#example-19" id="example-19">Example</a></h4>
 <pre><code class="language-rant">[whitespace-fmt: default] The quick brown fox    jumps over the lazy dog.
 # Output: The quick brown fox jumps over the lazy dog.
 
