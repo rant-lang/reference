@@ -246,6 +246,17 @@ Causes a runtime error if any of the following are true:
 * `pos` is an unsupported type for the provided collection
 * `collection` is a list and `pos` is out of range
 
+### [rev: collection]
+
+Creates a reversed copy of the input collection.
+
+#### Example
+
+```rant
+[rev: (foo; bar)]
+# -> (bar; foo)
+```
+
 ### [shuffle: list]
 
 Shuffles the elements of a list in-place.

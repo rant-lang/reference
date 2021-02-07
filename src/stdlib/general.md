@@ -33,6 +33,18 @@ Returns `true-val` if `condition` is `true`, or `false-val` if `condition` is `f
 
 `condition` must be of type `bool`.
 
+### [irange: a; b?; step?]
+&rarr; `range`
+
+Creates a new **inclusive** `range` with the specified bounds and step value.
+
+* If `a` and `b` are present, range will start at `a` (inclusive) and end at `b` (inclusive).
+* If `a` is present but `b` is omitted, range will start at 0 (inclusive) and end at `a` (inclusive).
+
+The `step` value determines the spacing of the range values and must be a positive integer. A step value of 0 defaults to 1.
+
+The `step` value does not affect the first value in the range and is only applied on subsequent values.
+
 ### [fork: seed?]
 
 Forks (overrides) the current RNG with a new RNG seeded by both the old RNG's seed and the specified seed.
@@ -62,7 +74,7 @@ Does absolutely nothing. Intended as a convenience function for use as a default
 ### [range: a; b?; step?]
 &rarr; `range`
 
-Creates a new `range` with the specified bounds and step value.
+Creates a new **exclusive** `range` with the specified bounds and step value.
 
 * If `a` and `b` are present, range will start at `a` (inclusive) and end at `b` (exclusive).
 * If `a` is present but `b` is omitted, range will start at 0 (inclusive) and end at `a` (exclusive).
