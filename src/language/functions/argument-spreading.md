@@ -20,8 +20,8 @@ Argument spreading is performed by prefixing an argument with `*`, as seen below
 
 ```rant
 <$extras = (baz; qux)>
-[concat: foo; bar; * <extras>; boo]
-# -> [concat: foo; bar; baz; qux; boo]
+[cat: foo; bar; * <extras>; boo]
+# -> [cat: foo; bar; baz; qux; boo]
 ```
 
 Attempting to spread a non-list will simply pass the value as a normal argument.
@@ -80,7 +80,7 @@ The following example demonstrates how this works:
 
 ```rant
 # Print out every combination (disgusting or not) of two lists of seasonings
-[concat: **(salt; pepper; sugar); \t; **(cinnamon; cilantro; basil; cloves); \n]
+[cat: **(salt; pepper; sugar); \t; **(cinnamon; cilantro; basil; cloves); \n]
 ```
 
 This produces the following output:
@@ -107,10 +107,10 @@ Thankfully, this is easy to do with temporal arguments by adding a **label** to 
 To add a label to a temporal spread operator, simply add any sequence of alphanumeric characters, understores, and hyphens between the two `*` characters, like this:
 
 ```rant
-[concat: *a* (1; 2; 3); *a* (A; B; C); \n]
-# -> [concat: 1; A; \n]
-# -> [concat: 2; B; \n]
-# -> [concat: 3; C; \n]
+[cat: *a* (1; 2; 3); *a* (A; B; C); \n]
+# -> [cat: 1; A; \n]
+# -> [cat: 2; B; \n]
+# -> [cat: 3; C; \n]
 ```
 
 Doing this produces only 3 iterations:

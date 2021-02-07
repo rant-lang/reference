@@ -81,6 +81,64 @@ Map keys come in two flavors:
 )>
 ```
 
+## Range
+
+The `range` type represents a linear series of integers parameterized by three values:
+
+1. an inclusive **start** bound,
+2. an exclusive **end** bound,
+3. the **interval** between values in the range.
+
+As such, very large ranges can be stored, indexed, and enumerated without needing to pre-allocate all possible values in memory.
+
+Ranges are created with the built-in `[range]` function:
+
+```rant
+# Print numbers 0 through 4
+[cat: **[range: 0; 5]; \n]
+
+##
+  Output:
+  0
+  1
+  2
+  3
+  4
+##
+```
+
+Backwards ranges are possible, too; just use a start bound larger than the end bound:
+
+```rant
+# Print numbers 4 through 0
+[cat: **[range: 4; -1]; \n]
+
+##
+  Output:
+  4
+  3
+  2
+  1
+  0
+##
+```
+
+By default, `[range]` uses an interval of 1, but you can change this by adding a third argument:
+
+```rant
+# Print every second number between 0 and 9
+[cat: **[range: 0; 10; 2]; \n]
+
+##
+  Output:
+  0
+  2
+  4
+  6
+  8
+##
+```
+
 ## Retrieving values from collections
 
 Variable accessors can access individual elements in lists and maps by using the access operator `/`.
@@ -127,6 +185,26 @@ Additionally, a variable access path does not need to be made out of entirely co
 <my-list/2>             # "baz"
 <my-list/{[rand:0;2]}>   # "foo", "bar", or "baz"
 ```
+
+## Supported operations
+
+Some collections can be mutated (modified), while others are read-only. Some can be sliced but not spliced. 
+Below is a breakdown of which operations each collection type supports:
+
+
+|Type      |Read     |Write    |Slice    |Splice   |
+|:--------:|:-------:|:-------:|:-------:|:-------:|
+|`list`    |&#x1f7e2;|&#x1f7e2;|&#x1f7e2;|&#x1f7e2;|
+|`map`     |&#x1f7e2;|&#x1f7e2;|&#x1f534;|&#x1f534;|
+|`string`  |&#x1f7e2;|&#x1f534;|&#x1f7e2;|&#x1f534;|
+|`range`   |&#x1f7e2;|&#x1f534;|&#x1f7e2;|&#x1f534;|
+
+<p></p>
+
+|Legend                                            |
+|:------------------------------------------------:|
+|&#x1f7e2; = supported; &#x1f534; = not supported  |
+
 
 ## Collection auto-concatenation
 
