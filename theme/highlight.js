@@ -51,7 +51,7 @@ let rant_def = {
       {
         // Map operator
         className: 'keyword',
-        begin: /\@/
+        begin: /\@(return|break|continue|weight)\b/
       },
       {
         // Compose operator

@@ -1,21 +1,5 @@
 # Standard Library: Attributes & Control flow
 
-### [break: value?]
-
-Exits the current repeater, optionally overwriting the iteration output with `value`. 
-
-#### Errors
-
-Causes a runtime error if called outside of a repeater.
-
-### [continue: value?]
-
-Interrupts execution of the current repeater iteration and proceeds with the next one, optionally overwriting the iteration output with `value`.
-
-#### Errors
-
-Causes a runtime error if called outside of a repeater.
-
 ### [count-attrs]
 &rarr; `int`
 
@@ -105,10 +89,6 @@ The value of `reps` must either be a non-negative `int` or one of the special mo
 # hahahahaha
 # ...
 ```
-
-### [return: value?]
-
-Returns from the current function, optionally overriding the function's output with a value.
 
 ### [sel: selector]
 
