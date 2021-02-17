@@ -26,7 +26,7 @@ The below snippet demonstrates the effect of block weights by generating a list 
         "rare" @weight -1
         |
         # Elements with a weight of 0 are never selected.
-        # If all elements have weights of 0, the last element is selected.
+        # If all elements have weights of 0, the block will not run.
         "unused" @weight 0
     } {herb|fungus|potion|poison|mineral|book}
 }
@@ -59,6 +59,17 @@ common mineral
 
 As you can see, "boring" and "common" items are by far the most frequently picked, while "uncommon" and "rare" items tend to occur much less frequently; 
 "unused" items, on the other hand, never appear due to their weight of 0.
+
+### Weight values
+
+Weight values can be any number (`int` or `float`), other "weight-like" value, or an expression that evaluates to one of these;
+there are, however, special conversions for certain values:
+
+* Negative numbers are converted to positive weights using the formula `1.0 / |w * 10|`.
+* Positive infinity, negative infinity, and NaN produce a weight of 0.
+* `~` produces a weight of 1.
+* `true` produces a weight of 1.
+* `false` produces a weight of 0.
 
 ## Limitations
 
