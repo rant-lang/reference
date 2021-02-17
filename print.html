@@ -615,7 +615,7 @@ This is where <code>@weight</code> comes in: by adding the <code>@weight</code> 
         &quot;rare&quot; @weight -1
         |
         # Elements with a weight of 0 are never selected.
-        # If all elements have weights of 0, the last element is selected.
+        # If all elements have weights of 0, the block will not run.
         &quot;unused&quot; @weight 0
     } {herb|fungus|potion|poison|mineral|book}
 }
@@ -644,6 +644,16 @@ common mineral
 </code></pre>
 <p>As you can see, &quot;boring&quot; and &quot;common&quot; items are by far the most frequently picked, while &quot;uncommon&quot; and &quot;rare&quot; items tend to occur much less frequently; 
 &quot;unused&quot; items, on the other hand, never appear due to their weight of 0.</p>
+<h3><a class="header" href="#weight-values" id="weight-values">Weight values</a></h3>
+<p>Weight values can be any number (<code>int</code> or <code>float</code>), other &quot;weight-like&quot; value, or an expression that evaluates to one of these;
+there are, however, special conversions for certain values:</p>
+<ul>
+<li>Negative numbers are converted to positive weights using the formula <code>1.0 / |w * 10|</code>.</li>
+<li>Positive infinity, negative infinity, and NaN produce a weight of 0.</li>
+<li><code>~</code> produces a weight of 1.</li>
+<li><code>true</code> produces a weight of 1.</li>
+<li><code>false</code> produces a weight of 0.</li>
+</ul>
 <h2><a class="header" href="#limitations" id="limitations">Limitations</a></h2>
 <p>Weights are currently only used by default block selection, and will be ignored by custom selectors.</p>
 <h1><a class="header" href="#comments" id="comments">Comments</a></h1>
