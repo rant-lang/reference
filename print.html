@@ -611,8 +611,8 @@ This is where <code>@weight</code> comes in: by adding the <code>@weight</code> 
         # Smaller weights are less likely to be selected
         &quot;uncommon&quot; @weight 0.5
         |
-        # Negative weight values have a weight of 1 / |w * 10|
-        &quot;rare&quot; @weight -1
+        # Expressions can be used to assign weights dynamically
+        &quot;rare&quot; @weight [randf: 0.05; 0.1]
         |
         # Elements with a weight of 0 are never selected.
         # If all elements have weights of 0, the block will not run.
@@ -644,18 +644,20 @@ common mineral
 </code></pre>
 <p>As you can see, &quot;boring&quot; and &quot;common&quot; items are by far the most frequently picked, while &quot;uncommon&quot; and &quot;rare&quot; items tend to occur much less frequently; 
 &quot;unused&quot; items, on the other hand, never appear due to their weight of 0.</p>
-<h3><a class="header" href="#weight-values" id="weight-values">Weight values</a></h3>
+<h3><a class="header" href="#evaluation" id="evaluation">Evaluation</a></h3>
+<p>When a weighted block resolves, it evaluates all weights in the order they appear before running any elements.
+The weight values are retained until the block finishes resolving. For repeaters, all iterations use the same weights.</p>
+<h3><a class="header" href="#valid-weight-values" id="valid-weight-values">Valid weight values</a></h3>
 <p>Weight values can be any number (<code>int</code> or <code>float</code>), other &quot;weight-like&quot; value, or an expression that evaluates to one of these;
-there are, however, special conversions for certain values:</p>
+there are, however, special cases where some values are handled differently:</p>
 <ul>
-<li>Negative numbers are converted to positive weights using the formula <code>1.0 / |w * 10|</code>.</li>
-<li>Positive infinity, negative infinity, and NaN produce a weight of 0.</li>
+<li>Negative weights are clamped to 0.</li>
+<li>Positive infinity, negative infinity, and NaN also default to 0.</li>
 <li><code>~</code> produces a weight of 1.</li>
-<li><code>true</code> produces a weight of 1.</li>
-<li><code>false</code> produces a weight of 0.</li>
+<li><code>true</code> and <code>false</code> produce weights of 1 and 0, respectively.</li>
 </ul>
 <h2><a class="header" href="#limitations" id="limitations">Limitations</a></h2>
-<p>Weights are currently only used by default block selection, and will be ignored by custom selectors.</p>
+<p>Weights are currently only used by default block selection and will be ignored by custom selectors.</p>
 <h1><a class="header" href="#comments" id="comments">Comments</a></h1>
 <p>Comments are used to annotate code without affecting its behavior.
 This is useful for adding descriptions to your code that offer further explanation of the functionality.</p>
