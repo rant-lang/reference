@@ -1,3 +1,5 @@
 # Number formatter
 
-The **number formatter** controls how Rant converts numeric values (integers and floats) to strings in the program output.
+The **number formatter** enables Rant to convert numeric values (`int` and `float`) to localized strings in the program output.
+
+TODO
