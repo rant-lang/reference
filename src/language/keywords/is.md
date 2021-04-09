@@ -1,5 +1,8 @@
 # @is* keywords
 
+{{ #include ../../_proposal_msg.md}}
+
+
 Blocks can be used to perform various boolean operations by prefixing them with any of several special @is-keywords. Each element of the attached block acts as a separate operand.
 
 ## Short-circuiting

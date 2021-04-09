@@ -1,5 +1,7 @@
 # @on
 
+{{ #include ../../_proposal_msg.md}}
+
 The `@on` keyword assigns a trigger value to a block element for use when the block is resolved with a `match` selector.
 
 ## Usage
