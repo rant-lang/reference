@@ -162,8 +162,60 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#number-formatter" id="number-formatter">Number formatter</a></h1>
-<p>The <strong>number formatter</strong> enables Rant to convert numeric values (<code>int</code> and <code>float</code>) to localized strings in the program output.</p>
-<p>TODO</p>
+<p>The <strong>number formatter</strong> enables you to passively apply custom formatting to numbers (<code>int</code> and <code>float</code>) when printing text.</p>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<p>Each scope maintains its own separate number format. To change the number format options, you need to use the <code>[num-fmt*]</code> class of functions.</p>
+<p>The following functions are available:</p>
+<table><thead><tr><th>Function</th><th>Desctipyion</th></tr></thead><tbody>
+<tr><td><code>[num-fmt]</code></td><td>Set multiple format options at once or get a map of all format options</td></tr>
+<tr><td><code>[num-fmt-system]</code></td><td>Get or set the current numeral system</td></tr>
+<tr><td><code>[num-fmt-alt]</code></td><td>Get or set the alternate formatting flag</td></tr>
+<tr><td><code>[num-fmt-precision]</code></td><td>Get or set the decimal precision</td></tr>
+<tr><td><code>[num-fmt-padding]</code></td><td>Get or set the padding size for the integral part of the number</td></tr>
+<tr><td><code>[num-fmt-upper]</code></td><td>Get or set the uppercase formatting flag</td></tr>
+<tr><td><code>[num-fmt-endian]</code></td><td>Get or set the endianness for bytewise representations (hex, binary, etc)</td></tr>
+<tr><td><code>[num-fmt-sign]</code></td><td>Get or set the sign style</td></tr>
+<tr><td><code>[num-fmt-infinity]</code></td><td>Get or set the infinity style</td></tr>
+<tr><td><code>[num-fmt-group-sep]</code></td><td>Get or set the group separator</td></tr>
+<tr><td><code>[num-fmt-decimal-sep]</code></td><td>Get or set the decimal separator</td></tr>
+</tbody></table>
+<h2><a class="header" href="#using-num-fmt" id="using-num-fmt">Using [num-fmt]</a></h2>
+<p>The <code>[num-fmt]</code> function is the simplest way to configure complex formats. 
+It enables you to set multiple options at once, or get a map of all current option values.</p>
+<h3><a class="header" href="#getting-current-options-with-num-fmt" id="getting-current-options-with-num-fmt">Getting current options with [num-fmt]</a></h3>
+<p>To get a map of all number format options, just call <code>[num-fmt]</code> and omit the <code>options</code> parameter:</p>
+<pre><code class="language-rant">[num-fmt]
+</code></pre>
+<p>This prints a map with the following fields:</p>
+<pre><code>@(
+    sign = negative-only; 
+    infinity = keyword; 
+    group-sep = ; 
+    endian = big; 
+    precision = -1; 
+    system = west-arabic; 
+    alt = false; 
+    padding = 0; 
+    upper = false; 
+    decimal-sep = ;
+)
+</code></pre>
+<p>This can be stored in a variable for later use, or modified and passed back into the function.</p>
+<h3><a class="header" href="#setting-options-with-num-fmt" id="setting-options-with-num-fmt">Setting options with [num-fmt]</a></h3>
+<p>To set options, pass a map to <code>[num-fmt]</code> with the fields you're interested in changing. 
+This will overwrite only the specified options, leaving all others unchanged.</p>
+<pre><code class="language-rant"># Format numbers as 64-bit hex with 0x prefix
+[num-fmt: @(system = hex; alt = true; padding = 16)]
+1000000000\n
+
+# Change another option
+[num-fmt-endian: little] 
+1000000000\n
+</code></pre>
+<p>This produces the output:</p>
+<pre><code>0x000000003b9aca00
+0xca9a3b0000000000
+</code></pre>
 
                     </main>
 
