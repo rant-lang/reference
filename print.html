@@ -1653,29 +1653,69 @@ Its complement is <code>@issame</code>.</p>
 <h4><a class="header" href="#a-hrefstdlibconstantshtmlconstantsa" id="a-hrefstdlibconstantshtmlconstantsa"><a href="./stdlib/constants.html">Constants</a></a></h4>
 <p>Special constant values, such as the language version in use.</p>
 <h1><a class="header" href="#standard-library-general-functions" id="standard-library-general-functions">Standard Library: General functions</a></h1>
-<h3><a class="header" href="#alt-a-b" id="alt-a-b">[alt: a; b+]</a></h3>
+<h2><a class="header" href="#alt" id="alt">alt</a></h2>
+<pre><code class="language-rant">
+[%alt: a; b+]
+
+</code></pre>
 <p>→ <code>any</code> or <code>empty</code></p>
 <p>Prints the first argument that isn't the empty value <code>~</code>. If all arguments are <code>~</code>, prints <code>~</code>.</p>
-<h3><a class="header" href="#call-func-args" id="call-func-args">[call: func; args]</a></h3>
+<h3><a class="header" href="#parameters" id="parameters">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>any</code> <br/>
+The first value to check.</p>
+<p><strong><code>b</code></strong> ← <code>any+</code> <br/>
+The rest of the values to check.</p>
+<h2><a class="header" href="#call" id="call">call</a></h2>
+<pre><code class="language-rant">
+[%call: func; args]
+
+</code></pre>
 <p>→ <code>any</code> or <code>empty</code></p>
 <p>Calls the function <code>func</code> with the argument list <code>args</code>.</p>
-<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
-<p>Causes a runtime error if either of the following are true:</p>
-<ul>
-<li><code>func</code> isn't a function</li>
-<li><code>args</code> isn't a list</li>
-</ul>
-<h3><a class="header" href="#cat-values" id="cat-values">[cat: values*]</a></h3>
+<h3><a class="header" href="#parameters-1" id="parameters-1">Parameters</a></h3>
+<p><strong><code>func</code></strong> ← <code>function</code> <br/>
+The function to call.</p>
+<p><strong><code>args</code></strong> ← <code>list</code> <br/>
+The arguments to pass to the function.</p>
+<h2><a class="header" href="#cat" id="cat">cat</a></h2>
+<pre><code class="language-rant">
+[%cat: values*]
+
+</code></pre>
 <p>→ <code>any*</code></p>
 <p>Prints the provided arguments in order.</p>
-<h3><a class="header" href="#copy-value" id="copy-value">[copy: value]</a></h3>
+<h3><a class="header" href="#parameters-2" id="parameters-2">Parameters</a></h3>
+<p><strong><code>values</code></strong> ← <code>any*</code> <br/>
+The values to print.</p>
+<h2><a class="header" href="#copy" id="copy">copy</a></h2>
+<pre><code class="language-rant">
+[%copy: value]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Returns a shallow clone of <code>value</code>.</p>
-<h3><a class="header" href="#either-condition-true-val-false-val" id="either-condition-true-val-false-val">[either: condition; true-val; false-val]</a></h3>
+<h3><a class="header" href="#parameters-3" id="parameters-3">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to clone.</p>
+<h2><a class="header" href="#either" id="either">either</a></h2>
+<pre><code class="language-rant">
+[%either: condition; true-val; false-val]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Returns <code>true-val</code> if <code>condition</code> is <code>true</code>, or <code>false-val</code> if <code>condition</code> is <code>false</code>.</p>
-<p><code>condition</code> must be of type <code>bool</code>.</p>
-<h3><a class="header" href="#irange-a-b-step" id="irange-a-b-step">[irange: a; b?; step?]</a></h3>
+<h3><a class="header" href="#parameters-4" id="parameters-4">Parameters</a></h3>
+<p><strong><code>condition</code></strong> ← <code>bool</code> <br/>
+The boolean value to use to select the output.</p>
+<p><strong><code>true-val</code></strong> ← <code>any</code> <br/>
+The value to print if <code>condition</code> is true.</p>
+<p><strong><code>false-val</code></strong> ← <code>any</code> <br/>
+The value to print if <code>condition</code> is false.</p>
+<h2><a class="header" href="#irange" id="irange">irange</a></h2>
+<pre><code class="language-rant">
+[%irange: a; b?; step?]
+
+</code></pre>
 <p>→ <code>range</code></p>
 <p>Creates a new <strong>inclusive</strong> <code>range</code> with the specified bounds and step value.</p>
 <ul>
@@ -1684,13 +1724,24 @@ Its complement is <code>@issame</code>.</p>
 </ul>
 <p>The <code>step</code> value determines the spacing of the range values and must be a positive integer. A step value of 0 defaults to 1.</p>
 <p>The <code>step</code> value does not affect the first value in the range and is only applied on subsequent values.</p>
-<h3><a class="header" href="#fork-seed" id="fork-seed">[fork: seed?]</a></h3>
+<h3><a class="header" href="#parameters-5" id="parameters-5">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>int</code> <br/>
+The starting (inclusive) bound. Used as the ending (inclusive) bound if <code>b</code> is omitted.</p>
+<p><strong><code>b</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The ending (inclusive) bound.</p>
+<p><strong><code>step</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The absolute difference between adjacent values in the range.</p>
+<h2><a class="header" href="#fork" id="fork">fork</a></h2>
+<pre><code class="language-rant">
+[%fork: seed?]
+
+</code></pre>
 <p>Forks (overrides) the current RNG with a new RNG seeded by both the old RNG's seed and the specified seed.
 If no seed is provided, a random one is generated.</p>
-<p>The seed value must be an <code>int</code> or <code>string</code>.</p>
-<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
-<p>Causes a runtime error if <code>seed</code> is neither an <code>int</code> nor <code>string</code>.</p>
-<h4><a class="header" href="#example-4" id="example-4">Example</a></h4>
+<h3><a class="header" href="#parameters-6" id="parameters-6">Parameters</a></h3>
+<p><strong><code>seed</code></strong> ← <code>int | string</code> <em>(optional)</em> <br/>
+The seed value to branch with.</p>
+<h3><a class="header" href="#example-4" id="example-4">Example</a></h3>
 <pre><code class="language-rant"># Entangles {yee|woo} with {haw|hoo}, i.e. forces them both to pick the same index
 
 [fork:a]{yee|woo}[unfork]-
@@ -1698,9 +1749,20 @@ If no seed is provided, a random one is generated.</p>
 
 # Output is either &quot;yee-haw!&quot; or &quot;woo-hoo!&quot;
 </code></pre>
-<h3><a class="header" href="#nop-args" id="nop-args">[nop: args*]</a></h3>
+<h2><a class="header" href="#nop" id="nop">nop</a></h2>
+<pre><code class="language-rant">
+[%nop: args*]
+
+</code></pre>
 <p>Does absolutely nothing. Intended as a convenience function for use as a default/placeholder callback.</p>
-<h3><a class="header" href="#range-a-b-step" id="range-a-b-step">[range: a; b?; step?]</a></h3>
+<h3><a class="header" href="#parameters-7" id="parameters-7">Parameters</a></h3>
+<p><strong><code>args</code></strong> ← <code>any*</code> <br/>
+The arguments to unceremoniously toss into a bottomless void, never to be seen again.</p>
+<h2><a class="header" href="#range-1" id="range-1">range</a></h2>
+<pre><code class="language-rant">
+[%range: a; b?; step?]
+
+</code></pre>
 <p>→ <code>range</code></p>
 <p>Creates a new <strong>exclusive</strong> <code>range</code> with the specified bounds and step value.</p>
 <ul>
@@ -1709,25 +1771,52 @@ If no seed is provided, a random one is generated.</p>
 </ul>
 <p>The <code>step</code> value determines the spacing of the range values and must be a positive integer. A step value of 0 defaults to 1.</p>
 <p>The <code>step</code> value does not affect the first value in the range and is only applied on subsequent values.</p>
-<h3><a class="header" href="#require-module-path" id="require-module-path">[require: module-path]</a></h3>
+<h3><a class="header" href="#parameters-8" id="parameters-8">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>int</code> <br/>
+The starting (inclusive) bound. Used as the ending (exclusive) bound if <code>b</code> is omitted.</p>
+<p><strong><code>b</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The ending (exclusive) bound.</p>
+<p><strong><code>step</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The absolute difference between adjacent values in the range.</p>
+<h2><a class="header" href="#require" id="require">require</a></h2>
+<pre><code class="language-rant">
+[%require: module-path]
+
+</code></pre>
 <p>Imports the module at the specified relative path and assigns it to a local variable with a name matching the file name.</p>
 <p>Rant requires module files to have the <code>.rant</code> extension in order to load them; as such, it is not necessary to supply the file extension in the path.</p>
-<h4><a class="header" href="#example-5" id="example-5">Example</a></h4>
+<h3><a class="header" href="#parameters-9" id="parameters-9">Parameters</a></h3>
+<p><strong><code>module-path</code></strong> ← <code>string</code> <br/>
+The path to the module to load.</p>
+<h3><a class="header" href="#example-5" id="example-5">Example</a></h3>
 <pre><code class="language-rant"># Import module `my-module`
 [require: my-module]
 
 # Call `hello-world` function in `my-module`
 [my-module/hello-world]
 </code></pre>
-<h3><a class="header" href="#resolve-block" id="resolve-block">[resolve: block]</a></h3>
+<h2><a class="header" href="#resolve" id="resolve">resolve</a></h2>
+<pre><code class="language-rant">
+[%resolve: block]
+
+</code></pre>
 <p>→ <code>any</code> or <code>empty</code></p>
 <p>Resolves the specified block.</p>
-<h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
-<p>Causes a runtime error if the provided value is not a block.</p>
-<h3><a class="header" href="#seed" id="seed">[seed]</a></h3>
+<h3><a class="header" href="#parameters-10" id="parameters-10">Parameters</a></h3>
+<p><strong><code>block</code></strong> ← <code>block</code> <br/>
+The block to resolve.</p>
+<h2><a class="header" href="#seed" id="seed">seed</a></h2>
+<pre><code class="language-rant">
+[%seed]
+
+</code></pre>
 <p>→ <code>int</code></p>
-<p>Returns the seed value of the currently active runtime RNG.</p>
-<h3><a class="header" href="#type-value" id="type-value">[type: value]</a></h3>
+<p>Prints the seed value of the currently active runtime RNG.</p>
+<h2><a class="header" href="#type" id="type">type</a></h2>
+<pre><code class="language-rant">
+[%type: value]
+
+</code></pre>
 <p>→ <code>string</code></p>
 <p>Returns the name of <code>value</code>'s type. The type name can be any of the following:</p>
 <ul>
@@ -1741,7 +1830,14 @@ If no seed is provided, a random one is generated.</p>
 <li><code>special</code></li>
 <li><code>empty</code></li>
 </ul>
-<h3><a class="header" href="#unfork" id="unfork">[unfork]</a></h3>
+<h3><a class="header" href="#parameters-11" id="parameters-11">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value whose type name to retrieve.</p>
+<h2><a class="header" href="#unfork" id="unfork">unfork</a></h2>
+<pre><code class="language-rant">
+[%unfork]
+
+</code></pre>
 <p>Removes the last RNG created by <code>[fork]</code> and resumes use of the previous RNG.</p>
 <h1><a class="header" href="#standard-library-attributes--control-flow" id="standard-library-attributes--control-flow">Standard Library: Attributes &amp; Control flow</a></h1>
 <h3><a class="header" href="#count-attrs" id="count-attrs">[count-attrs]</a></h3>
@@ -1782,7 +1878,7 @@ If no seed is provided, a random one is generated.</p>
 <p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
 <h3><a class="header" href="#pop-attrs" id="pop-attrs">[pop-attrs]</a></h3>
 <p>Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.</p>
-<h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
+<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
 <p>Popping the last attribute frame results in a runtime error.</p>
 <h3><a class="header" href="#rep-reps" id="rep-reps">[rep: reps]</a></h3>
 <p>Sets the repetition count for the next block to <code>reps</code>.
@@ -1896,7 +1992,7 @@ Each key in <code>keys</code> will be matched with the value at the same index i
 </code></pre>
 <h3><a class="header" href="#clear-collection" id="clear-collection">[clear: collection]</a></h3>
 <p>Removes all elements from a list or map.</p>
-<h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
+<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
 <p>Causes a runtime error if <code>collection</code> is not a list or map.</p>
 <h3><a class="header" href="#collect-values" id="collect-values">[collect: values*]</a></h3>
 <p>→ <code>list</code></p>
@@ -2023,7 +2119,7 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
 <p>Inserts <code>value</code> into a list or map at the position <code>pos</code>.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-5" id="errors-5">Errors</a></h4>
+<h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
@@ -2039,7 +2135,7 @@ All other value types give a length of 1.</p>
 <p>Removes the value at the <code>pos</code> from a list or map.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-6" id="errors-6">Errors</a></h4>
+<h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
@@ -2162,14 +2258,14 @@ If the number of elements in the list is less than or equal to <code>target-size
 <p>Removes the value at <code>pos</code> from a list or map and prints it.</p>
 <p>If <code>collection</code> is a <code>list</code>, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a <code>map</code>, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-7" id="errors-7">Errors</a></h4>
+<h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
 <p>Causes a runtime error if any of the following are true:</p>
 <ul>
 <li><code>collection</code> is not a list or map</li>
 <li><code>pos</code> is an unsupported type for the provided collection</li>
 <li><code>collection</code> is a list and <code>pos</code> is out of range</li>
 </ul>
-<h4><a class="header" href="#errors-8" id="errors-8">Errors</a></h4>
+<h4><a class="header" href="#errors-5" id="errors-5">Errors</a></h4>
 <p>Causes a runtime error if <code>collection</code> is a list and the <code>pos</code> is out of range.</p>
 <h3><a class="header" href="#translate-list-map" id="translate-list-map">[translate: list; map]</a></h3>
 <p>→ <code>list</code></p>
@@ -2279,7 +2375,7 @@ You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
 <p>→ <code>list</code></p>
 <p>Generates a list of <code>count</code> random numbers that vary from each other by <code>variance</code>, and whose sum equals <code>input</code>.</p>
 <p>All three arguments must be numbers, and <code>count</code> must be an <code>int</code>.</p>
-<h4><a class="header" href="#errors-9" id="errors-9">Errors</a></h4>
+<h4><a class="header" href="#errors-6" id="errors-6">Errors</a></h4>
 <p>Causes a runtime error if:</p>
 <ul>
 <li><code>input</code>, <code>count</code>, or <code>variance</code> is not a number</li>
@@ -2348,7 +2444,7 @@ Output:
 <h3><a class="header" href="#abs-num" id="abs-num">[abs: num]</a></h3>
 <p>→ <code>int</code> or <code>float</code></p>
 <p>Calculates the absolute value of <code>num</code>.</p>
-<h4><a class="header" href="#errors-10" id="errors-10">Errors</a></h4>
+<h4><a class="header" href="#errors-7" id="errors-7">Errors</a></h4>
 <p>Raises an error if <code>num</code> is an integer and the absolute value overflows.</p>
 <h3><a class="header" href="#add-lhs-rhs" id="add-lhs-rhs">[add: lhs; rhs]</a></h3>
 <p>→ <code>any</code></p>
@@ -2444,7 +2540,7 @@ before the minimum value is calculated.</p>
 <p>Calculates the square root of <code>x</code>.</p>
 <h3><a class="header" href="#pow-x-y" id="pow-x-y">[pow: x; y]</a></h3>
 <p>Raises <code>x</code> to the power of <code>y</code>. Both <code>x</code> and <code>y</code> can be <code>int</code> or <code>float</code>.</p>
-<h4><a class="header" href="#errors-11" id="errors-11">Errors</a></h4>
+<h4><a class="header" href="#errors-8" id="errors-8">Errors</a></h4>
 <p>Raises an overflow error if a <code>x</code> is an <code>int</code> and <code>x ^ y</code> causes an overflow.</p>
 <h1><a class="header" href="#standard-library-conversion-functions" id="standard-library-conversion-functions">Standard Library: Conversion functions</a></h1>
 <h3><a class="header" href="#float-value" id="float-value">[float: value]</a></h3>
@@ -2511,11 +2607,20 @@ This is equivalent to calling <code>[copy]</code> on the list.</p>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>string</code>.</p>
 <h1><a class="header" href="#assertion" id="assertion">Assertion</a></h1>
-<h3><a class="header" href="#assert-condition-message" id="assert-condition-message">[assert: condition; message?]</a></h3>
-<p>Asserts that <code>condition</code> is true.</p>
+<h2><a class="header" href="#assert" id="assert">assert</a></h2>
+<pre><code class="language-rant">
+[%assert: condition; message?]
+
+</code></pre>
+<p>Verifies that <code>condition</code> is true before continuing program execution.</p>
 <p>If <code>condition</code> is <code>false</code>, raises a runtime error; if <code>true</code>, does nothing.</p>
 <p>The message displayed in the runtime error can be customized by passing a string to <code>message</code>. </p>
-<h4><a class="header" href="#examples-10" id="examples-10">Examples</a></h4>
+<h3><a class="header" href="#parameters-12" id="parameters-12">Parameters</a></h3>
+<p><strong><code>condition</code></strong> ← <code>bool</code> <br/>
+The condition to check.</p>
+<p><strong><code>message</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
+The error message to display if the condition is not satisfied.</p>
+<h3><a class="header" href="#examples-10" id="examples-10">Examples</a></h3>
 <pre><code class="language-rant"># does absolutely nothing
 [assert: true]
 
@@ -2525,16 +2630,47 @@ This is equivalent to calling <code>[copy]</code> on the list.</p>
 # [assertion error] ooooops!
 [assert: false; &quot;ooooops!&quot;] 
 </code></pre>
-<h3><a class="header" href="#assert-eq-actual-expected-message" id="assert-eq-actual-expected-message">[assert-eq: actual; expected; message?]</a></h3>
-<p>Asserts that <code>expected</code> and <code>actual</code> are equal.</p>
+<h2><a class="header" href="#assert-eq" id="assert-eq">assert-eq</a></h2>
+<pre><code class="language-rant">
+[%assert-eq: actual; expected; message?]
+
+</code></pre>
+<p>Verifies that <code>expected</code> and <code>actual</code> are equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
-<h3><a class="header" href="#assert-neq-actual-unexpected-message" id="assert-neq-actual-unexpected-message">[assert-neq: actual; unexpected; message?]</a></h3>
-<p>Asserts that <code>unexpected</code> and <code>actual</code> are not equal.</p>
+<h3><a class="header" href="#parameters-13" id="parameters-13">Parameters</a></h3>
+<p><strong><code>actual</code></strong> ← <code>any</code> <br/>
+The actual value to test.</p>
+<p><strong><code>expected</code></strong> ← <code>any</code> <br/>
+The expected value to test against.</p>
+<p><strong><code>message</code></strong> ← <code>string</code> <br/>
+The error message to display if the condition is not satisfied.</p>
+<h2><a class="header" href="#assert-neq" id="assert-neq">assert-neq</a></h2>
+<pre><code class="language-rant">
+[%assert-neq: actual; unexpected; message?]
+
+</code></pre>
+<p>Verifies that <code>unexpected</code> and <code>actual</code> are not equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
+<h3><a class="header" href="#parameters-14" id="parameters-14">Parameters</a></h3>
+<p><strong><code>actual</code></strong> ← <code>any</code> <br/>
+The actual value to test.</p>
+<p><strong><code>unexpected</code></strong> ← <code>any</code> <br/>
+The unexpected value to test against.</p>
+<p><strong><code>message</code></strong> ← <code>string</code> <br/>
+The error message to display if the condition is not satisfied.</p>
 <h1><a class="header" href="#standard-library-constants" id="standard-library-constants">Standard Library: Constants</a></h1>
-<h3><a class="header" href="#rant_version" id="rant_version">RANT_VERSION</a></h3>
+<h2><a class="header" href="#rant_version" id="rant_version">RANT_VERSION</a></h2>
 <p><code>string</code></p>
 <p>The version of the Rant language currently being used.</p>
+<h2><a class="header" href="#infinity" id="infinity">INFINITY</a></h2>
+<p><code>float</code></p>
+<p>The floating-point special value for positive infinity.</p>
+<h2><a class="header" href="#neg_infinity" id="neg_infinity">NEG_INFINITY</a></h2>
+<p><code>float</code></p>
+<p>The floating-point special value for negative infinity.</p>
+<h2><a class="header" href="#nan" id="nan">NAN</a></h2>
+<p><code>float</code></p>
+<p>The floating-point special value for NaN (Not a Number).</p>
 <h1><a class="header" href="#glossary" id="glossary">Glossary</a></h1>
 <h3><a class="header" href="#accessor" id="accessor">Accessor</a></h3>
 <p>Accessors are program elements that read or write values. They are the primary means of interacting with variables.</p>

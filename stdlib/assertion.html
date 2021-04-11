@@ -162,11 +162,20 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#assertion" id="assertion">Assertion</a></h1>
-<h3><a class="header" href="#assert-condition-message" id="assert-condition-message">[assert: condition; message?]</a></h3>
-<p>Asserts that <code>condition</code> is true.</p>
+<h2><a class="header" href="#assert" id="assert">assert</a></h2>
+<pre><code class="language-rant">
+[%assert: condition; message?]
+
+</code></pre>
+<p>Verifies that <code>condition</code> is true before continuing program execution.</p>
 <p>If <code>condition</code> is <code>false</code>, raises a runtime error; if <code>true</code>, does nothing.</p>
 <p>The message displayed in the runtime error can be customized by passing a string to <code>message</code>. </p>
-<h4><a class="header" href="#examples" id="examples">Examples</a></h4>
+<h3><a class="header" href="#parameters" id="parameters">Parameters</a></h3>
+<p><strong><code>condition</code></strong> ← <code>bool</code> <br/>
+The condition to check.</p>
+<p><strong><code>message</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
+The error message to display if the condition is not satisfied.</p>
+<h3><a class="header" href="#examples" id="examples">Examples</a></h3>
 <pre><code class="language-rant"># does absolutely nothing
 [assert: true]
 
@@ -176,12 +185,34 @@
 # [assertion error] ooooops!
 [assert: false; &quot;ooooops!&quot;] 
 </code></pre>
-<h3><a class="header" href="#assert-eq-actual-expected-message" id="assert-eq-actual-expected-message">[assert-eq: actual; expected; message?]</a></h3>
-<p>Asserts that <code>expected</code> and <code>actual</code> are equal.</p>
+<h2><a class="header" href="#assert-eq" id="assert-eq">assert-eq</a></h2>
+<pre><code class="language-rant">
+[%assert-eq: actual; expected; message?]
+
+</code></pre>
+<p>Verifies that <code>expected</code> and <code>actual</code> are equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
-<h3><a class="header" href="#assert-neq-actual-unexpected-message" id="assert-neq-actual-unexpected-message">[assert-neq: actual; unexpected; message?]</a></h3>
-<p>Asserts that <code>unexpected</code> and <code>actual</code> are not equal.</p>
+<h3><a class="header" href="#parameters-1" id="parameters-1">Parameters</a></h3>
+<p><strong><code>actual</code></strong> ← <code>any</code> <br/>
+The actual value to test.</p>
+<p><strong><code>expected</code></strong> ← <code>any</code> <br/>
+The expected value to test against.</p>
+<p><strong><code>message</code></strong> ← <code>string</code> <br/>
+The error message to display if the condition is not satisfied.</p>
+<h2><a class="header" href="#assert-neq" id="assert-neq">assert-neq</a></h2>
+<pre><code class="language-rant">
+[%assert-neq: actual; unexpected; message?]
+
+</code></pre>
+<p>Verifies that <code>unexpected</code> and <code>actual</code> are not equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
+<h3><a class="header" href="#parameters-2" id="parameters-2">Parameters</a></h3>
+<p><strong><code>actual</code></strong> ← <code>any</code> <br/>
+The actual value to test.</p>
+<p><strong><code>unexpected</code></strong> ← <code>any</code> <br/>
+The unexpected value to test against.</p>
+<p><strong><code>message</code></strong> ← <code>string</code> <br/>
+The error message to display if the condition is not satisfied.</p>
 
                     </main>
 

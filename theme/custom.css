@@ -10,3 +10,8 @@ table td {
 table td code {
     white-space: nowrap;
 }
+
+strong code.hljs {
+    font-family: "Source Code Pro", "Consolas", "Courier New", monospace !important;
+    font-weight: bolder;
+}
