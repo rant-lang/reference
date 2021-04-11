@@ -2,3 +2,11 @@ code {
     font-family: "Consolas", "Courier New", "Dajavu Sans Mono", monospace !important;
     font-weight: bolder;
 }
+
+table td {
+    padding: 3px 12px !important;
+}
+
+table td code {
+    white-space: nowrap;
+}

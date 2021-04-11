@@ -22,6 +22,62 @@ The following functions are available:
 | `[num-fmt-group-sep]`   | Get or set the group separator                                            |
 | `[num-fmt-decimal-sep]` | Get or set the decimal separator                                          |
 
+## Options
+
+The below table describes each option available in the number formatter.
+
+| Name          |   Type   |     Default     | Description                                                                        |
+|---------------|:--------:|:---------------:|:-----------------------------------------------------------------------------------|
+| `system`      | `string` |  `west-arabic`  | Numeral system to render numbers in<br/>*(See associated table)*                   |
+| `alt`         |  `bool`  |     `false`     | Enables alternate formatting for the selected system                               |
+| `precision`   |  `int`   |      `-1`       | Number of decimal places to pad/truncate to; set to -1 to disable                  |
+| `padding`     |  `int`   |       `0`       | Minimum number of digits to pad the integral component to                          |
+| `upper`       |  `bool`  |     `false`     | Enables current system's uppercase form                                            |
+| `endian`      | `string` |      `big`      | Byte order for power-of-two bases (hex, binary...). <br/> *(See associated table)* |
+| `sign`        | `string` | `negative-only` | Sign formatting style<br/>*(See associated table)*                                 |
+| `infinity`    | `string` |    `keyword`    | Infinity formatting style <br/> *(See associated table)*                           |
+| `group-sep`   | `string` |      `""`       | Digit group separator                                                              |
+| `decimal-sep` | `string` |      `""`       | Decimal group separator; if not specified, defaults to `"."`                       |
+
+### The `system` option
+
+| Value         | Description                                                         | Example (1234) |
+|---------------|---------------------------------------------------------------------|:--------------:|
+| `default`     | (Set-only) Same as `west-arabic`                                    |      1234      |
+| `west-arabic` | Western Arabic numerals *(default)*                                 |      1234      |
+| `east-arabic` | Eastern Arabic numerals                                             |      ١٢٣٤      |
+| `persian`     | Persian numerals                                                    |      ۱۲۳۴      |
+| `babylonian`  | Babylonian cuneiform numerals. Truncates decimals.                  |   𒌋𒌋 𒌍𒐘    |
+| `roman`       | Roman numerals. Truncates decimals.                                 |    mccxxxiv    |
+| `hex`         | Hexadecimal (base 16); Floats use IEEE 754 double-precision format. |      4d2       |
+| `octal`       | Octal (base 8); Floats use IEEE 754 double-precision format.        |      2322      |
+| `binary`      | Binary (base 2); Floats use IEEE 754 double-precision format.       |  10011010010   |
+
+### The `endian` option
+
+| Value     | Description                                                  |
+|-----------|--------------------------------------------------------------|
+| `default` | (Set-only) Same as `big`                                     |
+| `big`     | Specifies big-endian byte order (MSB goes first) *(default)* |
+| `little`  | Specifies little-endian byte order (LSB goes first)          |
+
+### The `sign` option
+
+| Value               | Description                                                                        |
+|---------------------|------------------------------------------------------------------------------------|
+| `default`           | (Set-only) Same as `negative-only`                                                 |
+| `negative-only`     | Show a minus on negative numbers; otherwise, nothing.                              |
+| `explicit`          | Show a plus on positive numbers (including zero), and a minus on negative numbers. |
+| `explicit-non-zero` | Show a plus on positive numbers, nothing on zero, and a minus on negative numbers. |
+
+### The `infinity` option
+
+| Value     | Description                                                                  |
+|-----------|------------------------------------------------------------------------------|
+| `default` | (Set-only) Same as `keyword`                                                 |
+| `keyword` | Uses `-infinity` for negative infinity and `infinity` for positive infinity. |
+| `symbol`  | Uses `-∞` for negative infinity and `∞` for positive infinity.               |
+
 ## Using [num-fmt]
 
 The `[num-fmt]` function is the simplest way to configure complex formats. 
