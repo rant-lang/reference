@@ -179,6 +179,51 @@
 <tr><td><code>[num-fmt-group-sep]</code></td><td>Get or set the group separator</td></tr>
 <tr><td><code>[num-fmt-decimal-sep]</code></td><td>Get or set the decimal separator</td></tr>
 </tbody></table>
+<h2><a class="header" href="#options" id="options">Options</a></h2>
+<p>The below table describes each option available in the number formatter.</p>
+<table><thead><tr><th>Name</th><th align="center">Type</th><th align="center">Default</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td><code>system</code></td><td align="center"><code>string</code></td><td align="center"><code>west-arabic</code></td><td align="left">Numeral system to render numbers in<br/><em>(See associated table)</em></td></tr>
+<tr><td><code>alt</code></td><td align="center"><code>bool</code></td><td align="center"><code>false</code></td><td align="left">Enables alternate formatting for the selected system</td></tr>
+<tr><td><code>precision</code></td><td align="center"><code>int</code></td><td align="center"><code>-1</code></td><td align="left">Number of decimal places to pad/truncate to; set to -1 to disable</td></tr>
+<tr><td><code>padding</code></td><td align="center"><code>int</code></td><td align="center"><code>0</code></td><td align="left">Minimum number of digits to pad the integral component to</td></tr>
+<tr><td><code>upper</code></td><td align="center"><code>bool</code></td><td align="center"><code>false</code></td><td align="left">Enables current system's uppercase form</td></tr>
+<tr><td><code>endian</code></td><td align="center"><code>string</code></td><td align="center"><code>big</code></td><td align="left">Byte order for power-of-two bases (hex, binary...). <br/> <em>(See associated table)</em></td></tr>
+<tr><td><code>sign</code></td><td align="center"><code>string</code></td><td align="center"><code>negative-only</code></td><td align="left">Sign formatting style<br/><em>(See associated table)</em></td></tr>
+<tr><td><code>infinity</code></td><td align="center"><code>string</code></td><td align="center"><code>keyword</code></td><td align="left">Infinity formatting style <br/> <em>(See associated table)</em></td></tr>
+<tr><td><code>group-sep</code></td><td align="center"><code>string</code></td><td align="center"><code>&quot;&quot;</code></td><td align="left">Digit group separator</td></tr>
+<tr><td><code>decimal-sep</code></td><td align="center"><code>string</code></td><td align="center"><code>&quot;&quot;</code></td><td align="left">Decimal group separator; if not specified, defaults to <code>&quot;.&quot;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#the-system-option" id="the-system-option">The <code>system</code> option</a></h3>
+<table><thead><tr><th>Value</th><th>Description</th><th align="center">Example (1234)</th></tr></thead><tbody>
+<tr><td><code>default</code></td><td>(Set-only) Same as <code>west-arabic</code></td><td align="center">1234</td></tr>
+<tr><td><code>west-arabic</code></td><td>Western Arabic numerals <em>(default)</em></td><td align="center">1234</td></tr>
+<tr><td><code>east-arabic</code></td><td>Eastern Arabic numerals</td><td align="center">١٢٣٤</td></tr>
+<tr><td><code>persian</code></td><td>Persian numerals</td><td align="center">۱۲۳۴</td></tr>
+<tr><td><code>babylonian</code></td><td>Babylonian cuneiform numerals. Truncates decimals.</td><td align="center">𒌋𒌋 𒌍𒐘</td></tr>
+<tr><td><code>roman</code></td><td>Roman numerals. Truncates decimals.</td><td align="center">mccxxxiv</td></tr>
+<tr><td><code>hex</code></td><td>Hexadecimal (base 16); Floats use IEEE 754 double-precision format.</td><td align="center">4d2</td></tr>
+<tr><td><code>octal</code></td><td>Octal (base 8); Floats use IEEE 754 double-precision format.</td><td align="center">2322</td></tr>
+<tr><td><code>binary</code></td><td>Binary (base 2); Floats use IEEE 754 double-precision format.</td><td align="center">10011010010</td></tr>
+</tbody></table>
+<h3><a class="header" href="#the-endian-option" id="the-endian-option">The <code>endian</code> option</a></h3>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>default</code></td><td>(Set-only) Same as <code>big</code></td></tr>
+<tr><td><code>big</code></td><td>Specifies big-endian byte order (MSB goes first) <em>(default)</em></td></tr>
+<tr><td><code>little</code></td><td>Specifies little-endian byte order (LSB goes first)</td></tr>
+</tbody></table>
+<h3><a class="header" href="#the-sign-option" id="the-sign-option">The <code>sign</code> option</a></h3>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>default</code></td><td>(Set-only) Same as <code>negative-only</code></td></tr>
+<tr><td><code>negative-only</code></td><td>Show a minus on negative numbers; otherwise, nothing.</td></tr>
+<tr><td><code>explicit</code></td><td>Show a plus on positive numbers (including zero), and a minus on negative numbers.</td></tr>
+<tr><td><code>explicit-non-zero</code></td><td>Show a plus on positive numbers, nothing on zero, and a minus on negative numbers.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#the-infinity-option" id="the-infinity-option">The <code>infinity</code> option</a></h3>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>default</code></td><td>(Set-only) Same as <code>keyword</code></td></tr>
+<tr><td><code>keyword</code></td><td>Uses <code>-infinity</code> for negative infinity and <code>infinity</code> for positive infinity.</td></tr>
+<tr><td><code>symbol</code></td><td>Uses <code>-∞</code> for negative infinity and <code>∞</code> for positive infinity.</td></tr>
+</tbody></table>
 <h2><a class="header" href="#using-num-fmt" id="using-num-fmt">Using [num-fmt]</a></h2>
 <p>The <code>[num-fmt]</code> function is the simplest way to configure complex formats. 
 It enables you to set multiple options at once, or get a map of all current option values.</p>
