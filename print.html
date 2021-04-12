@@ -2477,7 +2477,7 @@ Values that have no corresponding key in the map are passed through as-is.</p>
 <h3><a class="header" href="#parameters-36" id="parameters-36">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
-<p><strong><code>map</code></strong> ← <code>mao</code> <br/>
+<p><strong><code>map</code></strong> ← <code>map</code> <br/>
 A map associating items in <code>list</code> with their replacements.</p>
 <h3><a class="header" href="#example-15" id="example-15">Example</a></h3>
 <pre><code class="language-rant"># Constructs a substitution cipher function
@@ -2549,43 +2549,103 @@ The current value from <code>list-b</code>.</p>
 [dot: (1; 2; 3); (4; 5; 6)] # 32
 </code></pre>
 <h1><a class="header" href="#standard-library-generators" id="standard-library-generators">Standard Library: Generators</a></h1>
-<h3><a class="header" href="#dig-count" id="dig-count">[dig: count?]</a></h3>
+<h2><a class="header" href="#dig" id="dig">dig</a></h2>
+<pre><code class="language-rant">
+[%dig: count?]
+
+</code></pre>
 <p>→ <code>string</code></p>
 <p>Prints a uniformly random decimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
+<h3><a class="header" href="#parameters-38" id="parameters-38">Parameters</a></h3>
+<p><strong><code>count</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The number of digits to generate. Defaults to 1.</p>
+<h3><a class="header" href="#example-16" id="example-16">Example</a></h3>
 <pre><code class="language-rant"># Generate a random 32-character decimal string
 [dig:32] # ~&gt; 01952208554533821061510695429126
 </code></pre>
-<h3><a class="header" href="#digh-count" id="digh-count">[digh: count?]</a></h3>
+<h2><a class="header" href="#digh" id="digh">digh</a></h2>
+<pre><code class="language-rant">
+[%digh: count?]
+
+</code></pre>
 <p>→ <code>string</code></p>
 <p>Prints a uniformly random lowercase hexadecimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
-<h4><a class="header" href="#example-16" id="example-16">Example</a></h4>
+<h3><a class="header" href="#parameters-39" id="parameters-39">Parameters</a></h3>
+<p><strong><code>count</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The number of digits to generate. Defaults to 1.</p>
+<h3><a class="header" href="#example-17" id="example-17">Example</a></h3>
 <pre><code class="language-rant"># Generate a random 32-character hex string
 [digh:32] # ~&gt; f4e5bef31ea02eac22f220e68e837587
 </code></pre>
-<h3><a class="header" href="#dignz-count" id="dignz-count">[dignz: count?]</a></h3>
+<h2><a class="header" href="#dignz" id="dignz">dignz</a></h2>
+<pre><code class="language-rant">
+[%dignz: count?]
+
+</code></pre>
 <p>→ <code>string</code></p>
 <p>Prints a uniformly random non-zero decimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
+<h3><a class="header" href="#parameters-40" id="parameters-40">Parameters</a></h3>
+<p><strong><code>count</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The number of digits to generate. Defaults to 1.</p>
+<h3><a class="header" href="#example-18" id="example-18">Example</a></h3>
 <pre><code class="language-rant"># Generate a random 32-character decimal string without zeros
 [dignz:32] # ~&gt; 92558761934966287236132511739511
 </code></pre>
-<h3><a class="header" href="#maybe-p" id="maybe-p">[maybe: p?]</a></h3>
+<h2><a class="header" href="#maybe" id="maybe">maybe</a></h2>
+<pre><code class="language-rant">
+[%maybe: p?]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns a <code>bool</code> value with <code>p</code> probability of being true.</p>
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
-<h3><a class="header" href="#rand-a-b" id="rand-a-b">[rand: a; b]</a></h3>
+<h3><a class="header" href="#parameters-41" id="parameters-41">Parameters</a></h3>
+<p><strong><code>p</code></strong> ← <code>float | empty</code> <br/>
+The probability (0.0 &lt;= p &lt;= 1.0) of the printed boolean being true. 
+If omitted or empty, defaults to 0.5.</p>
+<h2><a class="header" href="#rand" id="rand">rand</a></h2>
+<pre><code class="language-rant">
+[%rand: a; b]
+
+</code></pre>
 <p>→ <code>int</code></p>
 <p>Prints a random integer with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
-<h4><a class="header" href="#example-17" id="example-17">Example</a></h4>
+<h3><a class="header" href="#parameters-42" id="parameters-42">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>int</code> <br/>
+The first inclusive bound of the random number.</p>
+<p><strong><code>b</code></strong> ← <code>int</code> <br/>
+The second inclusive bound of the random number.</p>
+<h3><a class="header" href="#example-19" id="example-19">Example</a></h3>
 <pre><code class="language-rant">You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 </code></pre>
-<h3><a class="header" href="#randf-a-b" id="randf-a-b">[randf: a; b]</a></h3>
+<h2><a class="header" href="#randf" id="randf">randf</a></h2>
+<pre><code class="language-rant">
+[%randf: a; b]
+
+</code></pre>
 <p>→ <code>float</code></p>
 <p>Prints a random float with uniform distribution between <code>a</code> (inclusive) and <code>b</code> (exclusive).</p>
-<h3><a class="header" href="#rand-list-a-b-n" id="rand-list-a-b-n">[rand-list: a; b; n]</a></h3>
+<h3><a class="header" href="#parameters-43" id="parameters-43">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>float</code> <br/>
+The first inclusive bound of the random number.</p>
+<p><strong><code>b</code></strong> ← <code>float</code> <br/>
+The second inclusive bound of the random number.</p>
+<h2><a class="header" href="#rand-list" id="rand-list">rand-list</a></h2>
+<pre><code class="language-rant">
+[%rand-list: a; b; n]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Prints a list of <code>n</code> random integers with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
-<h4><a class="header" href="#example-18" id="example-18">Example</a></h4>
+<h3><a class="header" href="#parameters-44" id="parameters-44">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>int</code> <br/>
+The first inclusive bound of the random numbers.</p>
+<p><strong><code>b</code></strong> ← <code>int</code> <br/>
+The second inclusive bound of the random numbers.</p>
+<p><strong><code>n</code></strong> ← <code>int</code> <br/>
+The amount of numbers to generate.</p>
+<h3><a class="header" href="#example-20" id="example-20">Example</a></h3>
 <pre><code class="language-rant"># 2-dice roll
 
 &lt;$roll = [rand-list: 1; 6; 2]&gt;
@@ -2593,20 +2653,37 @@ You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
 
 # ~&gt; You rolled 5 and 3 for a total of 8.
 </code></pre>
-<h3><a class="header" href="#randf-list-a-b-n" id="randf-list-a-b-n">[randf-list: a; b; n]</a></h3>
+<h3><a class="header" href="#randf-1" id="randf-1">randf</a></h3>
+<pre><code class="language-rant">
+[%randf-list: a; b; n]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Prints a list of <code>n</code> random floats with uniform distribution between <code>a</code> (inclusive) and <code>b</code> (exclusive).</p>
-<h3><a class="header" href="#shred-input-count-variance" id="shred-input-count-variance">[shred: input; count; variance]</a></h3>
+<h3><a class="header" href="#parameters-45" id="parameters-45">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>float</code> <br/>
+The first inclusive bound of the random numbers.</p>
+<p><strong><code>b</code></strong> ← <code>float</code> <br/>
+The second inclusive bound of the random numbers.</p>
+<p><strong><code>n</code></strong> ← <code>int</code> <br/>
+The amount of numbers to generate.</p>
+<h2><a class="header" href="#shred" id="shred">shred</a></h2>
+<pre><code class="language-rant">
+[%shred: input; count; variance]
+
+</code></pre>
 <p>→ <code>list</code></p>
-<p>Generates a list of <code>count</code> random numbers that vary from each other by <code>variance</code>, and whose sum equals <code>input</code>.</p>
-<p>All three arguments must be numbers, and <code>count</code> must be an <code>int</code>.</p>
-<h4><a class="header" href="#errors-6" id="errors-6">Errors</a></h4>
-<p>Causes a runtime error if:</p>
-<ul>
-<li><code>input</code>, <code>count</code>, or <code>variance</code> is not a number</li>
-<li><code>count</code> is zero or negative</li>
-</ul>
-<h4><a class="header" href="#example-19" id="example-19">Example</a></h4>
+<p>Generates a list of <code>count</code> random numbers, whose sum equals <code>input</code>, and with a maximum absolute difference of <code>variance</code>.</p>
+<h3><a class="header" href="#parameters-46" id="parameters-46">Parameters</a></h3>
+<p><strong><code>input</code></strong> ← <code>int | float</code> <br/>
+The input number to shred.</p>
+<p><strong><code>count</code></strong> ← <code>int</code> <br/>
+The number of parts to shred <code>input</code> into.</p>
+<p><strong><code>variance</code></strong> ← <code>int | float</code> <br/>
+The maximum absolute difference between any two generated numbers. </p>
+<h3><a class="header" href="#errors-6" id="errors-6">Errors</a></h3>
+<p>Raises an error if <code>count</code> is less than 1.</p>
+<h3><a class="header" href="#example-21" id="example-21">Example</a></h3>
 <pre><code class="language-rant"># Generate and print a list of 5 random numbers that add up to 1000
 &lt;$parts = [shred:1000;5;200]&gt;
 [join:&quot; + &quot;;&lt;parts&gt;] = [sum:&lt;parts&gt;]
@@ -2641,7 +2718,7 @@ Output:
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Performs a boolean AND operation on the operands and returns the result.</p>
-<h3><a class="header" href="#parameters-38" id="parameters-38">Parameters</a></h3>
+<h3><a class="header" href="#parameters-47" id="parameters-47">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>bool</code> <br/>
 The left-hand operand.</p>
 <p><strong><code>b</code></strong> ← <code>bool</code> <br/>
@@ -2655,7 +2732,7 @@ Any additional right-hand operands.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns the inverse of the input boolean value.</p>
-<h3><a class="header" href="#parameters-39" id="parameters-39">Parameters</a></h3>
+<h3><a class="header" href="#parameters-48" id="parameters-48">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>bool</code> <br/>
 The value to invert.</p>
 <h2><a class="header" href="#or" id="or">or</a></h2>
@@ -2665,7 +2742,7 @@ The value to invert.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Performs a boolean inclusive OR operation on the operands and returns the result.</p>
-<h3><a class="header" href="#parameters-40" id="parameters-40">Parameters</a></h3>
+<h3><a class="header" href="#parameters-49" id="parameters-49">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>bool</code> <br/>
 The left-hand operand.</p>
 <p><strong><code>b</code></strong> ← <code>bool</code> <br/>
@@ -2679,7 +2756,7 @@ Any additional right-hand operands.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Performs a boolean XOR operation on the operands and returns the result.</p>
-<h3><a class="header" href="#parameters-41" id="parameters-41">Parameters</a></h3>
+<h3><a class="header" href="#parameters-50" id="parameters-50">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>bool</code> <br/>
 The left-hand operand.</p>
 <p><strong><code>b</code></strong> ← <code>bool</code> <br/>
@@ -2878,7 +2955,7 @@ This is equivalent to calling <code>[copy]</code> on the list.</p>
 <p>Verifies that <code>condition</code> is true before continuing program execution.</p>
 <p>If <code>condition</code> is <code>false</code>, raises a runtime error; if <code>true</code>, does nothing.</p>
 <p>The message displayed in the runtime error can be customized by passing a string to <code>message</code>. </p>
-<h3><a class="header" href="#parameters-42" id="parameters-42">Parameters</a></h3>
+<h3><a class="header" href="#parameters-51" id="parameters-51">Parameters</a></h3>
 <p><strong><code>condition</code></strong> ← <code>bool</code> <br/>
 The condition to check.</p>
 <p><strong><code>message</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
@@ -2900,7 +2977,7 @@ The error message to display if the condition is not satisfied.</p>
 </code></pre>
 <p>Verifies that <code>expected</code> and <code>actual</code> are equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
-<h3><a class="header" href="#parameters-43" id="parameters-43">Parameters</a></h3>
+<h3><a class="header" href="#parameters-52" id="parameters-52">Parameters</a></h3>
 <p><strong><code>actual</code></strong> ← <code>any</code> <br/>
 The actual value to test.</p>
 <p><strong><code>expected</code></strong> ← <code>any</code> <br/>
@@ -2914,7 +2991,7 @@ The error message to display if the condition is not satisfied.</p>
 </code></pre>
 <p>Verifies that <code>unexpected</code> and <code>actual</code> are not equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
-<h3><a class="header" href="#parameters-44" id="parameters-44">Parameters</a></h3>
+<h3><a class="header" href="#parameters-53" id="parameters-53">Parameters</a></h3>
 <p><strong><code>actual</code></strong> ← <code>any</code> <br/>
 The actual value to test.</p>
 <p><strong><code>unexpected</code></strong> ← <code>any</code> <br/>
