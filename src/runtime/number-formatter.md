@@ -8,19 +8,19 @@ Each scope maintains its own separate number format. To change the number format
 
 The following functions are available:
 
-| Function                | Desctipyion                                                               |
-|-------------------------|---------------------------------------------------------------------------|
-| `[num-fmt]`             | Set multiple format options at once or get a map of all format options    |
-| `[num-fmt-system]`      | Get or set the current numeral system                                     |
-| `[num-fmt-alt]`         | Get or set the alternate formatting flag                                  |
-| `[num-fmt-precision]`   | Get or set the decimal precision                                          |
-| `[num-fmt-padding]`     | Get or set the padding size for the integral part of the number           |
-| `[num-fmt-upper]`       | Get or set the uppercase formatting flag                                  |
-| `[num-fmt-endian]`      | Get or set the endianness for bytewise representations (hex, binary, etc) |
-| `[num-fmt-sign]`        | Get or set the sign style                                                 |
-| `[num-fmt-infinity]`    | Get or set the infinity style                                             |
-| `[num-fmt-group-sep]`   | Get or set the group separator                                            |
-| `[num-fmt-decimal-sep]` | Get or set the decimal separator                                          |
+| Function                                                             | Desctipyion                                                               |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------|
+| [`[num-fmt]`](/stdlib/formatting.md#num-fmt)                         | Set multiple format options at once or get a map of all format options    |
+| [`[num-fmt-system]`](/stdlib/formatting.md#num-fmt-system)           | Get or set the current numeral system                                     |
+| [`[num-fmt-alt]`](/stdlib/formatting.md#num-fmt-alt)                 | Get or set the alternate formatting flag                                  |
+| [`[num-fmt-precision]`](/stdlib/formatting.md#num-fmt-precision)     | Get or set the decimal precision                                          |
+| [`[num-fmt-padding]`](/stdlib/formatting.md#num-fmt-padding)         | Get or set the padding size for the integral part of the number           |
+| [`[num-fmt-upper]`](/stdlib/formatting.md#num-fmt-upper)             | Get or set the uppercase formatting flag                                  |
+| [`[num-fmt-endian]`](/stdlib/formatting.md#num-fmt-endian)           | Get or set the endianness for bytewise representations (hex, binary, etc) |
+| [`[num-fmt-sign]`](/stdlib/formatting.md#num-fmt-sign)               | Get or set the sign style                                                 |
+| [`[num-fmt-infinity]`](/stdlib/formatting.md#num-fmt-infinity)       | Get or set the infinity style                                             |
+| [`[num-fmt-group-sep]`](/stdlib/formatting.md#num-fmt-group-sep)     | Get or set the group separator                                            |
+| [`[num-fmt-decimal-sep]`](/stdlib/formatting.md#num-fmt-decimal-sep) | Get or set the decimal separator                                          |
 
 ## Options
 
