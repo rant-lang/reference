@@ -1,7 +1,7 @@
 [book]
 title = "Rant Reference"
 description = "The Rant Reference documents the Rant language and standard library."
-authors = ["Nicholas Fleck"]
+authors = ["Berkin"]
 language = "en"
 src = "src"
 

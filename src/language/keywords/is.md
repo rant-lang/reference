@@ -3,15 +3,15 @@
 {{ #include ../../_proposal_msg.md}}
 
 
-Blocks can be used to perform various boolean operations by prefixing them with any of several special @is-keywords. Each element of the attached block acts as a separate operand.
+Sequences can be configured to perform various boolean operations by prefixing them with any of several special @is-keywords. Each printed value acts as a separate operand; whitespace is ignored.
 
 ## Short-circuiting
 
-Some operations are "short-circuiting"-- meaning that Rant may not evaluate all of the expressions in the block if the result can be determined early. For example, if the first operand of a short-circuiting AND operation evaluates to false, we know that the result will be false, so we can skip evaluating the rest of the operands.
+Some operations are "short-circuiting"-- meaning that Rant may not evaluate the entire sequence in the scope if the result can be determined early. For example, if the first operand of a short-circuiting AND operation evaluates to false, we know that the result will be false, so we can skip evaluating the rest of the operands.
 
 ## Eagerness
 
-The `@each` modifier keyword can be placed after the `@is*` keyword to disable short-circuiting; this behavior is known as "eager evaluation."
+The `+` token can be placed after the operator keyword (e.g. `@isany+`) to disable short-circuiting and make the sequence eagerly evaluated.
 
 ## @isany
 
@@ -19,10 +19,10 @@ The `@isany` keyword creates a short-circuiting boolean OR expression.
 
 ### Truth table
 
-| <code>@isany {A &vert; B}</code> | `A = true` | `A = false` |
-|----------------------------------|:----------:|:-----------:|
-| **`B = true`**                   |   `true`   |   `true`    |
-| **`B = false`**                  |   `true`   |   `false`   |
+| `@isany A B`    | `A = true` | `A = false` |
+|-----------------|:----------:|:-----------:|
+| **`B = true`**  |   `true`   |   `true`    |
+| **`B = false`** |   `true`   |   `false`   |
 
 
 ## @isall
@@ -32,10 +32,10 @@ Its complement is `@isntall`.
 
 ### Truth table
 
-| <code>@isall {A &vert; B}</code> | `A = true` | `A = false` |
-|----------------------------------|:----------:|:-----------:|
-| **`B = true`**                   |   `true`   |   `false`   |
-| **`B = false`**                  |  `false`   |   `false`   |
+| `@isall A B`    | `A = true` | `A = false` |
+|-----------------|:----------:|:-----------:|
+| **`B = true`**  |   `true`   |   `false`   |
+| **`B = false`** |  `false`   |   `false`   |
 
 ## @isntall
 
@@ -43,10 +43,10 @@ The `@isntall` keyword creates a short-circuiting boolean NAND expression.
 
 ### Truth table
 
-| <code>@isntall {A &vert; B}</code> | `A = true` | `A = false` |
-|------------------------------------|:----------:|:-----------:|
-| **`B = true`**                     |  `false`   |   `true`    |
-| **`B = false`**                    |   `true`   |   `true`    |
+| `@isntall A B`  | `A = true` | `A = false` |
+|-----------------|:----------:|:-----------:|
+| **`B = true`**  |  `false`   |   `true`    |
+| **`B = false`** |   `true`   |   `true`    |
 
 ## @isnone
 
@@ -55,10 +55,10 @@ Its complement is `@isany`.
 
 ### Truth table
 
-| <code>@isnone {A &vert; B}</code> | `A = true` | `A = false` |
-|-----------------------------------|:----------:|:-----------:|
-| **`B = true`**                    |  `false`   |   `false`   |
-| **`B = false`**                   |  `false`   |   `true`    |
+| `@isnone A B`   | `A = true` | `A = false` |
+|-----------------|:----------:|:-----------:|
+| **`B = true`**  |  `false`   |   `false`   |
+| **`B = false`** |  `false`   |   `true`    |
 
 ## @isone
 
@@ -66,10 +66,10 @@ The `@isone` keyword creates a short-circuiting boolean XOR expression.
 
 ### Truth table
 
-| <code>@isone {A &vert; B}</code> | `A = true` | `A = false` |
-|----------------------------------|:----------:|:-----------:|
-| **`B = true`**                   |  `false`   |   `true`    |
-| **`B = false`**                  |   `true`   |   `false`   |
+| `@isone A B`    | `A = true` | `A = false` |
+|-----------------|:----------:|:-----------:|
+| **`B = true`**  |  `false`   |   `true`    |
+| **`B = false`** |   `true`   |   `false`   |
 
 ## @ismany
 
@@ -77,12 +77,12 @@ The `@ismany` keyword creates a short-circuiting expression that evaluates to `t
 
 ### Truth table
 
-| <code>@ismany {A &vert; B &vert; C}</code> | `A = true` | `A = false` |
-|--------------------------------------------|:----------:|:-----------:|
-| **`B = false, C = false`**                 |  `false`   |   `false`   |
-| **`B = true, C = false`**                  |   `true`   |   `false`   |
-| **`B = false, C = true`**                  |   `true`   |   `false`   |
-| **`B = true, C = true`**                   |   `true`   |   `true`    |
+| `@ismany A B C`            | `A = true` | `A = false` |
+|----------------------------|:----------:|:-----------:|
+| **`B = false, C = false`** |  `false`   |   `false`   |
+| **`B = true, C = false`**  |   `true`   |   `false`   |
+| **`B = false, C = true`**  |   `true`   |   `false`   |
+| **`B = true, C = true`**   |   `true`   |   `true`    |
 
 ## @issame
 
@@ -93,12 +93,12 @@ Although the truth table shows boolean inputs, this operation accepts all types.
 
 ### Truth table
 
-| <code>@issame {A &vert; B &vert; C}</code> | `A = true` | `A = false` |
-|--------------------------------------------|:----------:|:-----------:|
-| **`B = false, C = false`**                 |  `false`   |   `true`    |
-| **`B = true, C = false`**                  |  `false`   |   `false`   |
-| **`B = false, C = true`**                  |  `false`   |   `false`   |
-| **`B = true, C = true`**                   |   `true`   |   `false`   |
+| `@issame A B C`            | `A = true` | `A = false` |
+|----------------------------|:----------:|:-----------:|
+| **`B = false, C = false`** |  `false`   |   `true`    |
+| **`B = true, C = false`**  |  `false`   |   `false`   |
+| **`B = false, C = true`**  |  `false`   |   `false`   |
+| **`B = true, C = true`**   |   `true`   |   `false`   |
 
 
 ## @isdiff
@@ -110,9 +110,9 @@ Although the truth table shows boolean inputs, this operation accepts all types.
 
 ### Truth table
 
-| <code>@isdiff {A &vert; B &vert; C}</code> | `A = true` | `A = false` |
-|--------------------------------------------|:----------:|:-----------:|
-| **`B = false, C = false`**                 |   `true`   |   `false`   |
-| **`B = true, C = false`**                  |   `true`   |   `true`    |
-| **`B = false, C = true`**                  |   `true`   |   `true`    |
-| **`B = true, C = true`**                   |  `false`   |   `true`    |
+| `@isdiff A B C`            | `A = true` | `A = false` |
+|----------------------------|:----------:|:-----------:|
+| **`B = false, C = false`** |   `true`   |   `false`   |
+| **`B = true, C = false`**  |   `true`   |   `true`    |
+| **`B = false, C = true`**  |   `true`   |   `true`    |
+| **`B = true, C = true`**   |  `false`   |   `true`    |
