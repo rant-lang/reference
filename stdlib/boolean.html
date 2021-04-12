@@ -162,18 +162,56 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#standard-library-boolean-functions" id="standard-library-boolean-functions">Standard Library: Boolean functions</a></h1>
-<h3><a class="header" href="#and-a-b-c" id="and-a-b-c">[and: a; b; c*]</a></h3>
+<h2><a class="header" href="#and" id="and">and</a></h2>
+<pre><code class="language-rant">
+[%and: a; b; c*]
+
+</code></pre>
 <p>→ <code>bool</code></p>
-<p>Performs a short-circuiting boolean AND on the operands and returns the result.</p>
-<h3><a class="header" href="#not-a" id="not-a">[not: a]</a></h3>
+<p>Performs a boolean AND operation on the operands and returns the result.</p>
+<h3><a class="header" href="#parameters" id="parameters">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>bool</code> <br/>
+The left-hand operand.</p>
+<p><strong><code>b</code></strong> ← <code>bool</code> <br/>
+The right-hand operand.</p>
+<p><strong><code>c</code></strong> ← <code>bool*</code> <em>(optional)</em> <br/>
+Any additional right-hand operands.</p>
+<h2><a class="header" href="#not" id="not">not</a></h2>
+<pre><code class="language-rant">
+[%not: a]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns the inverse of the input boolean value.</p>
-<h3><a class="header" href="#or-a-b-c" id="or-a-b-c">[or: a; b; c*]</a></h3>
+<h3><a class="header" href="#parameters-1" id="parameters-1">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>bool</code> <br/>
+The value to invert.</p>
+<h2><a class="header" href="#or" id="or">or</a></h2>
+<pre><code class="language-rant">
+[%or: a; b; c*]
+
+</code></pre>
 <p>→ <code>bool</code></p>
-<p>Performs a short-circuiting boolean OR on the operands and returns the result.</p>
-<h3><a class="header" href="#xor-a-b" id="xor-a-b">[xor: a; b]</a></h3>
+<p>Performs a boolean inclusive OR operation on the operands and returns the result.</p>
+<h3><a class="header" href="#parameters-2" id="parameters-2">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>bool</code> <br/>
+The left-hand operand.</p>
+<p><strong><code>b</code></strong> ← <code>bool</code> <br/>
+The right-hand operand.</p>
+<p><strong><code>c</code></strong> ← <code>bool*</code> <em>(optional)</em> <br/>
+Any additional right-hand operands.</p>
+<h2><a class="header" href="#xor" id="xor">xor</a></h2>
+<pre><code class="language-rant">
+[%xor: a; b]
+
+</code></pre>
 <p>→ <code>bool</code></p>
-<p>Performs a boolean XOR on the operands and returns the result.</p>
+<p>Performs a boolean XOR operation on the operands and returns the result.</p>
+<h3><a class="header" href="#parameters-3" id="parameters-3">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>bool</code> <br/>
+The left-hand operand.</p>
+<p><strong><code>b</code></strong> ← <code>bool</code> <br/>
+The right-hand operand.</p>
 
                     </main>
 

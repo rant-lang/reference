@@ -1549,15 +1549,15 @@ This makes it possible to access modules in subfolders of any of the module sear
 <blockquote>
 <p><strong>This is a feature proposal.</strong> It is currently being considered for inclusion, or in the process of being implemented.</p>
 </blockquote>
-<p>Blocks can be used to perform various boolean operations by prefixing them with any of several special @is-keywords. Each element of the attached block acts as a separate operand.</p>
+<p>Sequences can be configured to perform various boolean operations by prefixing them with any of several special @is-keywords. Each printed value acts as a separate operand; whitespace is ignored.</p>
 <h2><a class="header" href="#short-circuiting" id="short-circuiting">Short-circuiting</a></h2>
-<p>Some operations are &quot;short-circuiting&quot;-- meaning that Rant may not evaluate all of the expressions in the block if the result can be determined early. For example, if the first operand of a short-circuiting AND operation evaluates to false, we know that the result will be false, so we can skip evaluating the rest of the operands.</p>
+<p>Some operations are &quot;short-circuiting&quot;-- meaning that Rant may not evaluate the entire sequence in the scope if the result can be determined early. For example, if the first operand of a short-circuiting AND operation evaluates to false, we know that the result will be false, so we can skip evaluating the rest of the operands.</p>
 <h2><a class="header" href="#eagerness" id="eagerness">Eagerness</a></h2>
-<p>The <code>@each</code> modifier keyword can be placed after the <code>@is*</code> keyword to disable short-circuiting; this behavior is known as &quot;eager evaluation.&quot;</p>
+<p>The <code>+</code> token can be placed after the operator keyword (e.g. <code>@isany+</code>) to disable short-circuiting and make the sequence eagerly evaluated.</p>
 <h2><a class="header" href="#isany" id="isany">@isany</a></h2>
 <p>The <code>@isany</code> keyword creates a short-circuiting boolean OR expression.</p>
 <h3><a class="header" href="#truth-table" id="truth-table">Truth table</a></h3>
-<table><thead><tr><th><code>@isany {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isany A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 </tbody></table>
@@ -1565,14 +1565,14 @@ This makes it possible to access modules in subfolders of any of the module sear
 <p>The <code>@isall</code> keyword creates a short-circuiting boolean AND expression.
 Its complement is <code>@isntall</code>.</p>
 <h3><a class="header" href="#truth-table-1" id="truth-table-1">Truth table</a></h3>
-<table><thead><tr><th><code>@isall {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isall A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
 </tbody></table>
 <h2><a class="header" href="#isntall" id="isntall">@isntall</a></h2>
 <p>The <code>@isntall</code> keyword creates a short-circuiting boolean NAND expression.</p>
 <h3><a class="header" href="#truth-table-2" id="truth-table-2">Truth table</a></h3>
-<table><thead><tr><th><code>@isntall {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isntall A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>true</code></td></tr>
 </tbody></table>
@@ -1580,21 +1580,21 @@ Its complement is <code>@isntall</code>.</p>
 <p>The <code>@isnone</code> keyword creates a short-circuiting boolean NOR expression.
 Its complement is <code>@isany</code>.</p>
 <h3><a class="header" href="#truth-table-3" id="truth-table-3">Truth table</a></h3>
-<table><thead><tr><th><code>@isnone {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isnone A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>true</code></td></tr>
 </tbody></table>
 <h2><a class="header" href="#isone" id="isone">@isone</a></h2>
 <p>The <code>@isone</code> keyword creates a short-circuiting boolean XOR expression.</p>
 <h3><a class="header" href="#truth-table-4" id="truth-table-4">Truth table</a></h3>
-<table><thead><tr><th><code>@isone {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isone A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 </tbody></table>
 <h2><a class="header" href="#ismany" id="ismany">@ismany</a></h2>
 <p>The <code>@ismany</code> keyword creates a short-circuiting expression that evaluates to <code>true</code> if more than one of the operands evaluates to <code>true</code>; otherwise, it evaluates to <code>false</code>.</p>
 <h3><a class="header" href="#truth-table-5" id="truth-table-5">Truth table</a></h3>
-<table><thead><tr><th><code>@ismany {A | B | C}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@ismany A B C</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = false, C = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = true, C = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = false, C = true</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
@@ -1605,7 +1605,7 @@ Its complement is <code>@isany</code>.</p>
 Its complement is <code>@isdiff</code>.</p>
 <p>Although the truth table shows boolean inputs, this operation accepts all types.</p>
 <h3><a class="header" href="#truth-table-6" id="truth-table-6">Truth table</a></h3>
-<table><thead><tr><th><code>@issame {A | B | C}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@issame A B C</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = false, C = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = true, C = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = false, C = true</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
@@ -1616,7 +1616,7 @@ Its complement is <code>@isdiff</code>.</p>
 Its complement is <code>@issame</code>.</p>
 <p>Although the truth table shows boolean inputs, this operation accepts all types.</p>
 <h3><a class="header" href="#truth-table-7" id="truth-table-7">Truth table</a></h3>
-<table><thead><tr><th><code>@isdiff {A | B | C}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isdiff A B C</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = false, C = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = true, C = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = false, C = true</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>true</code></td></tr>
@@ -1956,12 +1956,22 @@ If it is a function, it will be called separately for each usage and its return 
 ##
 </code></pre>
 <h1><a class="header" href="#standard-library-collection-functions" id="standard-library-collection-functions">Standard Library: Collection functions</a></h1>
-<h3><a class="header" href="#assoc-keys-values" id="assoc-keys-values">[assoc: keys; values]</a></h3>
+<h2><a class="header" href="#assoc" id="assoc">assoc</a></h2>
+<pre><code class="language-rant">
+[%assoc: keys; values]
+
+</code></pre>
 <p>→ <code>map</code></p>
 <p>Creates a map from a list of keys and a list of values.
 Each key in <code>keys</code> will be matched with the value at the same index in <code>values</code>.</p>
-<p>Raises a runtime error if the lists are not the same length.</p>
-<h4><a class="header" href="#example-6" id="example-6">Example</a></h4>
+<h3><a class="header" href="#parameters-12" id="parameters-12">Parameters</a></h3>
+<p><strong><code>keys</code></strong> ← <code>list</code> <br/>
+The keys to store in the map.</p>
+<p><strong><code>values</code></strong> ← <code>list</code> <br/>
+The values to associate with the keys.</p>
+<h3><a class="header" href="#errors-1" id="errors-1">Errors</a></h3>
+<p>Raises a runtime error if the lengths of <code>keys</code> and <code>values</code> do not match.</p>
+<h3><a class="header" href="#example-6" id="example-6">Example</a></h3>
 <pre><code class="language-rant"># Generate a map of the &quot;Big Five&quot; personality traits
 # with random rating values that add up to 50
 &lt;$personality = 
@@ -1990,81 +2000,155 @@ Each key in <code>keys</code> will be matched with the value at the same index i
   Neuroticism:              15
 ##
 </code></pre>
-<h3><a class="header" href="#clear-collection" id="clear-collection">[clear: collection]</a></h3>
+<h2><a class="header" href="#clear" id="clear">clear</a></h2>
+<pre><code class="language-rant">
+[%clear: collection]
+
+</code></pre>
 <p>Removes all elements from a list or map.</p>
-<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
+<h3><a class="header" href="#parameters-13" id="parameters-13">Parameters</a></h3>
+<p><strong><code>collection</code></strong> ← <code>list | map</code> <br/>
+The collection to clear.</p>
+<h3><a class="header" href="#errors-2" id="errors-2">Errors</a></h3>
 <p>Causes a runtime error if <code>collection</code> is not a list or map.</p>
-<h3><a class="header" href="#collect-values" id="collect-values">[collect: values*]</a></h3>
+<h2><a class="header" href="#collect" id="collect">collect</a></h2>
+<pre><code class="language-rant">
+[%collect: values*]
+
+</code></pre>
 <p>→ <code>list</code></p>
-<p>Returns a <code>list</code> containing the arguments.</p>
-<h3><a class="header" href="#filter-list-predicate" id="filter-list-predicate">[filter: list; predicate]</a></h3>
+<p>Prints a <code>list</code> containing the arguments.</p>
+<h3><a class="header" href="#parameters-14" id="parameters-14">Parameters</a></h3>
+<p><strong><code>values</code></strong> ← <code>any*</code> <br/>
+The values to store in the list.</p>
+<h2><a class="header" href="#filter" id="filter">filter</a></h2>
+<pre><code class="language-rant">
+[%filter: list; predicate]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Runs a predicate function against all items in a list and returns another list containing only the values that the predicate returned <code>true</code> on.</p>
-<p>The predicate function must accept a single parameter and return a <code>bool</code> value.</p>
-<h4><a class="header" href="#examples-4" id="examples-4">Examples</a></h4>
-<h5><a class="header" href="#filter-a-list-of-numbers-by-only-those-divisible-by-3" id="filter-a-list-of-numbers-by-only-those-divisible-by-3">Filter a list of numbers by only those divisible by 3</a></h5>
+<h3><a class="header" href="#parameters-15" id="parameters-15">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<p><strong><code>predicate</code></strong> ← <code>function -&gt; bool</code> <br/>
+The predicate to run against each element in the input list.</p>
+<blockquote>
+<p><strong>Parameters for <code>predicate</code></strong></p>
+<p><strong><code>item</code></strong> ← <code>any</code> <br/>
+The current item to be checked.</p>
+</blockquote>
+<h3><a class="header" href="#examples-4" id="examples-4">Examples</a></h3>
+<h4><a class="header" href="#filter-a-list-of-numbers-by-only-those-divisible-by-3" id="filter-a-list-of-numbers-by-only-those-divisible-by-3">Filter a list of numbers by only those divisible by 3</a></h4>
 <pre><code class="language-rant">&lt;$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)&gt;
 &lt;$multiples-of-three = [filter: &lt;numbers&gt;; [?:x] { [is-factor: &lt;x&gt;; 3] }]&gt;
-[join: ,\s; &lt;multiples-of-three&gt;]
+[join: &lt;multiples-of-three&gt;; ,\s]
 # -&gt; 3, 6, 9, 12
 </code></pre>
-<h5><a class="header" href="#filter-a-list-of-numbers-by-only-odd-numbers" id="filter-a-list-of-numbers-by-only-odd-numbers">Filter a list of numbers by only odd numbers</a></h5>
+<h4><a class="header" href="#filter-a-list-of-numbers-by-only-odd-numbers" id="filter-a-list-of-numbers-by-only-odd-numbers">Filter a list of numbers by only odd numbers</a></h4>
 <pre><code class="language-rant">&lt;$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)&gt;
 # `is-odd` is a function, so we can simply pass it in as the predicate!
 &lt;$odd-numbers = [filter: &lt;numbers&gt;; &lt;is-odd&gt;]&gt;
-[join: ,\s; &lt;odd-numbers&gt;]
+[join: &lt;odd-numbers&gt;; ,\s]
 # -&gt; 1, 3, 5, 7, 9, 11
 </code></pre>
-<h5><a class="header" href="#filter-a-list-of-words-to-only-those-that-are-3-letters-or-less" id="filter-a-list-of-words-to-only-those-that-are-3-letters-or-less">Filter a list of words to only those that are 3 letters or less</a></h5>
+<h4><a class="header" href="#filter-a-list-of-words-to-only-those-that-are-3-letters-or-less" id="filter-a-list-of-words-to-only-those-that-are-3-letters-or-less">Filter a list of words to only those that are 3 letters or less</a></h4>
 <pre><code class="language-rant">&lt;$words = [split: &quot;the quick brown fox jumps over the lazy dog&quot;;\s]&gt;
 &lt;$short-words = [filter: &lt;words&gt;; [?:word] { [le: [len: &lt;word&gt;]; 3] }]&gt;
-[join: \s; &lt;short-words&gt;]
+[join: &lt;short-words&gt;; ,\s]
 # -&gt; the fox the dog
 </code></pre>
-<h3><a class="header" href="#index-of-list-element" id="index-of-list-element">[index-of: list; element]</a></h3>
-<p>→ <code>int</code> or <code>empty</code></p>
-<p>Returns the index of the first occurrence of <code>element</code> in <code>list</code>.
+<h2><a class="header" href="#index-of" id="index-of">index-of</a></h2>
+<pre><code class="language-rant">
+[%index-of: list; value]
+
+</code></pre>
+<p>→ <code>int | empty</code></p>
+<p>Returns the index of the first occurrence of <code>value</code> in <code>list</code>.
 If no match is found, returns <code>~</code>.</p>
-<h4><a class="header" href="#examples-5" id="examples-5">Examples</a></h4>
+<h3><a class="header" href="#parameters-16" id="parameters-16">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The list to search.</p>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to search for.</p>
+<h3><a class="header" href="#examples-5" id="examples-5">Examples</a></h3>
 <pre><code class="language-rant">&lt;$letters = (A; A; B; C; C; D; E)&gt;
 [index-of: &lt;letters&gt;; A |&gt; assert-eq: 0]
 [index-of: &lt;letters&gt;; C |&gt; assert-eq: 3]
 [index-of: &lt;letters&gt;; E |&gt; assert-eq: 6]
 [index-of: &lt;letters&gt;; F |&gt; assert-eq: ~]
 </code></pre>
-<h3><a class="header" href="#join-separator-list" id="join-separator-list">[join: separator; list]</a></h3>
+<h2><a class="header" href="#join" id="join">join</a></h2>
+<pre><code class="language-rant">
+[%join: list; separator?]
+
+</code></pre>
 <p>→ <code>any*</code></p>
 <p>Prints the elements of a list in order separated by the <code>separator</code> value.</p>
-<h3><a class="header" href="#last-index-of-list-element" id="last-index-of-list-element">[last-index-of: list; element]</a></h3>
+<h3><a class="header" href="#parameters-17" id="parameters-17">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The list whose elements to print.</p>
+<p><strong><code>separator</code></strong> ← <code>any</code> <em>(optional)</em> <br/>
+The separator to print between each element.</p>
+<h2><a class="header" href="#last-index-of" id="last-index-of">last-index-of</a></h2>
+<pre><code class="language-rant">
+[%last-index-of: list; value]
+
+</code></pre>
 <p>→ <code>any</code></p>
-<p>Returns the index of the last occurrence of <code>element</code> in <code>list</code>.
+<p>Returns the index of the last occurrence of <code>value</code> in <code>list</code>.
 If no match is found, returns <code>~</code>.</p>
+<h3><a class="header" href="#parameters-18" id="parameters-18">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The list to search.</p>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to search for.</p>
+<h3><a class="header" href="#example-7" id="example-7">Example</a></h3>
 <pre><code class="language-rant">&lt;$letters = (A; A; B; C; C; D; E)&gt;
 [last-index-of: &lt;letters&gt;; A |&gt; assert-eq: 1]
 [last-index-of: &lt;letters&gt;; C |&gt; assert-eq: 4]
 [last-index-of: &lt;letters&gt;; E |&gt; assert-eq: 6]
 [last-index-of: &lt;letters&gt;; F |&gt; assert-eq: ~]
 </code></pre>
-<h3><a class="header" href="#map-list-map-func" id="map-list-map-func">[map: list; map-func]</a></h3>
+<h2><a class="header" href="#map-1" id="map-1">map</a></h2>
+<pre><code class="language-rant">
+[%map: list; map-func]
+
+</code></pre>
 <p>→ <code>list</code></p>
-<p>Applies a function to each item in a list and returns another list with the results in the same order.</p>
-<p>The predicate function must accept a single parameter, but can return anything.</p>
-<h4><a class="header" href="#example-7" id="example-7">Example</a></h4>
+<p>Calls the supplied function on each item in a list and returns another list with the results in the same order.</p>
+<h3><a class="header" href="#parameters-19" id="parameters-19">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The list whose values to map.</p>
+<p><strong><code>map-func</code></strong> ← <code>function -&gt; any</code> <br/>
+The function to map the values with.</p>
+<blockquote>
+<p><strong>Parameters for <code>map-func</code></strong> <p></p>
+<p><strong><code>item</code></strong> ← <code>any</code> <br/>
+The current item to map.</p>
+</blockquote>
+<h3><a class="header" href="#example-8" id="example-8">Example</a></h3>
 <pre><code class="language-rant"># Multiple each element of a list by 10
 &lt;$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)&gt;
 &lt;$tens = [map: &lt;numbers&gt;; [?:x] { [mul: &lt;x&gt;; 10] }]&gt;
 [join: ,\s; &lt;tens&gt;]
 # -&gt; 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
 </code></pre>
-<h3><a class="header" href="#oxford-join-comma-conj-comma-conj-list" id="oxford-join-comma-conj-comma-conj-list">[oxford-join: comma; conj; comma-conj; list]</a></h3>
+<h2><a class="header" href="#oxford-join" id="oxford-join">oxford-join</a></h2>
+<pre><code class="language-rant">
+[%oxford-join: comma; conj; comma-conj; list]
+
+</code></pre>
 <p>→ <code>any*</code></p>
 <p>A variant of the <code>join</code> function for conveniently formatting comma-separated lists.</p>
-<p>Three distinct separator values are required:</p>
-<ul>
-<li><code>comma</code>: the <strong>comma</strong> value, which separates items except for the last two</li>
-<li><code>conj</code>: the <strong>conjunction</strong> value, which is only used to separate items in pairs (lists of 2)</li>
-<li><code>comma-conj</code>: the <strong>comma-conjunction</strong> value, which separates the final two values</li>
-</ul>
+<h3><a class="header" href="#parameters-20" id="parameters-20">Parameters</a></h3>
+<p><strong><code>comma</code></strong> ← <code>any</code> <br/>
+The <strong>comma</strong> value. Separates all items except for the last 2. Unused in lists of 2 items or less.</p>
+<p><strong><code>conj</code></strong> ← <code>any</code> <br/>
+The <strong>conjunction</strong> value. Only used to separate items in lists of exactly 2 values.</p>
+<p><strong><code>comma-conj</code></strong> ← <code>any</code> <br/>
+The <strong>comma-conjunction</strong> value. Separates the final 2 values in lists with more than 2 values.</p>
+<h3><a class="header" href="#remarks" id="remarks">Remarks</a></h3>
 <p>These arguments can be used to configure several aspects of list formatting-- namely, the inclusion of 
 the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the choice of conjunction separating the final two items.</p>
 <p>The separator values are applied as follows:</p>
@@ -2073,8 +2157,8 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
 <li><strong>Lists of 2 items</strong> use <code>conj</code> to separate the two items.</li>
 <li><strong>Lists of 3 or more items</strong> separate the final two items with <code>comma-conj</code>; all others use <code>comma</code>.</li>
 </ul>
-<h4><a class="header" href="#examples-6" id="examples-6">Examples</a></h4>
-<h5><a class="header" href="#print-lists-with-oxford-comma" id="print-lists-with-oxford-comma">Print lists with Oxford comma</a></h5>
+<h3><a class="header" href="#examples-6" id="examples-6">Examples</a></h3>
+<h4><a class="header" href="#print-lists-with-oxford-comma" id="print-lists-with-oxford-comma">Print lists with Oxford comma</a></h4>
 <pre><code class="language-rant">&lt;$numbers = ()&gt;
 [rep: 5][sep: \n]
 {
@@ -2092,7 +2176,7 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
   1, 2, 3, 4, and 5
 ##
 </code></pre>
-<h5><a class="header" href="#print-lists-without-oxford-comma" id="print-lists-without-oxford-comma">Print lists without Oxford comma</a></h5>
+<h4><a class="header" href="#print-lists-without-oxford-comma" id="print-lists-without-oxford-comma">Print lists without Oxford comma</a></h4>
 <pre><code class="language-rant">&lt;$numbers = ()&gt;
 [rep: 5][sep: \n]
 {
@@ -2110,68 +2194,137 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
   1, 2, 3, 4 and 5
 ##
 </code></pre>
-<h3><a class="header" href="#push-list-value" id="push-list-value">[push: list; value]</a></h3>
+<h2><a class="header" href="#push" id="push">push</a></h2>
+<pre><code class="language-rant">
+[%push: list; value]
+
+</code></pre>
 <p>Appends a value to the end of a list.</p>
-<h3><a class="header" href="#pop-list" id="pop-list">[pop: list]</a></h3>
+<h3><a class="header" href="#parameters-21" id="parameters-21">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The list to modify.</p>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to add to the end of <code>list</code>.</p>
+<h2><a class="header" href="#pop" id="pop">pop</a></h2>
+<pre><code class="language-rant">
+[%pop: list]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Removes the last value from a list and prints it.</p>
-<h3><a class="header" href="#insert-collection-value-pos" id="insert-collection-value-pos">[insert: collection; value; pos]</a></h3>
+<h3><a class="header" href="#parameters-22" id="parameters-22">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The list to modify.</p>
+<h2><a class="header" href="#insert" id="insert">insert</a></h2>
+<pre><code class="language-rant">
+[%insert: collection; value; pos]
+
+</code></pre>
 <p>Inserts <code>value</code> into a list or map at the position <code>pos</code>.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-2" id="errors-2">Errors</a></h4>
-<p>Causes a runtime error if any of the following are true:</p>
-<ul>
-<li><code>collection</code> is not a list or map</li>
-<li><code>pos</code> is an unsupported type for the provided collection</li>
-<li><code>collection</code> is a list and <code>pos</code> is out of range</li>
-</ul>
-<h3><a class="header" href="#len-obj" id="len-obj">[len: obj]</a></h3>
+<h3><a class="header" href="#parameters-23" id="parameters-23">Parameters</a></h3>
+<p><strong><code>collection</code></strong> ← <code>list | map</code> <br/>
+The collection to modify.</p>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to add to <code>collection</code>.</p>
+<p><strong><code>pos</code></strong> ← <code>some</code> <br/>
+The location at which to insert the value. <br/>
+For lists, this is the index; for maps, this is the key.</p>
+<h3><a class="header" href="#errors-3" id="errors-3">Errors</a></h3>
+<p>Raises an error if <code>pos</code> is out of range or not the correct type for the provided collection.</p>
+<h2><a class="header" href="#len" id="len">len</a></h2>
+<pre><code class="language-rant">
+[%len: value]
+
+</code></pre>
 <p>→ <code>int</code></p>
-<p>Prints the length of <code>obj</code>.</p>
+<p>Prints the length of <code>value</code>.</p>
 <p>For <code>string</code>, this is the number of graphemes; for <code>list</code>, <code>map</code>, and <code>range</code>, the number of elements.
 All other value types give a length of 1.</p>
-<h3><a class="header" href="#remove-collection-pos" id="remove-collection-pos">[remove: collection; pos]</a></h3>
+<h3><a class="header" href="#parameters-24" id="parameters-24">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value whose length to retrieve.</p>
+<h2><a class="header" href="#remove" id="remove">remove</a></h2>
+<pre><code class="language-rant">
+[%remove: collection; pos]
+
+</code></pre>
 <p>Removes the value at the <code>pos</code> from a list or map.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-3" id="errors-3">Errors</a></h4>
-<p>Causes a runtime error if any of the following are true:</p>
-<ul>
-<li><code>collection</code> is not a list or map</li>
-<li><code>pos</code> is an unsupported type for the provided collection</li>
-<li><code>collection</code> is a list and <code>pos</code> is out of range</li>
-</ul>
-<h3><a class="header" href="#rev-collection" id="rev-collection">[rev: collection]</a></h3>
-<p>Creates a reversed copy of the input collection.</p>
-<h4><a class="header" href="#example-8" id="example-8">Example</a></h4>
+<h3><a class="header" href="#parameters-25" id="parameters-25">Parameters</a></h3>
+<p><strong><code>collection</code></strong> ← <code>list | map</code> <br/>
+The collection to modify.</p>
+<p><strong><code>pos</code></strong> ← <code>some</code> <br/>
+The location of the value to remove. Must be of type <code>int</code> for lists.</p>
+<h3><a class="header" href="#errors-4" id="errors-4">Errors</a></h3>
+<p>Raises an error if <code>pos</code> is an unsupported type for the provided collection.</p>
+<h2><a class="header" href="#rev" id="rev">rev</a></h2>
+<pre><code class="language-rant">
+[%rev: collection]
+
+</code></pre>
+<p>→ <code>list | string | block | range</code></p>
+<p>Prints a reversed copy of the input collection.</p>
+<h3><a class="header" href="#parameters-26" id="parameters-26">Parameters</a></h3>
+<p><strong><code>collection</code></strong> ← <code>list | string | block | range</code> <br/>
+The collection to reverse.</p>
+<h3><a class="header" href="#example-9" id="example-9">Example</a></h3>
 <pre><code class="language-rant">[rev: (foo; bar)]
 # -&gt; (bar; foo)
 </code></pre>
-<h3><a class="header" href="#shuffle-list" id="shuffle-list">[shuffle: list]</a></h3>
+<h2><a class="header" href="#shuffle" id="shuffle">shuffle</a></h2>
+<pre><code class="language-rant">
+[%shuffle: list]
+
+</code></pre>
 <p>Shuffles the elements of a list in-place.</p>
-<h4><a class="header" href="#example-9" id="example-9">Example</a></h4>
+<h3><a class="header" href="#parameters-27" id="parameters-27">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<h3><a class="header" href="#cost" id="cost">Cost</a></h3>
+<p>Where \(n\) = the length of <code>list</code>:</p>
+<p><strong>Time complexity</strong><br/>\(O(n)\)<br/></p>
+<p><strong>RNG complexity</strong><br/>\(n - 1\)<br/></p>
+<h3><a class="header" href="#example-10" id="example-10">Example</a></h3>
 <pre><code class="language-rant"># Shuffles a list of letters and concatenates them into a single string
 &lt;$letters = (A;B;C;D;E;F;G;H;I;J;K;L)&gt;
 [shuffle: &lt;letters&gt;]
-[join: ; &lt;letters&gt;]
+[join: &lt;letters&gt;]
 
 # ~&gt; GKIBCHLEJADF
 </code></pre>
-<h3><a class="header" href="#shuffled-list" id="shuffled-list">[shuffled: list]</a></h3>
+<h2><a class="header" href="#shuffled" id="shuffled">shuffled</a></h2>
+<pre><code class="language-rant">
+[%shuffled: list]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Creates a shuffled copy of a list.</p>
-<h4><a class="header" href="#example-10" id="example-10">Example</a></h4>
+<h3><a class="header" href="#parameters-28" id="parameters-28">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<h3><a class="header" href="#example-11" id="example-11">Example</a></h3>
 <pre><code class="language-rant"># Shuffle the words in a string
 &lt;$message = &quot;the quick brown fox jumps over he lazy dog&quot;&gt;
 [join: \s; [shuffled: [split: &lt;message&gt;; \s]]]
 
 # ~&gt; jumps fox quick dog lazy the brown the over
 </code></pre>
-<h3><a class="header" href="#sift-list-target-size" id="sift-list-target-size">[sift: list; target-size]</a></h3>
+<h2><a class="header" href="#sift" id="sift">sift</a></h2>
+<pre><code class="language-rant">
+[%sift: list; target-size]
+
+</code></pre>
 <p>Removes random elements from a list in-place until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h4><a class="header" href="#example-11" id="example-11">Example</a></h4>
+<h3><a class="header" href="#parameters-29" id="parameters-29">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<p><strong><code>target-size</code></strong> ← <code>int</code> <br/>
+The maximum number of elements to reduce the <code>list</code> to.</p>
+<h3><a class="header" href="#example-12" id="example-12">Example</a></h3>
 <pre><code class="language-rant"># Remove a random element from a list and print the contents at each iteration
 &lt;$list = [split: &quot;Sphinx of black quartz, judge my vow.&quot;; \s]&gt;
 [rep: [len: &lt;list&gt;]]
@@ -2195,11 +2348,20 @@ If the number of elements in the list is less than or equal to <code>target-size
   vow.
 ##
 </code></pre>
-<h3><a class="header" href="#sifted-list-target-size" id="sifted-list-target-size">[sifted: list; target-size]</a></h3>
+<h2><a class="header" href="#sifted" id="sifted">sifted</a></h2>
+<pre><code class="language-rant">
+[%sifted: list; target-size]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Returns a copy of a list with random elements removed until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
-<h4><a class="header" href="#example-12" id="example-12">Example</a></h4>
+<h3><a class="header" href="#parameters-30" id="parameters-30">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<p><strong><code>target-size</code></strong> ← <code>int</code> <br/>
+The maximum number of elements to reduce the <code>list</code> to.</p>
+<h3><a class="header" href="#example-13" id="example-13">Example</a></h3>
 <pre><code class="language-rant"># Create a random subset of abilities for a character
 
 &lt;$char-traits = (
@@ -2218,10 +2380,19 @@ If the number of elements in the list is less than or equal to <code>target-size
 
 # ~&gt; Foo Bar: speaks-to-bees, many-legs
 </code></pre>
-<h3><a class="header" href="#squish-list-target-size" id="squish-list-target-size">[squish: list; target-size]</a></h3>
+<h2><a class="header" href="#squish" id="squish">squish</a></h2>
+<pre><code class="language-rant">
+[%squish: list; target-size]
+
+</code></pre>
 <p>Merges random adjacent elements in a list using addition until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h4><a class="header" href="#example-13" id="example-13">Example</a></h4>
+<h3><a class="header" href="#parameters-31" id="parameters-31">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<p><strong><code>target-size</code></strong> ← <code>int</code> <br/>
+The maximum number of elements to reduce the list to.</p>
+<h3><a class="header" href="#example-14" id="example-14">Example</a></h3>
 <pre><code class="language-rant"># Merge random items in a number list
 &lt;$numbers = (100; 100; 100; 100; 100; 100; 100; 100; 100; 100)&gt;
 
@@ -2241,37 +2412,74 @@ After: '[join: ,\s; &lt;numbers&gt;]\n
   After: 100, 200, 100, 400, 200
 ##
 </code></pre>
-<h3><a class="header" href="#squished-list-target-size" id="squished-list-target-size">[squished: list; target-size]</a></h3>
+<h2><a class="header" href="#squished" id="squished">squished</a></h2>
+<pre><code class="language-rant">
+[%squished: list; target-size]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Returns a copy of a list with random adjacent elements merged using addition until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
-<h3><a class="header" href="#sort-list" id="sort-list">[sort: list]</a></h3>
+<h3><a class="header" href="#parameters-32" id="parameters-32">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<p><strong><code>target-size</code></strong> ← <code>int</code> <br/>
+The maximum number of elements to reduce the list copy to.</p>
+<h2><a class="header" href="#sort" id="sort">sort</a></h2>
+<pre><code class="language-rant">
+[%sort: list]
+
+</code></pre>
 <p>Sorts the elements of a list in-place in ascending order.</p>
-<h3><a class="header" href="#sorted-list" id="sorted-list">[sorted: list]</a></h3>
+<h3><a class="header" href="#parameters-33" id="parameters-33">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<h2><a class="header" href="#sorted" id="sorted">sorted</a></h2>
+<pre><code class="language-rant">
+[%sorted: list]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Creates a copy of a list with its elements sorted in ascending order.</p>
-<h3><a class="header" href="#sum-list" id="sum-list">[sum: list]</a></h3>
+<h3><a class="header" href="#parameters-34" id="parameters-34">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<h2><a class="header" href="#sum" id="sum">sum</a></h2>
+<pre><code class="language-rant">
+[%sum: list]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Adds the elements of a list together from left to right and prints the result.</p>
-<h3><a class="header" href="#take-collection-pos" id="take-collection-pos">[take: collection; pos]</a></h3>
+<h2><a class="header" href="#take" id="take">take</a></h2>
+<pre><code class="language-rant">
+[%take: collection; pos]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Removes the value at <code>pos</code> from a list or map and prints it.</p>
-<p>If <code>collection</code> is a <code>list</code>, <code>pos</code> must be an <code>int</code>.<br>
-If <code>collection</code> is a <code>map</code>, <code>pos</code> may be any non-empty value.</p>
-<h4><a class="header" href="#errors-4" id="errors-4">Errors</a></h4>
-<p>Causes a runtime error if any of the following are true:</p>
-<ul>
-<li><code>collection</code> is not a list or map</li>
-<li><code>pos</code> is an unsupported type for the provided collection</li>
-<li><code>collection</code> is a list and <code>pos</code> is out of range</li>
-</ul>
-<h4><a class="header" href="#errors-5" id="errors-5">Errors</a></h4>
-<p>Causes a runtime error if <code>collection</code> is a list and the <code>pos</code> is out of range.</p>
-<h3><a class="header" href="#translate-list-map" id="translate-list-map">[translate: list; map]</a></h3>
+<h3><a class="header" href="#parameters-35" id="parameters-35">Parameters</a></h3>
+<p><strong><code>collection</code></strong> ← <code>list | map</code> <br/>
+The input collection.</p>
+<p><strong><code>pos</code></strong> ← <code>some</code> <br/>
+The location of the value to take. 
+If <code>collection</code> is a <code>list</code>, this argument must be an <code>int</code>.</p>
+<h3><a class="header" href="#errors-5" id="errors-5">Errors</a></h3>
+<p>Raises an error if <code>pos</code> is not a valid location in the collection.</p>
+<h2><a class="header" href="#translate" id="translate">translate</a></h2>
+<pre><code class="language-rant">
+[%translate: list; map]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Matches each item in a list to a map and returns a list with the corresponding map values. 
 Values that have no corresponding key in the map are passed through as-is.</p>
-<h4><a class="header" href="#example-14" id="example-14">Example</a></h4>
+<h3><a class="header" href="#parameters-36" id="parameters-36">Parameters</a></h3>
+<p><strong><code>list</code></strong> ← <code>list</code> <br/>
+The input list.</p>
+<p><strong><code>map</code></strong> ← <code>mao</code> <br/>
+A map associating items in <code>list</code> with their replacements.</p>
+<h3><a class="header" href="#example-15" id="example-15">Example</a></h3>
 <pre><code class="language-rant"># Constructs a substitution cipher function
 [$make-cipher: alphabet] {
   &lt;
@@ -2310,12 +2518,29 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
   Decoded: &quot;The quick brown fox jumps over the lazy dog.&quot;
 ##
 </code></pre>
-<h3><a class="header" href="#zip-list-a-list-b-zip-func" id="zip-list-a-list-b-zip-func">[zip: list-a; list-b; zip-func]</a></h3>
+<h2><a class="header" href="#zip" id="zip">zip</a></h2>
+<pre><code class="language-rant">
+[%zip: list-a; list-b; zip-func]
+
+</code></pre>
 <p>→ <code>list</code></p>
 <p>Returns a new list that combines each pair of items from the two input lists using the specified function.
-The lists do not need to be the same length; if there is a difference, it will be made up with empty values.</p>
-<p>The <code>zip-func</code> must accept two parameters.</p>
-<h4><a class="header" href="#examples-7" id="examples-7">Examples</a></h4>
+The lists do not need to be the same length; if there is a difference, it will be made up with empties.</p>
+<h3><a class="header" href="#parameters-37" id="parameters-37">Parameters</a></h3>
+<p><strong><code>list-a</code></strong> ← <code>list</code> <br/>
+A list containing the left-hand values of the zip.</p>
+<p><strong><code>list-b</code></strong> ← <code>list</code> <br/>
+A list containing the right-hand values of the zip.</p>
+<p><strong><code>zip-func</code></strong> ← <code>function -&gt; any</code> <br/>
+A function that prints a new value for each corresponding pair of values from <code>list-a</code> and <code>list-b</code>.</p>
+<blockquote>
+<p><strong>Parameters for <code>zip-func</code></strong></p>
+<p><strong><code>a</code></strong> ← <code>any</code> <br/>
+The current value from <code>list-a</code>.</p>
+<p><strong><code>b</code></strong> ← <code>any</code> <br/>
+The current value from <code>list-b</code>.</p>
+</blockquote>
+<h3><a class="header" href="#examples-7" id="examples-7">Examples</a></h3>
 <pre><code class="language-rant"># Dot product
 [$dot: a; b] {
   [zip: &lt;a&gt;; &lt;b&gt;; &lt;mul&gt; |&gt; sum]
@@ -2333,7 +2558,7 @@ The lists do not need to be the same length; if there is a difference, it will b
 <h3><a class="header" href="#digh-count" id="digh-count">[digh: count?]</a></h3>
 <p>→ <code>string</code></p>
 <p>Prints a uniformly random lowercase hexadecimal digit. If <code>count</code> is specified, repeats <code>count</code> times.</p>
-<h4><a class="header" href="#example-15" id="example-15">Example</a></h4>
+<h4><a class="header" href="#example-16" id="example-16">Example</a></h4>
 <pre><code class="language-rant"># Generate a random 32-character hex string
 [digh:32] # ~&gt; f4e5bef31ea02eac22f220e68e837587
 </code></pre>
@@ -2350,7 +2575,7 @@ The lists do not need to be the same length; if there is a difference, it will b
 <h3><a class="header" href="#rand-a-b" id="rand-a-b">[rand: a; b]</a></h3>
 <p>→ <code>int</code></p>
 <p>Prints a random integer with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
-<h4><a class="header" href="#example-16" id="example-16">Example</a></h4>
+<h4><a class="header" href="#example-17" id="example-17">Example</a></h4>
 <pre><code class="language-rant">You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 </code></pre>
@@ -2360,7 +2585,7 @@ The lists do not need to be the same length; if there is a difference, it will b
 <h3><a class="header" href="#rand-list-a-b-n" id="rand-list-a-b-n">[rand-list: a; b; n]</a></h3>
 <p>→ <code>list</code></p>
 <p>Prints a list of <code>n</code> random integers with uniform distribution between <code>a</code> and <code>b</code> (both inclusive).</p>
-<h4><a class="header" href="#example-17" id="example-17">Example</a></h4>
+<h4><a class="header" href="#example-18" id="example-18">Example</a></h4>
 <pre><code class="language-rant"># 2-dice roll
 
 &lt;$roll = [rand-list: 1; 6; 2]&gt;
@@ -2381,7 +2606,7 @@ You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
 <li><code>input</code>, <code>count</code>, or <code>variance</code> is not a number</li>
 <li><code>count</code> is zero or negative</li>
 </ul>
-<h4><a class="header" href="#example-18" id="example-18">Example</a></h4>
+<h4><a class="header" href="#example-19" id="example-19">Example</a></h4>
 <pre><code class="language-rant"># Generate and print a list of 5 random numbers that add up to 1000
 &lt;$parts = [shred:1000;5;200]&gt;
 [join:&quot; + &quot;;&lt;parts&gt;] = [sum:&lt;parts&gt;]
@@ -2409,18 +2634,56 @@ Output:
 <p>→ <code>string</code></p>
 <p>Converts string <code>str</code> to uppercase and returns the result.</p>
 <h1><a class="header" href="#standard-library-boolean-functions" id="standard-library-boolean-functions">Standard Library: Boolean functions</a></h1>
-<h3><a class="header" href="#and-a-b-c" id="and-a-b-c">[and: a; b; c*]</a></h3>
+<h2><a class="header" href="#and" id="and">and</a></h2>
+<pre><code class="language-rant">
+[%and: a; b; c*]
+
+</code></pre>
 <p>→ <code>bool</code></p>
-<p>Performs a short-circuiting boolean AND on the operands and returns the result.</p>
-<h3><a class="header" href="#not-a" id="not-a">[not: a]</a></h3>
+<p>Performs a boolean AND operation on the operands and returns the result.</p>
+<h3><a class="header" href="#parameters-38" id="parameters-38">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>bool</code> <br/>
+The left-hand operand.</p>
+<p><strong><code>b</code></strong> ← <code>bool</code> <br/>
+The right-hand operand.</p>
+<p><strong><code>c</code></strong> ← <code>bool*</code> <em>(optional)</em> <br/>
+Any additional right-hand operands.</p>
+<h2><a class="header" href="#not" id="not">not</a></h2>
+<pre><code class="language-rant">
+[%not: a]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns the inverse of the input boolean value.</p>
-<h3><a class="header" href="#or-a-b-c" id="or-a-b-c">[or: a; b; c*]</a></h3>
+<h3><a class="header" href="#parameters-39" id="parameters-39">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>bool</code> <br/>
+The value to invert.</p>
+<h2><a class="header" href="#or" id="or">or</a></h2>
+<pre><code class="language-rant">
+[%or: a; b; c*]
+
+</code></pre>
 <p>→ <code>bool</code></p>
-<p>Performs a short-circuiting boolean OR on the operands and returns the result.</p>
-<h3><a class="header" href="#xor-a-b" id="xor-a-b">[xor: a; b]</a></h3>
+<p>Performs a boolean inclusive OR operation on the operands and returns the result.</p>
+<h3><a class="header" href="#parameters-40" id="parameters-40">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>bool</code> <br/>
+The left-hand operand.</p>
+<p><strong><code>b</code></strong> ← <code>bool</code> <br/>
+The right-hand operand.</p>
+<p><strong><code>c</code></strong> ← <code>bool*</code> <em>(optional)</em> <br/>
+Any additional right-hand operands.</p>
+<h2><a class="header" href="#xor" id="xor">xor</a></h2>
+<pre><code class="language-rant">
+[%xor: a; b]
+
+</code></pre>
 <p>→ <code>bool</code></p>
-<p>Performs a boolean XOR on the operands and returns the result.</p>
+<p>Performs a boolean XOR operation on the operands and returns the result.</p>
+<h3><a class="header" href="#parameters-41" id="parameters-41">Parameters</a></h3>
+<p><strong><code>a</code></strong> ← <code>bool</code> <br/>
+The left-hand operand.</p>
+<p><strong><code>b</code></strong> ← <code>bool</code> <br/>
+The right-hand operand.</p>
 <h1><a class="header" href="#comparison" id="comparison">Comparison</a></h1>
 <h3><a class="header" href="#eq-lhs-rhs" id="eq-lhs-rhs">[eq: lhs; rhs]</a></h3>
 <p>→ <code>bool</code></p>
@@ -2615,7 +2878,7 @@ This is equivalent to calling <code>[copy]</code> on the list.</p>
 <p>Verifies that <code>condition</code> is true before continuing program execution.</p>
 <p>If <code>condition</code> is <code>false</code>, raises a runtime error; if <code>true</code>, does nothing.</p>
 <p>The message displayed in the runtime error can be customized by passing a string to <code>message</code>. </p>
-<h3><a class="header" href="#parameters-12" id="parameters-12">Parameters</a></h3>
+<h3><a class="header" href="#parameters-42" id="parameters-42">Parameters</a></h3>
 <p><strong><code>condition</code></strong> ← <code>bool</code> <br/>
 The condition to check.</p>
 <p><strong><code>message</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
@@ -2637,7 +2900,7 @@ The error message to display if the condition is not satisfied.</p>
 </code></pre>
 <p>Verifies that <code>expected</code> and <code>actual</code> are equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
-<h3><a class="header" href="#parameters-13" id="parameters-13">Parameters</a></h3>
+<h3><a class="header" href="#parameters-43" id="parameters-43">Parameters</a></h3>
 <p><strong><code>actual</code></strong> ← <code>any</code> <br/>
 The actual value to test.</p>
 <p><strong><code>expected</code></strong> ← <code>any</code> <br/>
@@ -2651,7 +2914,7 @@ The error message to display if the condition is not satisfied.</p>
 </code></pre>
 <p>Verifies that <code>unexpected</code> and <code>actual</code> are not equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
-<h3><a class="header" href="#parameters-14" id="parameters-14">Parameters</a></h3>
+<h3><a class="header" href="#parameters-44" id="parameters-44">Parameters</a></h3>
 <p><strong><code>actual</code></strong> ← <code>any</code> <br/>
 The actual value to test.</p>
 <p><strong><code>unexpected</code></strong> ← <code>any</code> <br/>
@@ -2728,7 +2991,7 @@ It is an implicit form of <strong>descoping</strong>.</p>
 </ul>
 <h3><a class="header" href="#list-1" id="list-1">List</a></h3>
 <p>A list is an ordered collection of values, accessible by index.</p>
-<h3><a class="header" href="#map-1" id="map-1">Map</a></h3>
+<h3><a class="header" href="#map-2" id="map-2">Map</a></h3>
 <p>A map is a collection of key-value pairs, also known as an &quot;associative array&quot;.</p>
 <h3><a class="header" href="#module" id="module">Module</a></h3>
 <p>A module is a library of Rant functions that can be loaded into another program using the <code>[require]</code> function.</p>

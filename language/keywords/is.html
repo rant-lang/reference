@@ -165,15 +165,15 @@
 <blockquote>
 <p><strong>This is a feature proposal.</strong> It is currently being considered for inclusion, or in the process of being implemented.</p>
 </blockquote>
-<p>Blocks can be used to perform various boolean operations by prefixing them with any of several special @is-keywords. Each element of the attached block acts as a separate operand.</p>
+<p>Sequences can be configured to perform various boolean operations by prefixing them with any of several special @is-keywords. Each printed value acts as a separate operand; whitespace is ignored.</p>
 <h2><a class="header" href="#short-circuiting" id="short-circuiting">Short-circuiting</a></h2>
-<p>Some operations are &quot;short-circuiting&quot;-- meaning that Rant may not evaluate all of the expressions in the block if the result can be determined early. For example, if the first operand of a short-circuiting AND operation evaluates to false, we know that the result will be false, so we can skip evaluating the rest of the operands.</p>
+<p>Some operations are &quot;short-circuiting&quot;-- meaning that Rant may not evaluate the entire sequence in the scope if the result can be determined early. For example, if the first operand of a short-circuiting AND operation evaluates to false, we know that the result will be false, so we can skip evaluating the rest of the operands.</p>
 <h2><a class="header" href="#eagerness" id="eagerness">Eagerness</a></h2>
-<p>The <code>@each</code> modifier keyword can be placed after the <code>@is*</code> keyword to disable short-circuiting; this behavior is known as &quot;eager evaluation.&quot;</p>
+<p>The <code>+</code> token can be placed after the operator keyword (e.g. <code>@isany+</code>) to disable short-circuiting and make the sequence eagerly evaluated.</p>
 <h2><a class="header" href="#isany" id="isany">@isany</a></h2>
 <p>The <code>@isany</code> keyword creates a short-circuiting boolean OR expression.</p>
 <h3><a class="header" href="#truth-table" id="truth-table">Truth table</a></h3>
-<table><thead><tr><th><code>@isany {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isany A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 </tbody></table>
@@ -181,14 +181,14 @@
 <p>The <code>@isall</code> keyword creates a short-circuiting boolean AND expression.
 Its complement is <code>@isntall</code>.</p>
 <h3><a class="header" href="#truth-table-1" id="truth-table-1">Truth table</a></h3>
-<table><thead><tr><th><code>@isall {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isall A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
 </tbody></table>
 <h2><a class="header" href="#isntall" id="isntall">@isntall</a></h2>
 <p>The <code>@isntall</code> keyword creates a short-circuiting boolean NAND expression.</p>
 <h3><a class="header" href="#truth-table-2" id="truth-table-2">Truth table</a></h3>
-<table><thead><tr><th><code>@isntall {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isntall A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>true</code></td></tr>
 </tbody></table>
@@ -196,21 +196,21 @@ Its complement is <code>@isntall</code>.</p>
 <p>The <code>@isnone</code> keyword creates a short-circuiting boolean NOR expression.
 Its complement is <code>@isany</code>.</p>
 <h3><a class="header" href="#truth-table-3" id="truth-table-3">Truth table</a></h3>
-<table><thead><tr><th><code>@isnone {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isnone A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>true</code></td></tr>
 </tbody></table>
 <h2><a class="header" href="#isone" id="isone">@isone</a></h2>
 <p>The <code>@isone</code> keyword creates a short-circuiting boolean XOR expression.</p>
 <h3><a class="header" href="#truth-table-4" id="truth-table-4">Truth table</a></h3>
-<table><thead><tr><th><code>@isone {A | B}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isone A B</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = true</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 </tbody></table>
 <h2><a class="header" href="#ismany" id="ismany">@ismany</a></h2>
 <p>The <code>@ismany</code> keyword creates a short-circuiting expression that evaluates to <code>true</code> if more than one of the operands evaluates to <code>true</code>; otherwise, it evaluates to <code>false</code>.</p>
 <h3><a class="header" href="#truth-table-5" id="truth-table-5">Truth table</a></h3>
-<table><thead><tr><th><code>@ismany {A | B | C}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@ismany A B C</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = false, C = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = true, C = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = false, C = true</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
@@ -221,7 +221,7 @@ Its complement is <code>@isany</code>.</p>
 Its complement is <code>@isdiff</code>.</p>
 <p>Although the truth table shows boolean inputs, this operation accepts all types.</p>
 <h3><a class="header" href="#truth-table-6" id="truth-table-6">Truth table</a></h3>
-<table><thead><tr><th><code>@issame {A | B | C}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@issame A B C</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = false, C = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = true, C = false</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = false, C = true</code></strong></td><td align="center"><code>false</code></td><td align="center"><code>false</code></td></tr>
@@ -232,7 +232,7 @@ Its complement is <code>@isdiff</code>.</p>
 Its complement is <code>@issame</code>.</p>
 <p>Although the truth table shows boolean inputs, this operation accepts all types.</p>
 <h3><a class="header" href="#truth-table-7" id="truth-table-7">Truth table</a></h3>
-<table><thead><tr><th><code>@isdiff {A | B | C}</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
+<table><thead><tr><th><code>@isdiff A B C</code></th><th align="center"><code>A = true</code></th><th align="center"><code>A = false</code></th></tr></thead><tbody>
 <tr><td><strong><code>B = false, C = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>false</code></td></tr>
 <tr><td><strong><code>B = true, C = false</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>true</code></td></tr>
 <tr><td><strong><code>B = false, C = true</code></strong></td><td align="center"><code>true</code></td><td align="center"><code>true</code></td></tr>
