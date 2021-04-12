@@ -1424,6 +1424,7 @@ The pipe function accepts the current block element as a callback parameter, whi
 <tr><td><code>hex</code></td><td>Hexadecimal (base 16); Floats use IEEE 754 double-precision format.</td><td align="center">4d2</td></tr>
 <tr><td><code>octal</code></td><td>Octal (base 8); Floats use IEEE 754 double-precision format.</td><td align="center">2322</td></tr>
 <tr><td><code>binary</code></td><td>Binary (base 2); Floats use IEEE 754 double-precision format.</td><td align="center">10011010010</td></tr>
+<tr><td><code>alpha</code></td><td>Latin alphabetical ordinals; identical to Excel column numbers</td><td align="center">aul</td></tr>
 </tbody></table>
 <h3><a class="header" href="#the-endian-option" id="the-endian-option">The <code>endian</code> option</a></h3>
 <table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
@@ -2696,7 +2697,244 @@ Output:
 170 + 378 + 83 + 189 + 180 = 1000
 ##
 </code></pre>
-<h1><a class="header" href="#formatting" id="formatting">Formatting</a></h1>
+<h1><a class="header" href="#standard-library-formatting-functions" id="standard-library-formatting-functions">Standard Library: Formatting functions</a></h1>
+<h2><a class="header" href="#num-fmt" id="num-fmt">num-fmt</a></h2>
+<pre><code class="language-rant">
+[%num-fmt: options?; depth?]
+
+</code></pre>
+<p>→ <code>map | empty</code></p>
+<p>Gets or sets the number formatting options for the calling scope.</p>
+<p>If <code>options</code> is not set, prints a map with all current number format options.</p>
+<h3><a class="header" href="#parameters-47" id="parameters-47">Parameters</a></h3>
+<p><strong><code>options</code></strong> ← <code>map</code> <em>(optional)</em> <br/>
+The options to set. Only overwrites options specified; all others are left unchanged. <br/>
+If omitted, the function prints a map containing all current number format options. <br/>
+See section below for available options.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h3><a class="header" href="#supported-keys-for-options" id="supported-keys-for-options">Supported keys for <code>options</code></a></h3>
+<table><thead><tr><th>Name</th><th align="center">Type</th><th align="center">Default</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td><code>system</code></td><td align="center"><code>string</code></td><td align="center"><code>west-arabic</code></td><td align="left">Numeral system to render numbers in<br/><em>(See associated table)</em></td></tr>
+<tr><td><code>alt</code></td><td align="center"><code>bool</code></td><td align="center"><code>false</code></td><td align="left">Enables alternate formatting for the selected system</td></tr>
+<tr><td><code>precision</code></td><td align="center"><code>int</code></td><td align="center"><code>-1</code></td><td align="left">Number of decimal places to pad/truncate to; set to -1 to disable</td></tr>
+<tr><td><code>padding</code></td><td align="center"><code>int</code></td><td align="center"><code>0</code></td><td align="left">Minimum number of digits to pad the integral component to</td></tr>
+<tr><td><code>upper</code></td><td align="center"><code>bool</code></td><td align="center"><code>false</code></td><td align="left">Enables current system's uppercase form</td></tr>
+<tr><td><code>endian</code></td><td align="center"><code>string</code></td><td align="center"><code>big</code></td><td align="left">Byte order for power-of-two bases (hex, binary...). <br/> <em>(See associated table)</em></td></tr>
+<tr><td><code>sign</code></td><td align="center"><code>string</code></td><td align="center"><code>negative-only</code></td><td align="left">Sign formatting style<br/><em>(See associated table)</em></td></tr>
+<tr><td><code>infinity</code></td><td align="center"><code>string</code></td><td align="center"><code>keyword</code></td><td align="left">Infinity formatting style <br/> <em>(See associated table)</em></td></tr>
+<tr><td><code>group-sep</code></td><td align="center"><code>string</code></td><td align="center"><code>&quot;&quot;</code></td><td align="left">Digit group separator</td></tr>
+<tr><td><code>decimal-sep</code></td><td align="center"><code>string</code></td><td align="center"><code>&quot;&quot;</code></td><td align="left">Decimal group separator; if not specified, defaults to <code>&quot;.&quot;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#examples-8" id="examples-8">Examples</a></h3>
+<p><strong>Getting the current number format</strong></p>
+<pre><code class="language-rant"># Print current number format
+[num-fmt]
+## -&gt; 
+@(
+    sign = negative-only; 
+    infinity = keyword; 
+    group-sep = ; 
+    endian = big; 
+    precision = -1; 
+    system = west-arabic; 
+    alt = false; 
+    padding = 0; 
+    upper = false; 
+    decimal-sep = ;
+)
+##
+</code></pre>
+<p><strong>Setting the current number format</strong></p>
+<pre><code class="language-rant"># Set format to big-endian 64-bit uppercase hex with prefix
+[num-fmt: @(system = hex; upper = true; alt = true; padding = 16)]
+
+1000000000\n
+
+# -&gt; 0x000000003B9ACA00
+</code></pre>
+<h2><a class="header" href="#num-fmt-system" id="num-fmt-system">num-fmt-system</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-system: system?; depth?]
+</code></pre>
+<p>→ <code>string | empty</code></p>
+<p>Gets or sets the number formatter's numeral system.</p>
+<p>Shorthand for the <code>system</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-48" id="parameters-48">Parameters</a></h3>
+<p><strong><code>system</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
+The case-insensitive name of the numeral system to use. If omitted, the function prints the current value. <br/>
+See section below for available options.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h3><a class="header" href="#options-for-system" id="options-for-system">Options for <code>system</code></a></h3>
+<table><thead><tr><th>Value</th><th>Description</th><th align="center">Example (1234)</th></tr></thead><tbody>
+<tr><td><code>default</code></td><td>(Set-only) Same as <code>west-arabic</code></td><td align="center">1234</td></tr>
+<tr><td><code>west-arabic</code></td><td>Western Arabic numerals <em>(default)</em></td><td align="center">1234</td></tr>
+<tr><td><code>east-arabic</code></td><td>Eastern Arabic numerals</td><td align="center">١٢٣٤</td></tr>
+<tr><td><code>persian</code></td><td>Persian numerals</td><td align="center">۱۲۳۴</td></tr>
+<tr><td><code>babylonian</code></td><td>Babylonian cuneiform numerals. Truncates decimals.</td><td align="center">𒌋𒌋 𒌍𒐘</td></tr>
+<tr><td><code>roman</code></td><td>Roman numerals. Truncates decimals.</td><td align="center">mccxxxiv</td></tr>
+<tr><td><code>hex</code></td><td>Hexadecimal (base 16); Floats use IEEE 754 double-precision format.</td><td align="center">4d2</td></tr>
+<tr><td><code>octal</code></td><td>Octal (base 8); Floats use IEEE 754 double-precision format.</td><td align="center">2322</td></tr>
+<tr><td><code>binary</code></td><td>Binary (base 2); Floats use IEEE 754 double-precision format.</td><td align="center">10011010010</td></tr>
+<tr><td><code>alpha</code></td><td>Latin alphabetical ordinals; identical to Excel column numbers</td><td align="center">aul</td></tr>
+</tbody></table>
+<h2><a class="header" href="#num-fmt-alt" id="num-fmt-alt">num-fmt-alt</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-alt: flag?; depth?]
+
+</code></pre>
+<p>→ <code>bool | empty</code></p>
+<p>Gets or sets the number formatter's alternate format flag.</p>
+<p>Shorthand for the <code>alt</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-49" id="parameters-49">Parameters</a></h3>
+<p><strong><code>flag</code></strong> ← <code>bool</code> <em>(optional)</em> <br/>
+A boolean value indicating whether alternate formatting is enabled.
+If omitted, the function prints the current value.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h2><a class="header" href="#num-fmt-precision" id="num-fmt-precision">num-fmt-precision</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-precision: precision?; depth?]
+
+</code></pre>
+<p>→ <code>int | empty</code></p>
+<p>Gets or sets the number formatter's decimal precision.</p>
+<p>Shorthand for the <code>precision</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-50" id="parameters-50">Parameters</a></h3>
+<p><strong><code>precision</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The number of decimal places to pad or truncate numbers to. 
+If omitted, the function prints the current value.
+Set to -1 to allow unbounded precision.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h2><a class="header" href="#num-fmt-padding" id="num-fmt-padding">num-fmt-padding</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-padding: padding?; depth?]
+
+</code></pre>
+<p>→ <code>int | empty</code></p>
+<p>Gets or sets the number formatter's digit padding size.</p>
+<p>Shorthand for the <code>padding</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-51" id="parameters-51">Parameters</a></h3>
+<p><strong><code>padding</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The padding size to set. If omitted, the function prints the current value.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h2><a class="header" href="#num-fmt-upper" id="num-fmt-upper">num-fmt-upper</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-upper: flag?; depth?]
+
+</code></pre>
+<p>→ <code>bool | empty</code></p>
+<p>Gets or sets the number formatter's uppercase formatting flag.</p>
+<p>Shorthand for the <code>upper</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-52" id="parameters-52">Parameters</a></h3>
+<p><strong><code>flag</code></strong> ← <code>bool</code> <em>(optional)</em> <br/>
+A boolean value indicating whether uppercase formatting is enabled.
+If omitted, the function prints the current value.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h2><a class="header" href="#num-fmt-sign" id="num-fmt-sign">num-fmt-sign</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-sign: sign?; depth?]
+
+</code></pre>
+<p>→ <code>string | empty</code></p>
+<p>Gets or sets the number formatter's sign style.</p>
+<p>Shorthand for the <code>sign</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-53" id="parameters-53">Parameters</a></h3>
+<p><strong><code>sign</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
+The case-insensitive name of the sign style to use. If omitted, the function prints the current value. <br/>
+See section below for available options.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h3><a class="header" href="#options-for-sign" id="options-for-sign">Options for <code>sign</code></a></h3>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>default</code></td><td>(Set-only) Same as <code>negative-only</code></td></tr>
+<tr><td><code>negative-only</code></td><td>Show a minus on negative numbers; otherwise, nothing.</td></tr>
+<tr><td><code>explicit</code></td><td>Show a plus on positive numbers (including zero), and a minus on negative numbers.</td></tr>
+<tr><td><code>explicit-non-zero</code></td><td>Show a plus on positive numbers, nothing on zero, and a minus on negative numbers.</td></tr>
+</tbody></table>
+<h2><a class="header" href="#num-fmt-endian" id="num-fmt-endian">num-fmt-endian</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-endian: endianness?; depth?]
+
+</code></pre>
+<p>→ <code>string | empty</code></p>
+<p>Gets or sets the number format's endianness. This affects the byte order of power-of-two base formats such as <code>binary</code> and <code>hex</code>.</p>
+<p>Shorthand for the <code>endian</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-54" id="parameters-54">Parameters</a></h3>
+<p><strong><code>endianness</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
+The case-insensitive name of the endianness type to use. If omitted, the function prints the current value. <br/>
+See section below for available options.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h3><a class="header" href="#options-for-endianness" id="options-for-endianness">Options for <code>endianness</code></a></h3>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>default</code></td><td>(Set-only) Same as <code>big</code></td></tr>
+<tr><td><code>big</code></td><td>Specifies big-endian byte order (MSB goes first) <em>(default)</em></td></tr>
+<tr><td><code>little</code></td><td>Specifies little-endian byte order (LSB goes first)</td></tr>
+</tbody></table>
+<h2><a class="header" href="#num-fmt-infinity" id="num-fmt-infinity">num-fmt-infinity</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-infinity: infinity?; depth?]
+
+</code></pre>
+<p>→ <code>string | empty</code></p>
+<p>Gets or sets the number formatter's infinity style.</p>
+<p>Shorthand for the <code>infinity</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-55" id="parameters-55">Parameters</a></h3>
+<p><strong><code>infinity</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
+The case-insensitive name of the infinity style to use. If omitted, the function prints the current value. <br/>
+See section below for available options.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h3><a class="header" href="#options-for-infinity" id="options-for-infinity">Options for <code>infinity</code></a></h3>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>default</code></td><td>(Set-only) Same as <code>keyword</code></td></tr>
+<tr><td><code>keyword</code></td><td>Uses <code>-infinity</code> for negative infinity and <code>infinity</code> for positive infinity.</td></tr>
+<tr><td><code>symbol</code></td><td>Uses <code>-∞</code> for negative infinity and <code>∞</code> for positive infinity.</td></tr>
+</tbody></table>
+<h2><a class="header" href="#num-fmt-group-sep" id="num-fmt-group-sep">num-fmt-group-sep</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-group-sep: group-sep?; depth?]
+
+</code></pre>
+<p>→ <code>string | empty</code></p>
+<p>Gets or sets the number formatter's digit group separator.</p>
+<p>Shorthand for the <code>group-sep</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-56" id="parameters-56">Parameters</a></h3>
+<p><strong><code>group-sep</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
+The group separator to use. If omitted, the function prints the current value.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
+<h2><a class="header" href="#num-fmt-decimal-sep" id="num-fmt-decimal-sep">num-fmt-decimal-sep</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-decimal-sep: decimal-sep?; depth?]
+
+</code></pre>
+<p>→ <code>string | empty</code></p>
+<p>Gets or sets the number formatter's decimal separator.</p>
+<p>Shorthand for the <code>decimal-sep</code> option in <code>[num-fmt]</code>.</p>
+<h3><a class="header" href="#parameters-57" id="parameters-57">Parameters</a></h3>
+<p><strong><code>decimal-sep</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
+The decimal separator to use. 
+If the supplied value is a blank string, the formatter falls back to <code>&quot;.&quot;</code>. 
+If omitted, the function prints the current value.</p>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The depth of the scope whose number format to access. Value must be positive. Saturates to main program scope. <br/>
+Defaults to 0 (the calling scope).</p>
 <h1><a class="header" href="#standard-library-string-functions" id="standard-library-string-functions">Standard Library: String functions</a></h1>
 <h2><a class="header" href="#lines" id="lines">lines</a></h2>
 <pre><code class="language-rant">
@@ -2705,7 +2943,7 @@ Output:
 </code></pre>
 <p>→ <code>list</code></p>
 <p>Splits string <code>str</code> by line feed characters (0x0A, <code>\n</code>) and returns a list of the results.</p>
-<h3><a class="header" href="#parameters-47" id="parameters-47">Parameters</a></h3>
+<h3><a class="header" href="#parameters-58" id="parameters-58">Parameters</a></h3>
 <p><strong><code>str</code></strong> ← <code>string</code> <br/>
 The input string.</p>
 <h2><a class="header" href="#lower" id="lower">lower</a></h2>
@@ -2715,7 +2953,7 @@ The input string.</p>
 </code></pre>
 <p>→ <code>string</code></p>
 <p>Converts string <code>str</code> to lowercase and returns the result.</p>
-<h3><a class="header" href="#parameters-48" id="parameters-48">Parameters</a></h3>
+<h3><a class="header" href="#parameters-59" id="parameters-59">Parameters</a></h3>
 <p><strong><code>str</code></strong> ← <code>string</code> <br/>
 The input string.</p>
 <h2><a class="header" href="#split" id="split">split</a></h2>
@@ -2725,7 +2963,7 @@ The input string.</p>
 </code></pre>
 <p>→ <code>list</code></p>
 <p>Splits the input text by <code>sep</code> into a list of strings. If <code>sep</code> is omitted, splits into characters.</p>
-<h3><a class="header" href="#parameters-49" id="parameters-49">Parameters</a></h3>
+<h3><a class="header" href="#parameters-60" id="parameters-60">Parameters</a></h3>
 <p><strong><code>str</code></strong> ← <code>string</code> <br/>
 The input string.</p>
 <p><strong><code>sep</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
@@ -2737,7 +2975,7 @@ The delimiter to split on. If omitted, the string will be split into individual 
 </code></pre>
 <p>→ <code>list</code></p>
 <p>Segments the input text into a list of strings of <code>size</code> length.</p>
-<h3><a class="header" href="#parameters-50" id="parameters-50">Parameters</a></h3>
+<h3><a class="header" href="#parameters-61" id="parameters-61">Parameters</a></h3>
 <p><strong><code>str</code></strong> ← <code>string</code> <br/>
 The input string.</p>
 <p><strong><code>size</code></strong> ← <code>int</code> <br/>
@@ -2757,7 +2995,7 @@ The size of the segments to produce.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Performs a boolean AND operation on the operands and returns the result.</p>
-<h3><a class="header" href="#parameters-51" id="parameters-51">Parameters</a></h3>
+<h3><a class="header" href="#parameters-62" id="parameters-62">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>bool</code> <br/>
 The left-hand operand.</p>
 <p><strong><code>b</code></strong> ← <code>bool</code> <br/>
@@ -2771,7 +3009,7 @@ Any additional right-hand operands.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns the inverse of the input boolean value.</p>
-<h3><a class="header" href="#parameters-52" id="parameters-52">Parameters</a></h3>
+<h3><a class="header" href="#parameters-63" id="parameters-63">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>bool</code> <br/>
 The value to invert.</p>
 <h2><a class="header" href="#or" id="or">or</a></h2>
@@ -2781,7 +3019,7 @@ The value to invert.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Performs a boolean inclusive OR operation on the operands and returns the result.</p>
-<h3><a class="header" href="#parameters-53" id="parameters-53">Parameters</a></h3>
+<h3><a class="header" href="#parameters-64" id="parameters-64">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>bool</code> <br/>
 The left-hand operand.</p>
 <p><strong><code>b</code></strong> ← <code>bool</code> <br/>
@@ -2795,7 +3033,7 @@ Any additional right-hand operands.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Performs a boolean XOR operation on the operands and returns the result.</p>
-<h3><a class="header" href="#parameters-54" id="parameters-54">Parameters</a></h3>
+<h3><a class="header" href="#parameters-65" id="parameters-65">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>bool</code> <br/>
 The left-hand operand.</p>
 <p><strong><code>b</code></strong> ← <code>bool</code> <br/>
@@ -2808,7 +3046,7 @@ The right-hand operand.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>lhs</code> and <code>rhs</code> are equal.</p>
-<h3><a class="header" href="#parameters-55" id="parameters-55">Parameters</a></h3>
+<h3><a class="header" href="#parameters-66" id="parameters-66">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the comparison.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -2820,7 +3058,7 @@ The right-hand operand of the comparison.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>.</p>
-<h3><a class="header" href="#parameters-56" id="parameters-56">Parameters</a></h3>
+<h3><a class="header" href="#parameters-67" id="parameters-67">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the comparison.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -2832,7 +3070,7 @@ The right-hand operand of the comparison.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>lhs</code> is greater than <code>rhs</code>.</p>
-<h3><a class="header" href="#parameters-57" id="parameters-57">Parameters</a></h3>
+<h3><a class="header" href="#parameters-68" id="parameters-68">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the comparison.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -2844,7 +3082,7 @@ The right-hand operand of the comparison.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>lhs</code> is less than or equal to <code>rhs</code>.</p>
-<h3><a class="header" href="#parameters-58" id="parameters-58">Parameters</a></h3>
+<h3><a class="header" href="#parameters-69" id="parameters-69">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the comparison.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -2856,7 +3094,7 @@ The right-hand operand of the comparison.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>lhs</code> is less than <code>rhs</code>.</p>
-<h3><a class="header" href="#parameters-59" id="parameters-59">Parameters</a></h3>
+<h3><a class="header" href="#parameters-70" id="parameters-70">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the comparison.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -2868,7 +3106,7 @@ The right-hand operand of the comparison.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>lhs</code> and <code>rhs</code> are not equal.</p>
-<h3><a class="header" href="#parameters-60" id="parameters-60">Parameters</a></h3>
+<h3><a class="header" href="#parameters-71" id="parameters-71">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the comparison.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -2881,7 +3119,7 @@ The right-hand operand of the comparison.</p>
 </code></pre>
 <p>→ <code>int | float</code></p>
 <p>Prints the absolute value of <code>num</code>.</p>
-<h3><a class="header" href="#parameters-61" id="parameters-61">Parameters</a></h3>
+<h3><a class="header" href="#parameters-72" id="parameters-72">Parameters</a></h3>
 <p><strong><code>num</code></strong> ← <code>int | float</code> <br/>
 The input number.</p>
 <h3><a class="header" href="#errors-7" id="errors-7">Errors</a></h3>
@@ -2893,7 +3131,7 @@ The input number.</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Adds two values and prints the sum.</p>
-<h3><a class="header" href="#parameters-62" id="parameters-62">Parameters</a></h3>
+<h3><a class="header" href="#parameters-73" id="parameters-73">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the addition.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -2905,7 +3143,7 @@ The right-hand operand of the addition.</p>
 </code></pre>
 <p>→ <code>int</code></p>
 <p>Prints the smallest integer that is greater than or equal to <code>val</code>.</p>
-<h3><a class="header" href="#parameters-63" id="parameters-63">Parameters</a></h3>
+<h3><a class="header" href="#parameters-74" id="parameters-74">Parameters</a></h3>
 <p><strong><code>val</code></strong> ← <code>float</code> <br/>
 The input number.</p>
 <h2><a class="header" href="#div" id="div">div</a></h2>
@@ -2915,7 +3153,7 @@ The input number.</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Divides two values and prints the quotient.</p>
-<h3><a class="header" href="#parameters-64" id="parameters-64">Parameters</a></h3>
+<h3><a class="header" href="#parameters-75" id="parameters-75">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand (dividend).</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -2927,7 +3165,7 @@ The right-hand operand (divisor).</p>
 </code></pre>
 <p>→ <code>int</code></p>
 <p>Prints the largest integer that is less than or equal to <code>val</code>.</p>
-<h3><a class="header" href="#parameters-65" id="parameters-65">Parameters</a></h3>
+<h3><a class="header" href="#parameters-76" id="parameters-76">Parameters</a></h3>
 <p><strong><code>val</code></strong> ← <code>float</code> <br/>
 The input number.</p>
 <h2><a class="header" href="#frac" id="frac">frac</a></h2>
@@ -2937,7 +3175,7 @@ The input number.</p>
 </code></pre>
 <p>→ <code>float</code></p>
 <p>Prints the fractional part of <code>val</code>.</p>
-<h3><a class="header" href="#parameters-66" id="parameters-66">Parameters</a></h3>
+<h3><a class="header" href="#parameters-77" id="parameters-77">Parameters</a></h3>
 <p><strong><code>val</code></strong> ← <code>float</code> <br/>
 The input number.</p>
 <h2><a class="header" href="#max" id="max">max</a></h2>
@@ -2949,10 +3187,10 @@ The input number.</p>
 <p>Returns the largest value in <code>values</code>.</p>
 <p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
 before the maximum value is calculated.</p>
-<h3><a class="header" href="#parameters-67" id="parameters-67">Parameters</a></h3>
+<h3><a class="header" href="#parameters-78" id="parameters-78">Parameters</a></h3>
 <p><strong><code>values</code></strong> ← <code>any+</code> <br/>
 The input values.</p>
-<h3><a class="header" href="#examples-8" id="examples-8">Examples</a></h3>
+<h3><a class="header" href="#examples-9" id="examples-9">Examples</a></h3>
 <pre><code class="language-rant"># Arguments can be single values
 [max: 3; 2 |&gt; assert-eq: 3]
 
@@ -2971,10 +3209,10 @@ The input values.</p>
 <p>Returns the smallest value in <code>values</code>.</p>
 <p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
 before the minimum value is calculated.</p>
-<h3><a class="header" href="#parameters-68" id="parameters-68">Parameters</a></h3>
+<h3><a class="header" href="#parameters-79" id="parameters-79">Parameters</a></h3>
 <p><strong><code>values</code></strong> ← <code>any+</code> <br/>
 The input values.</p>
-<h3><a class="header" href="#examples-9" id="examples-9">Examples</a></h3>
+<h3><a class="header" href="#examples-10" id="examples-10">Examples</a></h3>
 <pre><code class="language-rant"># Arguments can be single values
 [min: 3; 2 |&gt; assert-eq: 2]
 
@@ -2991,7 +3229,7 @@ The input values.</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Gets the modulus of two values.</p>
-<h3><a class="header" href="#parameters-69" id="parameters-69">Parameters</a></h3>
+<h3><a class="header" href="#parameters-80" id="parameters-80">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand (dividend).</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -3003,7 +3241,7 @@ The right-hand operand (divisor).</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Multiplies two values and prints the product.</p>
-<h3><a class="header" href="#parameters-70" id="parameters-70">Parameters</a></h3>
+<h3><a class="header" href="#parameters-81" id="parameters-81">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> &lt;br.&gt;
@@ -3015,7 +3253,7 @@ The right-hand operand.</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Multiplies two values, then adds another value to the result.</p>
-<h3><a class="header" href="#parameters-71" id="parameters-71">Parameters</a></h3>
+<h3><a class="header" href="#parameters-82" id="parameters-82">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the multiplication.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -3029,7 +3267,7 @@ The value to add to the product.</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Negates a value and prints it.</p>
-<h3><a class="header" href="#parameters-72" id="parameters-72">Parameters</a></h3>
+<h3><a class="header" href="#parameters-83" id="parameters-83">Parameters</a></h3>
 <p><strong><code>val</code></strong> ← <code>any</code> <br/>
 The input value.</p>
 <h2><a class="header" href="#recip" id="recip">recip</a></h2>
@@ -3046,7 +3284,7 @@ The input value.</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Prints the difference between two values.</p>
-<h3><a class="header" href="#parameters-73" id="parameters-73">Parameters</a></h3>
+<h3><a class="header" href="#parameters-84" id="parameters-84">Parameters</a></h3>
 <p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
 The left-hand operand of the subtraction.</p>
 <p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
@@ -3058,7 +3296,7 @@ The right-hand side of the subtraction.</p>
 </code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the sine of <code>x</code>.</p>
-<h3><a class="header" href="#parameters-74" id="parameters-74">Parameters</a></h3>
+<h3><a class="header" href="#parameters-85" id="parameters-85">Parameters</a></h3>
 <p><strong><code>x</code></strong> ← <code>float</code> <br/>
 The input value, in radians.</p>
 <h2><a class="header" href="#cos" id="cos">cos</a></h2>
@@ -3068,7 +3306,7 @@ The input value, in radians.</p>
 </code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the cosine of <code>x</code>.</p>
-<h3><a class="header" href="#parameters-75" id="parameters-75">Parameters</a></h3>
+<h3><a class="header" href="#parameters-86" id="parameters-86">Parameters</a></h3>
 <p><strong><code>x</code></strong> ← <code>float</code> <br/>
 The input value, in radians.</p>
 <h2><a class="header" href="#tan" id="tan">tan</a></h2>
@@ -3078,7 +3316,7 @@ The input value, in radians.</p>
 </code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the tangent of <code>x</code>.</p>
-<h3><a class="header" href="#parameters-76" id="parameters-76">Parameters</a></h3>
+<h3><a class="header" href="#parameters-87" id="parameters-87">Parameters</a></h3>
 <p><strong><code>x</code></strong> ← <code>float</code> <br/>
 The input value, in radians.</p>
 <h2><a class="header" href="#asin" id="asin">asin</a></h2>
@@ -3088,7 +3326,7 @@ The input value, in radians.</p>
 </code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the arcsine (in radians) of <code>x</code>.</p>
-<h3><a class="header" href="#parameters-77" id="parameters-77">Parameters</a></h3>
+<h3><a class="header" href="#parameters-88" id="parameters-88">Parameters</a></h3>
 <p><strong><code>x</code></strong> ← <code>float</code> <br/>
 The input sine value.</p>
 <h2><a class="header" href="#acos" id="acos">acos</a></h2>
@@ -3098,7 +3336,7 @@ The input sine value.</p>
 </code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the arccosine (in radians) of <code>x</code>.</p>
-<h3><a class="header" href="#parameters-78" id="parameters-78">Parameters</a></h3>
+<h3><a class="header" href="#parameters-89" id="parameters-89">Parameters</a></h3>
 <p><strong><code>x</code></strong> ← <code>float</code> <br/>
 The input cosine value.</p>
 <h2><a class="header" href="#atan" id="atan">atan</a></h2>
@@ -3108,7 +3346,7 @@ The input cosine value.</p>
 </code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the arctangent (in radians) of <code>x</code>.</p>
-<h3><a class="header" href="#parameters-79" id="parameters-79">Parameters</a></h3>
+<h3><a class="header" href="#parameters-90" id="parameters-90">Parameters</a></h3>
 <p><strong><code>x</code></strong> ← <code>float</code> <br/>
 The input tangent value.</p>
 <h2><a class="header" href="#atan2" id="atan2">atan2</a></h2>
@@ -3119,7 +3357,7 @@ The input tangent value.</p>
 <p>→ <code>float</code></p>
 <p>Calculates the four-quadrant arctangent (in radians) of \(\frac{y}{x}\).</p>
 <p>Returns 0 if <code>x</code> or <code>y</code> is 0.</p>
-<h3><a class="header" href="#parameters-80" id="parameters-80">Parameters</a></h3>
+<h3><a class="header" href="#parameters-91" id="parameters-91">Parameters</a></h3>
 <p><strong><code>y</code></strong> ← <code>float</code> <br/>
 The input tangent's numerator.</p>
 <p><strong><code>x</code></strong> ← <code>float</code> <br/>
@@ -3131,7 +3369,7 @@ The input tangent's denominator.</p>
 </code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the square root of <code>x</code>.</p>
-<h3><a class="header" href="#parameters-81" id="parameters-81">Parameters</a></h3>
+<h3><a class="header" href="#parameters-92" id="parameters-92">Parameters</a></h3>
 <p><strong><code>x</code></strong> ← <code>int | float</code> <br/>
 The input value.</p>
 <h2><a class="header" href="#pow" id="pow">pow</a></h2>
@@ -3141,7 +3379,7 @@ The input value.</p>
 </code></pre>
 <p>→ <code>int | float</code></p>
 <p>Calculates \(x^y\) and prints the result. Both <code>x</code> and <code>y</code> can be <code>int</code> or <code>float</code>.</p>
-<h3><a class="header" href="#parameters-82" id="parameters-82">Parameters</a></h3>
+<h3><a class="header" href="#parameters-93" id="parameters-93">Parameters</a></h3>
 <p><strong><code>x</code></strong> ← <code>int | float</code> <br/>
 The base number.</p>
 <p><strong><code>y</code></strong> ← <code>int | flaot</code> <br/>
@@ -3157,7 +3395,7 @@ The exponent to raise <code>x</code> to.</p>
 <p>→ <code>float | empty</code></p>
 <p>Attempts to convert <code>value</code> to a <code>float</code> value and returns the result.
 If the conversion fails, returns <code>empty</code> value.</p>
-<h3><a class="header" href="#parameters-83" id="parameters-83">Parameters</a></h3>
+<h3><a class="header" href="#parameters-94" id="parameters-94">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The input value to convert.</p>
 <h2><a class="header" href="#int" id="int">int</a></h2>
@@ -3168,7 +3406,7 @@ The input value to convert.</p>
 <p>→ <code>int | empty</code></p>
 <p>Attempts to convert <code>value</code> to an <code>int</code> value and returns the reuslt.
 If the conversion fails, returns <code>empty</code> value.</p>
-<h3><a class="header" href="#parameters-84" id="parameters-84">Parameters</a></h3>
+<h3><a class="header" href="#parameters-95" id="parameters-95">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The input value to convert.</p>
 <h2><a class="header" href="#string" id="string">string</a></h2>
@@ -3179,7 +3417,7 @@ The input value to convert.</p>
 <p>→ <code>string | empty</code></p>
 <p>Attempts to convert <code>value</code> to a <code>string</code> value and returns the result.
 If the conversion fails, returns <code>empty</code> value.</p>
-<h3><a class="header" href="#parameters-85" id="parameters-85">Parameters</a></h3>
+<h3><a class="header" href="#parameters-96" id="parameters-96">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The input value to convert.</p>
 <h2><a class="header" href="#list-1" id="list-1">list</a></h2>
@@ -3190,7 +3428,7 @@ The input value to convert.</p>
 <p>→ <code>list | empty</code></p>
 <p>Attempts to convert <code>value</code> to a <code>list</code> and returns the result.
 If the conversion fails, returns <code>empty</code> value.</p>
-<h3><a class="header" href="#parameters-86" id="parameters-86">Parameters</a></h3>
+<h3><a class="header" href="#parameters-97" id="parameters-97">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The input value to convert.</p>
 <h3><a class="header" href="#conversion-behavior" id="conversion-behavior">Conversion behavior</a></h3>
@@ -3225,7 +3463,7 @@ The value to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is bewteen <code>a</code> and <code>b</code> (both inclusive).</p>
-<h3><a class="header" href="#parameters-87" id="parameters-87">Parameters</a></h3>
+<h3><a class="header" href="#parameters-98" id="parameters-98">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <p><strong><code>a</code></strong> ← <code>any</code> <br/>
@@ -3239,7 +3477,7 @@ The second bound.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>bool</code>.</p>
-<h3><a class="header" href="#parameters-88" id="parameters-88">Parameters</a></h3>
+<h3><a class="header" href="#parameters-99" id="parameters-99">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <h2><a class="header" href="#is-empty" id="is-empty">is-empty</a></h2>
@@ -3249,7 +3487,7 @@ The value to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is <code>~</code>.</p>
-<h3><a class="header" href="#parameters-89" id="parameters-89">Parameters</a></h3>
+<h3><a class="header" href="#parameters-100" id="parameters-100">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <h2><a class="header" href="#is-even" id="is-even">is-even</a></h2>
@@ -3259,7 +3497,7 @@ The value to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>number</code> is an even number.</p>
-<h3><a class="header" href="#parameters-90" id="parameters-90">Parameters</a></h3>
+<h3><a class="header" href="#parameters-101" id="parameters-101">Parameters</a></h3>
 <p><strong><code>number</code></strong> ← <code>int | float</code> <br/>
 The number to check.</p>
 <h2><a class="header" href="#is-float" id="is-float">is-float</a></h2>
@@ -3269,7 +3507,7 @@ The number to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>float</code>.</p>
-<h3><a class="header" href="#parameters-91" id="parameters-91">Parameters</a></h3>
+<h3><a class="header" href="#parameters-102" id="parameters-102">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <h2><a class="header" href="#is-int" id="is-int">is-int</a></h2>
@@ -3279,7 +3517,7 @@ The value to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>int</code>.</p>
-<h3><a class="header" href="#parameters-92" id="parameters-92">Parameters</a></h3>
+<h3><a class="header" href="#parameters-103" id="parameters-103">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <h2><a class="header" href="#is-nan" id="is-nan">is-nan</a></h2>
@@ -3289,7 +3527,7 @@ The value to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>float</code> and equal to NaN (Not a Number).</p>
-<h3><a class="header" href="#parameters-93" id="parameters-93">Parameters</a></h3>
+<h3><a class="header" href="#parameters-104" id="parameters-104">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <h2><a class="header" href="#is-number" id="is-number">is-number</a></h2>
@@ -3299,7 +3537,7 @@ The value to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>int</code> or <code>float</code>.</p>
-<h3><a class="header" href="#parameters-94" id="parameters-94">Parameters</a></h3>
+<h3><a class="header" href="#parameters-105" id="parameters-105">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <h2><a class="header" href="#is-odd" id="is-odd">is-odd</a></h2>
@@ -3309,7 +3547,7 @@ The value to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>number</code> is an odd number.</p>
-<h3><a class="header" href="#parameters-95" id="parameters-95">Parameters</a></h3>
+<h3><a class="header" href="#parameters-106" id="parameters-106">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <h2><a class="header" href="#is-string" id="is-string">is-string</a></h2>
@@ -3319,7 +3557,7 @@ The value to check.</p>
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>string</code>.</p>
-<h3><a class="header" href="#parameters-96" id="parameters-96">Parameters</a></h3>
+<h3><a class="header" href="#parameters-107" id="parameters-107">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value to check.</p>
 <h1><a class="header" href="#assertion" id="assertion">Assertion</a></h1>
@@ -3331,12 +3569,12 @@ The value to check.</p>
 <p>Verifies that <code>condition</code> is true before continuing program execution.</p>
 <p>If <code>condition</code> is <code>false</code>, raises a runtime error; if <code>true</code>, does nothing.</p>
 <p>The message displayed in the runtime error can be customized by passing a string to <code>message</code>. </p>
-<h3><a class="header" href="#parameters-97" id="parameters-97">Parameters</a></h3>
+<h3><a class="header" href="#parameters-108" id="parameters-108">Parameters</a></h3>
 <p><strong><code>condition</code></strong> ← <code>bool</code> <br/>
 The condition to check.</p>
 <p><strong><code>message</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
 The error message to display if the condition is not satisfied.</p>
-<h3><a class="header" href="#examples-10" id="examples-10">Examples</a></h3>
+<h3><a class="header" href="#examples-11" id="examples-11">Examples</a></h3>
 <pre><code class="language-rant"># does absolutely nothing
 [assert: true]
 
@@ -3353,7 +3591,7 @@ The error message to display if the condition is not satisfied.</p>
 </code></pre>
 <p>Verifies that <code>expected</code> and <code>actual</code> are equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
-<h3><a class="header" href="#parameters-98" id="parameters-98">Parameters</a></h3>
+<h3><a class="header" href="#parameters-109" id="parameters-109">Parameters</a></h3>
 <p><strong><code>actual</code></strong> ← <code>any</code> <br/>
 The actual value to test.</p>
 <p><strong><code>expected</code></strong> ← <code>any</code> <br/>
@@ -3367,7 +3605,7 @@ The error message to display if the condition is not satisfied.</p>
 </code></pre>
 <p>Verifies that <code>unexpected</code> and <code>actual</code> are not equal before continuing program execution.</p>
 <p>Like <code>[assert]</code>, a custom error message can be provided.</p>
-<h3><a class="header" href="#parameters-99" id="parameters-99">Parameters</a></h3>
+<h3><a class="header" href="#parameters-110" id="parameters-110">Parameters</a></h3>
 <p><strong><code>actual</code></strong> ← <code>any</code> <br/>
 The actual value to test.</p>
 <p><strong><code>unexpected</code></strong> ← <code>any</code> <br/>
