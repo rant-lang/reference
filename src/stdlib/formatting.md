@@ -294,7 +294,9 @@ Defaults to 0 (the calling scope).
 ## num-fmt-decimal-sep
 
 ```rant
+
 [%num-fmt-decimal-sep: decimal-sep?; depth?]
+
 ```
 &rarr; `string | empty`
 
