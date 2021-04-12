@@ -1,68 +1,167 @@
 # Standard Library: Generators
 
+## dig
 
-### [dig: count?]
+```rant
+
+[%dig: count?]
+
+```
 &rarr; `string`
 
 Prints a uniformly random decimal digit. If `count` is specified, repeats `count` times.
+
+### Parameters
+
+**`count`** &larr; `int` *(optional)* <br/>
+The number of digits to generate. Defaults to 1.
+
+### Example
 
 ```rant
 # Generate a random 32-character decimal string
 [dig:32] # ~> 01952208554533821061510695429126
 ```
 
-### [digh: count?]
+
+## digh
+
+```rant
+
+[%digh: count?]
+
+```
 &rarr; `string`
 
 Prints a uniformly random lowercase hexadecimal digit. If `count` is specified, repeats `count` times.
 
-#### Example
+### Parameters
+
+**`count`** &larr; `int` *(optional)* <br/>
+The number of digits to generate. Defaults to 1.
+
+### Example
 
 ```rant
 # Generate a random 32-character hex string
 [digh:32] # ~> f4e5bef31ea02eac22f220e68e837587
 ```
 
-### [dignz: count?]
+
+## dignz
+
+```rant
+
+[%dignz: count?]
+
+```
 &rarr; `string`
 
 Prints a uniformly random non-zero decimal digit. If `count` is specified, repeats `count` times.
+
+### Parameters
+
+**`count`** &larr; `int` *(optional)* <br/>
+The number of digits to generate. Defaults to 1.
+
+### Example
 
 ```rant
 # Generate a random 32-character decimal string without zeros
 [dignz:32] # ~> 92558761934966287236132511739511
 ```
 
-### [maybe: p?]
+
+## maybe
+
+```rant
+
+[%maybe: p?]
+
+```
 &rarr; `bool`
 
 Returns a `bool` value with `p` probability of being true.
 
 `p` must be either a `float` or `empty`. If omitted, it will default to `0.5`.
 
-### [rand: a; b]
+### Parameters
+
+**`p`** &larr; `float | empty` <br/>
+The probability (0.0 <= p <= 1.0) of the printed boolean being true. 
+If omitted or empty, defaults to 0.5.
+
+
+## rand
+
+```rant
+
+[%rand: a; b]
+
+```
 &rarr; `int`
 
 Prints a random integer with uniform distribution between `a` and `b` (both inclusive).
 
-#### Example
+### Parameters
+
+**`a`** &larr; `int` <br/>
+The first inclusive bound of the random number.
+
+**`b`** &larr; `int` <br/>
+The second inclusive bound of the random number.
+
+### Example
 
 ```rant
 You roll the dice and get '[rand:1;6] and '[rand:1;6].
 # You roll the dice and get 2 and 5.
 ```
 
-### [randf: a; b]
+
+## randf
+
+```rant
+
+[%randf: a; b]
+
+```
 &rarr; `float`
 
 Prints a random float with uniform distribution between `a` (inclusive) and `b` (exclusive).
 
-### [rand-list: a; b; n]
+### Parameters
+
+**`a`** &larr; `float` <br/>
+The first inclusive bound of the random number.
+
+**`b`** &larr; `float` <br/>
+The second inclusive bound of the random number.
+
+
+## rand-list
+
+```rant
+
+[%rand-list: a; b; n]
+
+```
 &rarr; `list`
 
 Prints a list of `n` random integers with uniform distribution between `a` and `b` (both inclusive).
 
-#### Example
+### Parameters
+
+**`a`** &larr; `int` <br/>
+The first inclusive bound of the random numbers.
+
+**`b`** &larr; `int` <br/>
+The second inclusive bound of the random numbers.
+
+**`n`** &larr; `int` <br/>
+The amount of numbers to generate.
+
+### Example
 
 ```rant
 # 2-dice roll
@@ -73,26 +172,57 @@ You rolled '[join: \sand\s; <roll>] for a total of '[sum: <roll>].
 # ~> You rolled 5 and 3 for a total of 8.
 ```
 
-### [randf-list: a; b; n]
+
+### randf
+
+```rant
+
+[%randf-list: a; b; n]
+
+```
 &rarr; `list`
 
 Prints a list of `n` random floats with uniform distribution between `a` (inclusive) and `b` (exclusive).
 
-### [shred: input; count; variance]
+### Parameters
+
+**`a`** &larr; `float` <br/>
+The first inclusive bound of the random numbers.
+
+**`b`** &larr; `float` <br/>
+The second inclusive bound of the random numbers.
+
+**`n`** &larr; `int` <br/>
+The amount of numbers to generate.
+
+
+## shred
+
+```rant
+
+[%shred: input; count; variance]
+
+```
 &rarr; `list`
 
-Generates a list of `count` random numbers that vary from each other by `variance`, and whose sum equals `input`.
+Generates a list of `count` random numbers, whose sum equals `input`, and with a maximum absolute difference of `variance`.
 
-All three arguments must be numbers, and `count` must be an `int`.
+### Parameters
 
-#### Errors
+**`input`** &larr; `int | float` <br/>
+The input number to shred.
 
-Causes a runtime error if:
+**`count`** &larr; `int` <br/>
+The number of parts to shred `input` into.
 
-* `input`, `count`, or `variance` is not a number
-* `count` is zero or negative
+**`variance`** &larr; `int | float` <br/>
+The maximum absolute difference between any two generated numbers. 
 
-#### Example
+### Errors
+
+Raises an error if `count` is less than 1.
+
+### Example
 
 ```rant
 # Generate and print a list of 5 random numbers that add up to 1000

@@ -778,7 +778,7 @@ Values that have no corresponding key in the map are passed through as-is.
 **`list`** &larr; `list` <br/>
 The input list.
 
-**`map`** &larr; `mao` <br/>
+**`map`** &larr; `map` <br/>
 A map associating items in `list` with their replacements.
 
 ### Example
