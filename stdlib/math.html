@@ -41,6 +41,9 @@
         
 
         
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -162,35 +165,85 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#standard-library-math-functions" id="standard-library-math-functions">Standard Library: Math functions</a></h1>
-<h3><a class="header" href="#abs-num" id="abs-num">[abs: num]</a></h3>
-<p>→ <code>int</code> or <code>float</code></p>
-<p>Calculates the absolute value of <code>num</code>.</p>
-<h4><a class="header" href="#errors" id="errors">Errors</a></h4>
+<h2><a class="header" href="#abs" id="abs">abs</a></h2>
+<pre><code class="language-rant">
+[%abs: num]
+
+</code></pre>
+<p>→ <code>int | float</code></p>
+<p>Prints the absolute value of <code>num</code>.</p>
+<h3><a class="header" href="#parameters" id="parameters">Parameters</a></h3>
+<p><strong><code>num</code></strong> ← <code>int | float</code> <br/>
+The input number.</p>
+<h3><a class="header" href="#errors" id="errors">Errors</a></h3>
 <p>Raises an error if <code>num</code> is an integer and the absolute value overflows.</p>
-<h3><a class="header" href="#add-lhs-rhs" id="add-lhs-rhs">[add: lhs; rhs]</a></h3>
+<h2><a class="header" href="#add" id="add">add</a></h2>
+<pre><code class="language-rant">
+[%add: lhs; rhs]
+
+</code></pre>
 <p>→ <code>any</code></p>
-<p>Adds two values.</p>
-<h3><a class="header" href="#ceil-val" id="ceil-val">[ceil: val]</a></h3>
+<p>Adds two values and prints the sum.</p>
+<h3><a class="header" href="#parameters-1" id="parameters-1">Parameters</a></h3>
+<p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
+The left-hand operand of the addition.</p>
+<p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
+The right-hand operand of the addition.</p>
+<h2><a class="header" href="#ceil" id="ceil">ceil</a></h2>
+<pre><code class="language-rant">
+[%ceil: val]
+
+</code></pre>
 <p>→ <code>int</code></p>
-<p>Gets the smallest integer that is greater than or equal to <code>val</code>.</p>
-<p><code>val</code> must be a <code>float</code>.</p>
-<h3><a class="header" href="#div-lhs-rhs" id="div-lhs-rhs">[div: lhs; rhs]</a></h3>
+<p>Prints the smallest integer that is greater than or equal to <code>val</code>.</p>
+<h3><a class="header" href="#parameters-2" id="parameters-2">Parameters</a></h3>
+<p><strong><code>val</code></strong> ← <code>float</code> <br/>
+The input number.</p>
+<h2><a class="header" href="#div" id="div">div</a></h2>
+<pre><code class="language-rant">
+[%div: lhs; rhs]
+
+</code></pre>
 <p>→ <code>any</code></p>
-<p>Divides two values.</p>
-<h3><a class="header" href="#floor-val" id="floor-val">[floor: val]</a></h3>
+<p>Divides two values and prints the quotient.</p>
+<h3><a class="header" href="#parameters-3" id="parameters-3">Parameters</a></h3>
+<p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
+The left-hand operand (dividend).</p>
+<p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
+The right-hand operand (divisor).</p>
+<h2><a class="header" href="#floor" id="floor">floor</a></h2>
+<pre><code class="language-rant">
+[%floor: val]
+
+</code></pre>
 <p>→ <code>int</code></p>
-<p>Gets the largest integer that is less than or equal to <code>val</code>.</p>
-<p><code>val</code> must be a <code>float</code>.</p>
-<h3><a class="header" href="#frac-val" id="frac-val">[frac: val]</a></h3>
+<p>Prints the largest integer that is less than or equal to <code>val</code>.</p>
+<h3><a class="header" href="#parameters-4" id="parameters-4">Parameters</a></h3>
+<p><strong><code>val</code></strong> ← <code>float</code> <br/>
+The input number.</p>
+<h2><a class="header" href="#frac" id="frac">frac</a></h2>
+<pre><code class="language-rant">
+[%frac: val]
+
+</code></pre>
 <p>→ <code>float</code></p>
-<p>Gets the fractional part of <code>val</code>.</p>
-<p><code>val</code> must be a <code>float</code>.</p>
-<h3><a class="header" href="#max-values" id="max-values">[max: values+]</a></h3>
+<p>Prints the fractional part of <code>val</code>.</p>
+<h3><a class="header" href="#parameters-5" id="parameters-5">Parameters</a></h3>
+<p><strong><code>val</code></strong> ← <code>float</code> <br/>
+The input number.</p>
+<h2><a class="header" href="#max" id="max">max</a></h2>
+<pre><code class="language-rant">
+[%max: values+]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Returns the largest value in <code>values</code>.</p>
 <p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
 before the maximum value is calculated.</p>
-<h4><a class="header" href="#examples" id="examples">Examples</a></h4>
+<h3><a class="header" href="#parameters-6" id="parameters-6">Parameters</a></h3>
+<p><strong><code>values</code></strong> ← <code>any+</code> <br/>
+The input values.</p>
+<h3><a class="header" href="#examples" id="examples">Examples</a></h3>
 <pre><code class="language-rant"># Arguments can be single values
 [max: 3; 2 |&gt; assert-eq: 3]
 
@@ -200,12 +253,19 @@ before the maximum value is calculated.</p>
 # Even alongside single values, lists are still expanded!
 [max: 3; (4; -2; 0; 10); 6 |&gt; assert-eq: 10]
 </code></pre>
-<h3><a class="header" href="#min-values" id="min-values">[min: values+]</a></h3>
+<h2><a class="header" href="#min" id="min">min</a></h2>
+<pre><code class="language-rant">
+[%min: values+]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Returns the smallest value in <code>values</code>.</p>
 <p>Any elements of type <code>list</code> in <code>values</code> will be expanded to their individual elements
 before the minimum value is calculated.</p>
-<h4><a class="header" href="#examples-1" id="examples-1">Examples</a></h4>
+<h3><a class="header" href="#parameters-7" id="parameters-7">Parameters</a></h3>
+<p><strong><code>values</code></strong> ← <code>any+</code> <br/>
+The input values.</p>
+<h3><a class="header" href="#examples-1" id="examples-1">Examples</a></h3>
 <pre><code class="language-rant"># Arguments can be single values
 [min: 3; 2 |&gt; assert-eq: 2]
 
@@ -215,53 +275,169 @@ before the minimum value is calculated.</p>
 # Even alongside single values, lists are still expanded!
 [min: 3; (4; -2; 0; 10); 6 |&gt; assert-eq: -2]
 </code></pre>
-<h3><a class="header" href="#mod-lhs-rhs" id="mod-lhs-rhs">[mod: lhs; rhs]</a></h3>
+<h2><a class="header" href="#mod" id="mod">mod</a></h2>
+<pre><code class="language-rant">
+[%mod: lhs; rhs]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Gets the modulus of two values.</p>
-<h3><a class="header" href="#mul-lhs-rhs" id="mul-lhs-rhs">[mul: lhs; rhs]</a></h3>
+<h3><a class="header" href="#parameters-8" id="parameters-8">Parameters</a></h3>
+<p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
+The left-hand operand (dividend).</p>
+<p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
+The right-hand operand (divisor).</p>
+<h2><a class="header" href="#mul" id="mul">mul</a></h2>
+<pre><code class="language-rant">
+[%mul: lhs; rhs]
+
+</code></pre>
 <p>→ <code>any</code></p>
-<p>Multiplies two values.</p>
-<h3><a class="header" href="#mul-add-lhs-rhs-add" id="mul-add-lhs-rhs-add">[mul-add: lhs; rhs; add]</a></h3>
+<p>Multiplies two values and prints the product.</p>
+<h3><a class="header" href="#parameters-9" id="parameters-9">Parameters</a></h3>
+<p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
+The left-hand operand.</p>
+<p><strong><code>rhs</code></strong> ← <code>any</code> &lt;br.&gt;
+The right-hand operand.</p>
+<h2><a class="header" href="#mul-add" id="mul-add">mul-add</a></h2>
+<pre><code class="language-rant">
+[%mul-add: lhs; rhs; add]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Multiplies two values, then adds another value to the result.</p>
-<h3><a class="header" href="#neg-n" id="neg-n">[neg: n]</a></h3>
+<h3><a class="header" href="#parameters-10" id="parameters-10">Parameters</a></h3>
+<p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
+The left-hand operand of the multiplication.</p>
+<p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
+The right-hand operand of the multiplication.</p>
+<p><strong><code>add</code></strong> ← <code>any</code> <br/>
+The value to add to the product.</p>
+<h2><a class="header" href="#neg" id="neg">neg</a></h2>
+<pre><code class="language-rant">
+[%neg: val]
+
+</code></pre>
 <p>→ <code>any</code></p>
-<p>Negates a value.</p>
-<h3><a class="header" href="#recip-n" id="recip-n">[recip: n]</a></h3>
+<p>Negates a value and prints it.</p>
+<h3><a class="header" href="#parameters-11" id="parameters-11">Parameters</a></h3>
+<p><strong><code>val</code></strong> ← <code>any</code> <br/>
+The input value.</p>
+<h2><a class="header" href="#recip" id="recip">recip</a></h2>
+<pre><code class="language-rant">
+[%recip: n]
+
+</code></pre>
 <p>→ <code>any</code></p>
 <p>Gets the reciprocal of a value.</p>
-<h3><a class="header" href="#sub-lhs-rhs" id="sub-lhs-rhs">[sub: lhs; rhs]</a></h3>
+<h2><a class="header" href="#sub" id="sub">sub</a></h2>
+<pre><code class="language-rant">
+[%sub: lhs; rhs]
+
+</code></pre>
 <p>→ <code>any</code></p>
-<p>Subtracts two values.</p>
-<h3><a class="header" href="#sin-x" id="sin-x">[sin: x]</a></h3>
+<p>Prints the difference between two values.</p>
+<h3><a class="header" href="#parameters-12" id="parameters-12">Parameters</a></h3>
+<p><strong><code>lhs</code></strong> ← <code>any</code> <br/>
+The left-hand operand of the subtraction.</p>
+<p><strong><code>rhs</code></strong> ← <code>any</code> <br/>
+The right-hand side of the subtraction.</p>
+<h2><a class="header" href="#sin" id="sin">sin</a></h2>
+<pre><code class="language-rant">
+[%sin: x]
+
+</code></pre>
 <p>→ <code>float</code></p>
-<p>Calculates the sine of <code>x</code> (in radians).</p>
-<h3><a class="header" href="#cos-x" id="cos-x">[cos: x]</a></h3>
+<p>Calculates the sine of <code>x</code>.</p>
+<h3><a class="header" href="#parameters-13" id="parameters-13">Parameters</a></h3>
+<p><strong><code>x</code></strong> ← <code>float</code> <br/>
+The input value, in radians.</p>
+<h2><a class="header" href="#cos" id="cos">cos</a></h2>
+<pre><code class="language-rant">
+[%cos: x]
+
+</code></pre>
 <p>→ <code>float</code></p>
-<p>Calculates the cosine of <code>x</code> (in radians).</p>
-<h3><a class="header" href="#tan-x" id="tan-x">[tan: x]</a></h3>
+<p>Calculates the cosine of <code>x</code>.</p>
+<h3><a class="header" href="#parameters-14" id="parameters-14">Parameters</a></h3>
+<p><strong><code>x</code></strong> ← <code>float</code> <br/>
+The input value, in radians.</p>
+<h2><a class="header" href="#tan" id="tan">tan</a></h2>
+<pre><code class="language-rant">
+[%tan: x]
+
+</code></pre>
 <p>→ <code>float</code></p>
-<p>Calculates the tangent of <code>x</code> (in radians).</p>
-<h3><a class="header" href="#asin-x" id="asin-x">[asin: x]</a></h3>
+<p>Calculates the tangent of <code>x</code>.</p>
+<h3><a class="header" href="#parameters-15" id="parameters-15">Parameters</a></h3>
+<p><strong><code>x</code></strong> ← <code>float</code> <br/>
+The input value, in radians.</p>
+<h2><a class="header" href="#asin" id="asin">asin</a></h2>
+<pre><code class="language-rant">
+[%asin: x]
+
+</code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the arcsine (in radians) of <code>x</code>.</p>
-<h3><a class="header" href="#acos-x" id="acos-x">[acos: x]</a></h3>
+<h3><a class="header" href="#parameters-16" id="parameters-16">Parameters</a></h3>
+<p><strong><code>x</code></strong> ← <code>float</code> <br/>
+The input sine value.</p>
+<h2><a class="header" href="#acos" id="acos">acos</a></h2>
+<pre><code class="language-rant">
+[%acos: x]
+
+</code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the arccosine (in radians) of <code>x</code>.</p>
-<h3><a class="header" href="#atan-x" id="atan-x">[atan: x]</a></h3>
+<h3><a class="header" href="#parameters-17" id="parameters-17">Parameters</a></h3>
+<p><strong><code>x</code></strong> ← <code>float</code> <br/>
+The input cosine value.</p>
+<h2><a class="header" href="#atan" id="atan">atan</a></h2>
+<pre><code class="language-rant">
+[%atan: x]
+
+</code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the arctangent (in radians) of <code>x</code>.</p>
-<h3><a class="header" href="#atan2-y-x" id="atan2-y-x">[atan2: y; x]</a></h3>
+<h3><a class="header" href="#parameters-18" id="parameters-18">Parameters</a></h3>
+<p><strong><code>x</code></strong> ← <code>float</code> <br/>
+The input tangent value.</p>
+<h2><a class="header" href="#atan2" id="atan2">atan2</a></h2>
+<pre><code class="language-rant">
+[%atan2: y; x]
+
+</code></pre>
 <p>→ <code>float</code></p>
-<p>Calculates the four-quadrant arctangent (in radians) of <code>y / x</code>.</p>
-<h3><a class="header" href="#notes" id="notes">Notes</a></h3>
+<p>Calculates the four-quadrant arctangent (in radians) of \(\frac{y}{x}\).</p>
 <p>Returns 0 if <code>x</code> or <code>y</code> is 0.</p>
-<h3><a class="header" href="#sqrt-x" id="sqrt-x">[sqrt: x]</a></h3>
+<h3><a class="header" href="#parameters-19" id="parameters-19">Parameters</a></h3>
+<p><strong><code>y</code></strong> ← <code>float</code> <br/>
+The input tangent's numerator.</p>
+<p><strong><code>x</code></strong> ← <code>float</code> <br/>
+The input tangent's denominator.</p>
+<h2><a class="header" href="#sqrt" id="sqrt">sqrt</a></h2>
+<pre><code class="language-rant">
+[%sqrt: x]
+
+</code></pre>
 <p>→ <code>float</code></p>
 <p>Calculates the square root of <code>x</code>.</p>
-<h3><a class="header" href="#pow-x-y" id="pow-x-y">[pow: x; y]</a></h3>
-<p>Raises <code>x</code> to the power of <code>y</code>. Both <code>x</code> and <code>y</code> can be <code>int</code> or <code>float</code>.</p>
-<h4><a class="header" href="#errors-1" id="errors-1">Errors</a></h4>
+<h3><a class="header" href="#parameters-20" id="parameters-20">Parameters</a></h3>
+<p><strong><code>x</code></strong> ← <code>int | float</code> <br/>
+The input value.</p>
+<h2><a class="header" href="#pow" id="pow">pow</a></h2>
+<pre><code class="language-rant">
+[%pow: x; y]
+
+</code></pre>
+<p>→ <code>int | float</code></p>
+<p>Calculates \(x^y\) and prints the result. Both <code>x</code> and <code>y</code> can be <code>int</code> or <code>float</code>.</p>
+<h3><a class="header" href="#parameters-21" id="parameters-21">Parameters</a></h3>
+<p><strong><code>x</code></strong> ← <code>int | float</code> <br/>
+The base number.</p>
+<p><strong><code>y</code></strong> ← <code>int | flaot</code> <br/>
+The exponent to raise <code>x</code> to.</p>
+<h3><a class="header" href="#errors-1" id="errors-1">Errors</a></h3>
 <p>Raises an overflow error if a <code>x</code> is an <code>int</code> and <code>x ^ y</code> causes an overflow.</p>
 
                     </main>

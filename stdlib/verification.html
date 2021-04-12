@@ -41,6 +41,9 @@
         
 
         
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -162,39 +165,120 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#standard-library-verification-functions" id="standard-library-verification-functions">Standard Library: Verification functions</a></h1>
-<h3><a class="header" href="#is-any-value" id="is-any-value">[is-any: value]</a></h3>
+<h2><a class="header" href="#is-some" id="is-some">is-some</a></h2>
+<pre><code class="language-rant">
+[%is-some: value] 
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is any non-<code>empty</code> type.</p>
-<h3><a class="header" href="#is-between-value-a-b" id="is-between-value-a-b">[is-between: value; a; b]</a></h3>
+<h3><a class="header" href="#paraneters" id="paraneters">Paraneters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<h2><a class="header" href="#is-between" id="is-between">is-between</a></h2>
+<pre><code class="language-rant">
+[%is-between: value; a; b]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is bewteen <code>a</code> and <code>b</code> (both inclusive).</p>
-<h3><a class="header" href="#is-bool-value" id="is-bool-value">[is-bool: value]</a></h3>
+<h3><a class="header" href="#parameters" id="parameters">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<p><strong><code>a</code></strong> ← <code>any</code> <br/>
+The first bound.</p>
+<p><strong><code>b</code></strong> ← <code>any</code> <br/>
+The second bound.</p>
+<h2><a class="header" href="#is-bool" id="is-bool">is-bool</a></h2>
+<pre><code class="language-rant">
+[%is-bool: value]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>bool</code>.</p>
-<h3><a class="header" href="#is-empty-value" id="is-empty-value">[is-empty: value]</a></h3>
+<h3><a class="header" href="#parameters-1" id="parameters-1">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<h2><a class="header" href="#is-empty" id="is-empty">is-empty</a></h2>
+<pre><code class="language-rant">
+[%is-empty: value]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is <code>~</code>.</p>
-<h3><a class="header" href="#is-even-number" id="is-even-number">[is-even: number]</a></h3>
+<h3><a class="header" href="#parameters-2" id="parameters-2">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<h2><a class="header" href="#is-even" id="is-even">is-even</a></h2>
+<pre><code class="language-rant">
+[%is-even: number]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>number</code> is an even number.</p>
-<h3><a class="header" href="#is-float-value" id="is-float-value">[is-float: value]</a></h3>
+<h3><a class="header" href="#parameters-3" id="parameters-3">Parameters</a></h3>
+<p><strong><code>number</code></strong> ← <code>int | float</code> <br/>
+The number to check.</p>
+<h2><a class="header" href="#is-float" id="is-float">is-float</a></h2>
+<pre><code class="language-rant">
+[%is-float: value]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>float</code>.</p>
-<h3><a class="header" href="#is-int-value" id="is-int-value">[is-int: value]</a></h3>
+<h3><a class="header" href="#parameters-4" id="parameters-4">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<h2><a class="header" href="#is-int" id="is-int">is-int</a></h2>
+<pre><code class="language-rant">
+[%is-int: value]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>int</code>.</p>
-<h3><a class="header" href="#is-nan-value" id="is-nan-value">[is-nan: value]</a></h3>
+<h3><a class="header" href="#parameters-5" id="parameters-5">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<h2><a class="header" href="#is-nan" id="is-nan">is-nan</a></h2>
+<pre><code class="language-rant">
+[%is-nan: value]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>float</code> and equal to NaN (Not a Number).</p>
-<h3><a class="header" href="#is-number-value" id="is-number-value">[is-number: value]</a></h3>
+<h3><a class="header" href="#parameters-6" id="parameters-6">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<h2><a class="header" href="#is-number" id="is-number">is-number</a></h2>
+<pre><code class="language-rant">
+[%is-number: value]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>int</code> or <code>float</code>.</p>
-<h3><a class="header" href="#is-odd-number" id="is-odd-number">[is-odd: number]</a></h3>
+<h3><a class="header" href="#parameters-7" id="parameters-7">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<h2><a class="header" href="#is-odd" id="is-odd">is-odd</a></h2>
+<pre><code class="language-rant">
+[%is-odd: number]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>number</code> is an odd number.</p>
-<h3><a class="header" href="#is-string-value" id="is-string-value">[is-string: value]</a></h3>
+<h3><a class="header" href="#parameters-8" id="parameters-8">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
+<h2><a class="header" href="#is-string" id="is-string">is-string</a></h2>
+<pre><code class="language-rant">
+[%is-string: value]
+
+</code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns <code>true</code> if <code>value</code> is of type <code>string</code>.</p>
+<h3><a class="header" href="#parameters-9" id="parameters-9">Parameters</a></h3>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to check.</p>
 
                     </main>
 
