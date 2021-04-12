@@ -1,46 +1,125 @@
 # Standard Library: Math functions
 
-### [abs: num]
-&rarr; `int` or `float`
 
-Calculates the absolute value of `num`.
+## abs
 
-#### Errors
+```rant
+
+[%abs: num]
+
+```
+&rarr; `int | float`
+
+Prints the absolute value of `num`.
+
+### Parameters
+
+**`num`** &larr; `int | float` <br/>
+The input number.
+
+### Errors
 
 Raises an error if `num` is an integer and the absolute value overflows.
 
-### [add: lhs; rhs]
+
+## add
+
+```rant
+
+[%add: lhs; rhs]
+
+```
 &rarr; `any`
 
-Adds two values.
+Adds two values and prints the sum.
 
-### [ceil: val]
+### Parameters
+
+**`lhs`** &larr; `any` <br/>
+The left-hand operand of the addition.
+
+**`rhs`** &larr; `any` <br/>
+The right-hand operand of the addition.
+
+
+## ceil
+
+```rant
+
+[%ceil: val]
+
+```
 &rarr; `int`
 
-Gets the smallest integer that is greater than or equal to `val`.
+Prints the smallest integer that is greater than or equal to `val`.
 
-`val` must be a `float`.
+### Parameters
 
-### [div: lhs; rhs]
+**`val`** &larr; `float` <br/>
+The input number.
+
+
+## div
+
+```rant
+
+[%div: lhs; rhs]
+
+```
 &rarr; `any`
 
-Divides two values.
+Divides two values and prints the quotient.
 
-### [floor: val]
+### Parameters
+
+**`lhs`** &larr; `any` <br/>
+The left-hand operand (dividend).
+
+**`rhs`** &larr; `any` <br/>
+The right-hand operand (divisor).
+
+
+## floor
+
+```rant
+
+[%floor: val]
+
+```
 &rarr; `int`
 
-Gets the largest integer that is less than or equal to `val`.
+Prints the largest integer that is less than or equal to `val`.
 
-`val` must be a `float`.
+### Parameters
 
-### [frac: val]
+**`val`** &larr; `float` <br/>
+The input number.
+
+
+## frac
+
+```rant
+
+[%frac: val]
+
+```
 &rarr; `float`
 
-Gets the fractional part of `val`.
+Prints the fractional part of `val`.
 
-`val` must be a `float`.
+### Parameters
 
-### [max: values+]
+**`val`** &larr; `float` <br/>
+The input number.
+
+
+## max
+
+```rant
+
+[%max: values+]
+
+```
 &rarr; `any`
 
 Returns the largest value in `values`.
@@ -48,7 +127,12 @@ Returns the largest value in `values`.
 Any elements of type `list` in `values` will be expanded to their individual elements
 before the maximum value is calculated.
 
-#### Examples
+### Parameters
+
+**`values`** &larr; `any+` <br/>
+The input values.
+
+### Examples
 
 ```rant
 # Arguments can be single values
@@ -61,7 +145,14 @@ before the maximum value is calculated.
 [max: 3; (4; -2; 0; 10); 6 |> assert-eq: 10]
 ```
 
-### [min: values+]
+
+## min
+
+```rant
+
+[%min: values+]
+
+```
 &rarr; `any`
 
 Returns the smallest value in `values`.
@@ -69,7 +160,12 @@ Returns the smallest value in `values`.
 Any elements of type `list` in `values` will be expanded to their individual elements
 before the minimum value is calculated.
 
-#### Examples
+### Parameters
+
+**`values`** &larr; `any+` <br/>
+The input values.
+
+### Examples
 
 ```rant
 # Arguments can be single values
@@ -82,84 +178,279 @@ before the minimum value is calculated.
 [min: 3; (4; -2; 0; 10); 6 |> assert-eq: -2]
 ```
 
-### [mod: lhs; rhs]
+
+## mod
+
+```rant
+
+[%mod: lhs; rhs]
+
+```
 &rarr; `any`
 
 Gets the modulus of two values.
 
-### [mul: lhs; rhs]
+### Parameters
+
+**`lhs`** &larr; `any` <br/>
+The left-hand operand (dividend).
+
+**`rhs`** &larr; `any` <br/>
+The right-hand operand (divisor).
+
+
+## mul
+
+```rant
+
+[%mul: lhs; rhs]
+
+```
 &rarr; `any`
 
-Multiplies two values.
+Multiplies two values and prints the product.
 
-### [mul-add: lhs; rhs; add]
+### Parameters
+
+**`lhs`** &larr; `any` <br/>
+The left-hand operand.
+
+**`rhs`** &larr; `any` <br.>
+The right-hand operand.
+
+
+## mul-add
+
+```rant
+
+[%mul-add: lhs; rhs; add]
+
+```
 &rarr; `any`
 
 Multiplies two values, then adds another value to the result.
 
-### [neg: n]
+### Parameters
+
+**`lhs`** &larr; `any` <br/>
+The left-hand operand of the multiplication.
+
+**`rhs`** &larr; `any` <br/>
+The right-hand operand of the multiplication.
+
+**`add`** &larr; `any` <br/>
+The value to add to the product.
+
+
+## neg
+
+```rant
+
+[%neg: val]
+
+```
 &rarr; `any`
 
-Negates a value.
+Negates a value and prints it.
 
-### [recip: n]
+### Parameters
+
+**`val`** &larr; `any` <br/>
+The input value.
+
+
+## recip
+
+```rant
+
+[%recip: n]
+
+```
 &rarr; `any`
 
 Gets the reciprocal of a value.
 
-### [sub: lhs; rhs]
+
+## sub
+
+```rant
+
+[%sub: lhs; rhs]
+
+```
 &rarr; `any`
 
-Subtracts two values.
+Prints the difference between two values.
 
-### [sin: x]
+### Parameters
+
+**`lhs`** &larr; `any` <br/>
+The left-hand operand of the subtraction.
+
+**`rhs`** &larr; `any` <br/>
+The right-hand side of the subtraction.
+
+
+## sin
+
+```rant
+
+[%sin: x]
+
+```
 &rarr; `float`
 
-Calculates the sine of `x` (in radians).
+Calculates the sine of `x`.
 
-### [cos: x]
+### Parameters
+
+**`x`** &larr; `float` <br/>
+The input value, in radians.
+
+
+## cos
+
+```rant
+
+[%cos: x]
+
+```
 &rarr; `float`
 
-Calculates the cosine of `x` (in radians).
+Calculates the cosine of `x`.
 
-### [tan: x]
+### Parameters
+
+**`x`** &larr; `float` <br/>
+The input value, in radians.
+
+
+## tan
+
+```rant
+
+[%tan: x]
+
+```
 &rarr; `float`
 
-Calculates the tangent of `x` (in radians).
+Calculates the tangent of `x`.
 
-### [asin: x]
+### Parameters
+
+**`x`** &larr; `float` <br/>
+The input value, in radians.
+
+
+## asin
+
+```rant
+
+[%asin: x]
+
+```
 &rarr; `float`
 
 Calculates the arcsine (in radians) of `x`.
 
-### [acos: x]
+### Parameters
+
+**`x`** &larr; `float` <br/>
+The input sine value.
+
+
+## acos
+
+```rant
+
+[%acos: x]
+
+```
 &rarr; `float`
 
 Calculates the arccosine (in radians) of `x`.
 
-### [atan: x]
+### Parameters
+
+**`x`** &larr; `float` <br/>
+The input cosine value.
+
+
+## atan
+
+```rant
+
+[%atan: x]
+
+```
 &rarr; `float`
 
 Calculates the arctangent (in radians) of `x`.
 
-### [atan2: y; x]
+### Parameters
+
+**`x`** &larr; `float` <br/>
+The input tangent value.
+
+
+## atan2
+
+```rant
+
+[%atan2: y; x]
+
+```
 &rarr; `float`
 
-Calculates the four-quadrant arctangent (in radians) of `y / x`.
-
-### Notes
+Calculates the four-quadrant arctangent (in radians) of \\(\frac{y}{x}\\).
 
 Returns 0 if `x` or `y` is 0.
 
-### [sqrt: x]
+### Parameters
+
+**`y`** &larr; `float` <br/>
+The input tangent's numerator.
+
+**`x`** &larr; `float` <br/>
+The input tangent's denominator.
+
+
+## sqrt
+
+```rant
+
+[%sqrt: x]
+
+```
 &rarr; `float`
 
 Calculates the square root of `x`.
 
-### [pow: x; y]
+### Parameters
 
-Raises `x` to the power of `y`. Both `x` and `y` can be `int` or `float`.
+**`x`** &larr; `int | float` <br/>
+The input value.
 
-#### Errors
+
+## pow
+
+```rant
+
+[%pow: x; y]
+
+```
+&rarr; `int | float`
+
+Calculates \\(x^y\\) and prints the result. Both `x` and `y` can be `int` or `float`.
+
+### Parameters
+
+**`x`** &larr; `int | float` <br/>
+The base number.
+
+**`y`** &larr; `int | flaot` <br/>
+The exponent to raise `x` to.
+
+### Errors
 
 Raises an overflow error if a `x` is an `int` and `x ^ y` causes an overflow.

@@ -8,6 +8,7 @@ src = "src"
 [output.html]
 additional-css = ["theme/custom.css"]
 #additional-js = ["theme/hljs_rant.js"]
+mathjax-support = true
 cname = "docs.rant-lang.org"
 default-theme = "ayu"
 google-analytics = "UA-179100611-2"

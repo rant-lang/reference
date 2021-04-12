@@ -1,28 +1,77 @@
 # Standard Library: Conversion functions
 
-### [float: value]
-&rarr; `float` or `empty`
+## float
+
+```rant
+
+[%float: value]
+
+```
+&rarr; `float | empty`
 
 Attempts to convert `value` to a `float` value and returns the result.
 If the conversion fails, returns `empty` value.
 
-### [int: value]
-&rarr; `int` or `empty`
+### Parameters
+
+**`value`** &larr; `any` <br/>
+The input value to convert.
+
+
+## int
+
+```rant
+
+[%int: value]
+
+```
+&rarr; `int | empty`
 
 Attempts to convert `value` to an `int` value and returns the reuslt.
 If the conversion fails, returns `empty` value.
 
-### [string: value]
-&rarr; `string` or `empty`
+### Parameters
+
+**`value`** &larr; `any` <br/>
+The input value to convert.
+
+
+## string
+
+```rant
+
+[%string: value]
+
+```
+&rarr; `string | empty`
 
 Attempts to convert `value` to a `string` value and returns the result.
 If the conversion fails, returns `empty` value.
 
-### [list: value]
-&rarr; `list` or `empty`
+### Parameters
+
+**`value`** &larr; `any` <br/>
+The input value to convert.
+
+
+## list
+
+```rant
+
+[%list: value]
+
+```
+&rarr; `list | empty`
 
 Attempts to convert `value` to a `list` and returns the result.
 If the conversion fails, returns `empty` value.
+
+### Parameters
+
+**`value`** &larr; `any` <br/>
+The input value to convert.
+
+### Conversion behavior
 
 **From `string`**
 
@@ -33,12 +82,12 @@ Passing a `string` value into this function returns a `list` of the string's gra
 [assert-eq: <letters>; (h; e; l; l; o)]
 ```
 
-#### From `list`
+**From `list`**
 
 Passing a `list` value into this function returns a shallow copy of it.
 This is equivalent to calling `[copy]` on the list.
 
-#### From `range`
+**From `range`**
 
 Passing a `range` value into this function returns a list of the range's elements in order.
 
