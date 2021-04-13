@@ -39,7 +39,7 @@ let rant_def = {
         begin: /\\(x[a-fA-F0-9]{2}|\S)/
       },
       {
-        // Closure
+        // Lambdas
         className: 'keyword',
         begin: /\[\?\:?/,
         end: /\]/,

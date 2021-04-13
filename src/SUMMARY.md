@@ -6,7 +6,7 @@
     - [Blocks](language/blocks.md)
         - [Stored Blocks](language/blocks/stored-blocks.md)
     - [Functions](language/functions.md)
-        - [Closures](language/functions/closures.md)
+        - [Lambdas](language/functions/lambdas.md)
         - [Argument spreading](language/functions/argument-spreading.md)
         - [Composition](language/functions/composition.md)
     - [Keywords](language/keywords.md)

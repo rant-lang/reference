@@ -15,14 +15,14 @@ Lists are initialized using a pair of parentheses containing the list elements, 
 # Initialize a list with one empty element
 <$one-empty = (~)>
 
-# Create a list with two empty elements
-<$two-empty = (;)> # Short for (~;~)
-
 # Create a list of numbers
-<$lucky-numbers = (1; 2; 3; 5; 7; 11; 13)>
+<$lucky-numbers = (1; 2; 3; 5; 7; 11; 13;)>
 
 # Create a list of lists
 <$important-lists = ((A; B; C); (D; E; F))>
+
+# Trailing semicolons are allowed!
+<$powers-of-two = (1; 2; 4; 8; 16;)>
 ```
 
 ### List indexing

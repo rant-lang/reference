@@ -15,3 +15,7 @@ strong code.hljs {
     font-family: "Source Code Pro", "Consolas", "Courier New", monospace !important;
     font-weight: bolder;
 }
+
+#sidebar .chapter > .chapter-item > a {
+    font-weight: bolder !important;
+}

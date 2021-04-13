@@ -97,6 +97,10 @@ Identifiers enforce specific formatting requirements to ensure consistency:
 * Must contain **at least one** alphanumeric character.
 * Must only contain alphanumeric characters, underscores, and hyphens.
 
+### Lambda
+
+A lambda is an anonymous (nameless) function.
+
 ### List
 
 A list is an ordered collection of values, accessible by index.
