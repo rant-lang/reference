@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Closures - Rant Reference</title>
+        <title>Lambdas - Rant Reference</title>
         
         
 
@@ -17,12 +17,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="icon" href="../../favicon.svg">
+        
+        
         <link rel="shortcut icon" href="../../favicon.png">
+        
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
-        <link rel="stylesheet" href="../../css/print.css" media="print">
+        
 
         <!-- Fonts -->
         <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
@@ -94,7 +98,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="../../language.html"><strong aria-hidden="true">1.</strong> Language Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/text.html"><strong aria-hidden="true">1.1.</strong> Text</a></li><li class="chapter-item expanded "><a href="../../language/blocks.html"><strong aria-hidden="true">1.2.</strong> Blocks</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/blocks/stored-blocks.html"><strong aria-hidden="true">1.2.1.</strong> Stored Blocks</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/functions.html"><strong aria-hidden="true">1.3.</strong> Functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/functions/closures.html" class="active"><strong aria-hidden="true">1.3.1.</strong> Closures</a></li><li class="chapter-item expanded "><a href="../../language/functions/argument-spreading.html"><strong aria-hidden="true">1.3.2.</strong> Argument spreading</a></li><li class="chapter-item expanded "><a href="../../language/functions/composition.html"><strong aria-hidden="true">1.3.3.</strong> Composition</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/keywords.html"><strong aria-hidden="true">1.4.</strong> Keywords</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/keywords/return.html"><strong aria-hidden="true">1.4.1.</strong> @return</a></li><li class="chapter-item expanded "><a href="../../language/keywords/continue.html"><strong aria-hidden="true">1.4.2.</strong> @continue</a></li><li class="chapter-item expanded "><a href="../../language/keywords/break.html"><strong aria-hidden="true">1.4.3.</strong> @break</a></li><li class="chapter-item expanded "><a href="../../language/keywords/weight.html"><strong aria-hidden="true">1.4.4.</strong> @weight</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/comments.html"><strong aria-hidden="true">1.5.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../../language/escape-sequences.html"><strong aria-hidden="true">1.6.</strong> Escape Sequences</a></li><li class="chapter-item expanded "><a href="../../language/collections.html"><strong aria-hidden="true">1.7.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../language/accessors.html"><strong aria-hidden="true">1.8.</strong> Accessors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/accessors/collection-access.html"><strong aria-hidden="true">1.8.1.</strong> Collection Access</a></li><li class="chapter-item expanded "><a href="../../language/accessors/anonymous.html"><strong aria-hidden="true">1.8.2.</strong> Anonymous Accessors</a></li><li class="chapter-item expanded "><a href="../../language/accessors/fallbacks.html"><strong aria-hidden="true">1.8.3.</strong> Fallbacks</a></li><li class="chapter-item expanded "><a href="../../language/accessors/globals-descoping.html"><strong aria-hidden="true">1.8.4.</strong> Globals &amp; Descoping</a></li><li class="chapter-item expanded "><a href="../../language/accessors/depth-operator.html"><strong aria-hidden="true">1.8.5.</strong> Depth Operator</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../variables-types.html"><strong aria-hidden="true">2.</strong> Variables &amp; Data Types</a></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">3.</strong> Runtime Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../runtime/attributes.html"><strong aria-hidden="true">3.1.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="../../runtime/formatters.html"><strong aria-hidden="true">3.2.</strong> Formatters</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../runtime/case-formatter.html"><strong aria-hidden="true">3.2.1.</strong> Case</a></li><li class="chapter-item expanded "><a href="../../runtime/number-formatter.html"><strong aria-hidden="true">3.2.2.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="../../runtime/whitespace-formatter.html"><strong aria-hidden="true">3.2.3.</strong> Whitespace</a></li></ol></li><li class="chapter-item expanded "><a href="../../modules.html"><strong aria-hidden="true">3.3.</strong> Modules</a></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Proposed Features</li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/keywords/if-elseif-else.html"><strong aria-hidden="true">4.1.</strong> @if, @elseif, @else</a></li><li class="chapter-item expanded "><a href="../../language/keywords/is.html"><strong aria-hidden="true">4.2.</strong> @is*</a></li></ol></li><li class="chapter-item expanded "><a href="../../stdlib.html"><strong aria-hidden="true">5.</strong> Standard Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../stdlib/general.html"><strong aria-hidden="true">5.1.</strong> General</a></li><li class="chapter-item expanded "><a href="../../stdlib/control-flow.html"><strong aria-hidden="true">5.2.</strong> Attributes &amp; Control Flow</a></li><li class="chapter-item expanded "><a href="../../stdlib/collections.html"><strong aria-hidden="true">5.3.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../stdlib/generators.html"><strong aria-hidden="true">5.4.</strong> Generators</a></li><li class="chapter-item expanded "><a href="../../stdlib/formatting.html"><strong aria-hidden="true">5.5.</strong> Formatting</a></li><li class="chapter-item expanded "><a href="../../stdlib/strings.html"><strong aria-hidden="true">5.6.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../stdlib/boolean.html"><strong aria-hidden="true">5.7.</strong> Boolean</a></li><li class="chapter-item expanded "><a href="../../stdlib/comparison.html"><strong aria-hidden="true">5.8.</strong> Comparison</a></li><li class="chapter-item expanded "><a href="../../stdlib/math.html"><strong aria-hidden="true">5.9.</strong> Math</a></li><li class="chapter-item expanded "><a href="../../stdlib/conversion.html"><strong aria-hidden="true">5.10.</strong> Conversion</a></li><li class="chapter-item expanded "><a href="../../stdlib/verification.html"><strong aria-hidden="true">5.11.</strong> Verification</a></li><li class="chapter-item expanded "><a href="../../stdlib/assertion.html"><strong aria-hidden="true">5.12.</strong> Assertion</a></li><li class="chapter-item expanded "><a href="../../stdlib/constants.html"><strong aria-hidden="true">5.13.</strong> Constants</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../../glossary.html">Glossary</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../intro.html">Introduction</a></li><li class="chapter-item expanded "><a href="../../language.html"><strong aria-hidden="true">1.</strong> Language Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/text.html"><strong aria-hidden="true">1.1.</strong> Text</a></li><li class="chapter-item expanded "><a href="../../language/blocks.html"><strong aria-hidden="true">1.2.</strong> Blocks</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../language/blocks/stored-blocks.html"><strong aria-hidden="true">1.2.1.</strong> Stored Blocks</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/functions.html"><strong aria-hidden="true">1.3.</strong> Functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/functions/lambdas.html" class="active"><strong aria-hidden="true">1.3.1.</strong> Lambdas</a></li><li class="chapter-item "><a href="../../language/functions/argument-spreading.html"><strong aria-hidden="true">1.3.2.</strong> Argument spreading</a></li><li class="chapter-item "><a href="../../language/functions/composition.html"><strong aria-hidden="true">1.3.3.</strong> Composition</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/keywords.html"><strong aria-hidden="true">1.4.</strong> Keywords</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../language/keywords/return.html"><strong aria-hidden="true">1.4.1.</strong> @return</a></li><li class="chapter-item "><a href="../../language/keywords/continue.html"><strong aria-hidden="true">1.4.2.</strong> @continue</a></li><li class="chapter-item "><a href="../../language/keywords/break.html"><strong aria-hidden="true">1.4.3.</strong> @break</a></li><li class="chapter-item "><a href="../../language/keywords/weight.html"><strong aria-hidden="true">1.4.4.</strong> @weight</a></li></ol></li><li class="chapter-item expanded "><a href="../../language/comments.html"><strong aria-hidden="true">1.5.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../../language/escape-sequences.html"><strong aria-hidden="true">1.6.</strong> Escape Sequences</a></li><li class="chapter-item expanded "><a href="../../language/collections.html"><strong aria-hidden="true">1.7.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../language/accessors.html"><strong aria-hidden="true">1.8.</strong> Accessors</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../language/accessors/collection-access.html"><strong aria-hidden="true">1.8.1.</strong> Collection Access</a></li><li class="chapter-item "><a href="../../language/accessors/anonymous.html"><strong aria-hidden="true">1.8.2.</strong> Anonymous Accessors</a></li><li class="chapter-item "><a href="../../language/accessors/fallbacks.html"><strong aria-hidden="true">1.8.3.</strong> Fallbacks</a></li><li class="chapter-item "><a href="../../language/accessors/globals-descoping.html"><strong aria-hidden="true">1.8.4.</strong> Globals &amp; Descoping</a></li><li class="chapter-item "><a href="../../language/accessors/depth-operator.html"><strong aria-hidden="true">1.8.5.</strong> Depth Operator</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../variables-types.html"><strong aria-hidden="true">2.</strong> Variables &amp; Data Types</a></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">3.</strong> Runtime Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../runtime/attributes.html"><strong aria-hidden="true">3.1.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="../../runtime/formatters.html"><strong aria-hidden="true">3.2.</strong> Formatters</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../runtime/case-formatter.html"><strong aria-hidden="true">3.2.1.</strong> Case</a></li><li class="chapter-item "><a href="../../runtime/number-formatter.html"><strong aria-hidden="true">3.2.2.</strong> Numbers</a></li><li class="chapter-item "><a href="../../runtime/whitespace-formatter.html"><strong aria-hidden="true">3.2.3.</strong> Whitespace</a></li></ol></li><li class="chapter-item expanded "><a href="../../modules.html"><strong aria-hidden="true">3.3.</strong> Modules</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Proposed Features</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../language/keywords/if-elseif-else.html"><strong aria-hidden="true">4.1.</strong> @if, @elseif, @else</a></li><li class="chapter-item expanded "><a href="../../language/keywords/is.html"><strong aria-hidden="true">4.2.</strong> @is*</a></li></ol></li><li class="chapter-item expanded "><a href="../../stdlib.html"><strong aria-hidden="true">5.</strong> Standard Library</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../stdlib/general.html"><strong aria-hidden="true">5.1.</strong> General</a></li><li class="chapter-item expanded "><a href="../../stdlib/control-flow.html"><strong aria-hidden="true">5.2.</strong> Attributes &amp; Control Flow</a></li><li class="chapter-item expanded "><a href="../../stdlib/collections.html"><strong aria-hidden="true">5.3.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../stdlib/generators.html"><strong aria-hidden="true">5.4.</strong> Generators</a></li><li class="chapter-item expanded "><a href="../../stdlib/formatting.html"><strong aria-hidden="true">5.5.</strong> Formatting</a></li><li class="chapter-item expanded "><a href="../../stdlib/strings.html"><strong aria-hidden="true">5.6.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../stdlib/boolean.html"><strong aria-hidden="true">5.7.</strong> Boolean</a></li><li class="chapter-item expanded "><a href="../../stdlib/comparison.html"><strong aria-hidden="true">5.8.</strong> Comparison</a></li><li class="chapter-item expanded "><a href="../../stdlib/math.html"><strong aria-hidden="true">5.9.</strong> Math</a></li><li class="chapter-item expanded "><a href="../../stdlib/conversion.html"><strong aria-hidden="true">5.10.</strong> Conversion</a></li><li class="chapter-item expanded "><a href="../../stdlib/verification.html"><strong aria-hidden="true">5.11.</strong> Verification</a></li><li class="chapter-item expanded "><a href="../../stdlib/assertion.html"><strong aria-hidden="true">5.12.</strong> Assertion</a></li><li class="chapter-item expanded "><a href="../../stdlib/constants.html"><strong aria-hidden="true">5.13.</strong> Constants</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../../glossary.html">Glossary</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -129,9 +133,7 @@
                     <h1 class="menu-title">Rant Reference</h1>
 
                     <div class="right-buttons">
-                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
-                        </a>
+                        
                         
                         <a href="https://github.com/rant-lang/reference" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
@@ -164,19 +166,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#closures" id="closures">Closures</a></h1>
-<p>It is sometimes necessary to pass a function as a value rather than define it with a name, so that it can be called elsewhere later on.
-This can be done using <strong>closures</strong>, which are an implementation of anonymous functions with the ability to &quot;capture&quot; external variables.</p>
-<p>Basic closure syntax with no parameters consists of a <code>?</code> symbol inside brackets preceding the function body. </p>
-<pre><code class="language-rant"># Creates a closure and places it on the output
-[?]{Hello from closure!}
+                        <h1 id="lambdas"><a class="header" href="#lambdas">Lambdas</a></h1>
+<p>Rant implements anonymous (nameless) functions as <strong>lambda expressions</strong>, commonly referred to as simply <strong>lambdas</strong>.
+The body of a lambda can also capture variables from its environment, enabling you to construct <strong>closures</strong>.</p>
+<p>Basic lambdaa expression syntax with no parameters consists of a <code>?</code> symbol inside brackets preceding the function body. </p>
+<pre><code class="language-rant"># Creates a function and places it on the output
+[?] { Hello from lambda expression! }
 </code></pre>
-<h2><a class="header" href="#parameterized-closures" id="parameterized-closures">Parameterized closures</a></h2>
-<p>If you want to add parameters to a closure, specify the parameter names as you would with a normal function inside the closure's signature:</p>
-<pre><code class="language-rant">[?: param1; param2]{ ... }
+<h2 id="parameterization"><a class="header" href="#parameterization">Parameterization</a></h2>
+<p>If you want to add parameters to a lambda, specify the parameter names as you would with a normal function inside the lambda's signature:</p>
+<pre><code class="language-rant">[?: param1; param2] { ... }
 </code></pre>
-<h2><a class="header" href="#calling-anonymous-functions" id="calling-anonymous-functions">Calling anonymous functions</a></h2>
-<p>Calling an anonymous function uses the same syntax as regular function calls, but the function name is replaced by the <code>!</code> symbol followed by an expression that provides the function (or closure) you want to call.</p>
+<h2 id="calling-a-lambda"><a class="header" href="#calling-a-lambda">Calling a lambda</a></h2>
+<p>Since lambdas are <code>function</code> objects just like named functions, the call syntax is very similar, but with one difference: 
+the function name is replaced by the <code>!</code> symbol (to denote an anonymous call) followed by an expression providing the <code>function</code> to be called.</p>
 <pre><code class="language-rant"># Define a function that returns a parameterless box
 [$get-anon-func] {
     [?]{Hello from anonymous function}
@@ -191,10 +194,11 @@ This can be done using <strong>closures</strong>, which are an implementation of
 
 [![get-greet-func]:Rant]    # &quot;Hello, Rant!&quot;
 </code></pre>
-<h2><a class="header" href="#behavior-of-captured-variables" id="behavior-of-captured-variables">Behavior of captured variables</a></h2>
-<p>As mentioned previously, a closure can access variables defined outside of its body.
+<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
+<p>As mentioned previously, a lambda can access variables defined outside of its body.
 When this happens, it &quot;captures&quot; a reference to that variable for use inside the function.
-As a result, changes made to a captured variable persist between calls.</p>
+As a result, changes made to a captured variable persist between calls. 
+Functions that capture variables are called <strong>closures</strong>.</p>
 <p>Variable capturing can also be used to maintain a persistent state within a closure instance:
 even if the original variable falls out of scope, the closure still keeps it alive.</p>
 <pre><code class="language-rant"># Create a function with a persistent state
@@ -221,8 +225,8 @@ even if the original variable falls out of scope, the closure still keeps it ali
   foo 4
 ##
 </code></pre>
-<h2><a class="header" href="#limitations-on-variable-capture" id="limitations-on-variable-capture">Limitations on variable capture</a></h2>
-<p>Capturing is currently only supported on variables accessed locally from the function body.
+<h2 id="limitations-on-variable-capture"><a class="header" href="#limitations-on-variable-capture">Limitations on variable capture</a></h2>
+<p>Capturing is only supported on variables accessed locally from the function body.
 Descoped and explicit global accessors do not capture variables.</p>
 
                     </main>
