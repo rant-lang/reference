@@ -1,6 +1,6 @@
 # Summary
 
-- [Introduction](intro.md)
+[Introduction](intro.md)
 - [Language Features](language.md)
     - [Text](language/text.md)
     - [Blocks](language/blocks.md)
@@ -22,6 +22,7 @@
         - [Anonymous Accessors](language/accessors/anonymous.md)
         - [Fallbacks](language/accessors/fallbacks.md)
         - [Globals & Descoping](language/accessors/globals-descoping.md)
+        - [Depth Operator](language/accessors/depth-operator.md)
 - [Variables & Data Types](variables-types.md)
 - [Runtime Features](runtime.md)
     - [Attributes](runtime/attributes.md)
