@@ -26,7 +26,7 @@ let rant_def = {
       {
         // Number
         className: 'number',
-        begin: /\b\d+(\.\d+)?/,
+        begin: /\b\d+(\.\d+)?([Ee][+\-]?\d+)?\b/,
       },
       {
         // Empty
@@ -67,6 +67,11 @@ let rant_def = {
         // Spread operators
         className: 'name',
         begin: /\*([\w\-_]*\*)?/
+      },
+      {
+        // Depth operator
+        className: 'number',
+        begin: /\&/
       },
       {
         // Function definition
