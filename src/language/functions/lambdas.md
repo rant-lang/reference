@@ -3,7 +3,7 @@
 Rant implements anonymous (nameless) functions as **lambda expressions**, commonly referred to as simply **lambdas**.
 The body of a lambda can also capture variables from its environment, enabling you to construct **closures**.
 
-Basic lambdaa expression syntax with no parameters consists of a `?` symbol inside brackets preceding the function body. 
+Basic lambda expression syntax with no parameters consists of a `?` symbol inside brackets preceding the function body. 
 
 ```rant
 # Creates a function and places it on the output
