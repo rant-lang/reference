@@ -177,6 +177,17 @@ The body of a lambda can also capture variables from its environment, enabling y
 <p>If you want to add parameters to a lambda, specify the parameter names as you would with a normal function inside the lambda's signature:</p>
 <pre><code class="language-rant">[?: param1; param2] { ... }
 </code></pre>
+<h2 id="inlining"><a class="header" href="#inlining">Inlining</a></h2>
+<p>If your lambda contains a single expression, such as a fragment or function call, you can omit the braces to save some typing.
+This is called an <strong>inline lambda</strong>.</p>
+<pre><code class="language-rant"># Regular &quot;block&quot; lambda
+[?: x; y; z] {
+    [foo: &lt;x&gt; |&gt; bar: &lt;y&gt;; &lt;z&gt;]
+}
+
+# Inline lambda
+[?: x; y; z] [foo: &lt;x&gt; |&gt; bar: &lt;y&gt;; &lt;z&gt;]
+</code></pre>
 <h2 id="calling-a-lambda"><a class="header" href="#calling-a-lambda">Calling a lambda</a></h2>
 <p>Since lambdas are <code>function</code> objects just like named functions, the call syntax is very similar, but with one difference: 
 the function name is replaced by the <code>!</code> symbol (to denote an anonymous call) followed by an expression providing the <code>function</code> to be called.</p>
