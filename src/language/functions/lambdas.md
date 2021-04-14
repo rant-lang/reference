@@ -18,6 +18,21 @@ If you want to add parameters to a lambda, specify the parameter names as you wo
 [?: param1; param2] { ... }
 ```
 
+## Inlining
+
+If your lambda contains a single expression, such as a fragment or function call, you can omit the braces to save some typing.
+This is called an **inline lambda**.
+
+```rant
+# Regular "block" lambda
+[?: x; y; z] {
+    [foo: <x> |> bar: <y>; <z>]
+}
+
+# Inline lambda
+[?: x; y; z] [foo: <x> |> bar: <y>; <z>]
+```
+
 ## Calling a lambda
 
 Since lambdas are `function` objects just like named functions, the call syntax is very similar, but with one difference: 
