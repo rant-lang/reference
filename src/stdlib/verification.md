@@ -9,7 +9,7 @@
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is any non-`empty` type.
+Returns `@true` if `value` is any non-`empty` type.
 
 ### Paraneters
 
@@ -26,7 +26,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is bewteen `a` and `b` (both inclusive).
+Returns `@true` if `value` is bewteen `a` and `b` (both inclusive).
 
 ### Parameters
 
@@ -49,7 +49,7 @@ The second bound.
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is of type `bool`.
+Returns `@true` if `value` is of type `bool`.
 
 ### Parameters
 
@@ -66,7 +66,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is `~`.
+Returns `@true` if `value` is `~`.
 
 ### Parameters
 
@@ -83,7 +83,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `number` is an even number.
+Returns `@true` if `number` is an even number.
 
 ### Parameters
 
@@ -100,7 +100,7 @@ The number to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is of type `float`.
+Returns `@true` if `value` is of type `float`.
 
 ### Parameters
 
@@ -117,7 +117,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is of type `int`.
+Returns `@true` if `value` is of type `int`.
 
 ### Parameters
 
@@ -134,7 +134,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is of type `float` and equal to NaN (Not a Number).
+Returns `@true` if `value` is of type `float` and equal to NaN (Not a Number).
 
 ### Parameters
 
@@ -151,7 +151,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is of type `int` or `float`.
+Returns `@true` if `value` is of type `int` or `float`.
 
 ### Parameters
 
@@ -168,7 +168,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `number` is an odd number.
+Returns `@true` if `number` is an odd number.
 
 ### Parameters
 
@@ -185,7 +185,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `true` if `value` is of type `string`.
+Returns `@true` if `value` is of type `string`.
 
 
 ### Parameters

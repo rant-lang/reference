@@ -10,7 +10,7 @@
 
 Verifies that `condition` is true before continuing program execution.
 
-If `condition` is `false`, raises a runtime error; if `true`, does nothing.
+If `condition` is false, raises a runtime error; otherwise, does nothing.
 
 The message displayed in the runtime error can be customized by passing a string to `message`. 
 
@@ -26,13 +26,13 @@ The error message to display if the condition is not satisfied.
 
 ```rant
 # does absolutely nothing
-[assert: true]
+[assert: @true]
 
 # [assertion error] assertion failed: condition was false
-[assert: false]
+[assert: @false]
 
 # [assertion error] ooooops!
-[assert: false; "ooooops!"] 
+[assert: @false; "ooooops!"] 
 ```
 
 ## assert-eq

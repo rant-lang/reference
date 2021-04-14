@@ -32,9 +32,7 @@ To represent the lack of a value, Rant has the `empty` type, which has only one 
 
 ## The `bool` type
 
-The two boolean values are represented by the keywords `true` and `false`.
-These keywords can still be used as fragments when not used alone, as their string representations are simply `"true"` and `"false"`;
-however, if they are passed on their own and need to be strings, you will need to use a string literal.
+The two boolean values are represented by the keywords `@true` and `@false`.
 
 ## Type inference for expressions
 

@@ -83,7 +83,7 @@ This will overwrite only the specified options, leaving all others unchanged.
 
 ```rant
 # Format numbers as 64-bit hex with 0x prefix
-[num-fmt: @(system = hex; alt = true; padding = 16)]
+[num-fmt: @(system = hex; alt = @true; padding = 16)]
 1000000000\n
 
 # Change another option

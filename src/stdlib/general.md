@@ -83,7 +83,7 @@ The value to clone.
 ```
 &rarr; `any`
 
-Returns `true-val` if `condition` is `true`, or `false-val` if `condition` is `false`.
+Returns `true-val` if `condition` is `@true`, or `false-val` if `condition` is `@false`.
 
 ### Parameters
 

@@ -12,7 +12,7 @@ Basic lambda expression syntax with no parameters consists of a `?` symbol insid
 
 ## Parameterization
 
-If you want to add parameters to a lambda, specify the parameter names as you would with a normal function inside the lambda's signature:
+If you want to add parameters to a lambda, just specify the parameters after the colon as you would with a normal function definition:
 
 ```rant
 [?: param1; param2] { ... }

@@ -9,7 +9,7 @@
 ```
 &rarr; `bool`
 
-Returns `true` if `lhs` and `rhs` are equal.
+Returns `@true` if `lhs` and `rhs` are equal.
 
 ### Parameters
 
@@ -29,7 +29,7 @@ The right-hand operand of the comparison.
 ```
 &rarr; `bool`
 
-Returns `true` if `lhs` is greater than or equal to `rhs`.
+Returns `@true` if `lhs` is greater than or equal to `rhs`.
 
 ### Parameters
 
@@ -49,7 +49,7 @@ The right-hand operand of the comparison.
 ```
 &rarr; `bool`
 
-Returns `true` if `lhs` is greater than `rhs`.
+Returns `@true` if `lhs` is greater than `rhs`.
 
 ### Parameters
 
@@ -69,7 +69,7 @@ The right-hand operand of the comparison.
 ```
 &rarr; `bool`
 
-Returns `true` if `lhs` is less than or equal to `rhs`.
+Returns `@true` if `lhs` is less than or equal to `rhs`.
 
 ### Parameters
 
@@ -89,7 +89,7 @@ The right-hand operand of the comparison.
 ```
 &rarr; `bool`
 
-Returns `true` if `lhs` is less than `rhs`.
+Returns `@true` if `lhs` is less than `rhs`.
 
 ### Parameters
 
@@ -109,7 +109,7 @@ The right-hand operand of the comparison.
 ```
 &rarr; `bool`
 
-Returns `true` if `lhs` and `rhs` are not equal.
+Returns `@true` if `lhs` and `rhs` are not equal.
 
 ### Parameters
 

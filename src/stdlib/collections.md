@@ -103,7 +103,7 @@ The values to store in the list.
 ```
 &rarr; `list`
 
-Runs a predicate function against all items in a list and returns another list containing only the values that the predicate returned `true` on.
+Runs a predicate function against all items in a list and returns another list containing only the values that the predicate returned `@true` on.
 
 ### Parameters
 

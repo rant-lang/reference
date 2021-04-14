@@ -12,12 +12,12 @@ Marks the next block as conditional and causes it to resolve iff the last block 
 ### [else-if: condition]
 
 Marks the next block as conditional and causes it to resolve iff the following are true:
-* `condition` is true
+* `condition` is `@true`
 * The last block was conditional and its condition evaluated to false
 
 ### [if: condition]
 
-Marks the next block as conditional and causes it to resolve iff `condition` is true.
+Marks the next block as conditional and causes it to resolve iff `condition` is `@true`.
 
 ### [mksel: selector-mode]
 &rarr; `special`
