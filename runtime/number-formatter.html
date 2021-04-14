@@ -256,7 +256,7 @@ It enables you to set multiple options at once, or get a map of all current opti
 <p>To set options, pass a map to <code>[num-fmt]</code> with the fields you're interested in changing. 
 This will overwrite only the specified options, leaving all others unchanged.</p>
 <pre><code class="language-rant"># Format numbers as 64-bit hex with 0x prefix
-[num-fmt: @(system = hex; alt = true; padding = 16)]
+[num-fmt: @(system = hex; alt = @true; padding = 16)]
 1000000000\n
 
 # Change another option

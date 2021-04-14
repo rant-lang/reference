@@ -173,7 +173,7 @@
 
 </code></pre>
 <p>Verifies that <code>condition</code> is true before continuing program execution.</p>
-<p>If <code>condition</code> is <code>false</code>, raises a runtime error; if <code>true</code>, does nothing.</p>
+<p>If <code>condition</code> is false, raises a runtime error; otherwise, does nothing.</p>
 <p>The message displayed in the runtime error can be customized by passing a string to <code>message</code>. </p>
 <h3 id="parameters"><a class="header" href="#parameters">Parameters</a></h3>
 <p><strong><code>condition</code></strong> ← <code>bool</code> <br/>
@@ -182,13 +182,13 @@ The condition to check.</p>
 The error message to display if the condition is not satisfied.</p>
 <h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
 <pre><code class="language-rant"># does absolutely nothing
-[assert: true]
+[assert: @true]
 
 # [assertion error] assertion failed: condition was false
-[assert: false]
+[assert: @false]
 
 # [assertion error] ooooops!
-[assert: false; &quot;ooooops!&quot;] 
+[assert: @false; &quot;ooooops!&quot;] 
 </code></pre>
 <h2 id="assert-eq"><a class="header" href="#assert-eq">assert-eq</a></h2>
 <pre><code class="language-rant">
