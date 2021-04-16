@@ -79,10 +79,10 @@ Please note that any optional parameters must appear after all required paramete
 }
 ```
 
-#### Default parameter values
+#### Default arguments
 
 You can also specify a custom default value for an optional parameter by adding any expression after the `?` modifier.
-Default values can be of any type you want.
+These values can be of any type you want.
 
 ```rant
 # Modification of the previous [gen-pet] to use a default value instead of calling [alt]
