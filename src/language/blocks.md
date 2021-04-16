@@ -1,49 +1,60 @@
 # Blocks
 
-A **block** is a unit of Rant code subdivided into zero or more parts.
+A **block** represents one or more paths of execution as a single unit. 
+It is one of the fundamental grammatical structures of the Rant language.
 
 ## Syntax
 
-A block is defined by a set of braces containing zero or more sections of Rant code separated by vertical pipes (`|`). Here are a few examples:
+A block is written as a set of curly braces containing one or more sections of code separated by vertical pipes (`|`). 
+Here are a few examples:
+
 ```rant
-{}          # Empty block
-{A}         # Block with one element
-{A|B}       # Block with multiple elements
+{}              # Empty block (1 implicit element which does nothing)
+{ A }           # Block with 1 element (a "linear" block)
+{ A | B }       # Block with 2 elements
+{ A | B | C }   # Block with 3 elements
 ```
 
 ## Use cases
 
-Blocks serve several purposes in Rant, ranging from simple element selection to collections and even loops. They can contain any kind of Rant code&mdash;even other blocks.
+Blocks serve several purposes in Rant, ranging from simple branch selection to collection generation and even loops.
+They can contain any valid Rant code&mdash;even other blocks.
 
 ### Item selection
 
-In their simplest form, blocks resolve a single element from their body and add it to the output.
+By default, a block randomly selects one of its elements and runs the code inside.
 
 ```rant
 # Randomly prints "Heads" or "Tails" with uniform probability
 {Heads|Tails}
 ```
 
-By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a [selector](/runtime/attributes.md#selectors).
+The selection strategy can be customized if needed using a [selector](/runtime/attributes.md#selectors).
 
 ### Collection generation
 
-Blocks can be used to easily generate lists and maps with conditional, repeating, or probabilistic elements.
+Blocks can be used to combine collections with conditional, repeating, or probabilistic elements.
 
 ```rant
 # Evaluates to (A; B; C) or (A; D; E)
-(A) { (B; C) | (D; E) }
+{ (A) { (B; C) | (D; E) } }
 ```
 
 ```rant
 # Evaluates to (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
-[rep:10]{ ([step]) }
+[rep: 10] { ([step]) }
 ```
+
+> **Important to note:**
+>
+> Blocks used for function bodies and dynamic accessor keys are slightly different: 
+> 
+> 1. **They are strictly linear**: they can only contain a single element. Adding multiple elements will cause a compiler error.
+> 2. **They never consume [attributes](/runtime/attributes.md)**: Attributes must be explicitly consumed by adding an inner block.
 
 ### Entanglement
 
-A group of blocks can be "entangled" so that they all coordinate their selections.
-
+A selector can "entangle" several blocks to coordinate their behavior.
 
 ```rant
 # Create a selector and store it in a variable
@@ -60,11 +71,12 @@ Possible outputs:
 
 ### Variable scope
 
-Blocks also act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.
+Blocks act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.
 
-## Restrictions on function bodies and dynamic keys
-
-Blocks used as function bodies and dynamic accessor keys are "linear" blocks: they can only contain one element and never consume attributes.
-Attempting to use a multi-element block in these contexts will cause a compiler error.
-
-This design consideration prevents function calls and accessors from unintentionally consuming attributes unless the user explicitly requests it by adding an inner block.
+```rant
+{
+    <%pi = 3.14>    # Create a variable called `pi`
+    <pi>            # Prints 3.14 to the output
+}                   # `pi` goes out of scope here
+<pi>                # Error!
+```

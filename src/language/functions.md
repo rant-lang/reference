@@ -73,11 +73,33 @@ Please note that any optional parameters must appear after all required paramete
 # Generates a map for a pet with a name and species (defaults to "dog")
 [$gen-pet: name; species?] {
     @(
-        name = <name>|
-        species = [alt: <species>; dog]
+        name = <name>;
+        species = [alt: <species>; dog];
     )
 }
 ```
+
+#### Default parameter values
+
+You can also specify a custom default value for an optional parameter by adding any expression after the `?` modifier.
+Default values can be of any type you want.
+
+```rant
+# Modification of the previous [gen-pet] to use a default value instead of calling [alt]
+[$gen-pet: name; species ? "dog"] {
+    @(
+        name = <name>;
+        species = <species>;
+    )
+}
+```
+
+> **Additional Notes** 
+>
+> Default value expressions are evaluated once when the function is created. 
+> The function then stores these values internally and generates shallow clones as needed.
+>
+> Cloning only occurs for optional parameters where the caller doesn't provide their own value.
 
 ### Variadic parameters
 
@@ -88,8 +110,8 @@ A `*` parameter is optional and defaults to an empty list, while a `+` parameter
 Functions may only have up to one variadic parameter, and it must appear last in the signature.
 
 ```rant
-[$how-many:items*] {
-    [len:<items>]
+[$how-many: items*] {
+    [len: <items>]
 }
 
 [how-many: foo; bar; baz] # Outputs "3"

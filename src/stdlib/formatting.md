@@ -53,7 +53,7 @@ Defaults to 0 (the calling scope).
 **Setting the current number format**
 ```rant
 # Set format to big-endian 64-bit uppercase hex with prefix
-[num-fmt: @(system = hex; upper = true; alt = true; padding = 16)]
+[num-fmt: @(system = hex; upper = @true; alt = @true; padding = 16)]
 
 1000000000\n
 
