@@ -218,17 +218,34 @@ Please note that any optional parameters must appear after all required paramete
 <pre><code class="language-rant"># Generates a map for a pet with a name and species (defaults to &quot;dog&quot;)
 [$gen-pet: name; species?] {
     @(
-        name = &lt;name&gt;|
-        species = [alt: &lt;species&gt;; dog]
+        name = &lt;name&gt;;
+        species = [alt: &lt;species&gt;; dog];
     )
 }
 </code></pre>
+<h4 id="default-parameter-values"><a class="header" href="#default-parameter-values">Default parameter values</a></h4>
+<p>You can also specify a custom default value for an optional parameter by adding any expression after the <code>?</code> modifier.
+Default values can be of any type you want.</p>
+<pre><code class="language-rant"># Modification of the previous [gen-pet] to use a default value instead of calling [alt]
+[$gen-pet: name; species ? &quot;dog&quot;] {
+    @(
+        name = &lt;name&gt;;
+        species = &lt;species&gt;;
+    )
+}
+</code></pre>
+<blockquote>
+<p><strong>Additional Notes</strong> </p>
+<p>Default value expressions are evaluated once when the function is created. 
+The function then stores these values internally and generates shallow clones as needed.</p>
+<p>Cloning only occurs for optional parameters where the caller doesn't provide their own value.</p>
+</blockquote>
 <h3 id="variadic-parameters"><a class="header" href="#variadic-parameters">Variadic parameters</a></h3>
 <p>Functions support variadic parameters with the special symbols <code>*</code> and <code>+</code>.</p>
 <p>A <code>*</code> parameter is optional and defaults to an empty list, while a <code>+</code> parameter is required and must contain at least one element.</p>
 <p>Functions may only have up to one variadic parameter, and it must appear last in the signature.</p>
-<pre><code class="language-rant">[$how-many:items*] {
-    [len:&lt;items&gt;]
+<pre><code class="language-rant">[$how-many: items*] {
+    [len: &lt;items&gt;]
 }
 
 [how-many: foo; bar; baz] # Outputs &quot;3&quot;

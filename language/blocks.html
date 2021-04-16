@@ -167,31 +167,43 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="blocks"><a class="header" href="#blocks">Blocks</a></h1>
-<p>A <strong>block</strong> is a unit of Rant code subdivided into zero or more parts.</p>
+<p>A <strong>block</strong> represents one or more paths of execution as a single unit. 
+It is one of the fundamental grammatical structures of the Rant language.</p>
 <h2 id="syntax"><a class="header" href="#syntax">Syntax</a></h2>
-<p>A block is defined by a set of braces containing zero or more sections of Rant code separated by vertical pipes (<code>|</code>). Here are a few examples:</p>
-<pre><code class="language-rant">{}          # Empty block
-{A}         # Block with one element
-{A|B}       # Block with multiple elements
+<p>A block is written as a set of curly braces containing one or more sections of code separated by vertical pipes (<code>|</code>). 
+Here are a few examples:</p>
+<pre><code class="language-rant">{}              # Empty block (1 implicit element which does nothing)
+{ A }           # Block with 1 element (a &quot;linear&quot; block)
+{ A | B }       # Block with 2 elements
+{ A | B | C }   # Block with 3 elements
 </code></pre>
 <h2 id="use-cases"><a class="header" href="#use-cases">Use cases</a></h2>
-<p>Blocks serve several purposes in Rant, ranging from simple element selection to collections and even loops. They can contain any kind of Rant code—even other blocks.</p>
+<p>Blocks serve several purposes in Rant, ranging from simple branch selection to collection generation and even loops.
+They can contain any valid Rant code—even other blocks.</p>
 <h3 id="item-selection"><a class="header" href="#item-selection">Item selection</a></h3>
-<p>In their simplest form, blocks resolve a single element from their body and add it to the output.</p>
+<p>By default, a block randomly selects one of its elements and runs the code inside.</p>
 <pre><code class="language-rant"># Randomly prints &quot;Heads&quot; or &quot;Tails&quot; with uniform probability
 {Heads|Tails}
 </code></pre>
-<p>By default, blocks select a random element with uniform probability, but the selection strategy can be customized if needed using a <a href="/runtime/attributes.html#selectors">selector</a>.</p>
+<p>The selection strategy can be customized if needed using a <a href="/runtime/attributes.html#selectors">selector</a>.</p>
 <h3 id="collection-generation"><a class="header" href="#collection-generation">Collection generation</a></h3>
-<p>Blocks can be used to easily generate lists and maps with conditional, repeating, or probabilistic elements.</p>
+<p>Blocks can be used to combine collections with conditional, repeating, or probabilistic elements.</p>
 <pre><code class="language-rant"># Evaluates to (A; B; C) or (A; D; E)
-(A) { (B; C) | (D; E) }
+{ (A) { (B; C) | (D; E) } }
 </code></pre>
 <pre><code class="language-rant"># Evaluates to (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
-[rep:10]{ ([step]) }
+[rep: 10] { ([step]) }
 </code></pre>
+<blockquote>
+<p><strong>Important to note:</strong></p>
+<p>Blocks used for function bodies and dynamic accessor keys are slightly different: </p>
+<ol>
+<li><strong>They are strictly linear</strong>: they can only contain a single element. Adding multiple elements will cause a compiler error.</li>
+<li><strong>They never consume <a href="/runtime/attributes.html">attributes</a></strong>: Attributes must be explicitly consumed by adding an inner block.</li>
+</ol>
+</blockquote>
 <h3 id="entanglement"><a class="header" href="#entanglement">Entanglement</a></h3>
-<p>A group of blocks can be &quot;entangled&quot; so that they all coordinate their selections.</p>
+<p>A selector can &quot;entangle&quot; several blocks to coordinate their behavior.</p>
 <pre><code class="language-rant"># Create a selector and store it in a variable
 &lt;$sync = [mksel:one]&gt;
 # Both blocks use the `sync` selector, so they're entangled
@@ -204,11 +216,13 @@ Possible outputs:
 ##
 </code></pre>
 <h3 id="variable-scope"><a class="header" href="#variable-scope">Variable scope</a></h3>
-<p>Blocks also act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.</p>
-<h2 id="restrictions-on-function-bodies-and-dynamic-keys"><a class="header" href="#restrictions-on-function-bodies-and-dynamic-keys">Restrictions on function bodies and dynamic keys</a></h2>
-<p>Blocks used as function bodies and dynamic accessor keys are &quot;linear&quot; blocks: they can only contain one element and never consume attributes.
-Attempting to use a multi-element block in these contexts will cause a compiler error.</p>
-<p>This design consideration prevents function calls and accessors from unintentionally consuming attributes unless the user explicitly requests it by adding an inner block.</p>
+<p>Blocks act as scopes for local variables. Any variables created inside of a block are destroyed immediately after the block resolves.</p>
+<pre><code class="language-rant">{
+    &lt;%pi = 3.14&gt;    # Create a variable called `pi`
+    &lt;pi&gt;            # Prints 3.14 to the output
+}                   # `pi` goes out of scope here
+&lt;pi&gt;                # Error!
+</code></pre>
 
                     </main>
 
