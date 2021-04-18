@@ -168,7 +168,7 @@
                     <main>
                         <h1 id="lambdas"><a class="header" href="#lambdas">Lambdas</a></h1>
 <p>Rant implements anonymous (nameless) functions as <strong>lambda expressions</strong>, commonly referred to as simply <strong>lambdas</strong>.
-The body of a lambda can also capture variables from its environment, enabling you to construct <strong>closures</strong>.</p>
+The body of a lambda can also capture variables from its environment, just like regular named functions.</p>
 <p>Basic lambda expression syntax with no parameters consists of a <code>?</code> symbol inside brackets preceding the function body. </p>
 <pre><code class="language-rant"># Creates a function and places it on the output
 [?] { Hello from lambda expression! }
@@ -205,40 +205,6 @@ the function name is replaced by the <code>!</code> symbol (to denote an anonymo
 
 [![get-greet-func]:Rant]    # &quot;Hello, Rant!&quot;
 </code></pre>
-<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
-<p>As mentioned previously, a lambda can access variables defined outside of its body.
-When this happens, it &quot;captures&quot; a reference to that variable for use inside the function.
-As a result, changes made to a captured variable persist between calls. 
-Functions that capture variables are called <strong>closures</strong>.</p>
-<p>Variable capturing can also be used to maintain a persistent state within a closure instance:
-even if the original variable falls out of scope, the closure still keeps it alive.</p>
-<pre><code class="language-rant"># Create a function with a persistent state
-{
-    &lt;$foo-num = 1&gt;
-    # Define a function [next-foo] in the parent scope
-    [$^next-foo] {
-        # Modify `foo-num` from inside the function
-        foo &lt;$n = &lt;foo-num&gt;; foo-num = [add: &lt;foo-num&gt;; 1]; n&gt;
-    }
-} # `foo-num` falls out of scope here, but [next-foo] can still access it
-
-# Call [next-foo] multiple times
-[rep:4][sep:\n]
-{
-    [next-foo]
-}
-##
-  Output:
-
-  foo 1
-  foo 2
-  foo 3
-  foo 4
-##
-</code></pre>
-<h2 id="limitations-on-variable-capture"><a class="header" href="#limitations-on-variable-capture">Limitations on variable capture</a></h2>
-<p>Capturing is only supported on variables accessed locally from the function body.
-Descoped and explicit global accessors do not capture variables.</p>
 
                     </main>
 

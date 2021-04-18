@@ -167,9 +167,21 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
-<p>Functions contain code that can be executed arbitrarily. The Rant standard library includes several native functions, but you can also define your own.</p>
+<p>Functions are an essential part of Rant: they facilitate code reuse and allow the user to interface with the standard library.</p>
+<p>In addition to Rant's built-in functions, you can also define your own and use them however you see fit.</p>
+<p>All types of function-related operations (definitions, calls, lambdas, etc.) take place inside square brackets <code>[ ]</code>.</p>
 <h2 id="calling-functions"><a class="header" href="#calling-functions">Calling functions</a></h2>
-<p>Function calls use the following syntax:</p>
+<p>To call a function, place the function's name inside a pair of square brackets:</p>
+<pre><code class="language-rant">[dig]
+</code></pre>
+<p>This calls the <code>[dig]</code> function from the standard library, which prints a random decimal digit.
+The output of this call then flows into the caller's output, producing our digit:</p>
+<pre><code>8
+</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<p>Additionally, functions can accept arguments.
+When a function requires arguments, we first add a colon <code>:</code> after the function's name, followed by a list of arguments separated by semicolons <code>;</code>.
+Here are a few examples of how this works: </p>
 <pre><code class="language-rant"># Function with no arguments
 [func-name]
 
@@ -211,10 +223,32 @@ the runtime will search each parent scope up to the global scope until it finds 
     {&lt;heads&gt;|&lt;tails&gt;}
 }
 </code></pre>
+<p>Just like variables, functions can also be made constant by using <code>%</code> in place of <code>$</code>:</p>
+<pre><code class="language-rant"># Regular functions can be overwritten
+[$foo] { hello! }
+[$foo] { goodbye! }
+
+# Constant function; can't be overwritten
+[%foo] { 
+    important stuff... 
+}
+
+# If we try, the compiler will catch it and produce an error
+[%foo] { # ERROR: constant redefinition
+    this won't work
+}
+</code></pre>
+<blockquote>
+<p><strong>Good to know:</strong></p>
+<p>All of Rant's standard library functions are constants, and thus can't be modified—but they can still be shadowed in child scopes.</p>
+</blockquote>
 <h3 id="optional-parameters"><a class="header" href="#optional-parameters">Optional parameters</a></h3>
 <p>A function parameter can be marked as optional using the <code>?</code> symbol.
-When the argument is omitted for an optional parameter, it will default to <code>~</code>.
-Please note that any optional parameters must appear after all required parameters, and before any variadic parameter.</p>
+When the argument is omitted for an optional parameter, it will default to an <code>empty</code>.</p>
+<blockquote>
+<p>Please note that all optional parameters must appear after all required parameters, and before any variadic parameter;
+breaking this order will cause a compiler error.</p>
+</blockquote>
 <pre><code class="language-rant"># Generates a map for a pet with a name and species (defaults to &quot;dog&quot;)
 [$gen-pet: name; species?] {
     @(
@@ -224,8 +258,8 @@ Please note that any optional parameters must appear after all required paramete
 }
 </code></pre>
 <h4 id="default-arguments"><a class="header" href="#default-arguments">Default arguments</a></h4>
-<p>You can also specify a custom default value for an optional parameter by adding any expression after the <code>?</code> modifier.
-These values can be of any type you want.</p>
+<p>You can also specify a custom default value for an optional parameter by adding an expression after the <code>?</code> modifier.</p>
+<p>Each time the function is called without that parameter, Rant will run its default value expression and use its output as the argument.</p>
 <pre><code class="language-rant"># Modification of the previous [gen-pet] to use a default value instead of calling [alt]
 [$gen-pet: name; species ? &quot;dog&quot;] {
     @(
@@ -235,10 +269,8 @@ These values can be of any type you want.</p>
 }
 </code></pre>
 <blockquote>
-<p><strong>Additional Notes</strong> </p>
-<p>Default value expressions are evaluated once when the function is created. 
-The function then stores these values internally and generates shallow clones as needed.</p>
-<p>Cloning only occurs for optional parameters where the caller doesn't provide their own value.</p>
+<p><strong>Keep in mind:</strong></p>
+<p>Default value expressions can capture external variables just like the body of the function they're attached to.</p>
 </blockquote>
 <h3 id="variadic-parameters"><a class="header" href="#variadic-parameters">Variadic parameters</a></h3>
 <p>Functions support variadic parameters with the special symbols <code>*</code> and <code>+</code>.</p>
@@ -250,6 +282,40 @@ The function then stores these values internally and generates shallow clones as
 
 [how-many: foo; bar; baz] # Outputs &quot;3&quot;
 </code></pre>
+<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
+<p>A function can access variables defined outside of its body.
+When this happens, it &quot;captures&quot; a reference to that variable for use inside the function.
+As a result, changes made to a captured variable persist between calls. 
+Functions that capture variables are called <strong>closures</strong>.</p>
+<p>Variable capturing can also be used to maintain a persistent state within a closure instance:
+even if the original variable falls out of scope, the closure still keeps it alive.</p>
+<pre><code class="language-rant"># Create a function with a persistent state
+{
+    &lt;$foo-num = 1&gt;
+    # Define a function [next-foo] in the parent scope
+    [$^next-foo] {
+        # Modify `foo-num` from inside the function
+        foo &lt;$n = &lt;foo-num&gt;; foo-num = [add: &lt;foo-num&gt;; 1]; n&gt;
+    }
+} # `foo-num` falls out of scope here, but [next-foo] can still access it
+
+# Call [next-foo] multiple times
+[rep:4][sep:\n]
+{
+    [next-foo]
+}
+##
+  Output:
+
+  foo 1
+  foo 2
+  foo 3
+  foo 4
+##
+</code></pre>
+<h2 id="limitations-on-variable-capture"><a class="header" href="#limitations-on-variable-capture">Limitations on variable capture</a></h2>
+<p>Capturing is only supported on variables accessed locally from the function body.
+Descoped and explicit global accessors do not capture variables.</p>
 
                     </main>
 
