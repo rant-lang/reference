@@ -1,10 +1,29 @@
 # Functions
 
-Functions contain code that can be executed arbitrarily. The Rant standard library includes several native functions, but you can also define your own.
+Functions are an essential part of Rant: they facilitate code reuse and allow the user to interface with the standard library.
+
+In addition to Rant's built-in functions, you can also define your own and use them however you see fit.
+
+All types of function-related operations (definitions, calls, lambdas, etc.) take place inside square brackets `[ ]`.
 
 ## Calling functions
 
-Function calls use the following syntax:
+To call a function, place the function's name inside a pair of square brackets:
+
+```rant
+[dig]
+```
+This calls the `[dig]` function from the standard library, which prints a random decimal digit.
+The output of this call then flows into the caller's output, producing our digit:
+```
+8
+```
+
+### Arguments
+
+Additionally, functions can accept arguments.
+When a function requires arguments, we first add a colon `:` after the function's name, followed by a list of arguments separated by semicolons `;`.
+Here are a few examples of how this works: 
 
 ```rant
 # Function with no arguments
@@ -40,8 +59,6 @@ the runtime will search each parent scope up to the global scope until it finds 
 Function percolation only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.
 
 
-
-
 ## Defining functions
 
 To define a function and assign it to a variable, the syntax is as follows:
@@ -63,11 +80,35 @@ To define a function and assign it to a variable, the syntax is as follows:
 }
 ```
 
+Just like variables, functions can also be made constant by using `%` in place of `$`:
+
+```rant
+# Regular functions can be overwritten
+[$foo] { hello! }
+[$foo] { goodbye! }
+
+# Constant function; can't be overwritten
+[%foo] { 
+    important stuff... 
+}
+
+# If we try, the compiler will catch it and produce an error
+[%foo] { # ERROR: constant redefinition
+    this won't work
+}
+```
+
+> **Good to know:**
+>
+> All of Rant's standard library functions are constants, and thus can't be modified&mdash;but they can still be shadowed in child scopes.
+
 ### Optional parameters
 
 A function parameter can be marked as optional using the `?` symbol.
-When the argument is omitted for an optional parameter, it will default to `~`.
-Please note that any optional parameters must appear after all required parameters, and before any variadic parameter.
+When the argument is omitted for an optional parameter, it will default to an `empty`.
+
+> Please note that all optional parameters must appear after all required parameters, and before any variadic parameter;
+> breaking this order will cause a compiler error.
 
 ```rant
 # Generates a map for a pet with a name and species (defaults to "dog")
@@ -81,8 +122,9 @@ Please note that any optional parameters must appear after all required paramete
 
 #### Default arguments
 
-You can also specify a custom default value for an optional parameter by adding any expression after the `?` modifier.
-These values can be of any type you want.
+You can also specify a custom default value for an optional parameter by adding an expression after the `?` modifier.
+
+Each time the function is called without that parameter, Rant will run its default value expression and use its output as the argument.
 
 ```rant
 # Modification of the previous [gen-pet] to use a default value instead of calling [alt]
@@ -94,12 +136,9 @@ These values can be of any type you want.
 }
 ```
 
-> **Additional Notes** 
+> **Keep in mind:**
 >
-> Default value expressions are evaluated once when the function is created. 
-> The function then stores these values internally and generates shallow clones as needed.
->
-> Cloning only occurs for optional parameters where the caller doesn't provide their own value.
+> Default value expressions can capture external variables just like the body of the function they're attached to.
 
 ### Variadic parameters
 
@@ -116,3 +155,44 @@ Functions may only have up to one variadic parameter, and it must appear last in
 
 [how-many: foo; bar; baz] # Outputs "3"
 ```
+
+## Closures
+
+A function can access variables defined outside of its body.
+When this happens, it "captures" a reference to that variable for use inside the function.
+As a result, changes made to a captured variable persist between calls. 
+Functions that capture variables are called **closures**.
+
+Variable capturing can also be used to maintain a persistent state within a closure instance:
+even if the original variable falls out of scope, the closure still keeps it alive.
+
+```rant
+# Create a function with a persistent state
+{
+    <$foo-num = 1>
+    # Define a function [next-foo] in the parent scope
+    [$^next-foo] {
+        # Modify `foo-num` from inside the function
+        foo <$n = <foo-num>; foo-num = [add: <foo-num>; 1]; n>
+    }
+} # `foo-num` falls out of scope here, but [next-foo] can still access it
+
+# Call [next-foo] multiple times
+[rep:4][sep:\n]
+{
+    [next-foo]
+}
+##
+  Output:
+
+  foo 1
+  foo 2
+  foo 3
+  foo 4
+##
+```
+
+## Limitations on variable capture
+
+Capturing is only supported on variables accessed locally from the function body.
+Descoped and explicit global accessors do not capture variables.

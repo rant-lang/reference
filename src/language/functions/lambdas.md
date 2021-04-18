@@ -1,7 +1,7 @@
 # Lambdas
 
 Rant implements anonymous (nameless) functions as **lambda expressions**, commonly referred to as simply **lambdas**.
-The body of a lambda can also capture variables from its environment, enabling you to construct **closures**.
+The body of a lambda can also capture variables from its environment, just like regular named functions.
 
 Basic lambda expression syntax with no parameters consists of a `?` symbol inside brackets preceding the function body. 
 
@@ -53,44 +53,3 @@ the function name is replaced by the `!` symbol (to denote an anonymous call) fo
 
 [![get-greet-func]:Rant]    # "Hello, Rant!"
 ```
-
-## Closures
-
-As mentioned previously, a lambda can access variables defined outside of its body.
-When this happens, it "captures" a reference to that variable for use inside the function.
-As a result, changes made to a captured variable persist between calls. 
-Functions that capture variables are called **closures**.
-
-Variable capturing can also be used to maintain a persistent state within a closure instance:
-even if the original variable falls out of scope, the closure still keeps it alive.
-
-```rant
-# Create a function with a persistent state
-{
-    <$foo-num = 1>
-    # Define a function [next-foo] in the parent scope
-    [$^next-foo] {
-        # Modify `foo-num` from inside the function
-        foo <$n = <foo-num>; foo-num = [add: <foo-num>; 1]; n>
-    }
-} # `foo-num` falls out of scope here, but [next-foo] can still access it
-
-# Call [next-foo] multiple times
-[rep:4][sep:\n]
-{
-    [next-foo]
-}
-##
-  Output:
-
-  foo 1
-  foo 2
-  foo 3
-  foo 4
-##
-```
-
-## Limitations on variable capture
-
-Capturing is only supported on variables accessed locally from the function body.
-Descoped and explicit global accessors do not capture variables.

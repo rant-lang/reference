@@ -114,8 +114,10 @@ The second inclusive bound of the random number.
 ### Example
 
 ```rant
-You roll the dice and get '[rand:1;6] and '[rand:1;6].
-# You roll the dice and get 2 and 5.
+# Choose a number by fair dice roll.
+You roll a '[rand:1;6].
+
+# ~> You roll a 4.
 ```
 
 

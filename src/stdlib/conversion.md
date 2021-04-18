@@ -27,7 +27,7 @@ The input value to convert.
 ```
 &rarr; `int | empty`
 
-Attempts to convert `value` to an `int` value and returns the reuslt.
+Attempts to convert `value` to an `int` value and returns the result.
 If the conversion fails, returns `empty` value.
 
 ### Parameters
