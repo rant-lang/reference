@@ -266,7 +266,7 @@ breaking this order will cause a compiler error.</p>
 </code></pre>
 <blockquote>
 <p><strong>Note:</strong></p>
-<p>Default value expressions can capture external variables just like the body of the function they're attached to.</p>
+<p>Default argument expressions can capture external variables just like the body of the function they're attached to.</p>
 </blockquote>
 <h3 id="variadic-parameters"><a class="header" href="#variadic-parameters">Variadic parameters</a></h3>
 <p>Functions support variadic parameters with the special symbols <code>*</code> and <code>+</code>.</p>
@@ -323,7 +323,7 @@ and then try to call it: </p>
     # ...
 }
 </code></pre>
-<p>Some people might (understandably) assume that this would crash the program, but this code actually still works!</p>
+<p>Some might (understandably) assume that this would crash the program, but this code actually still works!</p>
 <p>When this happens, Rant will perform what is known as <strong>function percolation</strong>:
 the runtime will search each parent scope up to the global scope until it finds a function with the same name, and then call it as normal.</p>
 <p>Function percolation only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.</p>
