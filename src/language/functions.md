@@ -122,7 +122,7 @@ Each time the function is called without that parameter, Rant will run its defau
 
 > **Note:**
 >
-> Default value expressions can capture external variables just like the body of the function they're attached to.
+> Default argument expressions can capture external variables just like the body of the function they're attached to.
 
 ### Variadic parameters
 
@@ -196,7 +196,7 @@ and then try to call it:
 }
 ```
 
-Some people might (understandably) assume that this would crash the program, but this code actually still works!
+Some might (understandably) assume that this would crash the program, but this code actually still works!
 
 When this happens, Rant will perform what is known as **function percolation**:
 the runtime will search each parent scope up to the global scope until it finds a function with the same name, and then call it as normal.
