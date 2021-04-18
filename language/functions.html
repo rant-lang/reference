@@ -167,9 +167,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
-<p>Functions are an essential part of Rant: they facilitate code reuse and allow the user to interface with the standard library.</p>
-<p>In addition to Rant's built-in functions, you can also define your own and use them however you see fit.</p>
-<p>All types of function-related operations (definitions, calls, lambdas, etc.) take place inside square brackets <code>[ ]</code>.</p>
+<p>Functions are an essential part of Rant: they facilitate code reuse and allow the user to interface with the standard library.
+In addition to Rant's built-in functions, you can also define your own and use them however you see fit.</p>
 <h2 id="calling-functions"><a class="header" href="#calling-functions">Calling functions</a></h2>
 <p>To call a function, place the function's name inside a pair of square brackets:</p>
 <pre><code class="language-rant">[dig]
@@ -223,7 +222,9 @@ the runtime will search each parent scope up to the global scope until it finds 
     {&lt;heads&gt;|&lt;tails&gt;}
 }
 </code></pre>
-<p>Just like variables, functions can also be made constant by using <code>%</code> in place of <code>$</code>:</p>
+<p>All functions are objects of the <code>function</code> type, and can be treated like any other variable.
+When we define a function, we are simply defining a variable and storing it there.</p>
+<p>Like other variables, functions can also be made constant by using <code>%</code> in place of <code>$</code> when defining them:</p>
 <pre><code class="language-rant"># Regular functions can be overwritten
 [$foo] { hello! }
 [$foo] { goodbye! }
