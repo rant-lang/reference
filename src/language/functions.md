@@ -1,10 +1,7 @@
 # Functions
 
 Functions are an essential part of Rant: they facilitate code reuse and allow the user to interface with the standard library.
-
 In addition to Rant's built-in functions, you can also define your own and use them however you see fit.
-
-All types of function-related operations (definitions, calls, lambdas, etc.) take place inside square brackets `[ ]`.
 
 ## Calling functions
 
@@ -80,7 +77,10 @@ To define a function and assign it to a variable, the syntax is as follows:
 }
 ```
 
-Just like variables, functions can also be made constant by using `%` in place of `$`:
+All functions are objects of the `function` type, and can be treated like any other variable.
+When we define a function, we are simply defining a variable and storing it there.
+
+Like other variables, functions can also be made constant by using `%` in place of `$` when defining them:
 
 ```rant
 # Regular functions can be overwritten
