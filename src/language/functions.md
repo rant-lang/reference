@@ -33,52 +33,36 @@ Here are a few examples of how this works:
 [func-name: arg1; arg2]
 ```
 
-### Shadowed functions are still callable
-
-The situation may occasionally arise where you accidentally (or intentionally)
-define a non-function variable with the same name as a function from a parent scope (e.g. a stdlib function) 
-and then try to call it: 
-
-```rant
-<$rep = "not a function">
-[rep:10] # Wait a sec...
-[sep:\n]
-{
-    # ...
-}
-```
-
-Some people might (understandably) assume that this would crash the program, but this code actually still works!
-
-When this happens, Rant will perform what is known as **function percolation**:
-the runtime will search each parent scope up to the global scope until it finds a function with the same name, and then call it as normal.
-
-Function percolation only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.
-
 
 ## Defining functions
 
-To define a function and assign it to a variable, the syntax is as follows:
+All functions are objects of the `function` type, and can be treated like any other variable.
+When we define a function, we are simply defining a variable and storing it there.
+
+To define a function, we need the following::
+* The **function signature**, enclosed in square brackets `[ ]`, containing:
+    * The name of the function,
+    * A list of parameters it can accept
+* The **function body**, enclosed by curly braces `{ }`.
+    * Contains the code to run when the function is called.
 
 ```rant
-# Define a parameterless function named `say-hello` that prints "Hello"
+# Defines a parameterless function named `say-hello` that prints "Hello"
 [$say-hello] {
     Hello
 }
 
-# Define a function `greet` with parameter `name` that prints a custom greeting
+# Defines a function `greet` with parameter `name` that prints a custom greeting
+# Arguments can be accessed like regular variables.
 [$greet: name] {
     Hello, <name>!
 }
 
-# Define a function `flip-coin` that returns the value of either `heads` and `tails`
+# Defines a function `flip-coin` that returns the value of either `heads` and `tails`
 [$flip-coin: heads; tails] {
     {<heads>|<tails>}
 }
 ```
-
-All functions are objects of the `function` type, and can be treated like any other variable.
-When we define a function, we are simply defining a variable and storing it there.
 
 Like other variables, functions can also be made constant by using `%` in place of `$` when defining them:
 
@@ -192,7 +176,29 @@ even if the original variable falls out of scope, the closure still keeps it ali
 ##
 ```
 
-## Limitations on variable capture
+### Limitations on variable capture
 
 Capturing is only supported on variables accessed locally from the function body.
 Descoped and explicit global accessors do not capture variables.
+
+## Calling shadowed functions
+
+The situation may occasionally arise where you accidentally (or intentionally)
+define a non-function variable with the same name as a function from a parent scope (e.g. a stdlib function) 
+and then try to call it: 
+
+```rant
+<$rep = "not a function">
+[rep:10] # Wait a sec...
+[sep:\n]
+{
+    # ...
+}
+```
+
+Some people might (understandably) assume that this would crash the program, but this code actually still works!
+
+When this happens, Rant will perform what is known as **function percolation**:
+the runtime will search each parent scope up to the global scope until it finds a function with the same name, and then call it as normal.
+
+Function percolation only applies to function calls, so getters will still correctly retrieve the new variable instead of the function.
