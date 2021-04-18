@@ -20,6 +20,7 @@ The output of this call then flows into the caller's output, producing our digit
 
 Additionally, functions can accept arguments.
 When a function requires arguments, we first add a colon `:` after the function's name, followed by a list of arguments separated by semicolons `;`.
+
 Here are a few examples of how this works: 
 
 ```rant
@@ -42,9 +43,8 @@ When we define a function, we are simply defining a variable and storing it ther
 To define a function, we need the following::
 * The **function signature**, enclosed in square brackets `[ ]`, containing:
     * The name of the function,
-    * A list of parameters it can accept
+    * A list of parameters to accept
 * The **function body**, enclosed by curly braces `{ }`.
-    * Contains the code to run when the function is called.
 
 ```rant
 # Defines a parameterless function named `say-hello` that prints "Hello"
@@ -82,7 +82,7 @@ Like other variables, functions can also be made constant by using `%` in place 
 }
 ```
 
-> **Good to know:**
+> **Note:**
 >
 > All of Rant's standard library functions are constants, and thus can't be modified&mdash;but they can still be shadowed in child scopes.
 
@@ -120,7 +120,7 @@ Each time the function is called without that parameter, Rant will run its defau
 }
 ```
 
-> **Keep in mind:**
+> **Note:**
 >
 > Default value expressions can capture external variables just like the body of the function they're attached to.
 
