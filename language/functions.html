@@ -179,8 +179,8 @@ The output of this call then flows into the caller's output, producing our digit
 </code></pre>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
 <p>Additionally, functions can accept arguments.
-When a function requires arguments, we first add a colon <code>:</code> after the function's name, followed by a list of arguments separated by semicolons <code>;</code>.
-Here are a few examples of how this works: </p>
+When a function requires arguments, we first add a colon <code>:</code> after the function's name, followed by a list of arguments separated by semicolons <code>;</code>.</p>
+<p>Here are a few examples of how this works: </p>
 <pre><code class="language-rant"># Function with no arguments
 [func-name]
 
@@ -198,14 +198,10 @@ When we define a function, we are simply defining a variable and storing it ther
 <li>The <strong>function signature</strong>, enclosed in square brackets <code>[ ]</code>, containing:
 <ul>
 <li>The name of the function,</li>
-<li>A list of parameters it can accept</li>
+<li>A list of parameters to accept</li>
 </ul>
 </li>
-<li>The <strong>function body</strong>, enclosed by curly braces <code>{ }</code>.
-<ul>
-<li>Contains the code to run when the function is called.</li>
-</ul>
-</li>
+<li>The <strong>function body</strong>, enclosed by curly braces <code>{ }</code>.</li>
 </ul>
 <pre><code class="language-rant"># Defines a parameterless function named `say-hello` that prints &quot;Hello&quot;
 [$say-hello] {
@@ -239,7 +235,7 @@ When we define a function, we are simply defining a variable and storing it ther
 }
 </code></pre>
 <blockquote>
-<p><strong>Good to know:</strong></p>
+<p><strong>Note:</strong></p>
 <p>All of Rant's standard library functions are constants, and thus can't be modified—but they can still be shadowed in child scopes.</p>
 </blockquote>
 <h3 id="optional-parameters"><a class="header" href="#optional-parameters">Optional parameters</a></h3>
@@ -269,7 +265,7 @@ breaking this order will cause a compiler error.</p>
 }
 </code></pre>
 <blockquote>
-<p><strong>Keep in mind:</strong></p>
+<p><strong>Note:</strong></p>
 <p>Default value expressions can capture external variables just like the body of the function they're attached to.</p>
 </blockquote>
 <h3 id="variadic-parameters"><a class="header" href="#variadic-parameters">Variadic parameters</a></h3>
