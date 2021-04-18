@@ -40,7 +40,7 @@ Here are a few examples of how this works:
 All functions are objects of the `function` type, and can be treated like any other variable.
 When we define a function, we are simply defining a variable and storing it there.
 
-To define a function, we need the following::
+To define a function, we need the following:
 * The **function signature**, enclosed in square brackets `[ ]`, containing:
     * The name of the function,
     * A list of parameters to accept
@@ -178,7 +178,7 @@ even if the original variable falls out of scope, the closure still keeps it ali
 
 ### Limitations on variable capture
 
-Capturing is only supported on variables accessed locally from the function body.
+Capturing is only supported on variables accessed locally from the function body or default argument expressions.
 Descoped and explicit global accessors do not capture variables.
 
 ## Calling shadowed functions
