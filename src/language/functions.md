@@ -88,8 +88,10 @@ Like other variables, functions can also be made constant by using `%` in place 
 
 ### Optional parameters
 
-A function parameter can be marked as optional using the `?` symbol.
-When the argument is omitted for an optional parameter, it will default to an `empty`.
+A function parameter can be made optional using the `?` modifier after the parameter name, this means that the caller is not required to pass an argument to it.
+
+When an optional parameter is omitted, the variable won't exist in the function body; as a result, accessing it can fail, causing an error.
+To prevent this from happening, you need to use a [fallback expression](/language/accessors/fallbacks.md) to provide a default value.
 
 > Please note that all optional parameters must appear after all required parameters, and before any variadic parameter;
 > breaking this order will cause a compiler error.
@@ -99,7 +101,7 @@ When the argument is omitted for an optional parameter, it will default to an `e
 [$gen-pet: name; species?] {
     @(
         name = <name>;
-        species = [alt: <species>; dog];
+        species = <species ? "dog">; # Fallback to "dog" if species is undefined
     )
 }
 ```
@@ -112,10 +114,10 @@ Each time the function is called without that parameter, Rant will run its defau
 
 ```rant
 # Modification of the previous [gen-pet] to use a default value instead of calling [alt]
-[$gen-pet: name; species ? "dog"] {
+[$gen-pet: name; species ? "dog"] { 
     @(
         name = <name>;
-        species = <species>;
+        species = <species>; # No fallback needed!
     )
 }
 ```
