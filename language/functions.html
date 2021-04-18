@@ -193,7 +193,7 @@ When a function requires arguments, we first add a colon <code>:</code> after th
 <h2 id="defining-functions"><a class="header" href="#defining-functions">Defining functions</a></h2>
 <p>All functions are objects of the <code>function</code> type, and can be treated like any other variable.
 When we define a function, we are simply defining a variable and storing it there.</p>
-<p>To define a function, we need the following::</p>
+<p>To define a function, we need the following:</p>
 <ul>
 <li>The <strong>function signature</strong>, enclosed in square brackets <code>[ ]</code>, containing:
 <ul>
@@ -310,7 +310,7 @@ even if the original variable falls out of scope, the closure still keeps it ali
 ##
 </code></pre>
 <h3 id="limitations-on-variable-capture"><a class="header" href="#limitations-on-variable-capture">Limitations on variable capture</a></h3>
-<p>Capturing is only supported on variables accessed locally from the function body.
+<p>Capturing is only supported on variables accessed locally from the function body or default argument expressions.
 Descoped and explicit global accessors do not capture variables.</p>
 <h2 id="calling-shadowed-functions"><a class="header" href="#calling-shadowed-functions">Calling shadowed functions</a></h2>
 <p>The situation may occasionally arise where you accidentally (or intentionally)
