@@ -88,7 +88,7 @@ Like other variables, functions can also be made constant by using `%` in place 
 
 ### Optional parameters
 
-A function parameter can be made optional using the `?` modifier after the parameter name, this means that the caller is not required to pass an argument to it.
+A function parameter can be made optional using the `?` modifier after the parameter name; this means that the caller is not required to pass an argument to it.
 
 When an optional parameter is omitted, the variable won't exist in the function body; as a result, accessing it can fail, causing an error.
 To prevent this from happening, you need to use a [fallback expression](/language/accessors/fallbacks.md) to provide a default value.
