@@ -239,7 +239,7 @@ When we define a function, we are simply defining a variable and storing it ther
 <p>All of Rant's standard library functions are constants, and thus can't be modified—but they can still be shadowed in child scopes.</p>
 </blockquote>
 <h3 id="optional-parameters"><a class="header" href="#optional-parameters">Optional parameters</a></h3>
-<p>A function parameter can be made optional using the <code>?</code> modifier after the parameter name, this means that the caller is not required to pass an argument to it.</p>
+<p>A function parameter can be made optional using the <code>?</code> modifier after the parameter name; this means that the caller is not required to pass an argument to it.</p>
 <p>When an optional parameter is omitted, the variable won't exist in the function body; as a result, accessing it can fail, causing an error.
 To prevent this from happening, you need to use a <a href="/language/accessors/fallbacks.html">fallback expression</a> to provide a default value.</p>
 <blockquote>
