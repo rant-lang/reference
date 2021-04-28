@@ -9,6 +9,7 @@ While Rant 4 includes many aspects of the "original" syntax, it is **not** backw
 
 | Feature name                                |              Rant 3              |              Rant 4               |
 |---------------------------------------------|:--------------------------------:|:---------------------------------:|
+| Runtime platform                            |            .NET-only             |              Native               |
 | Blocks                                      |             &#x2705;             |             &#x2705;              |
 | Block weights                               |             &#x2705;             |             &#x2705;              |
 | Selectors                                   |      🤔<br/>*(named only)*       |             &#x2705;              |
@@ -30,6 +31,7 @@ While Rant 4 includes many aspects of the "original" syntax, it is **not** backw
 | Explicit global accessors                   |             &#x274c;             |             &#x2705;              |
 | Explicit parent scope accessors (descoping) |             &#x274c;             |             &#x2705;              |
 | Unit type                                   |             &#x274c;             |             &#x2705;              |
+| Babylonian cuneiform support                |             &#x274c;             |             &#x2705;              |
 
 <p align="center">
 (&#x2705; = implemented; &#x274c; = not implemented; 🤔 = limited implementation)
