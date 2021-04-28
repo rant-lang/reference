@@ -5,6 +5,33 @@ that version 4 aims to address.
 
 While Rant 4 includes many aspects of the "original" syntax, it is **not** backwards-compatible and both should be considered as completely different languages.
 
+## Feature breakdown
+
+| Feature name                                |              Rant 3              |              Rant 4               |
+|---------------------------------------------|:--------------------------------:|:---------------------------------:|
+| Blocks                                      |             &#x2705;             |             &#x2705;              |
+| Block weights                               |             &#x2705;             |             &#x2705;              |
+| Selectors                                   |      🤔<br/>*(named only)*       |             &#x2705;              |
+| Queries                                     |             &#x2705;             |             &#x274c;              |
+| Variables                                   |   🤔<br/> *(via stdlib only)*    | &#x2705;<br/>*(language support)* |
+| Variable access fallbacks                   |             &#x274c;             |             &#x2705;              |
+| Named functions                             |             &#x2705;             |             &#x2705;              |
+| Variable capture in functions               |             &#x274c;             |             &#x2705;              |
+| Anonymous functions                         |             &#x274c;             |             &#x2705;              |
+| Variadic parameters                         | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
+| Collection initializers                     |             &#x274c;             |             &#x2705;              |
+| Stored blocks                               |             &#x274c;             |             &#x2705;              |
+| Slice notation                              |             &#x274c;             |             &#x2705;              |
+| Dependency management                       |    &#x2705;<br/>*(packages)*     |     &#x2705;<br/>*(modules)*      |
+| Resource management                         |    &#x2705;<br/>*(packages)*     |   &#x2705;<br/>*(data sources)*   |
+| Function composition                        |             &#x274c;             |             &#x2705;              |
+| Parameter spread notation                   |             &#x274c;             |             &#x2705;              |
+| Print support for non-string values         |             &#x274c;             |             &#x2705;              |
+| Explicit global accessors                   |             &#x274c;             |             &#x2705;              |
+| Explicit parent scope accessors (descoping) |             &#x274c;             |             &#x2705;              |
+| Unit type                                   |             &#x274c;             |             &#x2705;              |
+
+
 ## Resource management
 
 Rant 3 had a resource management system that used .rantpkg files to load collections of programs and string tables.
