@@ -14,21 +14,23 @@ While Rant 4 includes many aspects of the "original" syntax, it is **not** backw
 | Block weights                               |             &#x2705;             |             &#x2705;              |
 | Selectors                                   |      🤔<br/>*(named only)*       |             &#x2705;              |
 | Queries                                     |             &#x2705;             |             &#x274c;              |
+| Output channels                             |             &#x2705;             |             &#x274c;              |
 | Variables                                   |   🤔<br/> *(via stdlib only)*    | &#x2705;<br/>*(language support)* |
 | Variable access fallbacks                   |             &#x274c;             |             &#x2705;              |
 | Named functions                             |             &#x2705;             |             &#x2705;              |
 | Anonymous functions                         |             &#x274c;             |             &#x2705;              |
+| Function composition                        |             &#x274c;             |             &#x2705;              |
 | Variable capture in functions               |             &#x274c;             |             &#x2705;              |
 | Variadic function parameters                | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
 | Optional function parameters                | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
+| Parameter spread notation                   |             &#x274c;             |             &#x2705;              |
 | Collection initializers                     |             &#x274c;             |             &#x2705;              |
 | Stored blocks                               |             &#x274c;             |             &#x2705;              |
 | Slice notation                              |             &#x274c;             |             &#x2705;              |
 | Dependency management                       |    &#x2705;<br/>*(packages)*     |     &#x2705;<br/>*(modules)*      |
 | Resource management                         |    &#x2705;<br/>*(packages)*     |   &#x2705;<br/>*(data sources)*   |
-| Function composition                        |             &#x274c;             |             &#x2705;              |
-| Parameter spread notation                   |             &#x274c;             |             &#x2705;              |
 | Print support for non-string values         |             &#x274c;             |             &#x2705;              |
+| Automatic number formatting                 |             &#x2705;             |             &#x2705;              |
 | Explicit global accessors                   |             &#x274c;             |             &#x2705;              |
 | Explicit parent scope accessors (descoping) |             &#x274c;             |             &#x2705;              |
 | Unit type                                   |             &#x274c;             |             &#x2705;              |
@@ -37,6 +39,12 @@ While Rant 4 includes many aspects of the "original" syntax, it is **not** backw
 <p align="center">
 (&#x2705; = implemented; &#x274c; = not implemented; 🤔 = limited implementation)
 </p>
+
+## Multiple outputs
+
+Rant 3 allowed programs to produce multiple outputs via "channels." This was mostly a workaround for the lack of collection types at the time this was implemented, but
+proved to be more confusing than useful due to the inability of inner program scopes to make use of more than one output. 
+This was ultimately scrapped for Rant 4 in favor of simply printing a collection, such as a `list` or `map`.
 
 
 ## Resource management
@@ -47,10 +55,12 @@ This required the use of a separate command-line tool to compile package files.
 In Rant 4, this system has been replaced by two separate systems: 
 **modules** now handle code dependency management, and **data sources** introduce a more flexible way to import external data.
 
+
 ## Querying
 
 Rant 3 included a query expression system baked into the language that enabled the user to filter and print random entries from string tables.
 In Rant 4, this has been removed in favor of using data sources to handle this use case instead.
+
 
 ## Variables
 
@@ -74,13 +84,15 @@ Rant 4 replaces this clunky system with **accessors**, providing a rich and flex
 # -> 3
 ```
 
-## Printing
+
+## Printing types other than strings
 
 Rant 3's printing system worked with strings only; this made operations on non-string types, such as numbers and collections, an extremely laborious task
 requiring several specialized standard library functions to perform simple tasks like retrieving a value from a list.
 
 Most data types supported by Rant 4 can be created using literals or collection initializers, and printing them produces a value of the same type rather than always
 coercing to a string.
+
 
 ## Functions
 
@@ -89,12 +101,14 @@ Rant 3 had two distinct types of functions: **native functions**, which made up 
 Rant 4 has a single `function` type that represents all functions-- native or otherwise. Functions are stored like any other variable type. 
 In addition, the language also supports anonymous functions/closures for creating callbacks, which Rant 3 cannot do.
 
+
 ## Collections
 
 Rant 3 had `list` and `map` types, but they could only be created through standard library functions.
-This produced code that was hard to read and closely-coupled collection data to variables, which greatly limited their usability.
+This produced code that was hard to read and unavoidably coupled collection data to variables, greatly limiting their usefulness.
 
 Rant 4 includes collection initializer syntax, which enables you to create lists and maps without requiring function calls or temporary variables.
+
 
 ## Stored blocks
 
@@ -122,9 +136,11 @@ In Rant 4, blocks can be marked as "deferred" to store them as a value, allowing
 [do-it-twice: <>{{heads|tails}\n}]
 ```
 
+
 ## Variadic and optional parameters
 
 Rant 3 only supported variadic and optional parameters on native functions. In Rant 4, any function, inluding user-created functions and lambdas, can include optional and variadic parameters.
+
 
 ## Selectors
 
