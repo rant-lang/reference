@@ -177,21 +177,23 @@ that version 4 aims to address.</p>
 <tr><td>Block weights</td><td align="center">✅</td><td align="center">✅</td></tr>
 <tr><td>Selectors</td><td align="center">🤔<br/><em>(named only)</em></td><td align="center">✅</td></tr>
 <tr><td>Queries</td><td align="center">✅</td><td align="center">❌</td></tr>
+<tr><td>Output channels</td><td align="center">✅</td><td align="center">❌</td></tr>
 <tr><td>Variables</td><td align="center">🤔<br/> <em>(via stdlib only)</em></td><td align="center">✅<br/><em>(language support)</em></td></tr>
 <tr><td>Variable access fallbacks</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Named functions</td><td align="center">✅</td><td align="center">✅</td></tr>
 <tr><td>Anonymous functions</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Function composition</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Variable capture in functions</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Variadic function parameters</td><td align="center">🤔<br/><em>(stdlib functions only)</em></td><td align="center">✅</td></tr>
 <tr><td>Optional function parameters</td><td align="center">🤔<br/><em>(stdlib functions only)</em></td><td align="center">✅</td></tr>
+<tr><td>Parameter spread notation</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Collection initializers</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Stored blocks</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Slice notation</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Dependency management</td><td align="center">✅<br/><em>(packages)</em></td><td align="center">✅<br/><em>(modules)</em></td></tr>
 <tr><td>Resource management</td><td align="center">✅<br/><em>(packages)</em></td><td align="center">✅<br/><em>(data sources)</em></td></tr>
-<tr><td>Function composition</td><td align="center">❌</td><td align="center">✅</td></tr>
-<tr><td>Parameter spread notation</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Print support for non-string values</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Automatic number formatting</td><td align="center">✅</td><td align="center">✅</td></tr>
 <tr><td>Explicit global accessors</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Explicit parent scope accessors (descoping)</td><td align="center">❌</td><td align="center">✅</td></tr>
 <tr><td>Unit type</td><td align="center">❌</td><td align="center">✅</td></tr>
@@ -200,6 +202,10 @@ that version 4 aims to address.</p>
 <p align="center">
 (&#x2705; = implemented; &#x274c; = not implemented; 🤔 = limited implementation)
 </p>
+<h2 id="multiple-outputs"><a class="header" href="#multiple-outputs">Multiple outputs</a></h2>
+<p>Rant 3 allowed programs to produce multiple outputs via &quot;channels.&quot; This was mostly a workaround for the lack of collection types at the time this was implemented, but
+proved to be more confusing than useful due to the inability of inner program scopes to make use of more than one output. 
+This was ultimately scrapped for Rant 4 in favor of simply printing a collection, such as a <code>list</code> or <code>map</code>.</p>
 <h2 id="resource-management"><a class="header" href="#resource-management">Resource management</a></h2>
 <p>Rant 3 had a resource management system that used .rantpkg files to load collections of programs and string tables.
 This required the use of a separate command-line tool to compile package files.</p>
@@ -224,7 +230,7 @@ In Rant 4, this has been removed in favor of using data sources to handle this u
 [add: &lt;foo&gt;; &lt;bar&gt;]
 # -&gt; 3
 </code></pre>
-<h2 id="printing"><a class="header" href="#printing">Printing</a></h2>
+<h2 id="printing-types-other-than-strings"><a class="header" href="#printing-types-other-than-strings">Printing types other than strings</a></h2>
 <p>Rant 3's printing system worked with strings only; this made operations on non-string types, such as numbers and collections, an extremely laborious task
 requiring several specialized standard library functions to perform simple tasks like retrieving a value from a list.</p>
 <p>Most data types supported by Rant 4 can be created using literals or collection initializers, and printing them produces a value of the same type rather than always
@@ -235,7 +241,7 @@ coercing to a string.</p>
 In addition, the language also supports anonymous functions/closures for creating callbacks, which Rant 3 cannot do.</p>
 <h2 id="collections"><a class="header" href="#collections">Collections</a></h2>
 <p>Rant 3 had <code>list</code> and <code>map</code> types, but they could only be created through standard library functions.
-This produced code that was hard to read and closely-coupled collection data to variables, which greatly limited their usability.</p>
+This produced code that was hard to read and unavoidably coupled collection data to variables, greatly limiting their usefulness.</p>
 <p>Rant 4 includes collection initializer syntax, which enables you to create lists and maps without requiring function calls or temporary variables.</p>
 <h2 id="stored-blocks"><a class="header" href="#stored-blocks">Stored blocks</a></h2>
 <p>Rant 3 allowed blocks to be passed as values using <code>lazy parameters</code>, which were the closest thing the language had to lambdas.
