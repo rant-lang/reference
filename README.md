@@ -1,8 +1,8 @@
-# Rant Language Reference
+# Rant Reference Documentation
 
-![Book](https://github.com/rant-lang/reference/workflows/Book/badge.svg)
+[![Book](https://github.com/rant-lang/reference/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/rant-lang/reference/actions/workflows/main.yml)
 
-The future home of the Rant 4 language reference.
+The home of the Rant 4 reference documentation.
 
 Disclaimer: This document is a work-in-progress and is not normative.
 
