@@ -17,9 +17,10 @@ While Rant 4 includes many aspects of the "original" syntax, it is **not** backw
 | Variables                                   |   🤔<br/> *(via stdlib only)*    | &#x2705;<br/>*(language support)* |
 | Variable access fallbacks                   |             &#x274c;             |             &#x2705;              |
 | Named functions                             |             &#x2705;             |             &#x2705;              |
-| Variable capture in functions               |             &#x274c;             |             &#x2705;              |
 | Anonymous functions                         |             &#x274c;             |             &#x2705;              |
-| Variadic parameters                         | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
+| Variable capture in functions               |             &#x274c;             |             &#x2705;              |
+| Variadic function parameters                | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
+| Optional function parameters                | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
 | Collection initializers                     |             &#x274c;             |             &#x2705;              |
 | Stored blocks                               |             &#x274c;             |             &#x2705;              |
 | Slice notation                              |             &#x274c;             |             &#x2705;              |
