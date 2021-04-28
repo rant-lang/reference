@@ -170,6 +170,30 @@
 <p>Rant 3 (deprecated as of June 2020) was released in April 2017 and was the last version of the &quot;original&quot; Rant, which had several critical design flaws
 that version 4 aims to address.</p>
 <p>While Rant 4 includes many aspects of the &quot;original&quot; syntax, it is <strong>not</strong> backwards-compatible and both should be considered as completely different languages.</p>
+<h2 id="feature-breakdown"><a class="header" href="#feature-breakdown">Feature breakdown</a></h2>
+<table><thead><tr><th>Feature name</th><th align="center">Rant 3</th><th align="center">Rant 4</th></tr></thead><tbody>
+<tr><td>Blocks</td><td align="center">✅</td><td align="center">✅</td></tr>
+<tr><td>Block weights</td><td align="center">✅</td><td align="center">✅</td></tr>
+<tr><td>Selectors</td><td align="center">🤔<br/><em>(named only)</em></td><td align="center">✅</td></tr>
+<tr><td>Queries</td><td align="center">✅</td><td align="center">❌</td></tr>
+<tr><td>Variables</td><td align="center">🤔<br/> <em>(via stdlib only)</em></td><td align="center">✅<br/><em>(language support)</em></td></tr>
+<tr><td>Variable access fallbacks</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Named functions</td><td align="center">✅</td><td align="center">✅</td></tr>
+<tr><td>Variable capture in functions</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Anonymous functions</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Variadic parameters</td><td align="center">🤔<br/><em>(stdlib functions only)</em></td><td align="center">✅</td></tr>
+<tr><td>Collection initializers</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Stored blocks</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Slice notation</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Dependency management</td><td align="center">✅<br/><em>(packages)</em></td><td align="center">✅<br/><em>(modules)</em></td></tr>
+<tr><td>Resource management</td><td align="center">✅<br/><em>(packages)</em></td><td align="center">✅<br/><em>(data sources)</em></td></tr>
+<tr><td>Function composition</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Parameter spread notation</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Print support for non-string values</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Explicit global accessors</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Explicit parent scope accessors (descoping)</td><td align="center">❌</td><td align="center">✅</td></tr>
+<tr><td>Unit type</td><td align="center">❌</td><td align="center">✅</td></tr>
+</tbody></table>
 <h2 id="resource-management"><a class="header" href="#resource-management">Resource management</a></h2>
 <p>Rant 3 had a resource management system that used .rantpkg files to load collections of programs and string tables.
 This required the use of a separate command-line tool to compile package files.</p>
