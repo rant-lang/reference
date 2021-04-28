@@ -8,7 +8,7 @@
     - [Functions](language/functions.md)
         - [Lambdas](language/functions/lambdas.md)
         - [Argument spreading](language/functions/argument-spreading.md)
-        - [Composition](language/functions/composition.md)
+        - [Piping](language/functions/piping.md)
     - [Keywords](language/keywords.md)
         - [@return](language/keywords/return.md)
         - [@continue](language/keywords/continue.md)

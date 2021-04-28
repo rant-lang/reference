@@ -19,7 +19,7 @@ While Rant 4 includes many aspects of the "original" syntax, it is **not** backw
 | Variable access fallbacks                   |             &#x274c;             |             &#x2705;              |
 | Named functions                             |             &#x2705;             |             &#x2705;              |
 | Anonymous functions                         |             &#x274c;             |             &#x2705;              |
-| Function composition                        |             &#x274c;             |             &#x2705;              |
+| Piping                                      |             &#x274c;             |             &#x2705;              |
 | Variable capture in functions               |             &#x274c;             |             &#x2705;              |
 | Variadic function parameters                | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
 | Optional function parameters                | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |

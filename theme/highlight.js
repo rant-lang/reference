@@ -54,12 +54,12 @@ let rant_def = {
         begin: /\@(return|break|continue|weight|on)\b/
       },
       {
-        // Compose operator
+        // Pipe operator
         className: 'addition',
         begin: /\|\>/
       },
       {
-        // Compose value
+        // Pipe value
         className: 'addition',
         begin: /\[\]/
       },

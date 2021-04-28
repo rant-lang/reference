@@ -1,4 +1,4 @@
-# Function composition
+# Piping
 
 When function calls are nested inside each other, they can be difficult to read and understand at a glance:
 
@@ -6,16 +6,16 @@ When function calls are nested inside each other, they can be difficult to read 
 [e: [d: [c: [b: [a: 1]; 2]; 3]; 4]; 5] # Welcome to bracket hell
 ```
 
-An alternative way to write nested function calls is by using iterative (rather than recursive) syntax-- a method known as **function composition**.
+An alternative way to write nested function calls is by using iterative (rather than recursive) syntax-- a method known as **piping**.
 
-By using function composition, the same expression above can be rewritten with only a single pair of brackets:
+By using piping, the same expression above can be rewritten with only a single pair of brackets:
 
 ```rant
 [a: 1 |> b: 2 |> c: 3 |> d: 4 |> e: 5] # Much more readable!
 ```
 
-In a composed function, the output of one function is fed into the next. By default, the output is inserted as the first argument;
-however, this can be changed by passing the **composition value** `[]` as an argument:
+In a piped function call, the output of one function is fed into the input of the next. By default, the output is inserted as the first argument;
+however, this can be changed by passing the **pipe value** `[]` as an argument:
 
 ```rant
 [$get-zipper] {
@@ -26,7 +26,7 @@ however, this can be changed by passing the **composition value** `[]` as an arg
 [get-zipper |> zip: (1; 2; 3); (4; 5; 6); []]
 ```
 
-If the composition value is a `function`, you can call it directly using an anonymous call:
+If the pipe value is a `function`, you can call it directly using an anonymous call:
 
 ```rant
 [$get-math-func] {
@@ -39,7 +39,7 @@ If the composition value is a `function`, you can call it directly using an anon
 
 ## Behavior with temporal arguments
 
-Temporal arguments in composed function calls behave differently than those in nested function calls.
+Temporal arguments in piped calls behave differently than those in nested calls.
 
 To illustrate this, suppose we have a call to `[foo]` that passes its return value into `[bar]`.
 
@@ -50,7 +50,7 @@ In the nested scenario, a temporal argument in `[foo]` will not duplicate the ca
 # -> [bar: [foo: 1][foo: 2][foo: 3]]
 ```
 
-In the composed scenario, the temporal argument in `[foo]` duplicates the entire call chain:
+In the piped scenario, the temporal argument in `[foo]` duplicates the entire call chain:
 
 ```rant
 [foo: **(1; 2; 3) |> bar]
