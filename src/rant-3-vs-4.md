@@ -31,6 +31,10 @@ While Rant 4 includes many aspects of the "original" syntax, it is **not** backw
 | Explicit parent scope accessors (descoping) |             &#x274c;             |             &#x2705;              |
 | Unit type                                   |             &#x274c;             |             &#x2705;              |
 
+<p align="center">
+(&#x2705; = implemented; &#x274c; = not implemented; 🤔 = limited implementation)
+</p>
+
 
 ## Resource management
 
