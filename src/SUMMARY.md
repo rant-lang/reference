@@ -51,4 +51,5 @@
 
 ---
 
+[Comparison of Rant 3 and 4](rant-3-vs-4.md)
 [Glossary](glossary.md)
