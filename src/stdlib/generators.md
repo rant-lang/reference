@@ -175,7 +175,7 @@ You rolled '[join: \sand\s; <roll>] for a total of '[sum: <roll>].
 ```
 
 
-### randf
+### randf-list
 
 ```rant
 
