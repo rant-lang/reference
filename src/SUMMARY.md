@@ -4,7 +4,6 @@
 - [Language Features](language.md)
     - [Text](language/text.md)
     - [Blocks](language/blocks.md)
-        - [Stored Blocks](language/blocks/stored-blocks.md)
     - [Functions](language/functions.md)
         - [Lambdas](language/functions/lambdas.md)
         - [Argument spreading](language/functions/argument-spreading.md)
