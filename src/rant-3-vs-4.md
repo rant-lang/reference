@@ -1,9 +1,9 @@
 # Comparison of Rant 3 and 4
 
-Rant 3 (deprecated as of June 2020) was released in April 2017 and was the last version of the "original" Rant, which had several critical design flaws
-that version 4 aims to address.
+Rant 3 (deprecated as of June 2020) was released in April 2017. Since then, several critical design flaws have been identified in the language. 
+Rant 4 aims to address all of those flaws while retaining the ergonomics of the original design.
 
-While Rant 4 includes many aspects of the "original" syntax, it is **not** backwards-compatible and both should be considered as completely different languages.
+It is important to note that Rant 3 code is _not_ forwards-compatible with Rant 4. As such, they should be considered as two different languages.
 
 ## Feature breakdown
 

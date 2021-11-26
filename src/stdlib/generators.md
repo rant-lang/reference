@@ -4,7 +4,7 @@
 
 ```rant
 
-[%dig: count?]
+[%dig: count ? 1]
 
 ```
 &rarr; `string`
@@ -28,7 +28,7 @@ The number of digits to generate. Defaults to 1.
 
 ```rant
 
-[%digh: count?]
+[%digh: count ? 1]
 
 ```
 &rarr; `string`
@@ -52,7 +52,7 @@ The number of digits to generate. Defaults to 1.
 
 ```rant
 
-[%dignz: count?]
+[%dignz: count ? 1]
 
 ```
 &rarr; `string`
@@ -76,7 +76,7 @@ The number of digits to generate. Defaults to 1.
 
 ```rant
 
-[%maybe: p?]
+[%maybe: p ? 0.5]
 
 ```
 &rarr; `bool`
@@ -87,7 +87,7 @@ Returns a `bool` value with `p` probability of being true.
 
 ### Parameters
 
-**`p`** &larr; `float | empty` <br/>
+**`p`** &larr; `float | empty` *(optional)* <br/>
 The probability (0.0 <= p <= 1.0) of the printed boolean being true. 
 If omitted or empty, defaults to 0.5.
 
@@ -115,7 +115,7 @@ The second inclusive bound of the random number.
 
 ```rant
 # Choose a number by fair dice roll.
-You roll a '[rand:1;6].
+You roll a `[rand:1;6].
 
 # ~> You roll a 4.
 ```
@@ -169,7 +169,7 @@ The amount of numbers to generate.
 # 2-dice roll
 
 <$roll = [rand-list: 1; 6; 2]>
-You rolled '[join: \sand\s; <roll>] for a total of '[sum: <roll>].
+You rolled `[join: \sand\s; <roll>] for a total of `[sum: <roll>].
 
 # ~> You rolled 5 and 3 for a total of 8.
 ```

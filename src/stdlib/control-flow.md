@@ -1,70 +1,155 @@
 # Standard Library: Attributes & Control flow
 
-### [count-attrs]
+## count-attrs
+
+```rant
+
+[%count-attrs]
+
+```
 &rarr; `int`
 
 Prints the current size of the attribute frame stack.
 
-### [else]
+
+## else
+
+```rant
+
+[%else]
+
+```
 
 Marks the next block as conditional and causes it to resolve iff the last block was conditional and its condition evaluated to false.
 
-### [else-if: condition]
+
+## else-if
+
+```rant
+
+[%else-if: condition]
+
+```
 
 Marks the next block as conditional and causes it to resolve iff the following are true:
 * `condition` is `@true`
-* The last block was conditional and its condition evaluated to false
+* The last block was conditional and its condition evaluated to `@false`
 
-### [if: condition]
+### Parameters
+
+**`condition`** &larr; `bool` <br/>
+The condition to check.
+
+
+## if
+
+```rant
+
+[%if: condition]
+
+```
 
 Marks the next block as conditional and causes it to resolve iff `condition` is `@true`.
 
-### [mksel: selector-mode]
+
+## mksel
+
+```rant
+
+[%mksel: selector-mode]
+
+```
+
 &rarr; `special`
 
 Creates and returns a selector with the specified mode.
 
-### Selector modes
+### Parameters
 
-|Mode name      |Description                                                                                |
-|---------------|-------------------------------------------------------------------------------------------|
-|`random`       |Selects a random element each time.                                                        |
-|`one`          |Selects the same, random element each time.                                                |
-|`forward`      |Selects in a wrapping sequence from first to last.                                         |
-|`reverse`      |Selects in a wrapping reverse sequence from last to first.                                 |
-|`deck`         |Selects each element once in a random sequence, then reshuffles.                           |
-|`deck-loop`    |Selects each element once in a wrapping random sequence, without reshuffling.              |
-|`deck-clamp`   |Selects each element once in a random sequence, repeating the final element.               |
-|`forward-clamp`|Selects from first to last, then repeats the last element.                                 |
-|`reverse-clamp`|Selects from last to first, then repeats the first element.                                |
-|`ping`         |Selects from first to last, switching directions when a boundary is reached.               |
-|`pong`         |Selects from last to first, switching directions when a boundary is reached.               |
-|`no-double`    |Selects a random element each time, ensuring the same element never repeats twice in a row.|
+**`selector-mode`** &larr; `string` <br/>
+The mode to assign to the created selector.
 
-### [pipe: pipe-func]
+### Options for `selector-mode`
+
+| Mode name       | Description                                                                                 |
+|-----------------|---------------------------------------------------------------------------------------------|
+| `random`        | Selects a random element each time.                                                         |
+| `one`           | Selects the same, random element each time.                                                 |
+| `forward`       | Selects in a wrapping sequence from first to last.                                          |
+| `reverse`       | Selects in a wrapping reverse sequence from last to first.                                  |
+| `deck`          | Selects each element once in a random sequence, then reshuffles.                            |
+| `deck-loop`     | Selects each element once in a wrapping random sequence, without reshuffling.               |
+| `deck-clamp`    | Selects each element once in a random sequence, repeating the final element.                |
+| `forward-clamp` | Selects from first to last, then repeats the last element.                                  |
+| `reverse-clamp` | Selects from last to first, then repeats the first element.                                 |
+| `ping`          | Selects from first to last, switching directions when a boundary is reached.                |
+| `pong`          | Selects from last to first, switching directions when a boundary is reached.                |
+| `no-double`     | Selects a random element each time, ensuring the same element never repeats twice in a row. |
+
+
+## pipe
+
+```rant
+
+[%pipe: pipe-func]
+
+```
 
 Sets the pipe function for the next block.
 
 The function passed to `pipe-func` must accept a single parameter (the element callback) in order to run properly.
 
-### [push-attrs]
+### Parameters
+
+**`pipe-func`** &larr; `function | empty` <br/>
+The pipe function to assign.
+
+
+## push-attrs
+
+```rant
+
+[%push-attrs]
+
+```
 
 Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.
 
-### [pop-attrs]
+
+## pop-attrs
+
+```rant
+
+[%pop-attrs]
+
+```
 
 Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.
 
-#### Errors
 
-Popping the last attribute frame results in a runtime error.
+### Errors
 
-### [rep: reps]
+Attempting to pop the last attribute frame will raise a runtime error.
+
+
+
+## rep
+
+```rant
+
+[%rep: reps]
+
+```
 
 Sets the repetition count for the next block to `reps`.
 The value of `reps` must either be a non-negative `int` or one of the special modes listed below.
 
-### Special rep modes
+### Parameters
+
+**`reps`** &larr; `int | string` <br/>
+The repetition count or mode to set. If a string, it must match one of the below mode names.
+
+### Mode options for `reps`
 
 |Mode name      |Description                                                                        |
 |---------------|-----------------------------------------------------------------------------------|
@@ -72,7 +157,7 @@ The value of `reps` must either be a non-negative `int` or one of the special mo
 |`forever`      |Repeat the next block until explicitly stopped.                                    |
 |`all`          |Repeat as many times as there are elements in the  next block.                     |
 
-#### Examples
+### Examples
 
 ```rant
 # Print the fragment 3 times
@@ -90,13 +175,34 @@ The value of `reps` must either be a non-negative `int` or one of the special mo
 # ...
 ```
 
-### [sel: selector]
+```rant
+# Print a random card from each suit
+[rep: all] 
+[sel: deck]
+[pipe: [?: e] ({A|2|3|4|5|6|7|8|9|J|Q|K}[e])]
+{ ♥ | ♣ | ♠ | ♦ }
+# ~> (8♣; 2♦; 6♥; Q♠)
+```
+
+## sel
+
+```rant
+
+[%sel: selector]
+
+```
 
 Sets the selector for the next block. 
 
-The `selector` parameter can accept either a selector state object created via `[mksel]`, or a selector mode string (see `[mksel]` documentation for available modes).
+The `selector` parameter can accept either a selector state object created via `[mksel]`, or a selector mode (in which case it will create a single-use selector of that mode).
 
-#### Examples
+### Parameters
+
+**`selector`** &larr; `special | string` <br/>
+The selector or selector mode to use. 
+If it's a `string`, it has to be one of the selector modes accepted by `[mksel]`.
+
+### Examples
 
 ```rant
 # Pass in an existing selector object so its state persists between uses

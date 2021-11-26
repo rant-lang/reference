@@ -47,14 +47,14 @@ The arguments to pass to the function.
 [%cat: values*]
 
 ```
-&rarr; `any*`
+&rarr; `any`
 
-Prints the provided arguments in order.
+Con**cat**enates the provided values and prints the result.
 
 ### Parameters
 
 **`values`** &larr; `any*` <br/>
-The values to print.
+The values to combine.
 
 
 ## copy
@@ -167,6 +167,27 @@ Does absolutely nothing. Intended as a convenience function for use as a default
 
 **`args`** &larr; `any*` <br/>
 The arguments to unceremoniously toss into a bottomless void, never to be seen again.
+
+
+## print
+
+```rant
+
+[%print: values*]
+
+```
+&rarr; `any*`
+
+Prints the provided values directly to the calling scope's output.
+
+### Parameters
+
+**`values`** &larr; `any*` <br/>
+The values to print.
+
+### Remarks
+
+Because this function does not use an internal output, sinking a call to it will have no effect.
 
 
 ## range

@@ -1,12 +1,19 @@
 # Introduction
 
 > This document is a work-in-progress and is not normative.
-> It only applies to version 4 of the Rant language.
 >
 > Found an error? Want something improved? [Submit an issue](https://github.com/rant-lang/reference/issues) or a pull request!
 
 This documentation is a reference for the language features, standard library, and major runtime features of version 4.x of Rant.
-While every effort is made to make the documentation as approachable as possible, it is not primarily intended to be a beginner's guide to the language.
+
+## Philosophy
+
+I firmly believe that all documentation should be:
+
+1. **Easily understandable**: Concepts should be separated in a way that they are easily consumed and understood.
+2. **Rapidly actionable**: Information and examples should be easy to adapt to your own needs without extensive background reading.
+
+In pursuing these goals, this document is designed to act as both comprehensive reference documentation as well as a beginner's guide.
 
 ## Scope
 
@@ -19,6 +26,6 @@ This documentation is divided into the following chapters:
 
 ## Other helpful resources
 
-For API documentation, see [docs.rs](https://docs.rs/rant).
+For Rust API documentation, see [docs.rs](https://docs.rs/rant).
 
 For a step-by-step beginner's guide to Rant, see the [Getting Started](https://rant-lang.org/get-started) page on the Rant website.

@@ -4,7 +4,7 @@
 
 ```rant
 
-[%num-fmt: options?; depth?]
+[%num-fmt: options?; depth ? 0]
 
 ```
 &rarr; `map | empty`
@@ -61,11 +61,28 @@ Defaults to 0 (the calling scope).
 ```
 
 
+## num-fmt-inherit
+
+```rant
+
+[%num-fmt-inherit: depth ? 1]
+
+```
+
+Copies a parent scope's number format and applies it to the calling scope.
+
+### Parameters
+
+**`depth`** &larr; `int` *(optional)* <br/>
+The offset of the scope whose number format settings to inherit.
+Defaults to 1 (the parent scope of the caller).
+
+
 ## num-fmt-system
 
 ```rant
 
-[%num-fmt-system: system?; depth?]
+[%num-fmt-system: system?; depth ? 0]
 ```
 &rarr; `string | empty`
 
@@ -93,7 +110,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-alt: flag?; depth?]
+[%num-fmt-alt: flag?; depth ? 0]
 
 ```
 &rarr; `bool | empty`
@@ -117,7 +134,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-precision: precision?; depth?]
+[%num-fmt-precision: precision?; depth ? 0]
 
 ```
 &rarr; `int | empty`
@@ -142,7 +159,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-padding: padding?; depth?]
+[%num-fmt-padding: padding?; depth ? 0]
 
 ```
 &rarr; `int | empty`
@@ -165,7 +182,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-upper: flag?; depth?]
+[%num-fmt-upper: flag?; depth ? 0]
 
 ```
 &rarr; `bool | empty`
@@ -189,7 +206,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-sign: sign?; depth?]
+[%num-fmt-sign: sign?; depth ? 0]
 
 ```
 &rarr; `string | empty`
@@ -217,7 +234,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-endian: endianness?; depth?]
+[%num-fmt-endian: endianness?; depth ? 0]
 
 ```
 &rarr; `string | empty`
@@ -244,7 +261,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-infinity: infinity?; depth?]
+[%num-fmt-infinity: infinity?; depth ? 0]
 
 ```
 &rarr; `string | empty`
@@ -272,7 +289,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-group-sep: group-sep?; depth?]
+[%num-fmt-group-sep: group-sep?; depth ? 0]
 
 ```
 &rarr; `string | empty`
@@ -295,7 +312,7 @@ Defaults to 0 (the calling scope).
 
 ```rant
 
-[%num-fmt-decimal-sep: decimal-sep?; depth?]
+[%num-fmt-decimal-sep: decimal-sep?; depth ? 0]
 
 ```
 &rarr; `string | empty`
