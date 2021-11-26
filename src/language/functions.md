@@ -1,6 +1,8 @@
 # Functions
 
-Functions are an essential part of Rant: they facilitate code reuse and allow the user to interface with the standard library.
+A function is a reusable block of code that runs when something calls it. 
+Functions can optionally accept inputs and print output back to the caller.
+
 In addition to Rant's built-in functions, you can also define your own and use them however you see fit.
 
 ## Calling functions
@@ -86,25 +88,6 @@ Like other variables, functions can also be made constant by using `%` in place 
 >
 > All of Rant's standard library functions are constants, and thus can't be modified&mdash;but they can still be shadowed in child scopes.
 
-### Optional parameters
-
-A function parameter can be made optional using the `?` modifier after the parameter name; this means that the caller is not required to pass an argument to it.
-
-When an optional parameter is omitted, the variable won't exist in the function body; as a result, accessing it can fail, causing an error.
-To prevent this from happening, you need to use a [fallback expression](/language/accessors/fallbacks.md) to provide a default value.
-
-> Please note that all optional parameters must appear after all required parameters, and before any variadic parameter;
-> breaking this order will cause a compiler error.
-
-```rant
-# Generates a map for a pet with a name and species (defaults to "dog")
-[$gen-pet: name; species?] {
-    @(
-        name = <name>;
-        species = <species ? "dog">; # Fallback to "dog" if species is undefined
-    )
-}
-```
 
 #### Default arguments
 
@@ -126,21 +109,7 @@ Each time the function is called without that parameter, Rant will run its defau
 >
 > Default argument expressions can capture external variables just like the body of the function they're attached to.
 
-### Variadic parameters
 
-Functions support variadic parameters with the special symbols `*` and `+`.
-
-A `*` parameter is optional and defaults to an empty list, while a `+` parameter is required and must contain at least one element.
-
-Functions may only have up to one variadic parameter, and it must appear last in the signature.
-
-```rant
-[$how-many: items*] {
-    [len: <items>]
-}
-
-[how-many: foo; bar; baz] # Outputs "3"
-```
 
 ## Closures
 

@@ -2,7 +2,8 @@
 
 Argument spreading enables you to deconstruct a list argument into multiple individual arguments.
 
-Rant exposes this functionality through two spread operators: **parametric spread** (`*`), and **temporal spread** (`**`).
+Rant can spread arguments across both space and time.
+This functionality is exposed through two spread operators: **parametric spread** (`*`), and **temporal spread** (`**`).
 
 ## Parametric spread
 

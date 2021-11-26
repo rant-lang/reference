@@ -6,6 +6,8 @@
     - [Blocks](language/blocks.md)
     - [Functions](language/functions.md)
         - [Lambdas](language/functions/lambdas.md)
+        - [Optional parameters](language/functions/optional-parameters.md)
+        - [Variadic parameters](language/functions/variadic-parameters.md)
         - [Argument spreading](language/functions/argument-spreading.md)
         - [Piping](language/functions/piping.md)
     - [Keywords](language/keywords.md)
