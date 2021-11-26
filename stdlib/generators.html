@@ -169,7 +169,7 @@
                         <h1 id="standard-library-generators"><a class="header" href="#standard-library-generators">Standard Library: Generators</a></h1>
 <h2 id="dig"><a class="header" href="#dig">dig</a></h2>
 <pre><code class="language-rant">
-[%dig: count?]
+[%dig: count ? 1]
 
 </code></pre>
 <p>→ <code>string</code></p>
@@ -183,7 +183,7 @@ The number of digits to generate. Defaults to 1.</p>
 </code></pre>
 <h2 id="digh"><a class="header" href="#digh">digh</a></h2>
 <pre><code class="language-rant">
-[%digh: count?]
+[%digh: count ? 1]
 
 </code></pre>
 <p>→ <code>string</code></p>
@@ -197,7 +197,7 @@ The number of digits to generate. Defaults to 1.</p>
 </code></pre>
 <h2 id="dignz"><a class="header" href="#dignz">dignz</a></h2>
 <pre><code class="language-rant">
-[%dignz: count?]
+[%dignz: count ? 1]
 
 </code></pre>
 <p>→ <code>string</code></p>
@@ -211,14 +211,14 @@ The number of digits to generate. Defaults to 1.</p>
 </code></pre>
 <h2 id="maybe"><a class="header" href="#maybe">maybe</a></h2>
 <pre><code class="language-rant">
-[%maybe: p?]
+[%maybe: p ? 0.5]
 
 </code></pre>
 <p>→ <code>bool</code></p>
 <p>Returns a <code>bool</code> value with <code>p</code> probability of being true.</p>
 <p><code>p</code> must be either a <code>float</code> or <code>empty</code>. If omitted, it will default to <code>0.5</code>.</p>
 <h3 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h3>
-<p><strong><code>p</code></strong> ← <code>float | empty</code> <br/>
+<p><strong><code>p</code></strong> ← <code>float | empty</code> <em>(optional)</em> <br/>
 The probability (0.0 &lt;= p &lt;= 1.0) of the printed boolean being true. 
 If omitted or empty, defaults to 0.5.</p>
 <h2 id="rand"><a class="header" href="#rand">rand</a></h2>
@@ -235,7 +235,7 @@ The first inclusive bound of the random number.</p>
 The second inclusive bound of the random number.</p>
 <h3 id="example-3"><a class="header" href="#example-3">Example</a></h3>
 <pre><code class="language-rant"># Choose a number by fair dice roll.
-You roll a '[rand:1;6].
+You roll a `[rand:1;6].
 
 # ~&gt; You roll a 4.
 </code></pre>
@@ -269,11 +269,11 @@ The amount of numbers to generate.</p>
 <pre><code class="language-rant"># 2-dice roll
 
 &lt;$roll = [rand-list: 1; 6; 2]&gt;
-You rolled '[join: \sand\s; &lt;roll&gt;] for a total of '[sum: &lt;roll&gt;].
+You rolled `[join: \sand\s; &lt;roll&gt;] for a total of `[sum: &lt;roll&gt;].
 
 # ~&gt; You rolled 5 and 3 for a total of 8.
 </code></pre>
-<h3 id="randf-1"><a class="header" href="#randf-1">randf</a></h3>
+<h3 id="randf-list"><a class="header" href="#randf-list">randf-list</a></h3>
 <pre><code class="language-rant">
 [%randf-list: a; b; n]
 

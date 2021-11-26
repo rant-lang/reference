@@ -196,11 +196,11 @@ The arguments to pass to the function.</p>
 [%cat: values*]
 
 </code></pre>
-<p>→ <code>any*</code></p>
-<p>Prints the provided arguments in order.</p>
+<p>→ <code>any</code></p>
+<p>Con<strong>cat</strong>enates the provided values and prints the result.</p>
 <h3 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h3>
 <p><strong><code>values</code></strong> ← <code>any*</code> <br/>
-The values to print.</p>
+The values to combine.</p>
 <h2 id="copy"><a class="header" href="#copy">copy</a></h2>
 <pre><code class="language-rant">
 [%copy: value]
@@ -272,6 +272,18 @@ The seed value to branch with.</p>
 <h3 id="parameters-7"><a class="header" href="#parameters-7">Parameters</a></h3>
 <p><strong><code>args</code></strong> ← <code>any*</code> <br/>
 The arguments to unceremoniously toss into a bottomless void, never to be seen again.</p>
+<h2 id="print"><a class="header" href="#print">print</a></h2>
+<pre><code class="language-rant">
+[%print: values*]
+
+</code></pre>
+<p>→ <code>any*</code></p>
+<p>Prints the provided values directly to the calling scope's output.</p>
+<h3 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h3>
+<p><strong><code>values</code></strong> ← <code>any*</code> <br/>
+The values to print.</p>
+<h3 id="remarks"><a class="header" href="#remarks">Remarks</a></h3>
+<p>Because this function does not use an internal output, sinking a call to it will have no effect.</p>
 <h2 id="range"><a class="header" href="#range">range</a></h2>
 <pre><code class="language-rant">
 [%range: a; b?; step?]
@@ -285,7 +297,7 @@ The arguments to unceremoniously toss into a bottomless void, never to be seen a
 </ul>
 <p>The <code>step</code> value determines the spacing of the range values and must be a positive integer. A step value of 0 defaults to 1.</p>
 <p>The <code>step</code> value does not affect the first value in the range and is only applied on subsequent values.</p>
-<h3 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h3>
+<h3 id="parameters-9"><a class="header" href="#parameters-9">Parameters</a></h3>
 <p><strong><code>a</code></strong> ← <code>int</code> <br/>
 The starting (inclusive) bound. Used as the ending (exclusive) bound if <code>b</code> is omitted.</p>
 <p><strong><code>b</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
@@ -299,7 +311,7 @@ The absolute difference between adjacent values in the range.</p>
 </code></pre>
 <p>Imports the module at the specified relative path and assigns it to a local variable with a name matching the file name.</p>
 <p>Rant requires module files to have the <code>.rant</code> extension in order to load them; as such, it is not necessary to supply the file extension in the path.</p>
-<h3 id="parameters-9"><a class="header" href="#parameters-9">Parameters</a></h3>
+<h3 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h3>
 <p><strong><code>module-path</code></strong> ← <code>string</code> <br/>
 The path to the module to load.</p>
 <h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
@@ -316,7 +328,7 @@ The path to the module to load.</p>
 </code></pre>
 <p>→ <code>any</code> or <code>empty</code></p>
 <p>Resolves the specified block.</p>
-<h3 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h3>
+<h3 id="parameters-11"><a class="header" href="#parameters-11">Parameters</a></h3>
 <p><strong><code>block</code></strong> ← <code>block</code> <br/>
 The block to resolve.</p>
 <h2 id="seed"><a class="header" href="#seed">seed</a></h2>
@@ -344,7 +356,7 @@ The block to resolve.</p>
 <li><code>special</code></li>
 <li><code>empty</code></li>
 </ul>
-<h3 id="parameters-11"><a class="header" href="#parameters-11">Parameters</a></h3>
+<h3 id="parameters-12"><a class="header" href="#parameters-12">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value whose type name to retrieve.</p>
 <h2 id="unfork"><a class="header" href="#unfork">unfork</a></h2>

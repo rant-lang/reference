@@ -167,23 +167,49 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="standard-library-attributes--control-flow"><a class="header" href="#standard-library-attributes--control-flow">Standard Library: Attributes &amp; Control flow</a></h1>
-<h3 id="count-attrs"><a class="header" href="#count-attrs">[count-attrs]</a></h3>
+<h2 id="count-attrs"><a class="header" href="#count-attrs">count-attrs</a></h2>
+<pre><code class="language-rant">
+[%count-attrs]
+
+</code></pre>
 <p>→ <code>int</code></p>
 <p>Prints the current size of the attribute frame stack.</p>
-<h3 id="else"><a class="header" href="#else">[else]</a></h3>
+<h2 id="else"><a class="header" href="#else">else</a></h2>
+<pre><code class="language-rant">
+[%else]
+
+</code></pre>
 <p>Marks the next block as conditional and causes it to resolve iff the last block was conditional and its condition evaluated to false.</p>
-<h3 id="else-if-condition"><a class="header" href="#else-if-condition">[else-if: condition]</a></h3>
+<h2 id="else-if"><a class="header" href="#else-if">else-if</a></h2>
+<pre><code class="language-rant">
+[%else-if: condition]
+
+</code></pre>
 <p>Marks the next block as conditional and causes it to resolve iff the following are true:</p>
 <ul>
 <li><code>condition</code> is <code>@true</code></li>
-<li>The last block was conditional and its condition evaluated to false</li>
+<li>The last block was conditional and its condition evaluated to <code>@false</code></li>
 </ul>
-<h3 id="if-condition"><a class="header" href="#if-condition">[if: condition]</a></h3>
+<h3 id="parameters"><a class="header" href="#parameters">Parameters</a></h3>
+<p><strong><code>condition</code></strong> ← <code>bool</code> <br/>
+The condition to check.</p>
+<h2 id="if"><a class="header" href="#if">if</a></h2>
+<pre><code class="language-rant">
+[%if: condition]
+
+</code></pre>
 <p>Marks the next block as conditional and causes it to resolve iff <code>condition</code> is <code>@true</code>.</p>
-<h3 id="mksel-selector-mode"><a class="header" href="#mksel-selector-mode">[mksel: selector-mode]</a></h3>
+<h2 id="mksel"><a class="header" href="#mksel">mksel</a></h2>
+<pre><code class="language-rant">
+[%mksel: selector-mode]
+
+</code></pre>
 <p>→ <code>special</code></p>
 <p>Creates and returns a selector with the specified mode.</p>
-<h3 id="selector-modes"><a class="header" href="#selector-modes">Selector modes</a></h3>
+<h3 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h3>
+<p><strong><code>selector-mode</code></strong> ← <code>string</code> <br/>
+The mode to assign to the created selector.</p>
+<h3 id="options-for-selector-mode"><a class="header" href="#options-for-selector-mode">Options for <code>selector-mode</code></a></h3>
 <table><thead><tr><th>Mode name</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>random</code></td><td>Selects a random element each time.</td></tr>
 <tr><td><code>one</code></td><td>Selects the same, random element each time.</td></tr>
@@ -198,25 +224,47 @@
 <tr><td><code>pong</code></td><td>Selects from last to first, switching directions when a boundary is reached.</td></tr>
 <tr><td><code>no-double</code></td><td>Selects a random element each time, ensuring the same element never repeats twice in a row.</td></tr>
 </tbody></table>
-<h3 id="pipe-pipe-func"><a class="header" href="#pipe-pipe-func">[pipe: pipe-func]</a></h3>
+<h2 id="pipe"><a class="header" href="#pipe">pipe</a></h2>
+<pre><code class="language-rant">
+[%pipe: pipe-func]
+
+</code></pre>
 <p>Sets the pipe function for the next block.</p>
 <p>The function passed to <code>pipe-func</code> must accept a single parameter (the element callback) in order to run properly.</p>
-<h3 id="push-attrs"><a class="header" href="#push-attrs">[push-attrs]</a></h3>
+<h3 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h3>
+<p><strong><code>pipe-func</code></strong> ← <code>function | empty</code> <br/>
+The pipe function to assign.</p>
+<h2 id="push-attrs"><a class="header" href="#push-attrs">push-attrs</a></h2>
+<pre><code class="language-rant">
+[%push-attrs]
+
+</code></pre>
 <p>Pushes a new attribute frame onto the attribute frame stack, overriding the previous one.</p>
-<h3 id="pop-attrs"><a class="header" href="#pop-attrs">[pop-attrs]</a></h3>
+<h2 id="pop-attrs"><a class="header" href="#pop-attrs">pop-attrs</a></h2>
+<pre><code class="language-rant">
+[%pop-attrs]
+
+</code></pre>
 <p>Removes the topmost attribute frame from the attribute frame stack, handing control back to the previous one.</p>
-<h4 id="errors"><a class="header" href="#errors">Errors</a></h4>
-<p>Popping the last attribute frame results in a runtime error.</p>
-<h3 id="rep-reps"><a class="header" href="#rep-reps">[rep: reps]</a></h3>
+<h3 id="errors"><a class="header" href="#errors">Errors</a></h3>
+<p>Attempting to pop the last attribute frame will raise a runtime error.</p>
+<h2 id="rep"><a class="header" href="#rep">rep</a></h2>
+<pre><code class="language-rant">
+[%rep: reps]
+
+</code></pre>
 <p>Sets the repetition count for the next block to <code>reps</code>.
 The value of <code>reps</code> must either be a non-negative <code>int</code> or one of the special modes listed below.</p>
-<h3 id="special-rep-modes"><a class="header" href="#special-rep-modes">Special rep modes</a></h3>
+<h3 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h3>
+<p><strong><code>reps</code></strong> ← <code>int | string</code> <br/>
+The repetition count or mode to set. If a string, it must match one of the below mode names.</p>
+<h3 id="mode-options-for-reps"><a class="header" href="#mode-options-for-reps">Mode options for <code>reps</code></a></h3>
 <table><thead><tr><th>Mode name</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>once</code></td><td>Run the block only once. (default behavior)</td></tr>
 <tr><td><code>forever</code></td><td>Repeat the next block until explicitly stopped.</td></tr>
 <tr><td><code>all</code></td><td>Repeat as many times as there are elements in the  next block.</td></tr>
 </tbody></table>
-<h4 id="examples"><a class="header" href="#examples">Examples</a></h4>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
 <pre><code class="language-rant"># Print the fragment 3 times
 [rep:3]{ha}
 # hahaha
@@ -229,10 +277,25 @@ The value of <code>reps</code> must either be a non-negative <code>int</code> or
 # hahahahaha
 # ...
 </code></pre>
-<h3 id="sel-selector"><a class="header" href="#sel-selector">[sel: selector]</a></h3>
+<pre><code class="language-rant"># Print a random card from each suit
+[rep: all] 
+[sel: deck]
+[pipe: [?: e] ({A|2|3|4|5|6|7|8|9|J|Q|K}[e])]
+{ ♥ | ♣ | ♠ | ♦ }
+# ~&gt; (8♣; 2♦; 6♥; Q♠)
+</code></pre>
+<h2 id="sel"><a class="header" href="#sel">sel</a></h2>
+<pre><code class="language-rant">
+[%sel: selector]
+
+</code></pre>
 <p>Sets the selector for the next block. </p>
-<p>The <code>selector</code> parameter can accept either a selector state object created via <code>[mksel]</code>, or a selector mode string (see <code>[mksel]</code> documentation for available modes).</p>
-<h4 id="examples-1"><a class="header" href="#examples-1">Examples</a></h4>
+<p>The <code>selector</code> parameter can accept either a selector state object created via <code>[mksel]</code>, or a selector mode (in which case it will create a single-use selector of that mode).</p>
+<h3 id="parameters-4"><a class="header" href="#parameters-4">Parameters</a></h3>
+<p><strong><code>selector</code></strong> ← <code>special | string</code> <br/>
+The selector or selector mode to use. 
+If it's a <code>string</code>, it has to be one of the selector modes accepted by <code>[mksel]</code>.</p>
+<h3 id="examples-1"><a class="header" href="#examples-1">Examples</a></h3>
 <pre><code class="language-rant"># Pass in an existing selector object so its state persists between uses
 &lt;%fwd = [mksel:forward]&gt;
 [sel:&lt;fwd&gt;]

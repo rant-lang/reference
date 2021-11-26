@@ -169,7 +169,7 @@
                         <h1 id="standard-library-formatting-functions"><a class="header" href="#standard-library-formatting-functions">Standard Library: Formatting functions</a></h1>
 <h2 id="num-fmt"><a class="header" href="#num-fmt">num-fmt</a></h2>
 <pre><code class="language-rant">
-[%num-fmt: options?; depth?]
+[%num-fmt: options?; depth ? 0]
 
 </code></pre>
 <p>→ <code>map | empty</code></p>
@@ -223,14 +223,24 @@ Defaults to 0 (the calling scope).</p>
 
 # -&gt; 0x000000003B9ACA00
 </code></pre>
+<h2 id="num-fmt-inherit"><a class="header" href="#num-fmt-inherit">num-fmt-inherit</a></h2>
+<pre><code class="language-rant">
+[%num-fmt-inherit: depth ? 1]
+
+</code></pre>
+<p>Copies a parent scope's number format and applies it to the calling scope.</p>
+<h3 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h3>
+<p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
+The offset of the scope whose number format settings to inherit.
+Defaults to 1 (the parent scope of the caller).</p>
 <h2 id="num-fmt-system"><a class="header" href="#num-fmt-system">num-fmt-system</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-system: system?; depth?]
+[%num-fmt-system: system?; depth ? 0]
 </code></pre>
 <p>→ <code>string | empty</code></p>
 <p>Gets or sets the number formatter's numeral system.</p>
 <p>Shorthand for the <code>system</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h3>
+<h3 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h3>
 <p><strong><code>system</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
 The case-insensitive name of the numeral system to use. If omitted, the function prints the current value. <br/>
 See section below for available options.</p>
@@ -252,13 +262,13 @@ Defaults to 0 (the calling scope).</p>
 </tbody></table>
 <h2 id="num-fmt-alt"><a class="header" href="#num-fmt-alt">num-fmt-alt</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-alt: flag?; depth?]
+[%num-fmt-alt: flag?; depth ? 0]
 
 </code></pre>
 <p>→ <code>bool | empty</code></p>
 <p>Gets or sets the number formatter's alternate format flag.</p>
 <p>Shorthand for the <code>alt</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h3>
+<h3 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h3>
 <p><strong><code>flag</code></strong> ← <code>bool</code> <em>(optional)</em> <br/>
 A boolean value indicating whether alternate formatting is enabled.
 If omitted, the function prints the current value.</p>
@@ -267,13 +277,13 @@ The depth of the scope whose number format to access. Value must be positive. Sa
 Defaults to 0 (the calling scope).</p>
 <h2 id="num-fmt-precision"><a class="header" href="#num-fmt-precision">num-fmt-precision</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-precision: precision?; depth?]
+[%num-fmt-precision: precision?; depth ? 0]
 
 </code></pre>
 <p>→ <code>int | empty</code></p>
 <p>Gets or sets the number formatter's decimal precision.</p>
 <p>Shorthand for the <code>precision</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h3>
+<h3 id="parameters-4"><a class="header" href="#parameters-4">Parameters</a></h3>
 <p><strong><code>precision</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
 The number of decimal places to pad or truncate numbers to. 
 If omitted, the function prints the current value.
@@ -283,13 +293,13 @@ The depth of the scope whose number format to access. Value must be positive. Sa
 Defaults to 0 (the calling scope).</p>
 <h2 id="num-fmt-padding"><a class="header" href="#num-fmt-padding">num-fmt-padding</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-padding: padding?; depth?]
+[%num-fmt-padding: padding?; depth ? 0]
 
 </code></pre>
 <p>→ <code>int | empty</code></p>
 <p>Gets or sets the number formatter's digit padding size.</p>
 <p>Shorthand for the <code>padding</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-4"><a class="header" href="#parameters-4">Parameters</a></h3>
+<h3 id="parameters-5"><a class="header" href="#parameters-5">Parameters</a></h3>
 <p><strong><code>padding</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
 The padding size to set. If omitted, the function prints the current value.</p>
 <p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
@@ -297,13 +307,13 @@ The depth of the scope whose number format to access. Value must be positive. Sa
 Defaults to 0 (the calling scope).</p>
 <h2 id="num-fmt-upper"><a class="header" href="#num-fmt-upper">num-fmt-upper</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-upper: flag?; depth?]
+[%num-fmt-upper: flag?; depth ? 0]
 
 </code></pre>
 <p>→ <code>bool | empty</code></p>
 <p>Gets or sets the number formatter's uppercase formatting flag.</p>
 <p>Shorthand for the <code>upper</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-5"><a class="header" href="#parameters-5">Parameters</a></h3>
+<h3 id="parameters-6"><a class="header" href="#parameters-6">Parameters</a></h3>
 <p><strong><code>flag</code></strong> ← <code>bool</code> <em>(optional)</em> <br/>
 A boolean value indicating whether uppercase formatting is enabled.
 If omitted, the function prints the current value.</p>
@@ -312,13 +322,13 @@ The depth of the scope whose number format to access. Value must be positive. Sa
 Defaults to 0 (the calling scope).</p>
 <h2 id="num-fmt-sign"><a class="header" href="#num-fmt-sign">num-fmt-sign</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-sign: sign?; depth?]
+[%num-fmt-sign: sign?; depth ? 0]
 
 </code></pre>
 <p>→ <code>string | empty</code></p>
 <p>Gets or sets the number formatter's sign style.</p>
 <p>Shorthand for the <code>sign</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-6"><a class="header" href="#parameters-6">Parameters</a></h3>
+<h3 id="parameters-7"><a class="header" href="#parameters-7">Parameters</a></h3>
 <p><strong><code>sign</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
 The case-insensitive name of the sign style to use. If omitted, the function prints the current value. <br/>
 See section below for available options.</p>
@@ -334,13 +344,13 @@ Defaults to 0 (the calling scope).</p>
 </tbody></table>
 <h2 id="num-fmt-endian"><a class="header" href="#num-fmt-endian">num-fmt-endian</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-endian: endianness?; depth?]
+[%num-fmt-endian: endianness?; depth ? 0]
 
 </code></pre>
 <p>→ <code>string | empty</code></p>
 <p>Gets or sets the number format's endianness. This affects the byte order of power-of-two base formats such as <code>binary</code> and <code>hex</code>.</p>
 <p>Shorthand for the <code>endian</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-7"><a class="header" href="#parameters-7">Parameters</a></h3>
+<h3 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h3>
 <p><strong><code>endianness</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
 The case-insensitive name of the endianness type to use. If omitted, the function prints the current value. <br/>
 See section below for available options.</p>
@@ -355,13 +365,13 @@ Defaults to 0 (the calling scope).</p>
 </tbody></table>
 <h2 id="num-fmt-infinity"><a class="header" href="#num-fmt-infinity">num-fmt-infinity</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-infinity: infinity?; depth?]
+[%num-fmt-infinity: infinity?; depth ? 0]
 
 </code></pre>
 <p>→ <code>string | empty</code></p>
 <p>Gets or sets the number formatter's infinity style.</p>
 <p>Shorthand for the <code>infinity</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h3>
+<h3 id="parameters-9"><a class="header" href="#parameters-9">Parameters</a></h3>
 <p><strong><code>infinity</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
 The case-insensitive name of the infinity style to use. If omitted, the function prints the current value. <br/>
 See section below for available options.</p>
@@ -376,13 +386,13 @@ Defaults to 0 (the calling scope).</p>
 </tbody></table>
 <h2 id="num-fmt-group-sep"><a class="header" href="#num-fmt-group-sep">num-fmt-group-sep</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-group-sep: group-sep?; depth?]
+[%num-fmt-group-sep: group-sep?; depth ? 0]
 
 </code></pre>
 <p>→ <code>string | empty</code></p>
 <p>Gets or sets the number formatter's digit group separator.</p>
 <p>Shorthand for the <code>group-sep</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-9"><a class="header" href="#parameters-9">Parameters</a></h3>
+<h3 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h3>
 <p><strong><code>group-sep</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
 The group separator to use. If omitted, the function prints the current value.</p>
 <p><strong><code>depth</code></strong> ← <code>int</code> <em>(optional)</em> <br/>
@@ -390,13 +400,13 @@ The depth of the scope whose number format to access. Value must be positive. Sa
 Defaults to 0 (the calling scope).</p>
 <h2 id="num-fmt-decimal-sep"><a class="header" href="#num-fmt-decimal-sep">num-fmt-decimal-sep</a></h2>
 <pre><code class="language-rant">
-[%num-fmt-decimal-sep: decimal-sep?; depth?]
+[%num-fmt-decimal-sep: decimal-sep?; depth ? 0]
 
 </code></pre>
 <p>→ <code>string | empty</code></p>
 <p>Gets or sets the number formatter's decimal separator.</p>
 <p>Shorthand for the <code>decimal-sep</code> option in <code>[num-fmt]</code>.</p>
-<h3 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h3>
+<h3 id="parameters-11"><a class="header" href="#parameters-11">Parameters</a></h3>
 <p><strong><code>decimal-sep</code></strong> ← <code>string</code> <em>(optional)</em> <br/>
 The decimal separator to use. 
 If the supplied value is a blank string, the formatter falls back to <code>&quot;.&quot;</code>. 
