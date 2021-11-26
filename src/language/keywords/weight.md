@@ -72,7 +72,7 @@ there are, however, special cases where some values are handled differently:
 
 * Negative weights are clamped to 0.
 * Positive infinity, negative infinity, and NaN also default to 0.
-* `~` produces a weight of 1.
+* `<>` produces a weight of 1.
 * `@true` and `@false` produce weights of 1 and 0, respectively.
 
 ## Limitations

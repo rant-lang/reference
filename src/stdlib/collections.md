@@ -156,7 +156,7 @@ The predicate to run against each element in the input list.
 &rarr; `int | empty`
 
 Returns the index of the first occurrence of `value` in `list`.
-If no match is found, returns `~`.
+If no match is found, returns `<>`.
 
 ### Parameters
 
@@ -173,7 +173,7 @@ The value to search for.
 [index-of: <letters>; A |> assert-eq: 0]
 [index-of: <letters>; C |> assert-eq: 3]
 [index-of: <letters>; E |> assert-eq: 6]
-[index-of: <letters>; F |> assert-eq: ~]
+[index-of: <letters>; F |> assert-eq: <>]
 ```
 
 
@@ -207,7 +207,7 @@ The separator to print between each element.
 &rarr; `any`
 
 Returns the index of the last occurrence of `value` in `list`.
-If no match is found, returns `~`.
+If no match is found, returns `<>`.
 
 ### Parameters
 
@@ -224,7 +224,7 @@ The value to search for.
 [last-index-of: <letters>; A |> assert-eq: 1]
 [last-index-of: <letters>; C |> assert-eq: 4]
 [last-index-of: <letters>; E |> assert-eq: 6]
-[last-index-of: <letters>; F |> assert-eq: ~]
+[last-index-of: <letters>; F |> assert-eq: <>]
 ```
 
 
@@ -621,7 +621,7 @@ The maximum number of elements to reduce the `list` to.
 )>
 
 # Print character info
-<npc/name>: '[join: ,\s; <npc/traits>]
+<npc/name>: `[join: ,\s; <npc/traits>]
 
 # ~> Foo Bar: speaks-to-bees, many-legs
 ```
@@ -653,13 +653,13 @@ The maximum number of elements to reduce the list to.
 <$numbers = (100; 100; 100; 100; 100; 100; 100; 100; 100; 100)>
 
 # Print the original list
-Before: '[join: ,\s; <numbers>]\n
+Before: `[join: ,\s; <numbers>]\n
 
 # Squish the list down to 5 elements
 [squish: <numbers>; 5]
 
 # Print the modified list
-After: '[join: ,\s; <numbers>]\n
+After: `[join: ,\s; <numbers>]\n
 
 ##
   EXAMPLE OUTPUT:

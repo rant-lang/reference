@@ -13,7 +13,7 @@ Lists are initialized using a pair of parentheses containing the list elements, 
 <$empty-list = ()>
 
 # Initialize a list with one empty element
-<$one-empty = (~)>
+<$one-empty = (<>)>
 
 # Create a list of numbers
 <$lucky-numbers = (1; 2; 3; 5; 7; 11; 13;)>

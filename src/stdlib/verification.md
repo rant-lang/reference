@@ -66,7 +66,7 @@ The value to check.
 ```
 &rarr; `bool`
 
-Returns `@true` if `value` is `~`.
+Returns `@true` if `value` is empty (`<>`).
 
 ### Parameters
 

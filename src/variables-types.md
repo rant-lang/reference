@@ -18,15 +18,14 @@ Rant has the following data types:
 |`function`|Function/closure                                   |by-ref   |
 |`list`    |List of values                                     |by-ref   |
 |`map`     |String-keyed collection of values                  |by-ref   |
-|`block`   |Stored block                                       |by-ref   |
 |`special` |Handle to internal runtime data, such as a selector|by-ref   |
 
 ## The `empty` type
 
-To represent the lack of a value, Rant has the `empty` type, which has only one possible value, represented by the token `~`.
+To represent the lack of a value, Rant has the `empty` type, which has only one possible value, represented by the literal `<>`.
 
 ```rant
-<$nothing = ~>    # i.e. <$nothing>
+<$nothing = <>>   # i.e. <$nothing>
 [type:<nothing>]  # empty
 ```
 
@@ -124,12 +123,12 @@ As with list sequences, this also applies with expressions that return maps:
 
 #### Empties
 
-Expressions containing only empties evaluate to the empty value.
+Expressions containing only empty literals evaluate to a single empty.
 
-Expressions containing nothing also evaluate to the empty value.
+Expressions containing nothing also evaluate to an empty.
 
 ```rant
-[type:~~]       # empty
-[type:~]        # empty
+[type:<><>]     # empty
+[type:<>]       # empty
 [type:]         # empty
 ```

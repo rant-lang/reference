@@ -9,7 +9,7 @@
 ```
 &rarr; `any` or `empty`
 
-Prints the first argument that isn't the empty value `~`. If all arguments are `~`, prints `~`.
+Prints the first argument that isn't empty. If all arguments are empty, prints `<>`.
 
 ### Parameters
 
