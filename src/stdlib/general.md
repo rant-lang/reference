@@ -246,22 +246,6 @@ The path to the module to load.
 [my-module/hello-world]
 ```
 
-## resolve
-
-```rant
-
-[%resolve: block]
-
-```
-&rarr; `any` or `empty`
-
-Resolves the specified block.
-
-### Parameters
-
-**`block`** &larr; `block` <br/>
-The block to resolve.
-
 ## seed
 
 ```rant
