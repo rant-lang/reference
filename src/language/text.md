@@ -1,16 +1,16 @@
 # Text
 
-In Rant, raw text is considered as a combination of two types of tokens: **fragments** and **whitespace**.
+In Rant, "text" is defined as a combination of two types of tokens: **fragments** and **whitespace**.
 
-Any text is a valid Rant program.
+By this definition, any text is a valid Rant program.
 
 ## Fragments
 
-A **fragment** is defined as any sequence of characters that:
+A **fragment** is defined as any contiguous sequence of characters that:
 1. contains no whitespace,
 2. contains no reserved characters (e.g. braces, brackets, etc.)
 
-Rant will output any fragment verbatim.
+By default, Rant will print any fragment verbatim.
 
 ```rant
 # Prints "Hello"
@@ -19,7 +19,7 @@ Hello
 
 ## Whitespace
 
-All sequences of non-breaking whitespace between two fragments in a Rant program are normalized to a single space by default.
+All sequences of non-breaking whitespace between two fragments in a Rant program are normalized to a single space character (U+0020) by default.
 
 Rant is very selective about the whitespace it prints. By default, whitespace included in a Rant program is only printed if it is between any two of the following:
 * Fragments
@@ -110,6 +110,14 @@ several
 lines"
 ```
 
+### Quotation marks in string literals
+
+If you want to put a quotation mark inside of a string literal, just double it up like so:
+
+```rant
+"This string literal includes ""quoted"" text"
+```
+
 ## "Text" vs "string"
 
 It is important to understand that strings and text are two different concepts in Rant:
@@ -120,3 +128,14 @@ Text is a sequence of fragments, whitespace, and hinted elements in a Rant progr
 When interpreted at runtime, it may not always produce an string identical to the original text, due to whitespace rules and annotations.
 
 **Bottom line:** a string is a value, and text is used to generate a string.
+
+## TL;DR
+
+> **Quick Recap**
+>
+> **1.** A fragment is a contiguous series of visible characters.<br/>
+> **2.** Whitespace only prints between two fragments on the same line and prints as a single space.<br/>
+> **3.** A hint (<code>\`</code>) treats a program element like a fragment.<br/>
+> **4.** A sink (`~`) treats a program element like a non-fragment.<br/>
+> **5.** A string literal counts as a single fragment and can contain any characters.<br/>
+> **6.** Text is part of your program; a string is the data created from it.<br/>
