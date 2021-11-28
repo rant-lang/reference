@@ -167,20 +167,20 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="text"><a class="header" href="#text">Text</a></h1>
-<p>In Rant, raw text is considered as a combination of two types of tokens: <strong>fragments</strong> and <strong>whitespace</strong>.</p>
-<p>Any text is a valid Rant program.</p>
+<p>In Rant, &quot;text&quot; is defined as a combination of two types of tokens: <strong>fragments</strong> and <strong>whitespace</strong>.</p>
+<p>By this definition, any text is a valid Rant program.</p>
 <h2 id="fragments"><a class="header" href="#fragments">Fragments</a></h2>
-<p>A <strong>fragment</strong> is defined as any sequence of characters that:</p>
+<p>A <strong>fragment</strong> is defined as any contiguous sequence of characters that:</p>
 <ol>
 <li>contains no whitespace,</li>
 <li>contains no reserved characters (e.g. braces, brackets, etc.)</li>
 </ol>
-<p>Rant will output any fragment verbatim.</p>
+<p>By default, Rant will print any fragment verbatim.</p>
 <pre><code class="language-rant"># Prints &quot;Hello&quot;
 Hello
 </code></pre>
 <h2 id="whitespace"><a class="header" href="#whitespace">Whitespace</a></h2>
-<p>All sequences of non-breaking whitespace between two fragments in a Rant program are normalized to a single space by default.</p>
+<p>All sequences of non-breaking whitespace between two fragments in a Rant program are normalized to a single space character (U+0020) by default.</p>
 <p>Rant is very selective about the whitespace it prints. By default, whitespace included in a Rant program is only printed if it is between any two of the following:</p>
 <ul>
 <li>Fragments</li>
@@ -247,12 +247,26 @@ has
 several
 lines&quot;
 </code></pre>
+<h3 id="quotation-marks-in-string-literals"><a class="header" href="#quotation-marks-in-string-literals">Quotation marks in string literals</a></h3>
+<p>If you want to put a quotation mark inside of a string literal, just double it up like so:</p>
+<pre><code class="language-rant">&quot;This string literal includes &quot;&quot;quoted&quot;&quot; text&quot;
+</code></pre>
 <h2 id="text-vs-string"><a class="header" href="#text-vs-string">&quot;Text&quot; vs &quot;string&quot;</a></h2>
 <p>It is important to understand that strings and text are two different concepts in Rant:</p>
 <p>A string is a sequence of Unicode characters, represented by the <code>string</code> type in Rant.</p>
 <p>Text is a sequence of fragments, whitespace, and hinted elements in a Rant program.<br/>
 When interpreted at runtime, it may not always produce an string identical to the original text, due to whitespace rules and annotations.</p>
 <p><strong>Bottom line:</strong> a string is a value, and text is used to generate a string.</p>
+<h2 id="tldr"><a class="header" href="#tldr">TL;DR</a></h2>
+<blockquote>
+<p><strong>Quick Recap</strong></p>
+<p><strong>1.</strong> A fragment is a contiguous series of visible characters.<br/>
+<strong>2.</strong> Whitespace only prints between two fragments on the same line and prints as a single space.<br/>
+<strong>3.</strong> A hint (<code>`</code>) treats a program element like a fragment.<br/>
+<strong>4.</strong> A sink (<code>~</code>) treats a program element like a non-fragment.<br/>
+<strong>5.</strong> A string literal counts as a single fragment and can contain any characters.<br/>
+<strong>6.</strong> Text is part of your program; a string is the data created from it.<br/></p>
+</blockquote>
 
                     </main>
 
