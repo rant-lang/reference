@@ -14,7 +14,7 @@ Constant.
 The `@step` variable reflects the current step number of the active block, starting at 1.
 
 ```rant
-<@reps = 10; @sep = \s>
+<@reps = 10; @sep = ,\s>
 {
     <@step>
 }
