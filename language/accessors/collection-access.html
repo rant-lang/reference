@@ -250,7 +250,7 @@ Slices can be fully-bounded (having start + end points), half-bounded (having a 
 <pre><code class="language-rant">&lt;%message = &quot;fantastic&quot;&gt;
 [rep: [len: &lt;message&gt;]]
 {
-    # Use the current repeater step to slice the message
+    # Use the current block iteration number to slice the message
     &lt;message/:{[step]}&gt;\n
 }
 </code></pre>

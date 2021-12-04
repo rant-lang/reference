@@ -180,20 +180,38 @@
 Hello
 </code></pre>
 <h2 id="whitespace"><a class="header" href="#whitespace">Whitespace</a></h2>
-<p>All sequences of non-breaking whitespace between two fragments in a Rant program are normalized to a single space character (U+0020) by default.</p>
-<p>Rant is very selective about the whitespace it prints. By default, whitespace included in a Rant program is only printed if it is between any two of the following:</p>
-<ul>
-<li>Fragments</li>
-<li>Numbers</li>
-<li>Getters</li>
-<li>Blocks containing any of the above</li>
-<li>Blocks that satisfy the aforementioned requirement</li>
-</ul>
-<p>All other whitespace (including line breaks) is ignored. 
-Escape sequences that output whitespace (<code>\t</code>, <code>\s</code>, etc.) are exempt from this rule and treated like fragments.</p>
-<blockquote>
-<p>TODO: Add examples</p>
-</blockquote>
+<p>All sequences of non-breaking whitespace between two fragments or hinted elements on the same line are normalized to a single space character (U+0020) by default.</p>
+<p>Rant produces a whitespace token from any contiguous sequence of characters with the <code>White_Space</code> Unicode property, 
+excluding U+000A (LINE FEED, LF) and U+000D (CARRIAGE RETURN, CR).</p>
+<p>Line breaks of the forms (CR), (LF), and (CRLF) are ignored.</p>
+<p>Escape sequences that explicitly specify whitespace characters (<code>\t</code>, <code>\s</code>, etc.) are always printed.</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<p>The following example shows some of the ways that Rant can handle whitespace.</p>
+<pre><code class="language-rant"># Space normalization
+One space\n
+Two  spaces\n
+Three   spaces\n
+\n
+
+# Indentation
+Non-indented text\n
+    Indented text\n
+\n
+
+# Multiple lines
+Water
+melon
+</code></pre>
+<p>This prints the following output:</p>
+<pre><code>One space
+Two spaces
+Three spaces
+
+Non-indented text
+Indented text
+
+Watermelon
+</code></pre>
 <h2 id="hinting"><a class="header" href="#hinting">Hinting</a></h2>
 <p>Rant's whitespace rules are quite strict, which can sometimes cause whitespace to be omitted when you actually want it there.</p>
 <p>To alleviate this issue, Rant offers a compile-time annotation called a <strong>hint</strong>, represented by the backtick character (<code>`</code>).
@@ -253,10 +271,9 @@ lines&quot;
 </code></pre>
 <h2 id="text-vs-string"><a class="header" href="#text-vs-string">&quot;Text&quot; vs &quot;string&quot;</a></h2>
 <p>It is important to understand that strings and text are two different concepts in Rant:</p>
-<p>A string is a sequence of Unicode characters, represented by the <code>string</code> type in Rant.</p>
+<p>A string is a sequence of Unicode characters, represented by the <code>string</code> type.</p>
 <p>Text is a sequence of fragments, whitespace, and hinted elements in a Rant program.<br/>
-When interpreted at runtime, it may not always produce an string identical to the original text, due to whitespace rules and annotations.</p>
-<p><strong>Bottom line:</strong> a string is a value, and text is used to generate a string.</p>
+When interpreted at runtime, it may not always produce a string identical to the original text, due to whitespace rules and annotations.</p>
 <h2 id="tldr"><a class="header" href="#tldr">TL;DR</a></h2>
 <blockquote>
 <p><strong>Quick Recap</strong></p>

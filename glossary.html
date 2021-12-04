@@ -168,31 +168,29 @@
                     <main>
                         <h1 id="glossary"><a class="header" href="#glossary">Glossary</a></h1>
 <h3 id="accessor"><a class="header" href="#accessor">Accessor</a></h3>
-<p>Accessors are program elements that read or write values. They are the primary means of interacting with variables.</p>
+<p>Accessors are program elements that directly read or write variables or fields. 
+They are the primary means of interacting with variables.</p>
 <p>There are three types of accessors: <strong>getters</strong>, <strong>setters</strong>, and <strong>definitions</strong>.</p>
 <h3 id="access-path"><a class="header" href="#access-path">Access path</a></h3>
 <p>An access path is used to access variables or items in collections. They consist of <code>/</code>-delimited series of identifiers, keys, and indices. </p>
-<h3 id="associative-block"><a class="header" href="#associative-block">Associative block</a></h3>
-<p>Associative blocks are a special block type dividing each element into left- and right-hand sides.</p>
-<p>The left-hand side (LHS) associaties some value (usually a weight or case value) with the element, 
-while the right-hand side (RHS) contains the code associated with the element.</p>
-<p>This block type is typically used for conditional or weighted branching.</p>
 <h3 id="attribute"><a class="header" href="#attribute">Attribute</a></h3>
-<p>Attributes modify <strong>block</strong> behavior, such as how many times a block repeats or how it selects elements.</p>
+<p>Attributes are special variables that specify how the next <strong>block</strong> will resolve. 
+They are stored in the <strong>attribute stack</strong>.</p>
 <p>Attributes can be set through <strong>attribute functions</strong>.</p>
 <h3 id="attribute-frame"><a class="header" href="#attribute-frame">Attribute frame</a></h3>
-<p>An attribute frame is a full set of all available attributes. A program's attribute stack always contains at least one frame.</p>
-<h3 id="attribute-functions"><a class="header" href="#attribute-functions">Attribute functions</a></h3>
+<p>A full set of all available attributes. The <strong>attribute stack</strong> contains one or more frames, which can be consumed by <strong>blocks</strong>.</p>
+<h3 id="attribute-function"><a class="header" href="#attribute-function">Attribute function</a></h3>
 <p>A function that reads or writes an <strong>attribute</strong>.</p>
+<p>Attribute functions can only modify the attributes in the topmost frame.</p>
 <h3 id="attribute-stack"><a class="header" href="#attribute-stack">Attribute stack</a></h3>
-<p>Each program maintains an &quot;attribute stack&quot;, which stores and provides <strong>attributes</strong> to <strong>blocks</strong>.
-When a block runs, it consumes the attributes in the topmost frame of the attribute stack, replacing them with their default values.</p>
-<p>The user can add and remove frames from the attribute stack to preserve attributes for later use.</p>
+<p>Rant maintains an &quot;attribute stack&quot; that stores <strong>attributes</strong> and provides them to <strong>blocks</strong>.
+When a block starts resolving, it consumes the attributes in the topmost frame of the attribute stack, replacing them with their default values.</p>
+<p>The user can add and remove frames from the attribute stack to preserve attribute frames for later use.</p>
 <h3 id="block"><a class="header" href="#block">Block</a></h3>
 <p>A block is a section of a Rant program subdivided into zero or more parts.
 Blocks act as variable scopes and can be combined with various constructs to produce a wide variety of behaviors.</p>
 <h3 id="closure"><a class="header" href="#closure">Closure</a></h3>
-<p>A closure is a function that captures one or more variables from its environment.</p>
+<p>A closure is a function that captures one or more variables from its enclosing scope.</p>
 <h3 id="construct"><a class="header" href="#construct">Construct</a></h3>
 <p>A construct is a group of one or more runtime variables can be used to interact with the Rant runtime 
 and customize various aspects of program behavior.</p>
@@ -213,7 +211,7 @@ It is an implicit form of <strong>descoping</strong>.</p>
 <h3 id="getter"><a class="header" href="#getter">Getter</a></h3>
 <p>A getter is an accessor type that retrieves a value from a variable or collection.</p>
 <h3 id="hint"><a class="header" href="#hint">Hint</a></h3>
-<p>A hint is a compile-time operation that informs the Rant compiler that the next program element is expected to print to the output.</p>
+<p>A compile-time flag that marks the following program element as text.</p>
 <h3 id="identifier"><a class="header" href="#identifier">Identifier</a></h3>
 <p>A name assigned to a <strong>variable</strong> or <strong>module</strong>.</p>
 <p>Identifiers enforce specific formatting requirements to ensure consistency:</p>
@@ -221,8 +219,8 @@ It is an implicit form of <strong>descoping</strong>.</p>
 <li>Must contain <strong>at least one</strong> alphanumeric character.</li>
 <li>Must only contain alphanumeric characters, underscores, and hyphens.</li>
 </ul>
-<h3 id="lambda"><a class="header" href="#lambda">Lambda</a></h3>
-<p>A lambda is an anonymous (nameless) function.</p>
+<h3 id="lambda-expression"><a class="header" href="#lambda-expression">Lambda expression</a></h3>
+<p>A lambda expression is an anonymous (nameless) function.</p>
 <h3 id="list"><a class="header" href="#list">List</a></h3>
 <p>A list is an ordered collection of values, accessible by index.</p>
 <h3 id="map"><a class="header" href="#map">Map</a></h3>
@@ -230,9 +228,9 @@ It is an implicit form of <strong>descoping</strong>.</p>
 <h3 id="module"><a class="header" href="#module">Module</a></h3>
 <p>A module is a library of Rant functions that can be loaded into another program using the <code>[require]</code> function.</p>
 <h3 id="repeater"><a class="header" href="#repeater">Repeater</a></h3>
-<p>A block that can iterate multiple times. Repeaters are created by calling <code>[rep]</code>.</p>
+<p>A looping block. Blocks can be made to loop by setting the repetition count with <code>[rep]</code>.</p>
 <h3 id="resolution"><a class="header" href="#resolution">Resolution</a></h3>
-<p>Resolution refers to the process of producing an output from a block, after which the block is referred to as 'resolved.' </p>
+<p>Resolution refers to the process of Rant selecting which branch to run on a <strong>block</strong>.</p>
 <h3 id="resolver"><a class="header" href="#resolver">Resolver</a></h3>
 <p>The component of the Rant runtime that handles block resolution.</p>
 <h3 id="shadowing"><a class="header" href="#shadowing">Shadowing</a></h3>
@@ -240,7 +238,7 @@ It is an implicit form of <strong>descoping</strong>.</p>
 <h3 id="setter"><a class="header" href="#setter">Setter</a></h3>
 <p>A setter is an accessor type that writes to a variable or collection.</p>
 <h3 id="sink"><a class="header" href="#sink">Sink</a></h3>
-<p>A sink is an operation that suppresses the output of a program element while still allowing its execution.</p>
+<p>A compile-time flag that marks the following program element as non-text.</p>
 
                     </main>
 
