@@ -120,7 +120,7 @@ Slices also support dynamic bounds; just replace any slice bound index with a si
 <%message = "fantastic">
 [rep: [len: <message>]]
 {
-    # Use the current repeater step to slice the message
+    # Use the current block iteration number to slice the message
     <message/:{[step]}>\n
 }
 ```

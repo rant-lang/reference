@@ -2,7 +2,8 @@
 
 ### Accessor
 
-Accessors are program elements that read or write values. They are the primary means of interacting with variables.
+Accessors are program elements that directly read or write variables or fields. 
+They are the primary means of interacting with variables.
 
 There are three types of accessors: **getters**, **setters**, and **definitions**.
 
@@ -10,35 +11,29 @@ There are three types of accessors: **getters**, **setters**, and **definitions*
 
 An access path is used to access variables or items in collections. They consist of `/`-delimited series of identifiers, keys, and indices. 
 
-### Associative block
-
-Associative blocks are a special block type dividing each element into left- and right-hand sides.
-
-The left-hand side (LHS) associaties some value (usually a weight or case value) with the element, 
-while the right-hand side (RHS) contains the code associated with the element.
-
-This block type is typically used for conditional or weighted branching.
-
 ### Attribute
 
-Attributes modify **block** behavior, such as how many times a block repeats or how it selects elements.
+Attributes are special variables that specify how the next **block** will resolve. 
+They are stored in the **attribute stack**.
 
 Attributes can be set through **attribute functions**.
 
 ### Attribute frame
 
-An attribute frame is a full set of all available attributes. A program's attribute stack always contains at least one frame.
+A full set of all available attributes. The **attribute stack** contains one or more frames, which can be consumed by **blocks**.
 
-### Attribute functions
+### Attribute function
 
 A function that reads or writes an **attribute**.
 
+Attribute functions can only modify the attributes in the topmost frame.
+
 ### Attribute stack
 
-Each program maintains an "attribute stack", which stores and provides **attributes** to **blocks**.
-When a block runs, it consumes the attributes in the topmost frame of the attribute stack, replacing them with their default values.
+Rant maintains an "attribute stack" that stores **attributes** and provides them to **blocks**.
+When a block starts resolving, it consumes the attributes in the topmost frame of the attribute stack, replacing them with their default values.
 
-The user can add and remove frames from the attribute stack to preserve attributes for later use.
+The user can add and remove frames from the attribute stack to preserve attribute frames for later use.
 
 ### Block
 
@@ -47,7 +42,7 @@ Blocks act as variable scopes and can be combined with various constructs to pro
 
 ### Closure
 
-A closure is a function that captures one or more variables from its environment.
+A closure is a function that captures one or more variables from its enclosing scope.
 
 ### Construct
 
@@ -86,7 +81,7 @@ A getter is an accessor type that retrieves a value from a variable or collectio
 
 ### Hint
 
-A hint is a compile-time operation that informs the Rant compiler that the next program element is expected to print to the output.
+A compile-time flag that marks the following program element as text.
 
 ### Identifier
 
@@ -97,9 +92,9 @@ Identifiers enforce specific formatting requirements to ensure consistency:
 * Must contain **at least one** alphanumeric character.
 * Must only contain alphanumeric characters, underscores, and hyphens.
 
-### Lambda
+### Lambda expression
 
-A lambda is an anonymous (nameless) function.
+A lambda expression is an anonymous (nameless) function.
 
 ### List
 
@@ -115,11 +110,11 @@ A module is a library of Rant functions that can be loaded into another program 
 
 ### Repeater
 
-A block that can iterate multiple times. Repeaters are created by calling `[rep]`.
+A looping block. Blocks can be made to loop by setting the repetition count with `[rep]`.
 
 ### Resolution
 
-Resolution refers to the process of producing an output from a block, after which the block is referred to as 'resolved.' 
+Resolution refers to the process of Rant selecting which branch to run on a **block**.
 
 ### Resolver
 
@@ -135,4 +130,4 @@ A setter is an accessor type that writes to a variable or collection.
 
 ### Sink
 
-A sink is an operation that suppresses the output of a program element while still allowing its execution.
+A compile-time flag that marks the following program element as non-text.

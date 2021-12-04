@@ -19,19 +19,47 @@ Hello
 
 ## Whitespace
 
-All sequences of non-breaking whitespace between two fragments in a Rant program are normalized to a single space character (U+0020) by default.
+All sequences of non-breaking whitespace between two fragments or hinted elements on the same line are normalized to a single space character (U+0020) by default.
 
-Rant is very selective about the whitespace it prints. By default, whitespace included in a Rant program is only printed if it is between any two of the following:
-* Fragments
-* Numbers
-* Getters
-* Blocks containing any of the above
-* Blocks that satisfy the aforementioned requirement
+Rant produces a whitespace token from any contiguous sequence of characters with the `White_Space` Unicode property, 
+excluding U+000A (LINE FEED, LF) and U+000D (CARRIAGE RETURN, CR).
 
-All other whitespace (including line breaks) is ignored. 
-Escape sequences that output whitespace (`\t`, `\s`, etc.) are exempt from this rule and treated like fragments.
+Line breaks of the forms (CR), (LF), and (CRLF) are ignored.
 
-> TODO: Add examples
+Escape sequences that explicitly specify whitespace characters (`\t`, `\s`, etc.) are always printed.
+
+### Example
+
+The following example shows some of the ways that Rant can handle whitespace.
+
+```rant
+# Space normalization
+One space\n
+Two  spaces\n
+Three   spaces\n
+\n
+
+# Indentation
+Non-indented text\n
+    Indented text\n
+\n
+
+# Multiple lines
+Water
+melon
+```
+
+This prints the following output:
+```
+One space
+Two spaces
+Three spaces
+
+Non-indented text
+Indented text
+
+Watermelon
+```
 
 ## Hinting
 
@@ -122,12 +150,10 @@ If you want to put a quotation mark inside of a string literal, just double it u
 
 It is important to understand that strings and text are two different concepts in Rant:
 
-A string is a sequence of Unicode characters, represented by the `string` type in Rant.
+A string is a sequence of Unicode characters, represented by the `string` type.
 
 Text is a sequence of fragments, whitespace, and hinted elements in a Rant program.<br/>
-When interpreted at runtime, it may not always produce an string identical to the original text, due to whitespace rules and annotations.
-
-**Bottom line:** a string is a value, and text is used to generate a string.
+When interpreted at runtime, it may not always produce a string identical to the original text, due to whitespace rules and annotations.
 
 ## TL;DR
 
