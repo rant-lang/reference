@@ -3,7 +3,7 @@
 {{ #include _proposal_msg.md }}
 
 A Rant program has access to certain persistent runtime data, such as the current state of a repeater or the active attribute frame.
-As these are always present in a program, it would be sensitible to treat them as first-class language features rather than exposing
+As these are always present in a program, it would be sensible to treat them as first-class language features rather than exposing
 them through only the standard library.
 In the interest of doing this, the following new keywords are proposed as special variable names:
 
