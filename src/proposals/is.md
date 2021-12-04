@@ -1,6 +1,6 @@
 # @is* keywords
 
-{{ #include ../../_proposal_msg.md}}
+{{ #include _proposal_msg.md }}
 
 
 Sequences can be configured to perform various boolean operations by prefixing them with any of several special @is-keywords. Each printed value acts as a separate operand; whitespace is ignored.
