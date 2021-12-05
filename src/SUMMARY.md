@@ -32,7 +32,7 @@
         - [Numbers](runtime/number-formatter.md)
         - [Whitespace](runtime/whitespace-formatter.md)
     - [Modules](modules.md)
-- [Proposed Features]()
+- [🚧 Proposed Features]()
     - [@if, @elseif, @else](proposals/if-elseif-else.md)
     - [@is*](proposals/is.md)
     - [Special variables](proposals/special-variables.md)
