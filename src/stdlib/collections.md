@@ -360,6 +360,21 @@ The separator values are applied as follows:
 ##
 ```
 
+## pick
+
+```rant
+
+[%pick: list]
+
+```
+
+Prints a random value from the input list.
+
+### Parameters
+
+**`list`** &larr; `list` <br/>
+The list to select from.
+
 
 ## push
 

@@ -232,7 +232,7 @@ this is not supported and the function will be mutable.
 
 *Warning*
 
-A function references an optional parameter, but the parameter has no fallback expression and the accessor in question provides no fallback.
+A accessor references an optional parameter, but the parameter has no fallback expression and the accessor in question provides no fallback.
 This means that if no argument is passed to that parameter, accessors referencing it will raise a runtime error.
 
 ## R2100 (file not found)
@@ -245,4 +245,5 @@ A file requested by the compiler could not be found.
 
 *Error*
 
-A filesystem error (e.g. permission error, file in use) occurred while the compiler was trying to access a file.
+A filesystem error (e.g. permission error, file in use, ...) occurred while the compiler was trying to access a file.
+The message description will specify the exact nature of the error.
