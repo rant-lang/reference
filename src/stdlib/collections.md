@@ -145,6 +145,28 @@ The predicate to run against each element in the input list.
 # -> the fox the dog
 ```
 
+## has
+
+```rant
+
+[%has: collection; value]
+
+```
+&rarr; `bool`
+
+Returns a boolean indicating whether `value` occurs in `collection`.
+
+If `collection` is a `map`, this function searches the map's keys.
+
+### Parameters
+
+**`collection`** &larr; `list | map` <br/>
+The collection to search.
+
+**`value`** &larr; `any` <br/>
+The value to search for. <br/>
+If `collection` is of type `map`, `value` will be coerced to a string before searching (as map keys can only be strings).
+
 
 ## index-of
 
