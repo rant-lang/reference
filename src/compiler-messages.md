@@ -173,75 +173,75 @@ A setter attempted to reassign a constant.
 
 A definition attempted to redefine a constant in the same scope.
 
-# R0130 (invalid sink)
+## R0130 (invalid sink)
 
 *Error*
 
 A sink operator was found before a program element that does not support sinking.
 
-# R0131 (invalid hint)
+## R0131 (invalid hint)
 
 *Error*
 
 A hint operator was found before a program element that does not support hinting.
 
-# R0200 (invalid keyword)
+## R0200 (invalid keyword)
 
 *Error*
 
 A `@keyword` not recognized by the compiler was found.
 
-# R0201 (weight not allowed)
+## R0201 (weight not allowed)
 
 *Error*
 
 A `@weight` expression was found in a context where it is not allowed.
 
-# R1000 (unused variable)
+## R1000 (unused variable)
 
 *Warning*
 
 A variable was defined but not referenced by its containing scope.
 
-# R1001 (unused parameter)
+## R1001 (unused parameter)
 
 *Warning*
 
 A parameter defined by a function was not referenced by its body.
 
-# R1002 (unused function)
+## R1002 (unused function)
 
 *Warning*
 
 A function was defined but never called within its containing scope.
 
-# R1003 (empty function body)
+## R1003 (empty function body)
 
 *Warning*
 
 A function was defined with an empty body (i.e. it doesn't do anything).
 
-# R1004 (nested function definition was marked constant)
+## R1004 (nested function definition was marked constant)
 
 *Warning*
 
 A function defined inside of a collection was marked as constant; 
 this is not supported and the function will be mutable.
 
-# R1005 (fallible optional parameter access)
+## R1005 (fallible optional parameter access)
 
 *Warning*
 
 A function references an optional parameter, but the parameter has no fallback expression and the accessor in question provides no fallback.
 This means that if no argument is passed to that parameter, accessors referencing it will raise a runtime error.
 
-# R2100 (file not found)
+## R2100 (file not found)
 
 *Error*
 
 A file requested by the compiler could not be found.
 
-# R2101 (filesystem error)
+## R2101 (filesystem error)
 
 *Error*
 
