@@ -269,6 +269,20 @@ The current item to be checked.</p>
 [join: &lt;short-words&gt;; ,\s]
 # -&gt; the fox the dog
 </code></pre>
+<h2 id="has"><a class="header" href="#has">has</a></h2>
+<pre><code class="language-rant">
+[%has: collection; value]
+
+</code></pre>
+<p>→ <code>bool</code></p>
+<p>Returns a boolean indicating whether <code>value</code> occurs in <code>collection</code>.</p>
+<p>If <code>collection</code> is a <code>map</code>, this function searches the map's keys.</p>
+<h3 id="parameters-4"><a class="header" href="#parameters-4">Parameters</a></h3>
+<p><strong><code>collection</code></strong> ← <code>list | map</code> <br/>
+The collection to search.</p>
+<p><strong><code>value</code></strong> ← <code>any</code> <br/>
+The value to search for. <br/>
+If <code>collection</code> is of type <code>map</code>, <code>value</code> will be coerced to a string before searching (as map keys can only be strings).</p>
 <h2 id="index-of"><a class="header" href="#index-of">index-of</a></h2>
 <pre><code class="language-rant">
 [%index-of: list; value]
@@ -277,7 +291,7 @@ The current item to be checked.</p>
 <p>→ <code>int | empty</code></p>
 <p>Returns the index of the first occurrence of <code>value</code> in <code>list</code>.
 If no match is found, returns <code>&lt;&gt;</code>.</p>
-<h3 id="parameters-4"><a class="header" href="#parameters-4">Parameters</a></h3>
+<h3 id="parameters-5"><a class="header" href="#parameters-5">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The list to search.</p>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
@@ -296,7 +310,7 @@ The value to search for.</p>
 </code></pre>
 <p>→ <code>any*</code></p>
 <p>Prints the elements of a list in order separated by the <code>separator</code> value.</p>
-<h3 id="parameters-5"><a class="header" href="#parameters-5">Parameters</a></h3>
+<h3 id="parameters-6"><a class="header" href="#parameters-6">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The list whose elements to print.</p>
 <p><strong><code>separator</code></strong> ← <code>any</code> <em>(optional)</em> <br/>
@@ -309,7 +323,7 @@ The separator to print between each element.</p>
 <p>→ <code>any</code></p>
 <p>Returns the index of the last occurrence of <code>value</code> in <code>list</code>.
 If no match is found, returns <code>&lt;&gt;</code>.</p>
-<h3 id="parameters-6"><a class="header" href="#parameters-6">Parameters</a></h3>
+<h3 id="parameters-7"><a class="header" href="#parameters-7">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The list to search.</p>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
@@ -328,7 +342,7 @@ The value to search for.</p>
 </code></pre>
 <p>→ <code>list</code></p>
 <p>Calls the supplied function on each item in a list and returns another list with the results in the same order.</p>
-<h3 id="parameters-7"><a class="header" href="#parameters-7">Parameters</a></h3>
+<h3 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The list whose values to map.</p>
 <p><strong><code>map-func</code></strong> ← <code>function -&gt; any</code> <br/>
@@ -352,7 +366,7 @@ The current item to map.</p>
 </code></pre>
 <p>→ <code>any*</code></p>
 <p>A variant of the <code>join</code> function for conveniently formatting comma-separated lists.</p>
-<h3 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h3>
+<h3 id="parameters-9"><a class="header" href="#parameters-9">Parameters</a></h3>
 <p><strong><code>comma</code></strong> ← <code>any</code> <br/>
 The <strong>comma</strong> value. Separates all items except for the last 2. Unused in lists of 2 items or less.</p>
 <p><strong><code>conj</code></strong> ← <code>any</code> <br/>
@@ -411,7 +425,7 @@ the <a href="https://en.wikipedia.org/wiki/Serial_comma">Oxford comma</a> or the
 
 </code></pre>
 <p>Appends a value to the end of a list.</p>
-<h3 id="parameters-9"><a class="header" href="#parameters-9">Parameters</a></h3>
+<h3 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The list to modify.</p>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
@@ -423,7 +437,7 @@ The value to add to the end of <code>list</code>.</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Removes the last value from a list and prints it.</p>
-<h3 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h3>
+<h3 id="parameters-11"><a class="header" href="#parameters-11">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The list to modify.</p>
 <h2 id="insert"><a class="header" href="#insert">insert</a></h2>
@@ -434,7 +448,7 @@ The list to modify.</p>
 <p>Inserts <code>value</code> into a list or map at the position <code>pos</code>.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h3 id="parameters-11"><a class="header" href="#parameters-11">Parameters</a></h3>
+<h3 id="parameters-12"><a class="header" href="#parameters-12">Parameters</a></h3>
 <p><strong><code>collection</code></strong> ← <code>list | map</code> <br/>
 The collection to modify.</p>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
@@ -453,7 +467,7 @@ For lists, this is the index; for maps, this is the key.</p>
 <p>Prints the length of <code>value</code>.</p>
 <p>For <code>string</code>, this is the number of graphemes; for <code>list</code>, <code>map</code>, and <code>range</code>, the number of elements.
 All other value types give a length of 1.</p>
-<h3 id="parameters-12"><a class="header" href="#parameters-12">Parameters</a></h3>
+<h3 id="parameters-13"><a class="header" href="#parameters-13">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The value whose length to retrieve.</p>
 <h2 id="remove"><a class="header" href="#remove">remove</a></h2>
@@ -464,7 +478,7 @@ The value whose length to retrieve.</p>
 <p>Removes the value at the <code>pos</code> from a list or map.</p>
 <p>If <code>collection</code> is a list, <code>pos</code> must be an <code>int</code>.<br>
 If <code>collection</code> is a map, <code>pos</code> may be any non-empty value.</p>
-<h3 id="parameters-13"><a class="header" href="#parameters-13">Parameters</a></h3>
+<h3 id="parameters-14"><a class="header" href="#parameters-14">Parameters</a></h3>
 <p><strong><code>collection</code></strong> ← <code>list | map</code> <br/>
 The collection to modify.</p>
 <p><strong><code>pos</code></strong> ← <code>some</code> <br/>
@@ -478,7 +492,7 @@ The location of the value to remove. Must be of type <code>int</code> for lists.
 </code></pre>
 <p>→ <code>list | string | block | range</code></p>
 <p>Prints a reversed copy of the input collection.</p>
-<h3 id="parameters-14"><a class="header" href="#parameters-14">Parameters</a></h3>
+<h3 id="parameters-15"><a class="header" href="#parameters-15">Parameters</a></h3>
 <p><strong><code>collection</code></strong> ← <code>list | string | block | range</code> <br/>
 The collection to reverse.</p>
 <h3 id="example-3"><a class="header" href="#example-3">Example</a></h3>
@@ -491,7 +505,7 @@ The collection to reverse.</p>
 
 </code></pre>
 <p>Shuffles the elements of a list in-place.</p>
-<h3 id="parameters-15"><a class="header" href="#parameters-15">Parameters</a></h3>
+<h3 id="parameters-16"><a class="header" href="#parameters-16">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <h3 id="cost"><a class="header" href="#cost">Cost</a></h3>
@@ -513,7 +527,7 @@ The input list.</p>
 </code></pre>
 <p>→ <code>list</code></p>
 <p>Creates a shuffled copy of a list.</p>
-<h3 id="parameters-16"><a class="header" href="#parameters-16">Parameters</a></h3>
+<h3 id="parameters-17"><a class="header" href="#parameters-17">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <h3 id="example-5"><a class="header" href="#example-5">Example</a></h3>
@@ -530,7 +544,7 @@ The input list.</p>
 </code></pre>
 <p>Removes random elements from a list in-place until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h3 id="parameters-17"><a class="header" href="#parameters-17">Parameters</a></h3>
+<h3 id="parameters-18"><a class="header" href="#parameters-18">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <p><strong><code>target-size</code></strong> ← <code>int</code> <br/>
@@ -567,7 +581,7 @@ The maximum number of elements to reduce the <code>list</code> to.</p>
 <p>→ <code>list</code></p>
 <p>Returns a copy of a list with random elements removed until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
-<h3 id="parameters-18"><a class="header" href="#parameters-18">Parameters</a></h3>
+<h3 id="parameters-19"><a class="header" href="#parameters-19">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <p><strong><code>target-size</code></strong> ← <code>int</code> <br/>
@@ -598,7 +612,7 @@ The maximum number of elements to reduce the <code>list</code> to.</p>
 </code></pre>
 <p>Merges random adjacent elements in a list using addition until the number of elements in the list reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function does nothing.</p>
-<h3 id="parameters-19"><a class="header" href="#parameters-19">Parameters</a></h3>
+<h3 id="parameters-20"><a class="header" href="#parameters-20">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <p><strong><code>target-size</code></strong> ← <code>int</code> <br/>
@@ -631,7 +645,7 @@ After: `[join: ,\s; &lt;numbers&gt;]\n
 <p>→ <code>list</code></p>
 <p>Returns a copy of a list with random adjacent elements merged using addition until the number of elements in the list copy reaches <code>target-size</code>.
 If the number of elements in the list is less than or equal to <code>target-size</code>, this function simply returns an exact copy of the original list.</p>
-<h3 id="parameters-20"><a class="header" href="#parameters-20">Parameters</a></h3>
+<h3 id="parameters-21"><a class="header" href="#parameters-21">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <p><strong><code>target-size</code></strong> ← <code>int</code> <br/>
@@ -642,7 +656,7 @@ The maximum number of elements to reduce the list copy to.</p>
 
 </code></pre>
 <p>Sorts the elements of a list in-place in ascending order.</p>
-<h3 id="parameters-21"><a class="header" href="#parameters-21">Parameters</a></h3>
+<h3 id="parameters-22"><a class="header" href="#parameters-22">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <h2 id="sorted"><a class="header" href="#sorted">sorted</a></h2>
@@ -652,7 +666,7 @@ The input list.</p>
 </code></pre>
 <p>→ <code>list</code></p>
 <p>Creates a copy of a list with its elements sorted in ascending order.</p>
-<h3 id="parameters-22"><a class="header" href="#parameters-22">Parameters</a></h3>
+<h3 id="parameters-23"><a class="header" href="#parameters-23">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <h2 id="sum"><a class="header" href="#sum">sum</a></h2>
@@ -669,7 +683,7 @@ The input list.</p>
 </code></pre>
 <p>→ <code>any</code></p>
 <p>Removes the value at <code>pos</code> from a list or map and prints it.</p>
-<h3 id="parameters-23"><a class="header" href="#parameters-23">Parameters</a></h3>
+<h3 id="parameters-24"><a class="header" href="#parameters-24">Parameters</a></h3>
 <p><strong><code>collection</code></strong> ← <code>list | map</code> <br/>
 The input collection.</p>
 <p><strong><code>pos</code></strong> ← <code>some</code> <br/>
@@ -685,7 +699,7 @@ If <code>collection</code> is a <code>list</code>, this argument must be an <cod
 <p>→ <code>list</code></p>
 <p>Matches each item in a list to a map and returns a list with the corresponding map values. 
 Values that have no corresponding key in the map are passed through as-is.</p>
-<h3 id="parameters-24"><a class="header" href="#parameters-24">Parameters</a></h3>
+<h3 id="parameters-25"><a class="header" href="#parameters-25">Parameters</a></h3>
 <p><strong><code>list</code></strong> ← <code>list</code> <br/>
 The input list.</p>
 <p><strong><code>map</code></strong> ← <code>map</code> <br/>
@@ -737,7 +751,7 @@ Decoded: \&quot;&lt;decoded-message&gt;\&quot;\n
 <p>→ <code>list</code></p>
 <p>Returns a new list that combines each pair of items from the two input lists using the specified function.
 The lists do not need to be the same length; if there is a difference, it will be made up with empties.</p>
-<h3 id="parameters-25"><a class="header" href="#parameters-25">Parameters</a></h3>
+<h3 id="parameters-26"><a class="header" href="#parameters-26">Parameters</a></h3>
 <p><strong><code>list-a</code></strong> ← <code>list</code> <br/>
 A list containing the left-hand values of the zip.</p>
 <p><strong><code>list-b</code></strong> ← <code>list</code> <br/>
