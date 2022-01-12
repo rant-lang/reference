@@ -256,6 +256,10 @@ An accessor path may only start with a variable name or anonymous value expressi
 <h2 id="r0024-nothing-to-pipe"><a class="header" href="#r0024-nothing-to-pipe">R0024 (nothing to pipe)</a></h2>
 <p><em>Error</em></p>
 <p>A function call chain attempted to reference a piped value in the first call.</p>
+<h2 id="r0028-fallible-optional-parameter-access"><a class="header" href="#r0028-fallible-optional-parameter-access">R0028 (fallible optional parameter access)</a></h2>
+<p><em>Error</em></p>
+<p>A accessor references an optional parameter, but the parameter has no fallback expression and the accessor in question provides no fallback.
+Safe access cannot be guaranteed.</p>
 <h2 id="r0100-constant-reassignment"><a class="header" href="#r0100-constant-reassignment">R0100 (constant reassignment)</a></h2>
 <p><em>Error</em></p>
 <p>A setter attempted to reassign a constant.</p>
@@ -290,10 +294,6 @@ An accessor path may only start with a variable name or anonymous value expressi
 <p><em>Warning</em></p>
 <p>A function defined inside of a collection was marked as constant; 
 this is not supported and the function will be mutable.</p>
-<h2 id="r1005-fallible-optional-parameter-access"><a class="header" href="#r1005-fallible-optional-parameter-access">R1005 (fallible optional parameter access)</a></h2>
-<p><em>Warning</em></p>
-<p>A accessor references an optional parameter, but the parameter has no fallback expression and the accessor in question provides no fallback.
-This means that if no argument is passed to that parameter, accessors referencing it will raise a runtime error.</p>
 <h2 id="r2100-file-not-found"><a class="header" href="#r2100-file-not-found">R2100 (file not found)</a></h2>
 <p><em>Error</em></p>
 <p>A file requested by the compiler could not be found.</p>
