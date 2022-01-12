@@ -36,6 +36,7 @@
     - [@if, @elseif, @else](proposals/if-elseif-else.md)
     - [@is*](proposals/is.md)
     - [Special variables](proposals/special-variables.md)
+    - [Auto-hinted variables](proposals/auto-hinted-vars.md)
 - [Standard Library](stdlib.md)
     - [General](stdlib/general.md)
     - [Attributes & Control Flow](stdlib/control-flow.md)
