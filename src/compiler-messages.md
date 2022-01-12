@@ -161,6 +161,13 @@ A slice expression was found that includes an invalid bound value.
 
 A function call chain attempted to reference a piped value in the first call.
 
+## R0028 (fallible optional parameter access)
+
+*Error*
+
+A accessor references an optional parameter, but the parameter has no fallback expression and the accessor in question provides no fallback.
+Safe access cannot be guaranteed.
+
 ## R0100 (constant reassignment)
 
 *Error*
@@ -227,13 +234,6 @@ A function was defined with an empty body (i.e. it doesn't do anything).
 
 A function defined inside of a collection was marked as constant; 
 this is not supported and the function will be mutable.
-
-## R1005 (fallible optional parameter access)
-
-*Warning*
-
-A accessor references an optional parameter, but the parameter has no fallback expression and the accessor in question provides no fallback.
-This means that if no argument is passed to that parameter, accessors referencing it will raise a runtime error.
 
 ## R2100 (file not found)
 
