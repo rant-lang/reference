@@ -198,11 +198,11 @@ The second inclusive bound of the random numbers.
 The amount of numbers to generate.
 
 
-## shred
+## rand-list-sum
 
 ```rant
 
-[%shred: input; count; variance]
+[%rand-list-sum: input; count; variance]
 
 ```
 &rarr; `list`
@@ -212,10 +212,10 @@ Generates a list of `count` random numbers, whose sum equals `input`, and with a
 ### Parameters
 
 **`input`** &larr; `int | float` <br/>
-The input number to shred.
+The input number to that the output numbers should add up to.
 
 **`count`** &larr; `int` <br/>
-The number of parts to shred `input` into.
+The amount of numbers to generate.
 
 **`variance`** &larr; `int | float` <br/>
 The maximum absolute difference between any two generated numbers. 
@@ -228,8 +228,8 @@ Raises an error if `count` is less than 1.
 
 ```rant
 # Generate and print a list of 5 random numbers that add up to 1000
-<$parts = [shred:1000;5;200]>
-[join:" + ";<parts>] = [sum:<parts>]
+<$parts = [rand-list-sum: 1000; 5; 200]>
+[join: <parts>; \s+\s] = [sum: <parts>]
 
 ##
 Output:
