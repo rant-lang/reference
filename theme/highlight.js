@@ -51,7 +51,7 @@ let rant_def = {
       {
         // Map operator
         className: 'keyword',
-        begin: /\@(return|break|continue|weight|on)\b/
+        begin: /\@(return|break|continue|weight|on|text)\b/
       },
       {
         // Pipe operator
