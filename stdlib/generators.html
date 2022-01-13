@@ -287,26 +287,26 @@ The first inclusive bound of the random numbers.</p>
 The second inclusive bound of the random numbers.</p>
 <p><strong><code>n</code></strong> ← <code>int</code> <br/>
 The amount of numbers to generate.</p>
-<h2 id="shred"><a class="header" href="#shred">shred</a></h2>
+<h2 id="rand-list-sum"><a class="header" href="#rand-list-sum">rand-list-sum</a></h2>
 <pre><code class="language-rant">
-[%shred: input; count; variance]
+[%rand-list-sum: input; count; variance]
 
 </code></pre>
 <p>→ <code>list</code></p>
 <p>Generates a list of <code>count</code> random numbers, whose sum equals <code>input</code>, and with a maximum absolute difference of <code>variance</code>.</p>
 <h3 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h3>
 <p><strong><code>input</code></strong> ← <code>int | float</code> <br/>
-The input number to shred.</p>
+The input number to that the output numbers should add up to.</p>
 <p><strong><code>count</code></strong> ← <code>int</code> <br/>
-The number of parts to shred <code>input</code> into.</p>
+The amount of numbers to generate.</p>
 <p><strong><code>variance</code></strong> ← <code>int | float</code> <br/>
 The maximum absolute difference between any two generated numbers. </p>
 <h3 id="errors"><a class="header" href="#errors">Errors</a></h3>
 <p>Raises an error if <code>count</code> is less than 1.</p>
 <h3 id="example-5"><a class="header" href="#example-5">Example</a></h3>
 <pre><code class="language-rant"># Generate and print a list of 5 random numbers that add up to 1000
-&lt;$parts = [shred:1000;5;200]&gt;
-[join:&quot; + &quot;;&lt;parts&gt;] = [sum:&lt;parts&gt;]
+&lt;$parts = [rand-list-sum: 1000; 5; 200]&gt;
+[join: &lt;parts&gt;; \s+\s] = [sum: &lt;parts&gt;]
 
 ##
 Output:
