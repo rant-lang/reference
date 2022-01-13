@@ -56,6 +56,33 @@ Raises a runtime error if the lengths of `keys` and `values` do not match.
 ##
 ```
 
+## chunks
+
+```rant
+
+[%chunks: collection; count]
+
+```
+&rarr; `list`
+
+Splits `collection` into `count` sub-slices and prints a new list containing the results, making a best-effort to make each chunk the same size. 
+
+If the contents of `collection` don't divide evenly into `count` chunks, the function will produce larger chunks first, then smaller chunks with the remaining content.
+
+If `count` is greater than the size of `collection`, the chunk size will be 1 and the output list will be padded with empty elements.
+
+### Parameters
+
+**`collection`** &larr; `list | string | range` <br/>
+The collection to split into chunks.
+
+**`count`** &larr; `int` <br/>
+The number of chunks to produce.
+
+### Errors
+
+Raises a runtime error if `collection` cannot be sliced.
+
 
 ## clear
 
