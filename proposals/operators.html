@@ -215,10 +215,10 @@ This proposal discusses the addition of C-style operators (some aliased due to s
 # -&gt; 65536
 </code></pre>
 <h3 id="negation"><a class="header" href="#negation">Negation</a></h3>
-<p><code>-</code> <em>(unary prefix operator)</em></p>
+<p><code>@neg</code> <em>(unary prefix operator)</em></p>
 <p>Gets the negated value of the operand and returns the result.</p>
 <pre><code class="language-rant">&lt;$x = 123&gt;
--&lt;x&gt;
+@neg &lt;x&gt;
 # -&gt; -123
 </code></pre>
 <h2 id="logic-operators"><a class="header" href="#logic-operators">Logic operators</a></h2>
@@ -243,7 +243,7 @@ Returns <code>@false</code> if both operands are <code>@false</code>, or if one 
 &lt;&gt; @and 0           # -&gt; &lt;&gt;
 </code></pre>
 <h3 id="logical-or"><a class="header" href="#logical-or">Logical OR</a></h3>
-<p><code>@or</code> <em>(binary infix opertor)</em></p>
+<p><code>@or</code> <em>(binary infix operator)</em></p>
 <p>Returns <code>@true</code> if one or both operands are <code>@true</code>.
 Returns <code>@false</code> if both operands are <code>@false</code>.</p>
 <p>More generally: returns LHS if LHS is truthy; otherwise, returns RHS.</p>
@@ -378,7 +378,7 @@ Returns <code>@false</code> if both operands are <code>@false</code>.</p>
 The table below lists operator sets in order of descending precedence.
 Operators in the same row have the same precedence.</p>
 <table><thead><tr><th>Operators</th><th>Category</th></tr></thead><tbody>
-<tr><td><code>@not</code>, <code>-</code> (prefix)</td><td>Prefix</td></tr>
+<tr><td><code>@not</code>, <code>@neg</code></td><td>Prefix</td></tr>
 <tr><td><code>**</code></td><td>Exponential</td></tr>
 <tr><td><code>*</code>, <code>/</code>, <code>%</code></td><td>Multiplicative</td></tr>
 <tr><td><code>+</code>, <code>-</code> (infix)</td><td>Additive</td></tr>
