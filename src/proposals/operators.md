@@ -1,5 +1,7 @@
 # Operators
 
+{{ #include _proposal_msg.md }}
+
 Rant currently lacks built-in arithmetic, logic, and comparison operators. 
 This proposal discusses the addition of C-style operators (some aliased due to syntax limitations).
 
