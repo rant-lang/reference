@@ -77,13 +77,13 @@ Raises LHS to the RHS power and returns the result.
 
 ### Negation
 
-`-` *(unary prefix operator)*
+`@neg` *(unary prefix operator)*
 
 Gets the negated value of the operand and returns the result.
 
 ```rant
 <$x = 123>
--<x>
+@neg <x>
 # -> -123
 ```
 
@@ -119,7 +119,7 @@ This operator is short-circuiting: if LHS is falsy, RHS will not be evaluated.
 
 ### Logical OR
 
-`@or` *(binary infix opertor)*
+`@or` *(binary infix operator)*
 
 Returns `@true` if one or both operands are `@true`.
 Returns `@false` if both operands are `@false`.
@@ -320,7 +320,7 @@ Operators in the same row have the same precedence.
 
 | Operators                  | Category       |
 |----------------------------|----------------|
-| `@not`, `-` (prefix)       | Prefix         |
+| `@not`, `@neg`             | Prefix         |
 | `**`                       | Exponential    |
 | `*`, `/`, `%`              | Multiplicative |
 | `+`, `-` (infix)           | Additive       |
