@@ -49,9 +49,9 @@ let rant_def = {
         }]
       },
       {
-        // Map operator
+        // Keywords
         className: 'keyword',
-        begin: /\@(return|break|continue|weight|on|text)\b/
+        begin: /\@(return|break|continue|weight|on|text|true|false|not|lt|le|gt|ge|eq|neq|and|nor|xor|or|nand)\b/
       },
       {
         // Pipe operator
