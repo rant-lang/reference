@@ -323,7 +323,7 @@ Operators in the same row have the same precedence.
 | `@not`, `@neg`             | Prefix         |
 | `**`                       | Exponential    |
 | `*`, `/`, `%`              | Multiplicative |
-| `+`, `-` (infix)           | Additive       |
+| `+`, `-`                   | Additive       |
 | `@lt`, `@le`, `@gt`, `@ge` | Relational     |
 | `@eq`, `@neq`              | Equality       |
 | `@and`, `@nor`             | Conjunctive    |
