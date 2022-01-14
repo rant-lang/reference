@@ -35,7 +35,6 @@
     - [Modules](modules.md)
 - [🚧 Proposed Features]()
     - [@if, @elseif, @else](proposals/if-elseif-else.md)
-    - [@is*](proposals/is.md)
     - [Special variables](proposals/special-variables.md)
     - [Operators](proposals/operators.md)
 - [Standard Library](stdlib.md)
