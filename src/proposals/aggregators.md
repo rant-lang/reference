@@ -38,6 +38,10 @@ Same as `@edit` but automatically inserts `@in` at the start of the expression.
 }
 ```
 
+## Precedence
+
+Aggregators have lower precedence than all regular operators.
+
 
 ## Remarks
 
