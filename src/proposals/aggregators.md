@@ -38,10 +38,6 @@ Same as `@edit` but automatically inserts `@in` at the start of the expression.
 }
 ```
 
-## Precedence
-
-Aggregators have lower precedence than all regular operators. 
-They will treat everything already printed in the outer scope as the LHS.
 
 ## Remarks
 
