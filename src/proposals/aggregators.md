@@ -45,5 +45,4 @@ They will treat everything already printed in the outer scope as the LHS.
 
 ## Remarks
 
-Aggregators in the global scope behave differently:
-the first aggregator output will be used as the first operand and will not perform any operation.
+Aggregators are not permitted in the global scope.
