@@ -37,6 +37,7 @@
     - [@if, @elseif, @else](proposals/if-elseif-else.md)
     - [Special variables](proposals/special-variables.md)
     - [Operators](proposals/operators.md)
+    - [Aggregators](proposals/aggregators.md)
 - [Standard Library](stdlib.md)
     - [General](stdlib/general.md)
     - [Attributes & Control Flow](stdlib/control-flow.md)
