@@ -1,5 +1,16 @@
 # Standard Library: Attributes & Control flow
 
+## copy-attrs
+
+```rant
+
+[%copy-attrs]
+
+```
+
+Pushes a new attribute frame with identical contents to the previous top frame.
+
+
 ## count-attrs
 
 ```rant
@@ -235,13 +246,24 @@ If it's a `string`, it has to be one of the selector modes accepted by `[mksel]`
 }
 ```
 
-### [sep: separator]
+## sep
+
+```rant
+
+[%sep: separator]
+
+```
 
 Sets the separator value for the next block to `separator`.
-The value of `separator` may be a string, number, or function.
-If it is a function, it will be called separately for each usage and its return value will be printed.
+The value of `separator` may be of any type.
 
-#### Examples
+### Parameters
+
+**`separator`** &larr; `any` <br/>
+The separator value. If it is a `function`, it will be called separately for each usage and its return value will be printed.
+
+
+### Examples
 
 ```rant
 # Print comma-separated list of numbers 1-10
@@ -255,7 +277,7 @@ If it is a function, it will be called separately for each usage and its return 
 
 ```rant
 # Print list of numbers 1-10 separated by random sequence of spaces and newlines
-[rep:10][sep:*{\n|\s}]{[step]}
+[rep:10][sep:[?]{{\n|\s}}]{[step]}
 
 ##
   Output:

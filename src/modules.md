@@ -12,10 +12,10 @@ Below is a basic example of a very simple module:
 ```rant
 # lol.rant: Laughter Generation Module
 
-<$module = @()>
+<%module = @()>
 
-[$module/cackle: len?] {
-  [rep:[alt:<len>;2]]{h{a|e|ee|ue|aa|o}}!!!
+[$module/cackle: len ? 2] {
+  [rep: <len>] {h{a|e|ee|ue|aa|o}}!!!
 }
 
 <module>
@@ -23,13 +23,13 @@ Below is a basic example of a very simple module:
 
 ## Importing and using modules
 
-A module can be imported using the `[require]` function.
+A module can be imported using the `@require` keyword or, less commonly, the `[require]` stdlib function.
 For this example, we'll import the `lol` module previously shown.
 
 ```rant
 # Looks for `lol.rant` and imports it as map variable `lol`.
 # You don't need to specify the file extension.
-[require: lol]
+@require "lol"
 
 # Call the `[cackle]` function from the module
 [lol/cackle: 16]
@@ -45,7 +45,7 @@ Rant needs to compile modules before they can be imported. If a module fails to 
 
 ## Where Rant looks for modules
 
-When you run `[require]`, Rant looks for the module in the following locations in-order:
+When you use `@require`, Rant looks for the module in the following locations in-order:
 
 1. The requesting program's file location
     * Skipped if the program was not loaded from a file
@@ -58,14 +58,14 @@ When you run `[require]`, Rant looks for the module in the following locations i
 If Rant cannot locate a module with a matching path and name, 
 it will trigger a runtime error.
 
-### Relative paths in `[require]`
+### Relative paths in `@require`
 
-The `[require]` function can also accept a relative path to a module.
+`@require` can also accept a relative path to a module.
 This makes it possible to access modules in subfolders of any of the module search locations.
 
 For example, if your application has a `rant_modules` subfolder in its main directory, you can import modules from it like this:
 
 ```rant
 # Imports `my-module`
-[require:rant_modules/my-module]
+@require "rant_modules/my-module"
 ```

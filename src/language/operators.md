@@ -1,9 +1,6 @@
 # Operators
 
-{{ #include _proposal_msg.md }}
-
-Rant currently lacks built-in arithmetic, logic, and comparison operators. 
-This proposal discusses the addition of C-style operators (some aliased due to syntax limitations).
+Rant has several built-in arithmetic, logic, and comparison operators.
 
 Throughout this page, the abbreviations RHS (right-hand side) and LHS (left-hand side) will be used to refer to binary operands.
 
@@ -87,6 +84,7 @@ Gets the negated value of the operand and returns the result.
 # -> -123
 ```
 
+Note: you may also use the minus (`-`) symbol when negating numbers (e.g. `-123`).
 
 ## Logic operators
 

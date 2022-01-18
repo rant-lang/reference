@@ -61,7 +61,7 @@ An unclosed list expression was found. The expression has an opening parenthesis
 
 An unclosed map expression was found. The expression has an opening parenthesis (`(`) but no closing parenthesis (`)`).
 
-## R0009 (invalid parameter order)
+## R0021 (invalid parameter order)
 
 *Error*
 
@@ -74,94 +74,94 @@ The expected ordering is:
 1. optional parameters
 1. variadic parameter
 
-## R0010 (missing function body)
+## R0022 (missing function body)
 
 *Error*
 
 A function definition was found that has a signature but no body.
 
-## R0011 (unclosed function body)
+## R0023 (unclosed function body)
 
 *Error*
 
 A function body was found that has an opening brace (`{`) but no closing brace (`}`).
 
-## R0012 (invalid parameter)
+## R0024 (invalid parameter)
 
 *Error*
 
 A function signature contains a parameter with an invalid name.
 
-## R0013 (duplicate parameter)
+## R0025 (duplicate parameter)
 
 *Error*
 
 A function parameter was found with a name matching a previous parameter in the same signature.
 
-## R0014 (multiple variadic parameters)
+## R0026 (multiple variadic parameters)
 
 *Error*
 
 Multiple variadic parameters were found on the same function signature. 
 Functions may only have at most one variadic parameter.
 
-## R0015 (dynamic key with multiple elements)
+## R0040 (dynamic key with multiple elements)
 
 *Error*
 
 A dynamic key block was found with multiple elements. Dynamic keys may only contain a single element.
 
-## R0016 (function body with multiple elements)
+## R0041 (function body with multiple elements)
 
 *Error*
 
 A function body block was found with multiple elements. Function bodies may only contain a single element.
 
-## R0018 (anonymous value assignment)
+## R0060 (anonymous value assignment)
 
 *Error*
 
 A setter was found attempting to set a value on an anonymous expression.
 
-## R0019 (missing identifier)
+## R0061 (missing identifier)
 
 *Error*
 
 An accessor was found that has no identifier.
 
-## R0020 (invalid identifier)
+## R0062 (invalid identifier)
 
 *Error*
 
 An accessor with an invalid identifier was found.
 
-## R0021 (accessor starts with index)
+## R0063 (accessor starts with index)
 
 *Error*
 
 An accessor was found that has an index for the first part of the path.
 An accessor path may only start with a variable name or anonymous value expression.
 
-## R0022 (accessor starts with slice)
+## R0064 (accessor starts with slice)
 
 *Error*
 
 An accessor was found that has a slice for the first part of the path.
 An accessor path may only start with a variable name or anonymous value expression.
 
-## R0023 (invalid slice bound)
+## R0065 (invalid slice bound)
 
 *Error*
 
 A slice expression was found that includes an invalid bound value.
 
-## R0024 (nothing to pipe)
+## R0066 (nothing to pipe)
 
 *Error*
 
 A function call chain attempted to reference a piped value in the first call.
 
-## R0028 (fallible optional parameter access)
+## R0067 (fallible optional parameter access)
 
 *Error*
 
