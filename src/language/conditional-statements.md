@@ -24,7 +24,7 @@ Conditional statements are constructed using the `@if`, `@elseif`, and `@else` k
 
 **`@if`-`@else` chaining**
 ```rant
-@if @CONDITION1 {
+@if @CONDITION1: {
     # do something when <condition> is true
 } @else: {
     # do something when <condition> is false
@@ -33,13 +33,13 @@ Conditional statements are constructed using the `@if`, `@elseif`, and `@else` k
 
 **`@if`-`@elseif`-`@else` chaining**
 ```rant
-@if CONDITION1 {
+@if CONDITION1: {
     # ...
-} @elseif CONDITION2 {
+} @elseif CONDITION2: {
     # ...
-} @elseif CONDITION3 {
+} @elseif CONDITION3: {
     # ...
-} @else {
+} @else: {
     # ...
 }
 ```
