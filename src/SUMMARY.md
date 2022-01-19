@@ -39,7 +39,7 @@
 - [🚧 Proposed Features]()
     - [Special variables](proposals/special-variables.md)
     - [Aggregators](proposals/aggregators.md)
-    - [Capture control](proposals/capture-control.md)
+    - [Non-consuming blocks](proposals/non-consuming-blocks.md)
 - [Standard Library](stdlib.md)
     - [General](stdlib/general.md)
     - [Attributes & Control Flow](stdlib/control-flow.md)

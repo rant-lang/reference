@@ -10,15 +10,15 @@ Aggregators are special operators for transforming the parent scope's output.
 
 Applies a custom operation to the parent output.
 
-The parent scope's current output is accessible via `@in`.
+The parent scope's current output is accessible via `@it`.
 
 ```rant
 [%factorial: x] {
-    1 [rep: <x>] {@edit @in * [step]}
+    1 [rep: <x>] {@edit @it * [step]}
 }
 
 [%fibonacci: x] {
-    () [rep: <x>] {@edit @in (<@in/-2 ? 0> + <@in/-1 ? 1>) }
+    () [rep: <x>] {@edit @it (<@it/-2 ? 0> + <@it/-1 ? 1>) }
 }
 ```
 
@@ -26,7 +26,7 @@ The parent scope's current output is accessible via `@in`.
 
 `@apply` (*right-associative prefix operator)*
 
-Same as `@edit` but automatically inserts `@in` at the start of the expression.
+Same as `@edit` but automatically inserts `@it` at the start of the expression.
 
 ```rant
 [%factorial: x] {
@@ -34,7 +34,7 @@ Same as `@edit` but automatically inserts `@in` at the start of the expression.
 }
 
 [%fibonacci: x] {
-    () [rep: <x>] {@apply (<@in/-2 ? 0> + <@in/-1 ? 1>) }
+    () [rep: <x>] {@apply (<@it/-2 ? 0> + <@it/-1 ? 1>) }
 }
 ```
 

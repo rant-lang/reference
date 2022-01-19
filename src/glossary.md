@@ -131,3 +131,13 @@ A setter is an accessor type that writes to a variable or collection.
 ### Sink
 
 A compile-time flag that marks the following program element as non-text.
+
+### Varity
+
+Varity is the classification of a function parameter relating to the number of values it expects and can accept.
+
+Rant has four varity types:
+* **Required** (accepts one value)
+* **Optional** (accepts zero or one values)
+* **Optional-variadic** (accepts zero or more values)
+* **Required-variadic** (accepts one or more values)
