@@ -1,7 +1,7 @@
 # Summary
 
 [Introduction](intro.md)
-- [Language Features](language.md)
+- [Language](language.md)
     - [Text](language/text.md)
     - [Blocks](language/blocks.md)
     - [Functions](language/functions.md)
@@ -27,8 +27,8 @@
         - [Globals & Descoping](language/accessors/globals-descoping.md)
         - [Depth Operator](language/accessors/depth-operator.md)
     - [Operators](language/operators.md)
-    - [Conditional statements](language/conditional-statements.md)
-- [Variables & Data Types](variables-types.md)
+    - [Conditional expressions](language/conditional-expressions.md)
+- [Variables & Types](variables-types.md)
 - [Runtime Features](runtime.md)
     - [Attributes](runtime/attributes.md)
     - [Formatters](runtime/formatters.md)
@@ -37,9 +37,10 @@
         - [Whitespace](runtime/whitespace-formatter.md)
     - [Modules](modules.md)
 - [🚧 Proposed Features]()
-    - [Special variables](proposals/special-variables.md)
-    - [Aggregators](proposals/aggregators.md)
-    - [Non-consuming blocks](proposals/non-consuming-blocks.md)
+    - [🚧 Attribute keywords](proposals/attribute-keywords.md)
+    - [🚧 Aggregator](proposals/aggregator.md)
+    - [🚧 Protected blocks](proposals/protected-blocks.md)
+    - [🚧 Assignment pipe](proposals/assignment-pipe.md)
 - [Standard Library](stdlib.md)
     - [General](stdlib/general.md)
     - [Attributes & Control Flow](stdlib/control-flow.md)
@@ -57,6 +58,7 @@
 
 ---
 
-[List of compiler messages](compiler-messages.md)
-[Comparison of Rant 3 and 4](rant-3-vs-4.md)
-[Glossary](glossary.md)
+- [Appendix]()
+    - [List of compiler messages](compiler-messages.md)
+    - [Comparison of Rant 3 and 4](rant-3-vs-4.md)
+    - [Glossary](glossary.md)

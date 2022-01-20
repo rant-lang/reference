@@ -7,44 +7,46 @@ It is important to note that Rant 3 code is _not_ forwards-compatible with Rant 
 
 ## Feature breakdown
 
-| Feature name                                |              Rant 3              |              Rant 4               |
-|---------------------------------------------|:--------------------------------:|:---------------------------------:|
-| Runtime platform                            |            .NET-only             |              Native               |
-| Blocks                                      |             &#x2705;             |             &#x2705;              |
-| Block weights                               |             &#x2705;             |             &#x2705;              |
-| Selectors                                   |      🤔<br/>*(named only)*       |             &#x2705;              |
-| Queries                                     |             &#x2705;             |             &#x274c;              |
-| Output channels                             |             &#x2705;             |             &#x274c;              |
-| Variables                                   |   🤔<br/> *(via stdlib only)*    | &#x2705;<br/>*(language support)* |
-| Variable access fallbacks                   |             &#x274c;             |             &#x2705;              |
-| Named functions                             |             &#x2705;             |             &#x2705;              |
-| Anonymous functions                         |             &#x274c;             |             &#x2705;              |
-| Piping                                      |             &#x274c;             |             &#x2705;              |
-| Variable capture in functions               |             &#x274c;             |             &#x2705;              |
-| Variadic function parameters                | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
-| Optional function parameters                | 🤔<br/>*(stdlib functions only)* |             &#x2705;              |
-| Parameter spread notation                   |             &#x274c;             |             &#x2705;              |
-| Collection initializers                     |             &#x274c;             |             &#x2705;              |
-| Stored blocks                               |             &#x274c;             |             &#x2705;              |
-| Slice notation                              |             &#x274c;             |             &#x2705;              |
-| Dependency management                       |    &#x2705;<br/>*(packages)*     |     &#x2705;<br/>*(modules)*      |
-| Resource management                         |    &#x2705;<br/>*(packages)*     |   &#x2705;<br/>*(data sources)*   |
-| Print support for non-string values         |             &#x274c;             |             &#x2705;              |
-| Automatic number formatting                 |             &#x2705;             |             &#x2705;              |
-| Explicit global accessors                   |             &#x274c;             |             &#x2705;              |
-| Explicit parent scope accessors (descoping) |             &#x274c;             |             &#x2705;              |
-| Unit type                                   |             &#x274c;             |             &#x2705;              |
-| Babylonian cuneiform support                |             &#x274c;             |             &#x2705;              |
+| Feature name                                |          Rant 3           |            Rant 4             |
+|---------------------------------------------|:-------------------------:|:-----------------------------:|
+| Runtime platform                            |         .NET-only         |            Native             |
+| Blocks                                      |         &#x2705;          |           &#x2705;            |
+| Block weights                               |         &#x2705;          |           &#x2705;            |
+| Selectors                                   |      *(named only)*       |           &#x2705;            |
+| Queries                                     |         &#x2705;          |           &#x274c;            |
+| Output channels                             |         &#x2705;          |           &#x274c;            |
+| Hints/sinks                                 |         &#x274c;          |           &#x2705;            |
+| Variables                                   |    *(via stdlib only)*    |           &#x2705;            |
+| Variable access fallbacks                   |         &#x274c;          |           &#x2705;            |
+| Operators                                   |    *(via stdlib only)*    |           &#x2705;            |
+| Named functions                             |         &#x2705;          |           &#x2705;            |
+| Anonymous functions                         |         &#x274c;          |           &#x2705;            |
+| Piping                                      |         &#x274c;          |           &#x2705;            |
+| Variable capture in functions               |         &#x274c;          |           &#x2705;            |
+| Variadic function parameters                | *(stdlib functions only)* |           &#x2705;            |
+| Optional function parameters                | *(stdlib functions only)* |           &#x2705;            |
+| Parameter spread notation                   |         &#x274c;          |           &#x2705;            |
+| Collection initializers                     |         &#x274c;          |           &#x2705;            |
+| Conditional expressions                     |         &#x274c;          |           &#x2705;            |
+| Slice notation                              |         &#x274c;          |           &#x2705;            |
+| Dependency management                       | &#x2705;<br/>*(packages)* |   &#x2705;<br/>*(modules)*    |
+| Resource management                         | &#x2705;<br/>*(packages)* | &#x2705;<br/>*(data sources)* |
+| Print support for non-string values         |         &#x274c;          |           &#x2705;            |
+| Automatic number formatting                 |         &#x2705;          |           &#x2705;            |
+| Explicit global accessors                   |         &#x274c;          |           &#x2705;            |
+| Explicit parent scope accessors (descoping) |         &#x274c;          |           &#x2705;            |
+| Unit type                                   |         &#x274c;          |           &#x2705;            |
+| Babylonian cuneiform support                |         &#x274c;          |           &#x2705;            |
 
 <p align="center">
-(&#x2705; = implemented; &#x274c; = not implemented; 🤔 = limited implementation)
+(&#x2705; = implemented; &#x274c; = not implemented)
 </p>
 
 ## Multiple outputs
 
 Rant 3 allowed programs to produce multiple outputs via "channels." This was mostly a workaround for the lack of collection types at the time this was implemented, but
 proved to be more confusing than useful due to the inability of inner program scopes to make use of more than one output. 
-This was ultimately scrapped for Rant 4 in favor of simply printing a collection, such as a `list` or `map`.
+This was ultimately scrapped for Rant 4 in favor of simply using a collection type such as `list` or `map`.
 
 
 ## Resource management
@@ -64,9 +66,9 @@ In Rant 4, this has been removed in favor of using data sources to handle this u
 
 ## Variables
 
-Variables in Rant 3 had no special syntax, so they had to be interacted with through standard library functions like `[v]`, `[vn]`, and `[vs]`.
+Variables in Rant 3 could only be interacted with through standard library functions like `[v]`, `[vn]`, and `[vs]`.
 
-Rant 4 replaces this clunky system with **accessors**, providing a rich and flexible interface to read and write variables of all types.
+Rant 4 replaces this clunky system with **accessors**, providing a unified, language-level interface for reading and writing variables.
 
 ### Example
 
@@ -80,7 +82,7 @@ Rant 4 replaces this clunky system with **accessors**, providing a rich and flex
 
 # Rant 4 equivalent
 <$foo = 1; $bar = 2>
-[add: <foo>; <bar>]
+<foo> + <bar>
 # -> 3
 ```
 
@@ -108,33 +110,6 @@ Rant 3 had `list` and `map` types, but they could only be created through standa
 This produced code that was hard to read and unavoidably coupled collection data to variables, greatly limiting their usefulness.
 
 Rant 4 includes collection initializer syntax, which enables you to create lists and maps without requiring function calls or temporary variables.
-
-
-## Stored blocks
-
-Rant 3 allowed blocks to be passed as values using `lazy parameters`, which were the closest thing the language had to lambdas.
-This allowed them to be resolved multiple times, but their use was limited to within the body of the function on which the parameter was attached.
-
-In Rant 4, blocks can be marked as "deferred" to store them as a value, allowing them to be treated as values and resolved later on using the `[resolve]` function.
-
-### Example
-
-```rant
-# Rant 3 example of resolving a block twice
-[$[do-it-twice: @expr]:
-    [rep: 2]
-    {[arg: expr]}
-]
-[$do-it-twice: {{heads|tails}\n}]
-
-
-# Rant 4 equivalent
-[$do-it-twice: expr] {
-    [rep: 2]
-    [resolve: <expr>]
-}
-[do-it-twice: <>{{heads|tails}\n}]
-```
 
 
 ## Variadic and optional parameters

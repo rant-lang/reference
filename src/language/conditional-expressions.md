@@ -1,6 +1,6 @@
-# Conditional statements
+# Conditional expressions
 
-Conditional statements are constructed using the `@if`, `@elseif`, and `@else` keywords.
+Conditional expressions are constructed using the `@if`, `@elseif`, and `@else` keywords.
 
 ## Syntax
 

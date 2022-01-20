@@ -15,3 +15,7 @@ The `@require` keyword is used to import a module.
 # Imports as 'tm'
 @require tm: "test-module"
 ```
+
+## See Also
+
+* [Modules](./modules.md)

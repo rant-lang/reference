@@ -184,13 +184,13 @@ A definition attempted to redefine a constant in the same scope.
 
 *Error*
 
-A sink operator was found before a program element that does not support sinking.
+A sink operator was found before an expression unit that does not support sinking.
 
 ## R0131 (invalid hint)
 
 *Error*
 
-A hint operator was found before a program element that does not support hinting.
+A hint operator was found before an expression unit that does not support hinting.
 
 ## R0200 (invalid keyword)
 

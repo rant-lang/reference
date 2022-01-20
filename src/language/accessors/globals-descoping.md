@@ -70,8 +70,8 @@ For example, `<^^foo>` is a 2-descope, `<^^^foo>` is a 3-descope, and so on.
 While the compiler imposes no explicit limit on descope depth, use cases for large descope depths are rare and it is recommended to avoid them when possible.
 
 ```rant
-# An example of a 360-descope.
-<^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# A 360-descope.
+< ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
