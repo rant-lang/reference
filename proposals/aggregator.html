@@ -178,10 +178,15 @@
 <h2 id="edit"><a class="header" href="#edit">@edit</a></h2>
 <p><code>@edit</code> <em>(right-associative prefix operator)</em></p>
 <p>Applies a custom operation to the parent output.</p>
-<p>The parent scope's current output is accessible via the variable designated after the keyword.</p>
+<p>The parent scope's current output is accessible via the variable designated after the keyword, if specified.</p>
 <p><code>@edit</code> must appear first in an expression. It is not permitted in the global scope.</p>
-<pre><code class="language-rant">&quot;example&quot; { @edit x: `&lt;x&gt; `&lt;x&gt; }
+<pre><code class="language-rant"># Aggregate variable &lt;x&gt; contains the parent's current output
+&quot;example&quot; { @edit x: `&lt;x&gt; `&lt;x&gt; }
 # -&gt; example example
+
+# No aggregate variable specified
+&quot;example&quot; { @edit: &quot;overwritten&quot; }
+# -&gt; overwritten
 </code></pre>
 <h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
 <p><strong>Using an aggregator to compute a factorial</strong></p>

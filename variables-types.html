@@ -216,17 +216,19 @@ which has only one possible value, represented in Rant by the literal <code>&lt;
 # -&gt; 3.14
 </code></pre>
 <h3 id="multiple-lists"><a class="header" href="#multiple-lists">Multiple lists</a></h3>
-<p>A sequence that is entirely made of lists will return a single list containing the concatenation of the input lists.</p>
-<pre><code class="language-rant">(1; 2) (3; 4) # same as (1; 2; 3; 4)
+<p>An expression that prints multiple lists will return a single list containing the elements of all the original lists in the same order.</p>
+<p><strong>Multiple lists in an expression</strong></p>
+<pre><code class="language-rant">(1; 2) (3; 4) 
+# -&gt; (1; 2; 3; 4)
 </code></pre>
-<p>This rule also applies when the sequence contains any expression that returns a list:</p>
+<p><strong>Joining lists with a repeater</strong></p>
 <pre><code class="language-rant">[rep:10] {
     ([step])
 }
-# returns (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+# -&gt; (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
 </code></pre>
 <h3 id="multiple-maps"><a class="header" href="#multiple-maps">Multiple maps</a></h3>
-<p>A sequence that is entirely made of maps will return a single map containing the key/value pairs of the input maps. 
+<p>An expression that prints multiple maps will return a single map containing the key/value pairs of the input maps. 
 Duplicate keys are overwritten by newer values.</p>
 <pre><code class="language-rant">&lt;%my-map = 
     @(a = 1)
@@ -234,15 +236,13 @@ Duplicate keys are overwritten by newer values.</p>
 &gt;
 # returns @(a = 1; b = 2)
 </code></pre>
-<p>As with list sequences, this also applies with expressions that return maps:</p>
 <pre><code class="language-rant">[rep:3]{
     @( {item_[step]} = [step] )
 }
 # returns @(item_1 = 1; item_2 = 2; item_3 = 3)
 </code></pre>
 <h3 id="empties"><a class="header" href="#empties">Empties</a></h3>
-<p>Expressions containing only empties evaluate to a single emptyval.</p>
-<p>Expressions containing nothing also evaluate to emptyval.</p>
+<p>Printing emptyval does nothing. Empty expressions return emptyval.</p>
 <pre><code class="language-rant">[type:&lt;&gt;&lt;&gt;]     # empty
 [type:&lt;&gt;]       # empty
 [type:]         # empty
