@@ -81,24 +81,25 @@ If the start of an expression is a series of numbers, they will be added togethe
 
 ### Multiple lists
 
-A sequence that is entirely made of lists will return a single list containing the concatenation of the input lists.
+An expression that prints multiple lists will return a single list containing the elements of all the original lists in the same order.
 
+**Multiple lists in an expression**
 ```rant
-(1; 2) (3; 4) # same as (1; 2; 3; 4)
+(1; 2) (3; 4) 
+# -> (1; 2; 3; 4)
 ```
 
-This rule also applies when the sequence contains any expression that returns a list:
-
+**Joining lists with a repeater**
 ```rant
 [rep:10] {
     ([step])
 }
-# returns (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+# -> (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
 ```
 
 ### Multiple maps
 
-A sequence that is entirely made of maps will return a single map containing the key/value pairs of the input maps. 
+An expression that prints multiple maps will return a single map containing the key/value pairs of the input maps. 
 Duplicate keys are overwritten by newer values.
 
 ```rant
@@ -109,8 +110,6 @@ Duplicate keys are overwritten by newer values.
 # returns @(a = 1; b = 2)
 ```
 
-As with list sequences, this also applies with expressions that return maps:
-
 ```rant
 [rep:3]{
     @( {item_[step]} = [step] )
@@ -120,9 +119,7 @@ As with list sequences, this also applies with expressions that return maps:
 
 ### Empties
 
-Expressions containing only empties evaluate to a single emptyval.
-
-Expressions containing nothing also evaluate to emptyval.
+Printing emptyval does nothing. Empty expressions return emptyval.
 
 ```rant
 [type:<><>]     # empty

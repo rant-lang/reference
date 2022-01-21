@@ -11,13 +11,18 @@ An aggregator is an operation that transforms the parent scope's output.
 
 Applies a custom operation to the parent output.
 
-The parent scope's current output is accessible via the variable designated after the keyword.
+The parent scope's current output is accessible via the variable designated after the keyword, if specified.
 
 `@edit` must appear first in an expression. It is not permitted in the global scope.
 
 ```rant
+# Aggregate variable <x> contains the parent's current output
 "example" { @edit x: `<x> `<x> }
 # -> example example
+
+# No aggregate variable specified
+"example" { @edit: "overwritten" }
+# -> overwritten
 ```
 
 ### Examples

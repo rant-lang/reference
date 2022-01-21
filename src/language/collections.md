@@ -208,7 +208,7 @@ Below is a breakdown of which operations each collection type supports:
 
 ## Collection auto-concatenation
 
-Multiple collections of the same type are automatically concatenated or merged when printed alone in the same sequence.
+Multiple collections of the same type are automatically concatenated or merged when printed alone in the same expression.
 This significantly reduces the amount of boilerplate required when generating collections with varying amount of elements, or elements that are conditionally included.
 
 ### Examples

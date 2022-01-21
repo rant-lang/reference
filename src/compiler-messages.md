@@ -210,25 +210,31 @@ A `@weight` expression was found in a context where it is not allowed.
 
 A variable was defined but not referenced by its containing scope.
 
-## R1001 (unused parameter)
+## R1001 (unused aggregate)
+
+*Warning*
+
+An aggregate variable was defined on an `@edit` expression but not referenced by its containing scope.
+
+## R1002 (unused parameter)
 
 *Warning*
 
 A parameter defined by a function was not referenced by its body.
 
-## R1002 (unused function)
+## R1003 (unused function)
 
 *Warning*
 
 A function was defined but never called within its containing scope.
 
-## R1003 (empty function body)
+## R1004 (empty function body)
 
 *Warning*
 
 A function was defined with an empty body (i.e. it doesn't do anything).
 
-## R1004 (nested function definition was marked constant)
+## R1005 (nested function definition was marked constant)
 
 *Warning*
 
