@@ -189,6 +189,9 @@ The expression inside the block element produces the value that will then replac
     # Multiplies over repeater's step values to calculate n!
     1 [rep: &lt;n&gt;] {@edit x: &lt;x&gt; * [step]}
 }
+
+[factorial: 10]
+# -&gt; 3628800
 </code></pre>
 <p><strong>Using an aggregator to generate the Fibonacci series</strong></p>
 <pre><code class="language-rant">[%fibonacci: n] {
@@ -197,6 +200,9 @@ The expression inside the block element produces the value that will then replac
     # Fallbacks provide the initial seed values.
     () [rep: &lt;n&gt;] {@edit f: &lt;f&gt; (&lt;f/-2 ? 0&gt; + &lt;f/-1 ? 1&gt;)}
 }
+
+[fibonacci: 10]
+# -&gt; (1; 1; 2; 3; 5; 8; 13; 21; 34; 55)
 </code></pre>
 
                     </main>
