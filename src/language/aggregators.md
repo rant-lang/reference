@@ -31,6 +31,9 @@ The result of the aggregator is applied immediately to the parent's output as so
     # Multiplies over repeater's step values to calculate n!
     1 [rep: <n>] {@edit x: <x> * [step]}
 }
+
+[factorial: 10]
+# -> 3628800
 ```
 
 **Using an aggregator to generate the Fibonacci series**
@@ -41,4 +44,7 @@ The result of the aggregator is applied immediately to the parent's output as so
     # Fallbacks provide the initial seed values.
     () [rep: <n>] {@edit f: <f> (<f/-2 ? 0> + <f/-1 ? 1>)}
 }
+
+[fibonacci: 10]
+# -> (1; 1; 2; 3; 5; 8; 13; 21; 34; 55)
 ```
