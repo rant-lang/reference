@@ -10,6 +10,8 @@ It must be specified at the start of a block element.
 The parent scope's current output is accessible via the variable designated after the keyword, if specified.
 The expression inside the block element produces the value that will then replace the caller's previous output.
 
+The result of the aggregator is applied immediately to the parent's output as soon the the element finishes running.
+
 ```rant
 # Aggregate variable <x> contains the parent's current output
 "example" { @edit x: `<x> `<x> } # <x> = "example"
