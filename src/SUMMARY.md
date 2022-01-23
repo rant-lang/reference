@@ -28,7 +28,7 @@
         - [Depth Operator](language/accessors/depth-operator.md)
     - [Operators](language/operators.md)
     - [Conditional expressions](language/conditional-expressions.md)
-    - [Aggregators](language/aggregators.md)
+    - [Output modifiers](language/output-modifiers.md)
 - [Variables & Types](variables-types.md)
 - [Runtime Features](runtime.md)
     - [Attributes](runtime/attributes.md)

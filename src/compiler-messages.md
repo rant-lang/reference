@@ -210,12 +210,6 @@ A `@weight` expression was found in a context where it is not allowed.
 
 A variable was defined but not referenced by its containing scope.
 
-## R1001 (unused aggregate)
-
-*Warning*
-
-An aggregate variable was defined on an `@edit` expression but not referenced by its containing scope.
-
 ## R1002 (unused parameter)
 
 *Warning*
