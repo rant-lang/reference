@@ -169,7 +169,7 @@
                         <h1 id="output-modifiers"><a class="header" href="#output-modifiers">Output modifiers</a></h1>
 <p>Output modifiers are block elements that transform the calling scope's current output.</p>
 <h2 id="the-edit-operator"><a class="header" href="#the-edit-operator">The @edit operator</a></h2>
-<p>The <code>@edit</code> operator consumes the calling scope's output, applies some operation to it, and then prints it back. 
+<p>The <code>@edit</code> operator consumes the calling scope's output, applies some operation to it, and replaces the original output with the transformed value. 
 It must appear at the start of a block element.</p>
 <p>The parent scope's current output is accessible via the variable designated after the keyword, if specified.
 The expression inside the block element produces the value that will then replace the caller's previous output.</p>
