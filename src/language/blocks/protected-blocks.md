@@ -1,8 +1,6 @@
 # Protected blocks
 
-{{ #include _proposal_msg.md }}
-
-This proposal introduces operators to modify how blocks interact with attributes.
+Protected blocks are special blocks that either don't consume attributes or consume them in a limited capacity.
 
 ## Protected block
 
