@@ -1,8 +1,6 @@
 # Aggregators
 
-An aggregator is an operator that is used to transform the calling scope's current output. 
-
-Aggregators can only be executed by block elements.
+Aggregators are block elements that transform the calling scope's current output.
 
 ## The @edit operator
 
