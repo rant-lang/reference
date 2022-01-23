@@ -173,6 +173,7 @@
 It must be specified at the start of a block element.</p>
 <p>The parent scope's current output is accessible via the variable designated after the keyword, if specified.
 The expression inside the block element produces the value that will then replace the caller's previous output.</p>
+<p>The result of the aggregator is applied immediately to the parent's output as soon the the element finishes running.</p>
 <pre><code class="language-rant"># Aggregate variable &lt;x&gt; contains the parent's current output
 &quot;example&quot; { @edit x: `&lt;x&gt; `&lt;x&gt; } # &lt;x&gt; = &quot;example&quot;
 # -&gt; example example
