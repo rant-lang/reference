@@ -42,7 +42,7 @@ The parent scope's current output is accessible via the variable designated afte
     # Aggregator over list from parent output.
     # Adds the last two values in the input list to produce Fibonacci series
     # Fallbacks provide the initial seed values.
-    () [rep: <n>] {@edit f: (<f/-2 ? 0> + <f/-1 ? 1>)}
+    () [rep: <n>] {@edit f: <f> (<f/-2 ? 0> + <f/-1 ? 1>)}
 }
 ```
 
