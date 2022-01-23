@@ -4,7 +4,7 @@ Output modifiers are block elements that transform the calling scope's current o
 
 ## The @edit operator
 
-The `@edit` operator consumes the calling scope's output, applies some operation to it, and then prints it back. 
+The `@edit` operator consumes the calling scope's output, applies some operation to it, and replaces the original output with the transformed value. 
 It must appear at the start of a block element.
 
 The parent scope's current output is accessible via the variable designated after the keyword, if specified.
