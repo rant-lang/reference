@@ -201,7 +201,7 @@
     # Aggregator over list from parent output.
     # Adds the last two values in the input list to produce Fibonacci series
     # Fallbacks provide the initial seed values.
-    () [rep: &lt;n&gt;] {@edit f: (&lt;f/-2 ? 0&gt; + &lt;f/-1 ? 1&gt;)}
+    () [rep: &lt;n&gt;] {@edit f: &lt;f&gt; (&lt;f/-2 ? 0&gt; + &lt;f/-1 ? 1&gt;)}
 }
 </code></pre>
 <h2 id="precedence"><a class="header" href="#precedence">Precedence</a></h2>
