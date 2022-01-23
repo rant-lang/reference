@@ -1,7 +1,5 @@
 # Aggregators
 
-{{ #include _proposal_msg.md }}
-
 An aggregator is an operator that is used to transform the calling scope's current output. 
 
 Aggregators can only be executed by block elements.
