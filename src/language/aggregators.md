@@ -1,23 +1,22 @@
-# Aggregator
+# Aggregators
 
 {{ #include _proposal_msg.md }}
 
-An aggregator is an operation that transforms the parent scope's output.
+An aggregator is an operator that is used to transform the calling scope's current output. 
 
+Aggregators can only be executed by block elements.
 
-## @edit
+## The @edit operator
 
-`@edit` *(right-associative prefix operator)*
-
-Applies a custom operation to the parent output.
+The `@edit` operator is used to create an aggregator. 
+It must be specified at the start of a block element.
 
 The parent scope's current output is accessible via the variable designated after the keyword, if specified.
-
-`@edit` must appear first in an expression. It is not permitted in the global scope.
+The expression inside the block element produces the value that will then replace the caller's previous output.
 
 ```rant
 # Aggregate variable <x> contains the parent's current output
-"example" { @edit x: `<x> `<x> }
+"example" { @edit x: `<x> `<x> } # <x> = "example"
 # -> example example
 
 # No aggregate variable specified
@@ -45,8 +44,3 @@ The parent scope's current output is accessible via the variable designated afte
     () [rep: <n>] {@edit f: <f> (<f/-2 ? 0> + <f/-1 ? 1>)}
 }
 ```
-
-
-## Precedence
-
-`@edit` has lower precedence than all regular operators.
