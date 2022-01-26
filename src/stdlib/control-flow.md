@@ -98,22 +98,22 @@ The mode to assign to the created selector.
 | `no-double`     | Selects a random element each time, ensuring the same element never repeats twice in a row. |
 
 
-## pipe
+## mut
 
 ```rant
 
-[%pipe: pipe-func]
+[%mut: mutator-func]
 
 ```
 
-Sets the pipe function for the next block.
+Sets the mutator function for the next block.
 
-The function passed to `pipe-func` must accept a single parameter (the element callback) in order to run properly.
+The function passed to `mutator-func` must accept a single parameter (the element callback) in order to run properly.
 
 ### Parameters
 
-**`pipe-func`** &larr; `function | empty` <br/>
-The pipe function to assign.
+**`mutator-func`** &larr; `function | empty` <br/>
+The mutator function to assign.
 
 
 ## push-attrs

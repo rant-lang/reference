@@ -65,17 +65,17 @@ The selector attribute controls how Rant chooses which branch of a block to take
 # F, C, E, G, B, H, D, A
 ```
 
-## Pipe
+## Mutator
 
-The pipe attribute allows the user to supply a function (known as the "pipe function") that is called in place of each iteration of the block.
-The pipe function accepts the current block element as a callback parameter, which it can then call to produce output for that iteration.
+The mutator attribute allows the user to supply a function (known as the "mutator function") that is called in place of each iteration of the block.
+The mutator function accepts the current block element as a callback parameter, which it can then call to produce output for that iteration.
 
 This is extremely useful for applying filters or post-processing to a block at a per-iteration level.
 
 ```rant
 [rep: all]
 [sep: \n]
-[pipe: [?:elem] { [elem]! }] # Just adds an exclamation point
+[mut: [?:elem] { [elem]! }] # Just adds an exclamation point
 [mksel: forward |> sel]
 {
     One | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten
