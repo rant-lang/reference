@@ -805,6 +805,27 @@ The maximum number of elements to reduce the `list` to.
 [%squish: list; target-size]
 
 ```
+&rarr; `list`
+
+Returns a copy of a list with random adjacent elements merged using addition until the number of elements in the list copy reaches `target-size`.
+If the number of elements in the list is less than or equal to `target-size`, this function simply returns an exact copy of the original list.
+
+### Parameters
+
+**`list`** &larr; `list` <br/>
+The input list.
+
+**`target-size`** &larr; `int` <br/>
+The maximum number of elements to reduce the list copy to.
+
+
+## squish-self
+
+```rant
+
+[%squish-self: list; target-size]
+
+```
 
 Merges random adjacent elements in a list using addition until the number of elements in the list reaches `target-size`.
 If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
@@ -827,7 +848,7 @@ The maximum number of elements to reduce the list to.
 Before: `[join: ,\s; <numbers>]\n
 
 # Squish the list down to 5 elements
-[squish: <numbers>; 5]
+[squish-self: <numbers>; 5]
 
 # Print the modified list
 After: `[join: ,\s; <numbers>]\n
@@ -841,17 +862,17 @@ After: `[join: ,\s; <numbers>]\n
 ```
 
 
-## squished
+## squish-thru
 
 ```rant
 
-[%squished: list; target-size]
+[%squish-thru: list; target-size]
 
 ```
 &rarr; `list`
 
-Returns a copy of a list with random adjacent elements merged using addition until the number of elements in the list copy reaches `target-size`.
-If the number of elements in the list is less than or equal to `target-size`, this function simply returns an exact copy of the original list.
+Merges random adjacent elements in a list using addition until the number of elements in the list reaches `target-size`, then prints the list.
+If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
 
 ### Parameters
 
@@ -859,8 +880,7 @@ If the number of elements in the list is less than or equal to `target-size`, th
 The input list.
 
 **`target-size`** &larr; `int` <br/>
-The maximum number of elements to reduce the list copy to.
-
+The maximum number of elements to reduce the list to.
 
 
 ## sort

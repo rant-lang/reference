@@ -3,6 +3,9 @@
 All messages (errors, warnings, etc) returned by the Rant compiler include a code that identifies the nature of the message.
 For convenience, this page lists all currently used compiler message codes and what they mean.
 
+> **Note** <br/>
+> These may be out of date, as compiler message codes are currently being frequently added/moved.
+
 ## R0000 (unexpected token)
 
 *Error*
