@@ -12,8 +12,8 @@ Both getters and setters can be made anonymous; however, anonymous setters must 
 
 ```rant
 # Create two lists
-<$list1 = (1;2;3;4;5;6;7;8)>
-<$list2 = (a;b;c;d;e;f;g;h)>
+<$list1 = (:1;2;3;4;5;6;7;8)>
+<$list2 = (:a;b;c;d;e;f;g;h)>
 
 # Create a function that returns one of two lists
 [$get-either-list]{{<list1>|<list2>}}

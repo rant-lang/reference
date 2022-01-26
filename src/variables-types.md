@@ -79,20 +79,46 @@ If the start of an expression is a series of numbers, they will be added togethe
 # -> 3.14
 ```
 
-### Multiple lists
 
-An expression that prints multiple lists will return a single list containing the elements of all the original lists in the same order.
+### Multiple lists and tuples
+
+For any expression that only contains lists and/or tuples, the following rules apply:
+
+* An expression that prints multiple lists will return a single list containing the elements of all the original lists in the same order.
+* An expression that prints multiple tuples will return a single tuples containing the elements of all the original lists in the same order.
+* An expression that prints one or more tuples and one or more lists will return a single list containing the elements of all the original tuples and lists in the same order.
+
 
 **Multiple lists in an expression**
+```rant
+(: 1; 2) (: 3; 4) 
+# -> (: 1; 2; 3; 4)
+```
+
+**Multiple tuples in an expression**
 ```rant
 (1; 2) (3; 4) 
 # -> (1; 2; 3; 4)
 ```
 
+**Mixed tuples and lists in an expression**
+```rant
+(1; 2) (: 3; 4) (5; 6) (: 7; 8)
+# -> (: 1; 2; 3; 4; 5; 6; 7; 8)
+```
+
 **Joining lists with a repeater**
 ```rant
 [rep:10] {
-    ([step])
+    (: [step])
+}
+# -> (: 1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
+```
+
+**Joining tuples with a repeater**
+```rant
+[rep:10] {
+    ([step];)
 }
 # -> (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
 ```
@@ -104,17 +130,17 @@ Duplicate keys are overwritten by newer values.
 
 ```rant
 <%my-map = 
-    @(a = 1)
-    @(b = 2)
+    (:: a = 1)
+    (:: b = 2)
 >
-# returns @(a = 1; b = 2)
+# returns (:: a = 1; b = 2)
 ```
 
 ```rant
-[rep:3]{
-    @( {item_[step]} = [step] )
+[rep:3] {
+    (:: {item_[step]} = [step] )
 }
-# returns @(item_1 = 1; item_2 = 2; item_3 = 3)
+# returns (:: item_1 = 1; item_2 = 2; item_3 = 3)
 ```
 
 ### Empties

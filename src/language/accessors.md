@@ -40,8 +40,8 @@ A **setter** modifies an existing variable or value.
 Along with setting variables, setters can also write to specific elements of collections.
 
 ```rant
-<$numbers = (1; 2; 3)>
-<numbers/0 = 4> # list is now (4; 2; 3)
+<$numbers = (: 1; 2; 3)>
+<numbers/0 = 4> # list is now (: 4; 2; 3)
 ```
 
 ## Getters
@@ -149,11 +149,11 @@ it only guarantees that the reference stored by the constant cannot change.
 
 ```rant
 # Create a constant list
-<%special-list = (1; 2; 3)>
+<%special-list = (: 1; 2; 3)>
 
 # Modifying the contents is still allowed
-[push: <special-list>; 4]   # list now contains (1; 2; 3; 4)
+[push: <special-list>; 4]   # list now contains (: 1; 2; 3; 4)
 
 # Swapping out the list itself is not allowed
-<special-list = (7; 8; 9)>  # error!
+<special-list = (: 7; 8; 9)>  # error!
 ```

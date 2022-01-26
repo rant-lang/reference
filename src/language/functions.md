@@ -98,7 +98,7 @@ Each time the function is called without that parameter, Rant will run its defau
 ```rant
 # Modification of the previous [gen-pet] to use a default value instead of calling [alt]
 [$gen-pet: name; species ? "dog"] { 
-    @(
+    (::
         name = <name>;
         species = <species>; # No fallback needed!
     )

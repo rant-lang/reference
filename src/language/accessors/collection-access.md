@@ -11,7 +11,7 @@ Accessing elements in ordered collections (lists, strings, and ranges) is known 
 All Rant collections use "zero-based indexing"; in other words, the first element starts at index 0, the second at index 1, and so on.
 
 ```rant
-<%numbers = (1; 3; 5; 7; 9)>
+<%numbers = (: 1; 3; 5; 7; 9)>
 
 # Set the first number to 1
 <numbers/0 = 100>
@@ -35,7 +35,7 @@ Accessing elements in maps is known as **keying**.
 Simply specify the desired map key after the `/` to access the map element with that key:
 
 ```rant
-<%citizen = @(
+<%citizen = (::
     name = "Steve";
     age = 50;
     mood = "angry";
@@ -69,6 +69,7 @@ The value of a dynamic key must be compatible with the type of collection being 
 |Collection type|Key is `string`|Key is `int`|
 |:-------------:|:-------------:|:----------:|
 |`list`  |🔴|🟢|
+|`tuple` |🔴|🟢|
 |`range` |🔴|🟢|
 |`string`|🔴|🟢|
 |`map`   |🟢|🟠|
@@ -107,9 +108,10 @@ Slice notation takes the following forms:
 You can also set a slice on mutable collection types, an operation also known as **splicing**:
 
 ```rant
-<$my-list = (1; 2; 3)>
-<my-list/1:2 = (a; b)> # the splice doesn't have to be the same size!
-<my-list> # -> (1; a; b; 3)
+<$my-list = (: 1; 2; 3)>
+<my-list/1:2 = (: a; b)> # the splice value doesn't have to be the same size!
+<my-list/3:4 = (c; d)> # the splice value can also be a tuple!
+<my-list> # -> (: 1; a; b; 3)
 ```
 
 #### Dynamic slices
@@ -142,9 +144,9 @@ fantastic
 Access paths can be nested. This means if you have an array in a map and you want to access an element of that array, you most certainly can; just add another component to the path.
 
 ```rant
-<%arrays = @(
-    odd-numbers = (1; 3; 5; 7; 9);
-    even-numbers = (0; 2; 4; 6; 8);
+<%arrays = (::
+    odd-numbers = (: 1; 3; 5; 7; 9);
+    even-numbers = (: 0; 2; 4; 6; 8);
 )>
 
 # Get the last element of <arrays/odd-numbers>

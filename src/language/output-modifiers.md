@@ -41,9 +41,9 @@ The result of the operation is applied immediately to the parent's output as soo
 [%fibonacci: n] {
     # Adds the last two values in the input list to produce Fibonacci series
     # Fallbacks provide the initial seed values.
-    () [rep: <n>] {@edit f: <f> (<f/-2 ? 0> + <f/-1 ? 1>)}
+    (:) [rep: <n>] {@edit f: <f> (<f/-2 ? 0> + <f/-1 ? 1>)}
 }
 
 [fibonacci: 10]
-# -> (1; 1; 2; 3; 5; 8; 13; 21; 34; 55)
+# -> (: 1; 1; 2; 3; 5; 8; 13; 21; 34; 55)
 ```

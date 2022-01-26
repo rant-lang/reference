@@ -10,12 +10,12 @@ A module is simply a Rant program that returns a map containing the module's con
 Below is a basic example of a very simple module:
 
 ```rant
-# lol.rant: Laughter Generation Module
+# seq.rant
 
-<%module = @()>
+<%module = (::)>
 
-[$module/cackle: len ? 2] {
-  [rep: <len>] {h{a|e|ee|ue|aa|o}}!!!
+[$module/fib: n] {
+  (:) [rep: <n>] { @edit f: <f> (<f/-2 ? 0> + <f/-1 ? 1>) }
 }
 
 <module>
@@ -24,16 +24,16 @@ Below is a basic example of a very simple module:
 ## Importing and using modules
 
 A module can be imported using the `@require` keyword or, less commonly, the `[require]` stdlib function.
-For this example, we'll import the `lol` module previously shown.
+For this example, we'll import the `seq` module previously shown.
 
 ```rant
-# Looks for `lol.rant` and imports it as map variable `lol`.
+# Looks for `seq.rant` and imports it as map variable `seq`.
 # You don't need to specify the file extension.
-@require "lol"
+@require "seq"
 
-# Call the `[cackle]` function from the module
-[lol/cackle: 16]
-# --> haahoheehehehuehohoheehahohaaheehoheehaa!!!
+# Call the `[fib]` function from the module
+[seq/fib: 16]
+# -> (: 1; 1; 2; 3; 5; 8; 13; 21; 34; 55; 89; 144; 233; 377; 610; 987)
 ```
 
 Imported modules are cached by the Rant context running the program.

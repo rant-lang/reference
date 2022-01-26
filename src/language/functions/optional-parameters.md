@@ -11,7 +11,7 @@ To prevent this from happening, you need to use a [fallback expression](/languag
 ```rant
 # Generates a map for a pet with a name and species (defaults to "dog")
 [$gen-pet: name; species?] {
-    @(
+    (::
         name = <name>;
         species = <species ? "dog">; # Fallback to "dog" if species is undefined
     )

@@ -149,7 +149,7 @@ The predicate to run against each element in the input list.
 
 #### Filter a list of numbers by only those divisible by 3
 ```rant
-<$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)>
+<$numbers = (: 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)>
 <$multiples-of-three = [filter: <numbers>; [?:x] { [is-factor: <x>; 3] }]>
 [join: <multiples-of-three>; ,\s]
 # -> 3, 6, 9, 12
@@ -157,7 +157,7 @@ The predicate to run against each element in the input list.
 
 #### Filter a list of numbers by only odd numbers
 ```rant
-<$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)>
+<$numbers = (: 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12)>
 # `is-odd` is a function, so we can simply pass it in as the predicate!
 <$odd-numbers = [filter: <numbers>; <is-odd>]>
 [join: <odd-numbers>; ,\s]
@@ -218,7 +218,7 @@ The value to search for.
 ### Examples
 
 ```rant
-<$letters = (A; A; B; C; C; D; E)>
+<$letters = (: A; A; B; C; C; D; E)>
 [index-of: <letters>; A |> assert-eq: 0]
 [index-of: <letters>; C |> assert-eq: 3]
 [index-of: <letters>; E |> assert-eq: 6]
@@ -269,7 +269,7 @@ The value to search for.
 ### Example
 
 ```rant
-<$letters = (A; A; B; C; C; D; E)>
+<$letters = (: A; A; B; C; C; D; E)>
 [last-index-of: <letters>; A |> assert-eq: 1]
 [last-index-of: <letters>; C |> assert-eq: 4]
 [last-index-of: <letters>; E |> assert-eq: 6]
@@ -305,7 +305,7 @@ The function to map the values with.
 
 ```rant
 # Multiple each element of a list by 10
-<$numbers = (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)>
+<$numbers = (: 1; 2; 3; 4; 5; 6; 7; 8; 9; 10)>
 <$tens = [map: <numbers>; [?:x] { [mul: <x>; 10] }]>
 [join: ,\s; <tens>]
 # -> 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
@@ -349,7 +349,7 @@ The separator values are applied as follows:
 
 #### Print lists with Oxford comma
 ```rant
-<$numbers = ()>
+<$numbers = (:)>
 [rep: 5][sep: \n]
 {
   [push: <numbers>; [step]]
@@ -369,7 +369,7 @@ The separator values are applied as follows:
 
 #### Print lists without Oxford comma
 ```rant
-<$numbers = ()>
+<$numbers = (:)>
 [rep: 5][sep: \n]
 {
   [push: <numbers>; [step]]
@@ -566,8 +566,8 @@ Where \\(n\\) = the length of `list`:
 
 ```rant
 # Shuffles a list of letters and concatenates them into a single string
-<$letters = (A;B;C;D;E;F;G;H;I;J;K;L)>
-[shuffle: <letters>]
+<$letters = (:A;B;C;D;E;F;G;H;I;J;K;L)>
+[shuffle-self: <letters>]
 [join: <letters>]
 
 # ~> GKIBCHLEJADF
@@ -673,13 +673,13 @@ The maximum number of elements to reduce the `list` to.
 ```rant
 # Create a random subset of abilities for a character
 
-<$char-traits = (
+<$char-traits = (:
   berserk;    xray-vision;  speaks-to-bees; 
   vampirism;  flying;       telekinesis; 
   many-legs;  high-jump;    bee-allergy
 )>
 
-<$npc = @(
+<$npc = (::
   name = "Foo Bar";
   traits = [sifted: <char-traits>; 2];
 )>
@@ -714,7 +714,7 @@ The maximum number of elements to reduce the list to.
 
 ```rant
 # Merge random items in a number list
-<$numbers = (100; 100; 100; 100; 100; 100; 100; 100; 100; 100)>
+<$numbers = (: 100; 100; 100; 100; 100; 100; 100; 100; 100; 100)>
 
 # Print the original list
 Before: `[join: ,\s; <numbers>]\n
@@ -852,12 +852,12 @@ A map associating items in `list` with their replacements.
 [$make-cipher: alphabet] {
   <
     $letters = [split: <alphabet>];
-    $sub-letters = [shuffled: <letters>];
+    $sub-letters = [shuffle: <letters>];
     $cipher = [assoc: <letters>; <sub-letters>];
     $cipher-rev = [assoc: <sub-letters>; <letters>];
   >
   # Return cipher functions
-  @(
+  (::
     encode = [?: message] {
       [sum: [translate: [split: <message>]; <cipher>]]
     };
