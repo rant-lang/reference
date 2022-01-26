@@ -274,6 +274,7 @@ Returns the name of `value`'s type. The type name can be any of the following:
 * `bool`
 * `function`
 * `list`
+* `tuple`
 * `map`
 * `special`
 * `empty`
