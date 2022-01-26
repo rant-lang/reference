@@ -1,11 +1,9 @@
-# Variables & Data Types
+# Data Types
 
-Variables enable you to store and retrieve values.
-
-Rant is a dynamically-typed language, which means that variables don't have to contain a specific type;
+Rant has a dynamic type system, which means that variables also don't have to contain a specific type;
 for example, you can initialize a variable with an integer, and later change it to a string (and vice versa).
 
-Rant has the following data types:
+Rant's type system supports the following data types:
 
 |Type name |Description                                        |Pass type|
 |----------|---------------------------------------------------|---------|
@@ -17,40 +15,51 @@ Rant has the following data types:
 |`empty`   |Unit type representing "null" value                |by-value |
 |`function`|Function/closure                                   |by-ref   |
 |`list`    |List of values                                     |by-ref   |
+|`tuple`   |Tuple of values                                    |by-ref   |
 |`map`     |String-keyed collection of values                  |by-ref   |
 |`special` |Handle to internal runtime data, such as a selector|by-ref   |
 
-## The `empty` type
+## Integer literals
 
-To represent the lack of a value, Rant has the `empty` type, 
-which has only one possible value, represented in Rant by the literal `<>` (referred to as "emptyval").
+Any number literal without a decimal place is known as an **integer literal**.
 
-Printing emptyval will have no effect on the output.
-
-```rant
-<$nothing = <>>   # i.e. <$nothing>
-[type:<nothing>]  # empty
-```
-
-## The `bool` type
-
-The two boolean values are represented by the keywords `@true` and `@false`.
-
-### Integers
-
-Any number literal without a decimal place becomes an `int`.
+An integer literal produces a value of type `int`.
 
 ```rant
-[type:123]  # int
+[type: 123]  # int
 ```
 
-### Floats
+## Real literals
 
-Any number literal with a decimal place becomes a `float`.
+Any number literal with a decimal place is known as a **real literal**. 
+
+A real literal produces a value of type `float`.
 
 ```rant
-[type:123.0]  # float
+[type: 123.0]  # float
 ```
+
+## Collections
+
+Rant's variable system has five collection types: `list`, `tuple`, `map`, `string`, and `range`.
+
+Some collections can be mutated (modified), while others are read-only. Some can be sliced but not spliced. 
+Below is a breakdown of which operations each collection type supports:
+
+
+|   Type   |   Read    |   Write   |   Slice   |  Splice   |
+|:--------:|:---------:|:---------:|:---------:|:---------:|
+|  `list`  | &#x1f7e2; | &#x1f7e2; | &#x1f7e2; | &#x1f7e2; |
+| `tuple`  | &#x1f7e2; | &#x1f534; | &#x1f7e2; | &#x1f534; |
+| `string` | &#x1f7e2; | &#x1f534; | &#x1f7e2; | &#x1f534; |
+| `range`  | &#x1f7e2; | &#x1f534; | &#x1f7e2; | &#x1f534; |
+|  `map`   | &#x1f7e2; | &#x1f7e2; | &#x1f534; | &#x1f534; |
+
+<p></p>
+
+|Legend                                            |
+|:------------------------------------------------:|
+|&#x1f7e2; = supported; &#x1f534; = not supported  |
 
 ## Type inference for multi-part expressions
 
@@ -65,8 +74,7 @@ If an expression contains a string, fragment, or hinted element, the combined va
 
 ```rant
 # Since there are fragments and whitespace, it's a string
-<$s = 99 bottles of beer> # -> "99 bottles of beer"
-[type:<s>]  # string
+[type: 99 bottles of beer]  # string
 ```
 
 ### Multiple numbers
@@ -121,26 +129,6 @@ For any expression that only contains lists and/or tuples, the following rules a
     ([step];)
 }
 # -> (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
-```
-
-### Multiple maps
-
-An expression that prints multiple maps will return a single map containing the key/value pairs of the input maps. 
-Duplicate keys are overwritten by newer values.
-
-```rant
-<%my-map = 
-    (:: a = 1)
-    (:: b = 2)
->
-# returns (:: a = 1; b = 2)
-```
-
-```rant
-[rep:3] {
-    (:: {item_[step]} = [step] )
-}
-# returns (:: item_1 = 1; item_2 = 2; item_3 = 3)
 ```
 
 ### Empties
