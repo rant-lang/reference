@@ -56,6 +56,65 @@ Raises a runtime error if the lengths of `keys` and `values` do not match.
 ##
 ```
 
+## augment
+
+```rant
+
+[%augment: dst-map; src-map]
+
+```
+&rarr; `map`
+
+Clones `dst-map`, adds the values from `src-map` to the values with matching keys on `dst-map`, then returns the resulting map.
+
+### Parameters
+
+**`dst-map`** &larr; `map` <br/>
+The map to copy and augment.
+
+**`src-map`** &larr; `map` <br/>
+The map containing the values to add to those in `dst-map`.
+
+
+## augment-self
+
+```rant
+
+[%augment-self: dst-map; src-map]
+
+```
+
+Adds the values from `src-map` to the values with matching keys on `dst-map`.
+
+### Parameters
+
+**`dst-map`** &larr; `map` <br/>
+The map to augment.
+
+**`src-map`** &larr; `map` <br/>
+The map containing the values to add to those in `dst-map`.
+
+
+## augment-thru
+
+```rant
+
+[%augment-self: dst-map; src-map]
+
+```
+&rarr; `map`
+
+Adds the values from `src-map` to the values with matching keys on `dst-map`, then prints `dst-map`.
+
+### Parameters
+
+**`dst-map`** &larr; `map` <br/>
+The map to augment.
+
+**`src-map`** &larr; `map` <br/>
+The map containing the values to add to those in `dst-map`.
+
+
 ## chunks
 
 ```rant
@@ -546,6 +605,33 @@ The collection to reverse.
 [%shuffle: list]
 
 ```
+&rarr; `list`
+
+Creates a shuffled copy of a list.
+
+### Parameters
+
+**`list`** &larr; `list` <br/>
+The input list.
+
+### Example
+
+```rant
+# Shuffle the words in a string
+<$message = "the quick brown fox jumps over he lazy dog">
+[join: \s; [shuffle: [split: <message>; \s]]]
+
+# ~> jumps fox quick dog lazy the brown the over
+```
+
+
+## shuffle-self
+
+```rant
+
+[%shuffle-self: list]
+
+```
 
 Shuffles the elements of a list in-place.
 
@@ -574,31 +660,29 @@ Where \\(n\\) = the length of `list`:
 ```
 
 
-## shuffled
+## shuffle-thru
 
 ```rant
 
-[%shuffled: list]
+[%shuffle-thru: list]
 
 ```
 &rarr; `list`
 
-Creates a shuffled copy of a list.
+Shuffles the elements of a list in-place, then prints the list.
 
 ### Parameters
 
 **`list`** &larr; `list` <br/>
 The input list.
 
-### Example
+### Cost
 
-```rant
-# Shuffle the words in a string
-<$message = "the quick brown fox jumps over he lazy dog">
-[join: \s; [shuffled: [split: <message>; \s]]]
+Where \\(n\\) = the length of `list`:
 
-# ~> jumps fox quick dog lazy the brown the over
-```
+**Time complexity**<br/>\\(O(n)\\)<br/>
+
+**RNG complexity**<br/>\\(n - 1\\)<br/>
 
 
 ## sift
@@ -606,53 +690,6 @@ The input list.
 ```rant
 
 [%sift: list; target-size]
-
-```
-
-Removes random elements from a list in-place until the number of elements in the list reaches `target-size`.
-If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
-
-### Parameters
-
-**`list`** &larr; `list` <br/>
-The input list.
-
-**`target-size`** &larr; `int` <br/>
-The maximum number of elements to reduce the `list` to.
-
-### Example
-
-```rant
-# Remove a random element from a list and print the contents at each iteration
-<$list = [split: "Sphinx of black quartz, judge my vow."; \s]>
-[rep: [len: <list>]]
-[sep: \n]
-{
-  # Print the current list contents
-  [join: \s; <list>]
-  # Sift the list to n - 1
-  [sift: <list>; [sub: [len: <list>]; 1]]
-}
-
-##
-  EXAMPLE OUTPUT:
-
-  Sphinx of black quartz, judge my vow.
-  Sphinx of black quartz, my vow.
-  Sphinx of black quartz, vow.
-  Sphinx of black vow.
-  Sphinx black vow.
-  Sphinx vow.
-  vow.
-##
-```
-
-
-## sifted
-
-```rant
-
-[%sifted: list; target-size]
 
 ```
 &rarr; `list`
@@ -681,7 +718,7 @@ The maximum number of elements to reduce the `list` to.
 
 <$npc = (::
   name = "Foo Bar";
-  traits = [sifted: <char-traits>; 2];
+  traits = [sift: <char-traits>; 2];
 )>
 
 # Print character info
@@ -689,6 +726,76 @@ The maximum number of elements to reduce the `list` to.
 
 # ~> Foo Bar: speaks-to-bees, many-legs
 ```
+
+
+## sift-self
+
+```rant
+
+[%sift-self: list; target-size]
+
+```
+
+Removes random elements from a list in-place until the number of elements in the list reaches `target-size`.
+If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
+
+### Parameters
+
+**`list`** &larr; `list` <br/>
+The input list.
+
+**`target-size`** &larr; `int` <br/>
+The maximum number of elements to reduce the `list` to.
+
+### Example
+
+```rant
+# Remove a random element from a list and print the contents at each iteration
+<$list = [split: "Sphinx of black quartz, judge my vow."; \s]>
+[rep: [len: <list>]]
+[sep: \n]
+{
+  # Print the current list contents
+  [join: \s; <list>]
+  # Sift the list to n - 1
+  [sift-self: <list>; [sub: [len: <list>]; 1]]
+}
+
+##
+  EXAMPLE OUTPUT:
+
+  Sphinx of black quartz, judge my vow.
+  Sphinx of black quartz, my vow.
+  Sphinx of black quartz, vow.
+  Sphinx of black vow.
+  Sphinx black vow.
+  Sphinx vow.
+  vow.
+##
+```
+
+
+## sift-thru
+
+```rant
+
+[%sift-thru: list; target-size]
+
+```
+&rarr; `list`
+
+Removes random elements from a list in-place until the number of elements in the list reaches `target-size`.
+If the number of elements in the list is less than or equal to `target-size`, this function does nothing.
+
+The input list is printed back to the caller.
+
+### Parameters
+
+**`list`** &larr; `list` <br/>
+The input list.
+
+**`target-size`** &larr; `int` <br/>
+The maximum number of elements to reduce the `list` to.
 
 
 ## squish
@@ -755,11 +862,29 @@ The input list.
 The maximum number of elements to reduce the list copy to.
 
 
+
 ## sort
 
 ```rant
 
 [%sort: list]
+
+```
+&rarr; `list`
+
+Creates a copy of a list with its elements sorted in ascending order.
+
+### Parameters
+
+**`list`** &larr; `list` <br/>
+The input list.
+
+
+## sort-self
+
+```rant
+
+[%sort-self: list]
 
 ```
 
@@ -771,16 +896,16 @@ Sorts the elements of a list in-place in ascending order.
 The input list.
 
 
-## sorted
+## sort-thru
 
 ```rant
 
-[%sorted: list]
+[%sort-thru: list]
 
 ```
 &rarr; `list`
 
-Creates a copy of a list with its elements sorted in ascending order.
+Sorts the elements of a list in-place in ascending order, then prints the list.
 
 ### Parameters
 
