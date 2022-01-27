@@ -167,64 +167,72 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="standard-library-conversion-functions"><a class="header" href="#standard-library-conversion-functions">Standard Library: Conversion functions</a></h1>
-<h2 id="float"><a class="header" href="#float">float</a></h2>
+<h2 id="to-float"><a class="header" href="#to-float">to-float</a></h2>
 <pre><code class="language-rant">
-[%float: value]
+[%to-float: value]
 
 </code></pre>
 <p>→ <code>float | empty</code></p>
-<p>Attempts to convert <code>value</code> to a <code>float</code> value and returns the result.
-If the conversion fails, returns <code>empty</code> value.</p>
+<p>Attempts to convert <code>value</code> to a <code>float</code> value and prints the result.
+If the conversion fails, prints emptyval.</p>
 <h3 id="parameters"><a class="header" href="#parameters">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The input value to convert.</p>
-<h2 id="int"><a class="header" href="#int">int</a></h2>
+<h2 id="to-int"><a class="header" href="#to-int">to-int</a></h2>
 <pre><code class="language-rant">
-[%int: value]
+[%to-int: value]
 
 </code></pre>
 <p>→ <code>int | empty</code></p>
-<p>Attempts to convert <code>value</code> to an <code>int</code> value and returns the result.
-If the conversion fails, returns <code>empty</code> value.</p>
+<p>Attempts to convert <code>value</code> to an <code>int</code> value and prints the result.
+If the conversion fails, prints emptyval.</p>
 <h3 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The input value to convert.</p>
-<h2 id="string"><a class="header" href="#string">string</a></h2>
+<h2 id="to-string"><a class="header" href="#to-string">to-string</a></h2>
 <pre><code class="language-rant">
-[%string: value]
+[%to-string: value]
 
 </code></pre>
 <p>→ <code>string | empty</code></p>
-<p>Attempts to convert <code>value</code> to a <code>string</code> value and returns the result.
-If the conversion fails, returns <code>empty</code> value.</p>
+<p>Attempts to convert <code>value</code> to a <code>string</code> value and prints the result.
+If the conversion fails, prints emptyval.</p>
 <h3 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The input value to convert.</p>
-<h2 id="list"><a class="header" href="#list">list</a></h2>
+<h2 id="to-list"><a class="header" href="#to-list">to-list</a></h2>
 <pre><code class="language-rant">
-[%list: value]
+[%to-list: value]
 
 </code></pre>
 <p>→ <code>list | empty</code></p>
-<p>Attempts to convert <code>value</code> to a <code>list</code> and returns the result.
-If the conversion fails, returns <code>empty</code> value.</p>
+<p>Attempts to convert <code>value</code> to a <code>list</code> and prints the result.
+If the conversion fails, prints emptyval.</p>
 <h3 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h3>
 <p><strong><code>value</code></strong> ← <code>any</code> <br/>
 The input value to convert.</p>
 <h3 id="conversion-behavior"><a class="header" href="#conversion-behavior">Conversion behavior</a></h3>
 <p><strong>From <code>string</code></strong></p>
 <p>Passing a <code>string</code> value into this function returns a <code>list</code> of the string's graphemes.</p>
-<pre><code class="language-rant">&lt;%letters = [list: &quot;hello&quot;]&gt;
-[assert-eq: &lt;letters&gt;; (h; e; l; l; o)]
+<pre><code class="language-rant">&lt;%letters = [to-list: &quot;hello&quot;]&gt;
+[assert-eq: &lt;letters&gt;; (: h; e; l; l; o)]
 </code></pre>
 <p><strong>From <code>list</code></strong></p>
-<p>Passing a <code>list</code> value into this function returns a shallow copy of it.
+<p>Passing a <code>list</code> value into this function prints a shallow copy of it.
 This is equivalent to calling <code>[copy]</code> on the list.</p>
 <p><strong>From <code>range</code></strong></p>
-<p>Passing a <code>range</code> value into this function returns a list of the range's elements in order.</p>
-<pre><code class="language-rant">&lt;%seq = [range: 0; 5 |&gt; list]&gt;
-[assert-eq: &lt;seq&gt;; (0; 1; 2; 3; 4)]
+<p>Passing a <code>range</code> value into this function prints a list of the range's elements in order.</p>
+<pre><code class="language-rant">&lt;%seq = [range: 0; 5 |&gt; to-list]&gt;
+[assert-eq: &lt;seq&gt;; (: 0; 1; 2; 3; 4)]
 </code></pre>
+<h2 id="to-tuple"><a class="header" href="#to-tuple">to-tuple</a></h2>
+<pre><code class="language-rant">
+[%to-tuple: value]
+
+</code></pre>
+<p>→ <code>tuple | empty</code></p>
+<p>Attempts to convert a value to a <code>tuple</code> and prints the result.
+If the conversion fails, prints emptyval.</p>
 
                     </main>
 
