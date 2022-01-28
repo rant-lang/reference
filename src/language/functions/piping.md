@@ -58,3 +58,23 @@ In the piped scenario, the temporal argument in `[foo]` duplicates the entire ca
 # -> [bar: [foo: 2]]
 # -> [bar: [foo: 3]]
 ```
+
+## Assignment pipe
+
+There is another pipe operator called the **assignment pipe** (`>`) which lets you assign pipeval to a variable inside your call chain.
+This can save some nesting and make your code more readable. You can also use it in temporal calls to perform multiple assignments.
+
+The assignment pipe must appear at the end of the call chain.
+
+```rant
+<$test>
+[upper: "hello!" > test] # same as <test = [upper: "hello!"]>
+[assert-eq: <test>; "hello!"]
+```
+
+You can also create new variables from assignment pipes:
+```rant
+[rand: 1; 100 > $n] # same as <$n = [rand: 1; 100]>
+```
+
+Call chains ending in an assignment pipe are automatically sinked.

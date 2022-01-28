@@ -81,3 +81,23 @@ This is extremely useful for applying filters or post-processing to a block at a
     One | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten
 }
 ```
+
+You can also choose how many times you want to run the element, or even not run it at all.
+
+```rant
+# Without mutator
+[rep: all]
+[sep: \s]
+[sel: forward]
+{ the | quick | brown | fox }
+# -> the quick brown fox
+
+
+# With mutator
+[mut: [?: el] { [el] [el |> rev] }]
+[rep: all]
+[sep: \s]
+[sel: forward]
+{ the | quick | brown | fox }
+# -> theeht quickkciuq brownnworb foxxof
+```

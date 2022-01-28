@@ -50,7 +50,6 @@
     - [Modules](modules.md)
 - [🚧 Proposed Features]()
     - [🚧 Attribute keywords](proposals/attribute-keywords.md)
-    - [🚧 Assignment pipe](proposals/assignment-pipe.md)
 - [Standard Library](stdlib.md)
     - [General](stdlib/general.md)
     - [Attributes & Control Flow](stdlib/control-flow.md)
