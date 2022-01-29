@@ -22,7 +22,7 @@ Argument spreading is performed by prefixing an argument with `*`, as seen below
 ```rant
 <$extras = (baz; qux)>
 [cat: foo; bar; * <extras>; boo]
-# -> [cat: foo; bar; baz; qux; boo]
+# Expands to: [cat: foo; bar; baz; qux; boo]
 ```
 
 Attempting to spread a non-list will simply pass the value as a normal argument.
@@ -47,10 +47,11 @@ This is best explained with the following example:
 
 NORMAL SPREAD:\n
 [println: * <items>]\n
-# -> [println: foo; bar; baz]
+# Expands to: [println: foo; bar; baz]
 
 TEMPORAL SPREAD:\n
 [println: ** <items>]\n
+# Expands to:
 # -> [println: foo]
 # -> [println: bar]
 # -> [println: baz]
@@ -109,6 +110,7 @@ To add a label to a temporal spread operator, simply add any sequence of alphanu
 
 ```rant
 [cat: *a* (1; 2; 3); *a* (A; B; C); \n]
+# Expands to:
 # -> [cat: 1; A; \n]
 # -> [cat: 2; B; \n]
 # -> [cat: 3; C; \n]
@@ -130,5 +132,11 @@ To do this, just add `*` after the `**` or `*a*` in your temporal argument:
 
 ```rant
 [irange: *** ((1; 10); (100; 110); (200; 210)) |> list]
+# Expands to:
+# -> [irange: 1; 10 |> list]
+# -> [irange: 100; 110 |> list]
+# -> [irange: 200; 210 |> list]
+
+# Evaluates to:
 # -> (: [range(1 + x < 11)]; [range(100 + x < 111)]; [range(200 + x < 211)])
 ```
