@@ -30,7 +30,6 @@
         - [Anonymous Accessors](language/accessors/anonymous.md)
         - [Fallbacks](language/accessors/fallbacks.md)
         - [Globals & Descoping](language/accessors/globals-descoping.md)
-        - [Depth Operator](language/accessors/depth-operator.md)
     - [Keywords](language/keywords.md)
         - [@require](language/keywords/require.md)
         - [@return](language/keywords/return.md)
