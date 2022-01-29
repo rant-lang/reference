@@ -81,7 +81,7 @@ The following example demonstrates how this works:
 
 ```rant
 # Print out every combination (disgusting or not) of two lists of seasonings
-[cat: **(salt; pepper; sugar); \t; **(cinnamon; cilantro; basil; cloves); \n]
+[cat: ** (salt; pepper; sugar); \t; ** (cinnamon; cilantro; basil; cloves); \n]
 ```
 
 This produces the following output:
@@ -122,3 +122,13 @@ Doing this produces only 3 iterations:
 ```
 
 
+### Complex spread
+
+Temporal and parametric spread can be combined so that each iteration of a temporal argument is also parametrically spread. This is called a **complex spread**.
+
+To do this, just add `*` after the `**` or `*a*` in your temporal argument:
+
+```rant
+[irange: *** ((1; 10); (100; 110); (200; 210)) |> list]
+# -> (: [range(1 + x < 11)]; [range(100 + x < 111)]; [range(200 + x < 211)])
+```

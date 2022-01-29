@@ -163,11 +163,11 @@ The collection to clear.
 Causes a runtime error if `collection` is not a list or map.
 
 
-## collect
+## list
 
 ```rant
 
-[%collect: values*]
+[%list: values*]
 
 ```
 &rarr; `list`
@@ -178,6 +178,23 @@ Prints a `list` containing the arguments.
 
 **`values`** &larr; `any*` <br/>
 The values to store in the list.
+
+
+## tuple
+
+```rant
+
+[%tuple: values*]
+
+```
+&rarr; `tuple`
+
+Prints a `tuple` containing the arguments.
+
+### Parameters
+
+**`values`** &larr; `any*` <br/>
+The values to store in the tuple.
 
 
 ## filter
