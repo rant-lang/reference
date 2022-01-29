@@ -225,7 +225,7 @@ When it rolls back over to the first item, the selection of the second temporal 
 The total number of iterations will be equal to the product of the lengths of all temporal arguments.</p>
 <p>The following example demonstrates how this works:</p>
 <pre><code class="language-rant"># Print out every combination (disgusting or not) of two lists of seasonings
-[cat: **(salt; pepper; sugar); \t; **(cinnamon; cilantro; basil; cloves); \n]
+[cat: ** (salt; pepper; sugar); \t; ** (cinnamon; cilantro; basil; cloves); \n]
 </code></pre>
 <p>This produces the following output:</p>
 <pre><code>salt    cinnamon
@@ -254,6 +254,12 @@ Thankfully, this is easy to do with temporal arguments by adding a <strong>label
 <pre><code>1A
 2B
 3C
+</code></pre>
+<h3 id="complex-spread"><a class="header" href="#complex-spread">Complex spread</a></h3>
+<p>Temporal and parametric spread can be combined so that each iteration of a temporal argument is also parametrically spread. This is called a <strong>complex spread</strong>.</p>
+<p>To do this, just add <code>*</code> after the <code>**</code> or <code>*a*</code> in your temporal argument:</p>
+<pre><code class="language-rant">[irange: *** ((1; 10); (100; 110); (200; 210)) |&gt; list]
+# -&gt; (: [range(1 + x &lt; 11)]; [range(100 + x &lt; 111)]; [range(200 + x &lt; 211)])
 </code></pre>
 
                     </main>
