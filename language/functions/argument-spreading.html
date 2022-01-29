@@ -181,7 +181,7 @@ As long as the final argument list meets the requirements of the target function
 <p>Argument spreading is performed by prefixing an argument with <code>*</code>, as seen below:</p>
 <pre><code class="language-rant">&lt;$extras = (baz; qux)&gt;
 [cat: foo; bar; * &lt;extras&gt;; boo]
-# -&gt; [cat: foo; bar; baz; qux; boo]
+# Expands to: [cat: foo; bar; baz; qux; boo]
 </code></pre>
 <p>Attempting to spread a non-list will simply pass the value as a normal argument.</p>
 <h2 id="temporal-spread"><a class="header" href="#temporal-spread">Temporal spread</a></h2>
@@ -199,10 +199,11 @@ This essentially turns the function call into a loop.</p>
 
 NORMAL SPREAD:\n
 [println: * &lt;items&gt;]\n
-# -&gt; [println: foo; bar; baz]
+# Expands to: [println: foo; bar; baz]
 
 TEMPORAL SPREAD:\n
 [println: ** &lt;items&gt;]\n
+# Expands to:
 # -&gt; [println: foo]
 # -&gt; [println: bar]
 # -&gt; [println: baz]
@@ -246,6 +247,7 @@ sugar   cloves
 Thankfully, this is easy to do with temporal arguments by adding a <strong>label</strong> to the temporal spread operators you want to synchronize.</p>
 <p>To add a label to a temporal spread operator, simply add any sequence of alphanumeric characters, understores, and hyphens between the two <code>*</code> characters, like this:</p>
 <pre><code class="language-rant">[cat: *a* (1; 2; 3); *a* (A; B; C); \n]
+# Expands to:
 # -&gt; [cat: 1; A; \n]
 # -&gt; [cat: 2; B; \n]
 # -&gt; [cat: 3; C; \n]
@@ -259,6 +261,12 @@ Thankfully, this is easy to do with temporal arguments by adding a <strong>label
 <p>Temporal and parametric spread can be combined so that each iteration of a temporal argument is also parametrically spread. This is called a <strong>complex spread</strong>.</p>
 <p>To do this, just add <code>*</code> after the <code>**</code> or <code>*a*</code> in your temporal argument:</p>
 <pre><code class="language-rant">[irange: *** ((1; 10); (100; 110); (200; 210)) |&gt; list]
+# Expands to:
+# -&gt; [irange: 1; 10 |&gt; list]
+# -&gt; [irange: 100; 110 |&gt; list]
+# -&gt; [irange: 200; 210 |&gt; list]
+
+# Evaluates to:
 # -&gt; (: [range(1 + x &lt; 11)]; [range(100 + x &lt; 111)]; [range(200 + x &lt; 211)])
 </code></pre>
 
