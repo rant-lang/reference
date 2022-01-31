@@ -167,9 +167,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="argument-spreading"><a class="header" href="#argument-spreading">Argument spreading</a></h1>
-<p>Argument spreading enables you to deconstruct a list argument into multiple individual arguments.</p>
-<p>Rant can spread arguments across both space and time.
-This functionality is exposed through two spread operators: <strong>parametric spread</strong> (<code>*</code>), and <strong>temporal spread</strong> (<code>**</code>).</p>
+<p>Argument spreading refers to deconstructing a collection and dynamically passing its elements as separate arguments in a function call.</p>
+<p>Rant supports three types of argument spreading: <strong>parametric</strong>, <strong>temporal</strong>, and <strong>complex</strong>.</p>
+<br/>
+<p><img src="/img/rant-spread-op-infographic.png" alt="Rant 4 spread operator infographic" /></p>
 <h2 id="parametric-spread"><a class="header" href="#parametric-spread">Parametric spread</a></h2>
 <p>The <strong>parametric spread operator</strong> lets you use a list to pass multiple arguments at once to a single function call.
 This operation is referred to in Rant as &quot;parametric spreading&quot; or simply &quot;spreading.&quot;</p>
@@ -257,7 +258,7 @@ Thankfully, this is easy to do with temporal arguments by adding a <strong>label
 2B
 3C
 </code></pre>
-<h3 id="complex-spread"><a class="header" href="#complex-spread">Complex spread</a></h3>
+<h2 id="complex-spread"><a class="header" href="#complex-spread">Complex spread</a></h2>
 <p>Temporal and parametric spread can be combined so that each iteration of a temporal argument is also parametrically spread. This is called a <strong>complex spread</strong>.</p>
 <p>To do this, just add <code>*</code> after the <code>**</code> or <code>*a*</code> in your temporal argument:</p>
 <pre><code class="language-rant">[irange: *** ((1; 10); (100; 110); (200; 210)) |&gt; list]
