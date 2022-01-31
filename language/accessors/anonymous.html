@@ -169,7 +169,7 @@
                         <h1 id="anonymous-accessors"><a class="header" href="#anonymous-accessors">Anonymous Accessors</a></h1>
 <p>In order to access a key or index on a value, it normally must be stored in a variable; 
 however, <strong>anonymous accessors</strong> remove this requirement by accepting a raw value instead of a variable name.</p>
-<p>To create an anonymous accessor, replace the variable name in the accessor with <code>!</code> followed by a block containing your value. 
+<p>To create an anonymous accessor, replace the variable name in the accessor with <code>!</code> followed by an expression enclosed in <code>()</code>. 
 Write the rest of your access path as normal.</p>
 <p>Both getters and setters can be made anonymous; however, anonymous setters must include at least one index or key.</p>
 <h3 id="example-1"><a class="header" href="#example-1">Example 1</a></h3>
@@ -181,11 +181,11 @@ Write the rest of your access path as normal.</p>
 [$get-either-list]{{&lt;list1&gt;|&lt;list2&gt;}}
 
 # Call [get-random-list] and get the 4th item (index 3) of the returned list
-&lt;!{[get-either-list]}/3&gt; # Returns either '4' or 'd'
+&lt;!([get-either-list])/3&gt; # Returns either '4' or 'd'
 </code></pre>
 <h3 id="example-2"><a class="header" href="#example-2">Example 2</a></h3>
 <pre><code class="language-rant"># Get the first letter of a string literal
-&lt;!{&quot;hello&quot;}/0&gt; # Returns 'h'
+&lt;!(&quot;hello&quot;)/0&gt; # Returns 'h'
 </code></pre>
 
                     </main>

@@ -183,7 +183,7 @@ All Rant collections use &quot;zero-based indexing&quot;; in other words, the fi
 </code></pre>
 <p>Negative indices are relative to the end of the collection. This means <code>-1</code> represents the last element, <code>-2</code> the penultimate element, and so on.</p>
 <pre><code class="language-rant">&lt;%msg = &quot;hello&quot;&gt;
-Last char: &lt;msg/-1&gt;\n # same as &lt;msg/4&gt; or &lt;msg/{[sub: [len: &lt;msg&gt;]; 1]}&gt;
+Last char: &lt;msg/-1&gt;\n # same as &lt;msg/4&gt; or &lt;msg/([len: &lt;msg&gt;] - 1)&gt;
 
 # Last char: o
 </code></pre>
@@ -205,10 +205,10 @@ Simply specify the desired map key after the <code>/</code> to access the map el
 </code></pre>
 <p>Keys follow the same naming rules as variables, unless specified as a dynamic key (see below).</p>
 <h2 id="dynamic-keys"><a class="header" href="#dynamic-keys">Dynamic keys</a></h2>
-<p>Where an index or key must be calculated at runtime, a dynamic key may be used. Dynamic keys are single-element blocks that returns an <code>int</code> or <code>string</code>.</p>
+<p>Where an index or key must be calculated at runtime, a dynamic key may be used. Simply use an expression enclosed in <code>()</code> in place of the index or key:</p>
 <pre><code class="language-rant">&lt;%fruits = (apple; orange; banana; tomato)&gt;
 
-&lt;fruits/{ [len: &lt;fruits&gt; |&gt; sub: 1 |&gt; rand: 0; []] }&gt; # returns a random fruit
+&lt;fruits/( [len: &lt;fruits&gt; |&gt; rand: 0; [] - 1])&gt; # returns a random fruit
 </code></pre>
 <p>The value of a dynamic key must be compatible with the type of collection being accessed: for example, a <code>string</code> cannot be used to index a <code>list</code>, but an <code>int</code> can be used to key a <code>map</code> because its conversion to a string is infallible (in other words, all <code>int</code> values have a valid <code>string</code> conversion).</p>
 <h3 id="dynamic-key-type-compatibility"><a class="header" href="#dynamic-key-type-compatibility">Dynamic key type compatibility</a></h3>
@@ -248,12 +248,12 @@ Slices can be fully-bounded (having start + end points), half-bounded (having a 
 &lt;my-list&gt; # -&gt; (: 1; a; b; 3)
 </code></pre>
 <h4 id="dynamic-slices"><a class="header" href="#dynamic-slices">Dynamic slices</a></h4>
-<p>Slices also support dynamic bounds; just replace any slice bound index with a single-element block that returns an <code>int</code> value.</p>
+<p>Slices also support dynamic bounds; just replace any slice bound with a dynamic key:</p>
 <pre><code class="language-rant">&lt;%message = &quot;fantastic&quot;&gt;
 [rep: [len: &lt;message&gt;]]
 {
     # Use the current block iteration number to slice the message
-    &lt;message/:{[step]}&gt;\n
+    &lt;message/:([step])&gt;\n
 }
 </code></pre>
 <p>This produces the following output:</p>
