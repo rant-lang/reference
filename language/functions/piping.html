@@ -178,6 +178,8 @@
 This output value can be accessed using the <strong>pipeval literal</strong> <code>[]</code>. </p>
 <p>By default, pipeval is implicitly passed as the first argument in the next function call;
 however, you can disable this and explicitly specify where to pass it in by directly using <code>[]</code> in any argument.</p>
+<p>Rant treats <code>[]</code> like any other constant, meaning that you can pass it to any number of arguments, 
+or even reference it multiple times in one argument.</p>
 <pre><code class="language-rant">[$get-zipper] {
     {&lt;add&gt;|&lt;sub&gt;}
 }
@@ -193,7 +195,7 @@ however, you can disable this and explicitly specify where to pass it in by dire
 # Get a random math function and call it, passing in two numbers
 [get-math-func |&gt; []: 3.0; 2.0]
 </code></pre>
-<h2 id="behavior-with-temporal-arguments"><a class="header" href="#behavior-with-temporal-arguments">Behavior with temporal arguments</a></h2>
+<h2 id="interaction-with-temporal-arguments"><a class="header" href="#interaction-with-temporal-arguments">Interaction with temporal arguments</a></h2>
 <p>Temporal arguments in piped calls behave differently than those in nested calls.</p>
 <p>To illustrate this, suppose we have a call to <code>[foo]</code> that passes its return value into <code>[bar]</code>.</p>
 <p>In the nested scenario, a temporal argument in <code>[foo]</code> will not duplicate the call to <code>[bar]</code>:</p>
