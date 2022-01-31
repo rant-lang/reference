@@ -1,8 +1,9 @@
 # Argument spreading
 
-Argument spreading refers to deconstructing a collection and dynamically passing its elements as separate arguments in a function call.
+**Argument spreading** generally refers to deconstructing a collection and dynamically passing its elements as separate arguments into a function call.
+Rant expands on this concept by allowing you to spread arguments across not just one, but *two* different axes.
 
-Rant supports three types of argument spreading: **parametric**, **temporal**, and **complex**.
+In total, Rant supports three different spread operations: **parametric**, **temporal**, and **complex**.
 
 <br/>
 
