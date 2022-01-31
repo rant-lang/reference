@@ -174,8 +174,10 @@
 <p>By using piping, the same expression above can be rewritten with only a single pair of brackets:</p>
 <pre><code class="language-rant">[a: 1 |&gt; b: 2 |&gt; c: 3 |&gt; d: 4 |&gt; e: 5] # Much more readable!
 </code></pre>
-<p>In a piped function call, the output of one function is fed into the input of the next. By default, the output is inserted as the first argument;
-however, this can be changed by passing the <strong>pipe value</strong> <code>[]</code> as an argument:</p>
+<p>In a piped call, the output of one function is fed into the input of the next. 
+This output value can be accessed using the <strong>pipeval literal</strong> <code>[]</code>. </p>
+<p>By default, pipeval is implicitly passed as the first argument in the next function call;
+however, you can disable this and explicitly specify where to pass it in by directly using <code>[]</code> in any argument.</p>
 <pre><code class="language-rant">[$get-zipper] {
     {&lt;add&gt;|&lt;sub&gt;}
 }
@@ -183,13 +185,13 @@ however, this can be changed by passing the <strong>pipe value</strong> <code>[]
 # Pass the output of [get-zipper] as the third argument for [zip]
 [get-zipper |&gt; zip: (1; 2; 3); (4; 5; 6); []]
 </code></pre>
-<p>If the pipe value is a <code>function</code>, you can call it directly using an anonymous call:</p>
+<p>If pipeval is a <code>function</code>, you can call it directly by using it as the function name:</p>
 <pre><code class="language-rant">[$get-math-func] {
     {&lt;add&gt;|&lt;mul&gt;|&lt;sub&gt;|&lt;div&gt;}
 }
 
 # Get a random math function and call it, passing in two numbers
-[get-math-func |&gt; ![]: 3.0; 2.0]
+[get-math-func |&gt; []: 3.0; 2.0]
 </code></pre>
 <h2 id="behavior-with-temporal-arguments"><a class="header" href="#behavior-with-temporal-arguments">Behavior with temporal arguments</a></h2>
 <p>Temporal arguments in piped calls behave differently than those in nested calls.</p>

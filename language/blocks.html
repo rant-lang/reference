@@ -189,7 +189,7 @@ They can contain any valid Rant code—even other blocks.</p>
 <h3 id="collection-generation"><a class="header" href="#collection-generation">Collection generation</a></h3>
 <p>Blocks can be used to combine collections with conditional, repeating, or probabilistic elements.</p>
 <pre><code class="language-rant"># Evaluates to (A; B; C) or (A; D; E)
-{ (A) { (B; C) | (D; E) } }
+{ (A;) { (B; C) | (D; E) } }
 </code></pre>
 <pre><code class="language-rant"># Evaluates to (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
 [rep: 10] { ([step]) }
@@ -204,8 +204,8 @@ They can contain any valid Rant code—even other blocks.</p>
 </blockquote>
 <h3 id="entanglement"><a class="header" href="#entanglement">Entanglement</a></h3>
 <p>A selector can &quot;entangle&quot; several blocks to coordinate their behavior.</p>
-<pre><code class="language-rant"># Create a selector and store it in a variable
-&lt;$sync = [mksel:one]&gt;
+<pre><code class="language-rant"># Create a selector and store it in &lt;sync&gt;
+[mksel:one &gt; %sync]
 # Both blocks use the `sync` selector, so they're entangled
 [sel:&lt;sync&gt;]{Dogs|Cats} say \&quot;[sel:&lt;sync&gt;]{woof|meow}!\&quot;
 
