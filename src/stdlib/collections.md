@@ -557,7 +557,8 @@ Raises an error if `pos` is out of range or not the correct type for the provide
 Prints the length of `value`.
 
 If `value` is a collection type (e.g. `string`, `list`, `tuple`, `range`), prints the number of elements.
-All other value types default to 1.
+
+All non-collection types produce a "length" of 1.
 
 ### Parameters
 
