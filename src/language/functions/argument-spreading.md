@@ -1,9 +1,12 @@
 # Argument spreading
 
-Argument spreading enables you to deconstruct a list argument into multiple individual arguments.
+Argument spreading refers to deconstructing a collection and dynamically passing its elements as separate arguments in a function call.
 
-Rant can spread arguments across both space and time.
-This functionality is exposed through two spread operators: **parametric spread** (`*`), and **temporal spread** (`**`).
+Rant supports three types of argument spreading: **parametric**, **temporal**, and **complex**.
+
+<br/>
+
+![Rant 4 spread operator infographic](/img/rant-spread-op-infographic.png)
 
 ## Parametric spread
 
@@ -124,7 +127,7 @@ Doing this produces only 3 iterations:
 ```
 
 
-### Complex spread
+## Complex spread
 
 Temporal and parametric spread can be combined so that each iteration of a temporal argument is also parametrically spread. This is called a **complex spread**.
 
