@@ -556,8 +556,8 @@ Raises an error if `pos` is out of range or not the correct type for the provide
 
 Prints the length of `value`.
 
-For `string`, this is the number of graphemes; for `list`, `map`, and `range`, the number of elements.
-All other value types give a length of 1.
+If `value` is a collection type (e.g. `string`, `list`, `tuple`, `range`), prints the number of elements.
+All other value types default to 1.
 
 ### Parameters
 
