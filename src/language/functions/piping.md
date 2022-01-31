@@ -20,6 +20,9 @@ This output value can be accessed using the **pipeval literal** `[]`.
 By default, pipeval is implicitly passed as the first argument in the next function call;
 however, you can disable this and explicitly specify where to pass it in by directly using `[]` in any argument.
 
+Rant treats `[]` like any other constant, meaning that you can pass it to any number of arguments, 
+or even reference it multiple times in one argument.
+
 ```rant
 [$get-zipper] {
     {<add>|<sub>}
@@ -40,7 +43,7 @@ If pipeval is a `function`, you can call it directly by using it as the function
 [get-math-func |> []: 3.0; 2.0]
 ```
 
-## Behavior with temporal arguments
+## Interaction with temporal arguments
 
 Temporal arguments in piped calls behave differently than those in nested calls.
 
