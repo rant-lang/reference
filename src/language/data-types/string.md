@@ -21,7 +21,7 @@ When you index a string, it will return another string containing just that char
 
 "text:"         <a>\n
 "indexed:"      <a/0>\n
-"sliced:"       <a/1:-1>\n
+"sliced:"       <a/1..-1>\n
 
 # text: example
 # indexed: e

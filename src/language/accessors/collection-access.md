@@ -91,16 +91,16 @@ Slice notation takes the following forms:
 
 ```rant
 # fully-bounded
-<my-list/2:5>   # get all elements between index 2 (inclusive) and index 5 (exclusive)
+<my-list/2..5>   # get all elements between index 2 (inclusive) and index 5 (exclusive)
 
 # start-bounded
-<my-list/2:>    # get all emements starting at index 2 (inclusive)
+<my-list/2..>    # get all emements starting at index 2 (inclusive)
 
 # end-bounded
-<my-list/:5>    # get all elements until index 5 (exclusive)
+<my-list/..5>    # get all elements until index 5 (exclusive)
 
 # unbounded
-<my-list/:>     # get all elements (equivalent to a shallow-clone)
+<my-list/..>     # get all elements (equivalent to a shallow-clone)
 ```
 
 #### Splicing
@@ -109,8 +109,8 @@ You can also set a slice on mutable collection types, an operation also known as
 
 ```rant
 <$my-list = (: 1; 2; 3)>
-<my-list/1:2 = (: a; b)> # the splice value doesn't have to be the same size!
-<my-list/3:4 = (c; d)> # the splice value can also be a tuple!
+<my-list/1..2 = (: a; b)> # the splice value doesn't have to be the same size!
+<my-list/3..4 = (c; d)> # the splice value can also be a tuple!
 <my-list> # -> (: 1; a; b; 3)
 ```
 
@@ -123,7 +123,7 @@ Slices also support dynamic bounds; just replace any slice bound with a dynamic 
 [rep: [len: <message>]]
 {
     # Use the current block iteration number to slice the message
-    <message/:([step])>\n
+    <message/..([step])>\n
 }
 ```
 This produces the following output:
