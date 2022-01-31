@@ -229,22 +229,22 @@ Slices can be fully-bounded (having start + end points), half-bounded (having a 
 <p>When you get a slice of a collection, the accessor returns a new copy of the collection containing the slice contents.</p>
 <p>Slice notation takes the following forms:</p>
 <pre><code class="language-rant"># fully-bounded
-&lt;my-list/2:5&gt;   # get all elements between index 2 (inclusive) and index 5 (exclusive)
+&lt;my-list/2..5&gt;   # get all elements between index 2 (inclusive) and index 5 (exclusive)
 
 # start-bounded
-&lt;my-list/2:&gt;    # get all emements starting at index 2 (inclusive)
+&lt;my-list/2..&gt;    # get all emements starting at index 2 (inclusive)
 
 # end-bounded
-&lt;my-list/:5&gt;    # get all elements until index 5 (exclusive)
+&lt;my-list/..5&gt;    # get all elements until index 5 (exclusive)
 
 # unbounded
-&lt;my-list/:&gt;     # get all elements (equivalent to a shallow-clone)
+&lt;my-list/..&gt;     # get all elements (equivalent to a shallow-clone)
 </code></pre>
 <h4 id="splicing"><a class="header" href="#splicing">Splicing</a></h4>
 <p>You can also set a slice on mutable collection types, an operation also known as <strong>splicing</strong>:</p>
 <pre><code class="language-rant">&lt;$my-list = (: 1; 2; 3)&gt;
-&lt;my-list/1:2 = (: a; b)&gt; # the splice value doesn't have to be the same size!
-&lt;my-list/3:4 = (c; d)&gt; # the splice value can also be a tuple!
+&lt;my-list/1..2 = (: a; b)&gt; # the splice value doesn't have to be the same size!
+&lt;my-list/3..4 = (c; d)&gt; # the splice value can also be a tuple!
 &lt;my-list&gt; # -&gt; (: 1; a; b; 3)
 </code></pre>
 <h4 id="dynamic-slices"><a class="header" href="#dynamic-slices">Dynamic slices</a></h4>
@@ -253,7 +253,7 @@ Slices can be fully-bounded (having start + end points), half-bounded (having a 
 [rep: [len: &lt;message&gt;]]
 {
     # Use the current block iteration number to slice the message
-    &lt;message/:([step])&gt;\n
+    &lt;message/..([step])&gt;\n
 }
 </code></pre>
 <p>This produces the following output:</p>
