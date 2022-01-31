@@ -24,7 +24,7 @@ Negative indices are relative to the end of the collection. This means `-1` repr
 
 ```rant
 <%msg = "hello">
-Last char: <msg/-1>\n # same as <msg/4> or <msg/{[sub: [len: <msg>]; 1]}>
+Last char: <msg/-1>\n # same as <msg/4> or <msg/([len: <msg>] - 1)>
 
 # Last char: o
 ```
@@ -53,12 +53,12 @@ Keys follow the same naming rules as variables, unless specified as a dynamic ke
 
 ## Dynamic keys
 
-Where an index or key must be calculated at runtime, a dynamic key may be used. Dynamic keys are single-element blocks that returns an `int` or `string`.
+Where an index or key must be calculated at runtime, a dynamic key may be used. Simply use an expression enclosed in `()` in place of the index or key:
 
 ```rant
 <%fruits = (apple; orange; banana; tomato)>
 
-<fruits/{ [len: <fruits> |> sub: 1 |> rand: 0; []] }> # returns a random fruit
+<fruits/( [len: <fruits> |> rand: 0; [] - 1])> # returns a random fruit
 ```
 
 The value of a dynamic key must be compatible with the type of collection being accessed: for example, a `string` cannot be used to index a `list`, but an `int` can be used to key a `map` because its conversion to a string is infallible (in other words, all `int` values have a valid `string` conversion).
@@ -116,14 +116,14 @@ You can also set a slice on mutable collection types, an operation also known as
 
 #### Dynamic slices
 
-Slices also support dynamic bounds; just replace any slice bound index with a single-element block that returns an `int` value.
+Slices also support dynamic bounds; just replace any slice bound with a dynamic key:
 
 ```rant
 <%message = "fantastic">
 [rep: [len: <message>]]
 {
     # Use the current block iteration number to slice the message
-    <message/:{[step]}>\n
+    <message/:([step])>\n
 }
 ```
 This produces the following output:
