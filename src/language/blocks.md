@@ -37,7 +37,7 @@ Blocks can be used to combine collections with conditional, repeating, or probab
 
 ```rant
 # Evaluates to (A; B; C) or (A; D; E)
-{ (A) { (B; C) | (D; E) } }
+{ (A;) { (B; C) | (D; E) } }
 ```
 
 ```rant
@@ -57,8 +57,8 @@ Blocks can be used to combine collections with conditional, repeating, or probab
 A selector can "entangle" several blocks to coordinate their behavior.
 
 ```rant
-# Create a selector and store it in a variable
-<$sync = [mksel:one]>
+# Create a selector and store it in <sync>
+[mksel:one > %sync]
 # Both blocks use the `sync` selector, so they're entangled
 [sel:<sync>]{Dogs|Cats} say \"[sel:<sync>]{woof|meow}!\"
 

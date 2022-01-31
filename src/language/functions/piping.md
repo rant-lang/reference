@@ -14,8 +14,11 @@ By using piping, the same expression above can be rewritten with only a single p
 [a: 1 |> b: 2 |> c: 3 |> d: 4 |> e: 5] # Much more readable!
 ```
 
-In a piped function call, the output of one function is fed into the input of the next. By default, the output is inserted as the first argument;
-however, this can be changed by passing the **pipe value** `[]` as an argument:
+In a piped call, the output of one function is fed into the input of the next. 
+This output value can be accessed using the **pipeval literal** `[]`. 
+
+By default, pipeval is implicitly passed as the first argument in the next function call;
+however, you can disable this and explicitly specify where to pass it in by directly using `[]` in any argument.
 
 ```rant
 [$get-zipper] {
@@ -26,7 +29,7 @@ however, this can be changed by passing the **pipe value** `[]` as an argument:
 [get-zipper |> zip: (1; 2; 3); (4; 5; 6); []]
 ```
 
-If the pipe value is a `function`, you can call it directly using an anonymous call:
+If pipeval is a `function`, you can call it directly by using it as the function name:
 
 ```rant
 [$get-math-func] {
@@ -34,7 +37,7 @@ If the pipe value is a `function`, you can call it directly using an anonymous c
 }
 
 # Get a random math function and call it, passing in two numbers
-[get-math-func |> ![]: 3.0; 2.0]
+[get-math-func |> []: 3.0; 2.0]
 ```
 
 ## Behavior with temporal arguments
