@@ -167,26 +167,40 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="escape-sequences"><a class="header" href="#escape-sequences">Escape sequences</a></h1>
-<p>It will, of course, be necessary to sometimes print reserved characters, or characters that cannot be typed on a standard keyboard.
-To this end, Rant offers escape sequences.</p>
-<h2 id="character-escape-sequences"><a class="header" href="#character-escape-sequences">Character escape sequences</a></h2>
-<p>Any reserved (and most non-reserved) characters can be printed by prefixing each one with a backslash character:</p>
+<p>Some scripts may need to print characters reserved by the language, or characters that cannot be typed on a standard keyboard layout.
+To help with this, Rant offers <strong>escape sequences</strong>.</p>
+<h2 id="character-escapes"><a class="header" href="#character-escapes">Character escapes</a></h2>
+<p>Any reserved character can be printed by prefixing it with <code>\</code>:</p>
 <pre><code class="language-rant">\{This text will print with braces around it\}
 </code></pre>
-<h2 id="special-escape-sequences"><a class="header" href="#special-escape-sequences">Special escape sequences</a></h2>
+<h2 id="special-escapes"><a class="header" href="#special-escapes">Special escapes</a></h2>
 <p>Certain characters are not interpreted verbatim when escaped, and instead have special meaning.
 Here's a list of them:</p>
 <table><thead><tr><th>Escape sequence</th><th>Output character</th></tr></thead><tbody>
-<tr><td><code>\r</code></td><td>Carriage return (U+000D)</td></tr>
+<tr><td><code>\\</code></td><td>Backslash</td></tr>
 <tr><td><code>\n</code></td><td>Line feed (U+000A)</td></tr>
+<tr><td><code>\r</code></td><td>Carriage return (U+000D)</td></tr>
 <tr><td><code>\s</code></td><td>Space (U+0020)</td></tr>
 <tr><td><code>\t</code></td><td>Tab (U+0009)</td></tr>
 <tr><td><code>\0</code></td><td>Null character (U+0000)</td></tr>
-<tr><td><code>\xXX</code></td><td>UTF-8 character code <em>[See below]</em></td></tr>
+<tr><td><code>\xXX</code></td><td>Byte escape <em>[See below]</em></td></tr>
+<tr><td><code>\uXXXX</code></td><td>16-bit Unicode escape <em>[See below]</em></td></tr>
+<tr><td><code>\UXXXXXXXX</code></td><td>32-bit Unicode escape <em>[See below]</em></td></tr>
+<tr><td><code>\U(XXXXXXXX)</code></td><td>Unsized Unicode escape <em>[See below]</em></td></tr>
 </tbody></table>
-<h2 id="unicode-escape-sequences"><a class="header" href="#unicode-escape-sequences">Unicode escape sequences</a></h2>
-<p>Escape sequences can also be used to print characters by their Unicode code point in hexadecimal format:</p>
-<pre><code class="language-rant">\xE4    # 'ä'
+<h3 id="unicode-escapes"><a class="header" href="#unicode-escapes">Unicode escapes</a></h3>
+<p>Escape sequences can also be used to specify arbitrary Unicode characters by their hexadecimal form:</p>
+<pre><code class="language-rant"># Byte escape
+\xE4    # 'ä'
+
+# 16-bit Unicode escape
+\u2705 # ✅
+
+# 32-bit Unicode escape
+\U0001F602 # 😂
+
+# Unsized Unicode escape (1-8 digits)
+\U(1f629)\U(1f44c) # 😩👌
 </code></pre>
 
                     </main>

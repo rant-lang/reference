@@ -216,19 +216,22 @@ The condition to check.</p>
 <p><strong><code>selector-mode</code></strong> ← <code>string</code> <br/>
 The mode to assign to the created selector.</p>
 <h3 id="options-for-selector-mode"><a class="header" href="#options-for-selector-mode">Options for <code>selector-mode</code></a></h3>
-<table><thead><tr><th>Mode name</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>random</code></td><td>Selects a random element each time.</td></tr>
-<tr><td><code>one</code></td><td>Selects the same, random element each time.</td></tr>
-<tr><td><code>forward</code></td><td>Selects in a wrapping sequence from first to last.</td></tr>
-<tr><td><code>reverse</code></td><td>Selects in a wrapping reverse sequence from last to first.</td></tr>
-<tr><td><code>deck</code></td><td>Selects each element once in a random sequence, then reshuffles.</td></tr>
-<tr><td><code>deck-loop</code></td><td>Selects each element once in a wrapping random sequence, without reshuffling.</td></tr>
-<tr><td><code>deck-clamp</code></td><td>Selects each element once in a random sequence, repeating the final element.</td></tr>
-<tr><td><code>forward-clamp</code></td><td>Selects from first to last, then repeats the last element.</td></tr>
-<tr><td><code>reverse-clamp</code></td><td>Selects from last to first, then repeats the first element.</td></tr>
-<tr><td><code>ping</code></td><td>Selects from first to last, switching directions when a boundary is reached.</td></tr>
-<tr><td><code>pong</code></td><td>Selects from last to first, switching directions when a boundary is reached.</td></tr>
-<tr><td><code>no-double</code></td><td>Selects a random element each time, ensuring the same element never repeats twice in a row.</td></tr>
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>random</code></td><td>Select a random element each time. <em>(default)</em></td></tr>
+<tr><td><code>one</code></td><td>Select the same, random element each time.</td></tr>
+<tr><td><code>forward</code></td><td>Select in a wrapping sequence from first to last.</td></tr>
+<tr><td><code>forward-clamp</code></td><td>Select from first to last, then repeat the last element forever.</td></tr>
+<tr><td><code>forward-mirror</code></td><td>Select from first to last, then last to first, then start over.</td></tr>
+<tr><td><code>reverse</code></td><td>Select in a wrapping reverse sequence from last to first.</td></tr>
+<tr><td><code>reverse-clamp</code></td><td>Select from last to first, then repeat the first element forever.</td></tr>
+<tr><td><code>reverse-mirror</code></td><td>Select in a from last to first, then first to last, then start over.</td></tr>
+<tr><td><code>deck</code></td><td>Select each element once in a random sequence, then reshuffles.</td></tr>
+<tr><td><code>deck-loop</code></td><td>Select each element once in a wrapping random sequence, without reshuffling.</td></tr>
+<tr><td><code>deck-clamp</code></td><td>Select each element once in a random sequence, repeating the final element.</td></tr>
+<tr><td><code>deck-mirror</code></td><td>Select each element once in a random sequence, then repeats the sequence backwards before reshuffling.</td></tr>
+<tr><td><code>ping</code></td><td>Select from first to last, switching directions when a boundary element is reached.</td></tr>
+<tr><td><code>pong</code></td><td>Select from last to first, switching directions when a boundary element is reached.</td></tr>
+<tr><td><code>no-double</code></td><td>Select a random element each time, ensuring the same element never occurs twice in a row.</td></tr>
 </tbody></table>
 <h2 id="mut"><a class="header" href="#mut">mut</a></h2>
 <pre><code class="language-rant">

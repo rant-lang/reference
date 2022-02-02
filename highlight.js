@@ -31,12 +31,12 @@ let rant_def = {
       {
         // Empty
         className: 'keyword',
-        begin: /\~/
+        begin: /\<\>/
       },
       {
         // Escape sequence
         className: 'string',
-        begin: /\\(x[a-fA-F0-9]{2}|\S)/
+        begin: /\\(x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8}|U\([a-fA-F0-9]{1,8}\)|\S)/
       },
       {
         // Lambdas
@@ -54,9 +54,9 @@ let rant_def = {
         begin: /\@[a-zA-Z_-]+\b/
       },
       {
-        // Pipe operator
+        // Pipe operators
         className: 'addition',
-        begin: /\|\>/
+        begin: /\|?\>/
       },
       {
         // Pipe value
@@ -67,11 +67,6 @@ let rant_def = {
         // Spread operators
         className: 'name',
         begin: /\*([\w\-_]*\*)?/
-      },
-      {
-        // Depth operator
-        className: 'number',
-        begin: /\&/
       },
       {
         // Function definition

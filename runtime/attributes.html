@@ -201,6 +201,24 @@ It just keeps {going}...
 </code></pre>
 <h2 id="selector"><a class="header" href="#selector">Selector</a></h2>
 <p>The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.</p>
+<h3 id="selector-modes"><a class="header" href="#selector-modes">Selector modes</a></h3>
+<table><thead><tr><th>Mode</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>random</code></td><td>Select a random element each time. <em>(default)</em></td></tr>
+<tr><td><code>one</code></td><td>Select the same, random element each time.</td></tr>
+<tr><td><code>forward</code></td><td>Select in a wrapping sequence from first to last.</td></tr>
+<tr><td><code>forward-clamp</code></td><td>Select from first to last, then repeat the last element forever.</td></tr>
+<tr><td><code>forward-mirror</code></td><td>Select from first to last, then last to first, then start over.</td></tr>
+<tr><td><code>reverse</code></td><td>Select in a wrapping reverse sequence from last to first.</td></tr>
+<tr><td><code>reverse-clamp</code></td><td>Select from last to first, then repeat the first element forever.</td></tr>
+<tr><td><code>reverse-mirror</code></td><td>Select in a from last to first, then first to last, then start over.</td></tr>
+<tr><td><code>deck</code></td><td>Select each element once in a random sequence, then reshuffles.</td></tr>
+<tr><td><code>deck-loop</code></td><td>Select each element once in a wrapping random sequence, without reshuffling.</td></tr>
+<tr><td><code>deck-clamp</code></td><td>Select each element once in a random sequence, repeating the final element.</td></tr>
+<tr><td><code>deck-mirror</code></td><td>Select each element once in a random sequence, then repeats the sequence backwards before reshuffling.</td></tr>
+<tr><td><code>ping</code></td><td>Select from first to last, switching directions when a boundary element is reached.</td></tr>
+<tr><td><code>pong</code></td><td>Select from last to first, switching directions when a boundary element is reached.</td></tr>
+<tr><td><code>no-double</code></td><td>Select a random element each time, ensuring the same element never occurs twice in a row.</td></tr>
+</tbody></table>
 <h3 id="example-2"><a class="header" href="#example-2">Example</a></h3>
 <pre><code class="language-rant"># Print every element of the block in a random order with no duplicates
 
