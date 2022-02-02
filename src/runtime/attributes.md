@@ -50,6 +50,10 @@ It just keeps {going}...
 
 The selector attribute controls how Rant chooses which branch of a block to take. It does this using a special state machine object, which must be created separately but can be shared between blocks to coordinate their behavior.
 
+### Selector modes
+
+{{ #include ../_tables/selector-modes.md }}
+
 ### Example
 
 ```rant

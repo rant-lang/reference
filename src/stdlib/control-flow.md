@@ -82,20 +82,7 @@ The mode to assign to the created selector.
 
 ### Options for `selector-mode`
 
-| Mode name       | Description                                                                                 |
-|-----------------|---------------------------------------------------------------------------------------------|
-| `random`        | Selects a random element each time.                                                         |
-| `one`           | Selects the same, random element each time.                                                 |
-| `forward`       | Selects in a wrapping sequence from first to last.                                          |
-| `reverse`       | Selects in a wrapping reverse sequence from last to first.                                  |
-| `deck`          | Selects each element once in a random sequence, then reshuffles.                            |
-| `deck-loop`     | Selects each element once in a wrapping random sequence, without reshuffling.               |
-| `deck-clamp`    | Selects each element once in a random sequence, repeating the final element.                |
-| `forward-clamp` | Selects from first to last, then repeats the last element.                                  |
-| `reverse-clamp` | Selects from last to first, then repeats the first element.                                 |
-| `ping`          | Selects from first to last, switching directions when a boundary is reached.                |
-| `pong`          | Selects from last to first, switching directions when a boundary is reached.                |
-| `no-double`     | Selects a random element each time, ensuring the same element never repeats twice in a row. |
+{{ #include ../_tables/selector-modes.md }}
 
 
 ## mut
