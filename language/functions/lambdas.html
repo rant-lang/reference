@@ -188,22 +188,25 @@ The body of a lambda can also capture variables from its environment, just like 
 <p>If you want to add parameters to a lambda, just specify the parameters after the colon as you would with a normal function definition:</p>
 <pre><code class="language-rant">[?: param1; param2] { ... }
 </code></pre>
-<h2 id="calling-a-lambda"><a class="header" href="#calling-a-lambda">Calling a lambda</a></h2>
-<p>Since lambdas are <code>function</code> objects just like named functions, the call syntax is very similar, but with one difference: 
-the function name is replaced by the <code>!</code> symbol (to denote an anonymous call) followed by an expression providing the <code>function</code> to be called.</p>
-<pre><code class="language-rant"># Define a function that returns a parameterless box
+<h2 id="calling-an-anonymous-function"><a class="header" href="#calling-an-anonymous-function">Calling an anonymous function</a></h2>
+<p>Since lambdas produce <code>function</code> objects just like named functions, the call syntax is very similar. Simple use an anonymous access path to supply the function in the call.</p>
+<pre><code class="language-rant"># Define a function that returns a parameterless function
 [$get-anon-func] {
     [?]{Hello from anonymous function}
 }
 
-[![get-anon-func]]          # &quot;Hello from anonymous function&quot;
+[([get-anon-func])]         # -&gt; &quot;Hello from anonymous function&quot;
 
-# Define a function that returns a box with a single parameter
+# Define a function that returns a function with a single parameter
 [$get-greet-func] {
     [?:name]{Hello, &lt;name&gt;!}
 }
 
-[![get-greet-func]:Rant]    # &quot;Hello, Rant!&quot;
+[([get-greet-func]): Rant]  # &quot;Hello, Rant!&quot;
+</code></pre>
+<h3 id="using-piping-to-call-an-anonymous-function-produced-by-another-function"><a class="header" href="#using-piping-to-call-an-anonymous-function-produced-by-another-function">Using piping to call an anonymous function produced by another function</a></h3>
+<p>The above example could be simplified with <a href="./piping.html">piping</a>: just call <code>[get-anon-func]</code>, then call <code>[]</code> directly.</p>
+<pre><code class="language-rant">[get-anon-func |&gt; []: ## args... ##]
 </code></pre>
 
                     </main>
