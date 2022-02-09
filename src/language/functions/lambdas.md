@@ -10,29 +10,6 @@ Basic lambda expression syntax with no parameters consists of a `?` symbol insid
 [?] { Hello from lambda expression! }
 ```
 
-## Parameterization
-
-If you want to add parameters to a lambda, just specify the parameters after the colon as you would with a normal function definition:
-
-```rant
-[?: param1; param2] { ... }
-```
-
-## Inlining
-
-If your lambda contains a single expression unit, such as a fragment or function call, you can omit the braces to save some typing.
-This is called an **inline lambda**.
-
-```rant
-# Regular "block" lambda
-[?: x; y; z] {
-    [foo: <x> |> bar: <y>; <z>]
-}
-
-# Inline lambda
-[?: x; y; z] [foo: <x> |> bar: <y>; <z>]
-```
-
 > **Note:**
 >
 > If your lambda body contains a block at the root level, you will need to enclose it in another block to differentiate it from a function body block.
@@ -45,6 +22,14 @@ This is called an **inline lambda**.
 > # Correct syntax
 > [?] {{ foo | bar }}
 > ```
+
+## Parameterization
+
+If you want to add parameters to a lambda, just specify the parameters after the colon as you would with a normal function definition:
+
+```rant
+[?: param1; param2] { ... }
+```
 
 
 ## Calling a lambda
