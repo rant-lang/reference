@@ -32,23 +32,30 @@ If you want to add parameters to a lambda, just specify the parameters after the
 ```
 
 
-## Calling a lambda
+## Calling an anonymous function
 
-Since lambdas are `function` objects just like named functions, the call syntax is very similar, but with one difference: 
-the function name is replaced by the `!` symbol (to denote an anonymous call) followed by an expression providing the `function` to be called.
+Since lambdas produce `function` objects just like named functions, the call syntax is very similar. Simple use an anonymous access path to supply the function in the call.
 
 ```rant
-# Define a function that returns a parameterless box
+# Define a function that returns a parameterless function
 [$get-anon-func] {
     [?]{Hello from anonymous function}
 }
 
-[![get-anon-func]]          # "Hello from anonymous function"
+[([get-anon-func])]         # -> "Hello from anonymous function"
 
-# Define a function that returns a box with a single parameter
+# Define a function that returns a function with a single parameter
 [$get-greet-func] {
     [?:name]{Hello, <name>!}
 }
 
-[![get-greet-func]:Rant]    # "Hello, Rant!"
+[([get-greet-func]): Rant]  # "Hello, Rant!"
+```
+
+### Using piping to call an anonymous function produced by another function
+
+The above example could be simplified with [piping](./piping.md): just call `[get-anon-func]`, then call `[]` directly.
+
+```rant
+[get-anon-func |> []: ## args... ##]
 ```
