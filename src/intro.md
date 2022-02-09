@@ -6,16 +6,7 @@
 
 This documentation is a reference for the language features, standard library, and major runtime features of version 4.x of Rant.
 
-## Philosophy
-
-I firmly believe that all documentation should be:
-
-1. **Easily understandable**: Concepts should be separated in a way that they are easily consumed and understood.
-2. **Rapidly actionable**: Information and examples should be easy to adapt to your own needs without extensive background reading.
-
-In pursuing these goals, this document is designed to act as both comprehensive reference documentation as well as a beginner's guide.
-
-## Scope
+## Contents
 
 This documentation is divided into the following chapters:
 
@@ -23,6 +14,10 @@ This documentation is divided into the following chapters:
 * [**Runtime features:**](/runtime.md) Overview of features specific to the runtime.
 * [**Standard library:**](/stdlib.md) Reference for the functions found in the Rant Standard Library.
 * [**Glossary:**](/glossary.md) Familiarize yourself with Rant's terminology.
+
+## Translations
+
+If you want to see this documentation in your language, please [file an issue](https://github.com/rant-lang/reference/issues) and we'll work towards an official translation.
 
 ## Other helpful resources
 

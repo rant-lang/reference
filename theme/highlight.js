@@ -29,7 +29,7 @@ let rant_def = {
         begin: /\b\d+(\.\d+)?([Ee][+\-]?\d+)?\b/,
       },
       {
-        // Empty
+        // Nothing literal
         className: 'keyword',
         begin: /\<\>/
       },

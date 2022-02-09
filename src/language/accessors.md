@@ -16,10 +16,10 @@ A **definition** creates a new variable in the current scope.
 They are denoted by placing a `$` symbol before the variable name.
 
 It is optional to assign a value in a definition.
-You can leave the assignment part out and it will be initialized to empty.
+You can leave the assignment part out and it will be initialized to nothing.
 
 ```rant
-# Define a variable `name` but leave it empty
+# Define a variable `name` but initialize it to <>
 <$name>
 
 # Define a variable `name` and assign it the string "Nick"

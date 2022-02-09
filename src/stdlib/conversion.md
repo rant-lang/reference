@@ -7,10 +7,10 @@
 [%to-float: value]
 
 ```
-&rarr; `float | empty`
+&rarr; `float | nothing`
 
 Attempts to convert `value` to a `float` value and prints the result.
-If the conversion fails, prints emptyval.
+If the conversion fails, prints nothing.
 
 ### Parameters
 
@@ -25,10 +25,10 @@ The input value to convert.
 [%to-int: value]
 
 ```
-&rarr; `int | empty`
+&rarr; `int | nothing`
 
 Attempts to convert `value` to an `int` value and prints the result.
-If the conversion fails, prints emptyval.
+If the conversion fails, prints nothing.
 
 ### Parameters
 
@@ -43,10 +43,10 @@ The input value to convert.
 [%to-string: value]
 
 ```
-&rarr; `string | empty`
+&rarr; `string | nothing`
 
 Attempts to convert `value` to a `string` value and prints the result.
-If the conversion fails, prints emptyval.
+If the conversion fails, prints nothing.
 
 ### Parameters
 
@@ -61,10 +61,10 @@ The input value to convert.
 [%to-list: value]
 
 ```
-&rarr; `list | empty`
+&rarr; `list | nothing`
 
 Attempts to convert `value` to a `list` and prints the result.
-If the conversion fails, prints emptyval.
+If the conversion fails, prints nothing.
 
 ### Parameters
 
@@ -103,7 +103,7 @@ Passing a `range` value into this function prints a list of the range's elements
 [%to-tuple: value]
 
 ```
-&rarr; `tuple | empty`
+&rarr; `tuple | nothing`
 
 Attempts to convert a value to a `tuple` and prints the result.
-If the conversion fails, prints emptyval.
+If the conversion fails, prints nothing.

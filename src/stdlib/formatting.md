@@ -7,7 +7,7 @@
 [%num-fmt: options?; depth ? 0]
 
 ```
-&rarr; `map | empty`
+&rarr; `map | nothing`
 
 Gets or sets the number formatting options for the calling scope.
 
@@ -84,7 +84,7 @@ Defaults to 1 (the parent scope of the caller).
 
 [%num-fmt-system: system?; depth ? 0]
 ```
-&rarr; `string | empty`
+&rarr; `string | nothing`
 
 Gets or sets the number formatter's numeral system.
 
@@ -113,7 +113,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-alt: flag?; depth ? 0]
 
 ```
-&rarr; `bool | empty`
+&rarr; `bool | nothing`
 
 Gets or sets the number formatter's alternate format flag.
 
@@ -137,7 +137,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-precision: precision?; depth ? 0]
 
 ```
-&rarr; `int | empty`
+&rarr; `int | nothing`
 
 Gets or sets the number formatter's decimal precision.
 
@@ -162,7 +162,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-padding: padding?; depth ? 0]
 
 ```
-&rarr; `int | empty`
+&rarr; `int | nothing`
 
 Gets or sets the number formatter's digit padding size.
 
@@ -185,7 +185,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-upper: flag?; depth ? 0]
 
 ```
-&rarr; `bool | empty`
+&rarr; `bool | nothing`
 
 Gets or sets the number formatter's uppercase formatting flag.
 
@@ -209,7 +209,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-sign: sign?; depth ? 0]
 
 ```
-&rarr; `string | empty`
+&rarr; `string | nothing`
 
 Gets or sets the number formatter's sign style.
 
@@ -237,7 +237,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-endian: endianness?; depth ? 0]
 
 ```
-&rarr; `string | empty`
+&rarr; `string | nothing`
 
 Gets or sets the number format's endianness. This affects the byte order of power-of-two base formats such as `binary` and `hex`.
 
@@ -264,7 +264,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-infinity: infinity?; depth ? 0]
 
 ```
-&rarr; `string | empty`
+&rarr; `string | nothing`
 
 Gets or sets the number formatter's infinity style.
 
@@ -292,7 +292,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-group-sep: group-sep?; depth ? 0]
 
 ```
-&rarr; `string | empty`
+&rarr; `string | nothing`
 
 Gets or sets the number formatter's digit group separator.
 
@@ -315,7 +315,7 @@ Defaults to 0 (the calling scope).
 [%num-fmt-decimal-sep: decimal-sep?; depth ? 0]
 
 ```
-&rarr; `string | empty`
+&rarr; `string | nothing`
 
 Gets or sets the number formatter's decimal separator.
 

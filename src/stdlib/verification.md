@@ -9,7 +9,7 @@
 ```
 &rarr; `bool`
 
-Returns `@true` if `value` is any non-`empty` type.
+Returns `@true` if `value` is any non-`nothing` type.
 
 ### Paraneters
 
@@ -57,16 +57,16 @@ Returns `@true` if `value` is of type `bool`.
 The value to check.
 
 
-## is-empty
+## is-nothing
 
 ```rant
 
-[%is-empty: value]
+[%is-nothing: value]
 
 ```
 &rarr; `bool`
 
-Returns `@true` if `value` is empty (`<>`).
+Returns `@true` if `value` is of type `nothing`.
 
 ### Parameters
 

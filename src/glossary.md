@@ -60,9 +60,9 @@ Descoping is a type of variable access that explicitly retrieves a variable from
 A dynamic key is an access path key, consisting of a single-element block, that must be resolved before the containing path can be read. 
 The block resolves to the final key or index that will be inserted into the path.
 
-### Empty
+### Nothing
 
-Empty (also: "emptyval") refers to the value of the `empty` type.
+Nothing refers to the name and value of the `nothing` type.
 
 ### Expression
 

@@ -7,9 +7,9 @@
 [%alt: a; b+]
 
 ```
-&rarr; `any` or `empty`
+&rarr; `any`
 
-Prints the first argument that isn't empty. If all arguments are empty, prints `<>`.
+Prints the first argument that isn't of type `nothing`. If all arguments are `nothing`, prints nothing.
 
 ### Parameters
 
@@ -27,7 +27,7 @@ The rest of the values to check.
 [%call: func; args]
 
 ```
-&rarr; `any` or `empty`
+&rarr; `any`
 
 Calls the function `func` with the argument list `args`.
 
@@ -277,7 +277,7 @@ Returns the name of `value`'s type. The type name can be any of the following:
 * `tuple`
 * `map`
 * `special`
-* `empty`
+* `nothing`
 
 ### Parameters
 

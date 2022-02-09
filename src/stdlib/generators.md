@@ -83,13 +83,13 @@ The number of digits to generate. Defaults to 1.
 
 Returns a `bool` value with `p` probability of being true.
 
-`p` must be either a `float` or `empty`. If omitted, it will default to `0.5`.
+`p` must be either a `float` or `nothing`. If omitted, it will default to `0.5`.
 
 ### Parameters
 
-**`p`** &larr; `float | empty` *(optional)* <br/>
+**`p`** &larr; `float | nothing` *(optional)* <br/>
 The probability (0.0 <= p <= 1.0) of the printed boolean being true. 
-If omitted or empty, defaults to 0.5.
+If omitted or nothing, defaults to 0.5.
 
 
 ## rand

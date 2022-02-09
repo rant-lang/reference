@@ -8,8 +8,8 @@ Lists are initialized using a pair of parentheses containing the list elements, 
 # A pair of parentheses is treated like an empty list
 <$empty-list = (:)>
 
-# Initialize a list with one empty element
-<$one-empty = (: <>)>
+# Initialize a list with one element set to <>
+<$one-nothing = (: <>)>
 
 # Create a list of numbers
 <$lucky-numbers = (: 1; 2; 3; 5; 7; 11; 13;)>

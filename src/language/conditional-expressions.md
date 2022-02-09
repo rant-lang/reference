@@ -55,5 +55,5 @@ The truthiness rules are as follows:
 | `bool`                           | Unchanged.                                      |
 | `string`, `list`, `map`, `range` | `@true` if nonzero length; otherwise, `@false`. |
 | `float`, `int`                   | `@true` if nonzero; otherwise, `@false`.        |
-| `empty`                          | Always `@false`.                                |
+| `nothing`                        | Always `@false`.                                |
 | `special`, `function`            | Always `@true`.                                 |

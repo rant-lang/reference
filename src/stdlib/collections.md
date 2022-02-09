@@ -128,7 +128,7 @@ Splits `collection` into `count` sub-slices and prints a new list containing the
 
 If the contents of `collection` don't divide evenly into `count` chunks, the function will produce larger chunks first, then smaller chunks with the remaining content.
 
-If `count` is greater than the size of `collection`, the chunk size will be 1 and the output list will be padded with empty elements.
+If `count` is greater than the size of `collection`, the chunk size will be 1 and the output list will be padded with elements set to `<>`.
 
 ### Parameters
 
@@ -278,7 +278,7 @@ If `collection` is of type `map`, `value` will be coerced to a string before sea
 [%index-of: list; value]
 
 ```
-&rarr; `int | empty`
+&rarr; `int | nothing`
 
 Returns the index of the first occurrence of `value` in `list`.
 If no match is found, returns `<>`.
@@ -526,7 +526,7 @@ The list to modify.
 Inserts `value` into a list or map at the position `pos`.
 
 If `collection` is a list, `pos` must be an `int`.<br>
-If `collection` is a map, `pos` may be any non-empty value.
+If `collection` is a map, `pos` may be any non-`nothing` value.
 
 ### Parameters
 
@@ -577,7 +577,7 @@ The value whose length to retrieve.
 Removes the value at the `pos` from a list or map.
 
 If `collection` is a list, `pos` must be an `int`.<br>
-If `collection` is a map, `pos` may be any non-empty value.
+If `collection` is a map, `pos` may be any non-`nothing` value.
 
 ### Parameters
 

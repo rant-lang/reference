@@ -5,19 +5,19 @@ for example, you can initialize a variable with an integer, and later change it 
 
 Rant's type system supports the following data types:
 
-|Type name |Description                                        |Pass type|
-|----------|---------------------------------------------------|---------|
-|`string`  |Sequence of UTF-8 characters                       |by-value |
-|`int`     |64-bit signed integer                              |by-value |
-|`float`   |64-bit double-precision float                      |by-value |
-|`bool`    |Boolean value                                      |by-value | 
-|`range`   |Indexable range of integers with optional interval |by-value |
-|`empty`   |Unit type representing "null" value                |by-value |
-|`function`|Function/closure                                   |by-ref   |
-|`list`    |List of values                                     |by-ref   |
-|`tuple`   |Tuple of values                                    |by-ref   |
-|`map`     |String-keyed collection of values                  |by-ref   |
-|`special` |Handle to internal runtime data, such as a selector|by-ref   |
+| Type name  | Description                                         | Pass type |
+|------------|-----------------------------------------------------|-----------|
+| `string`   | Sequence of UTF-8 characters                        | by-value  |
+| `int`      | 64-bit signed integer                               | by-value  |
+| `float`    | 64-bit double-precision float                       | by-value  |
+| `bool`     | Boolean value                                       | by-value  |
+| `range`    | Indexable range of integers with optional interval  | by-value  |
+| `nothing`  | Unit type representing "null" value                 | by-value  |
+| `function` | Function/closure                                    | by-ref    |
+| `list`     | List of values                                      | by-ref    |
+| `tuple`    | Tuple of values                                     | by-ref    |
+| `map`      | String-keyed collection of values                   | by-ref    |
+| `special`  | Handle to internal runtime data, such as a selector | by-ref    |
 
 ## Integer literals
 
@@ -131,12 +131,12 @@ For any expression that only contains lists and/or tuples, the following rules a
 # -> (1; 2; 3; 4; 5; 6; 7; 8; 9; 10)
 ```
 
-### Empties
+### Nothings
 
-Printing emptyval does nothing. Empty expressions return emptyval.
+Printing nothing does nothing. Empty expressions return nothing.
 
 ```rant
-[type:<><>]     # empty
-[type:<>]       # empty
-[type:]         # empty
+[type:<><>]     # nothing
+[type:<>]       # nothing
+[type:]         # nothing
 ```

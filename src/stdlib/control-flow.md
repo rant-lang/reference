@@ -99,7 +99,7 @@ The function passed to `mutator-func` must accept a single parameter (the elemen
 
 ### Parameters
 
-**`mutator-func`** &larr; `function | empty` <br/>
+**`mutator-func`** &larr; `function | nothing` <br/>
 The mutator function to assign.
 
 
