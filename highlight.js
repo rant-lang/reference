@@ -56,7 +56,7 @@ let rant_def = {
       {
         // Pipe operators
         className: 'addition',
-        begin: /\|?\>/
+        begin: /\|\>/
       },
       {
         // Pipe value
@@ -64,9 +64,9 @@ let rant_def = {
         begin: /\[\]/
       },
       {
-        // Spread operators
+        // Operators
         className: 'name',
-        begin: /\*([\w\-_]*\*)?/
+        begin: /[:;]\s*\*([\w\-_]*\*)?/
       },
       {
         // Function definition
