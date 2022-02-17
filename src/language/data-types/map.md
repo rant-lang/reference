@@ -1,4 +1,4 @@
-# Map
+# The `map` type
 
 The `map` type represents an unordered, mutable, resizable collection of zero or more key-value pairs, where each key is a unique string.
 

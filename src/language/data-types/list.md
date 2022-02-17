@@ -1,4 +1,4 @@
-# List
+# The `list` type
 
 The `list` type represents a mutable, resizable, ordered collection of zero or more values.
 

@@ -1,4 +1,4 @@
-# Tuple
+# The `tuple` type
 
 The `tuple` type represents an immutable, ordered collection of zero or more values.
 

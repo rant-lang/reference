@@ -11,13 +11,13 @@ Rant's type system supports the following data types:
 | `int`      | 64-bit signed integer                               | by-value  |
 | `float`    | 64-bit double-precision float                       | by-value  |
 | `bool`     | Boolean value                                       | by-value  |
-| `range`    | Indexable range of integers with optional interval  | by-value  |
-| `nothing`  | Unit type representing "null" value                 | by-value  |
-| `function` | Function/closure                                    | by-ref    |
 | `list`     | List of values                                      | by-ref    |
 | `tuple`    | Tuple of values                                     | by-ref    |
 | `map`      | String-keyed collection of values                   | by-ref    |
-| `special`  | Handle to internal runtime data, such as a selector | by-ref    |
+| `range`    | Indexable range of integers with optional interval  | by-value  |
+| `function` | Function/closure                                    | by-ref    |
+| `selector` | Handle to a selector                                | by-ref    |
+| `nothing`  | Unit type representing "null" value                 | by-value  |
 
 ## Integer literals
 

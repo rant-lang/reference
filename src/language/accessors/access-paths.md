@@ -1,4 +1,4 @@
-# Collection Access
+# Access Paths
 
 An accessor can operate on specific elements of collections (lists, maps, strings, and ranges) using an **access path**.
 

@@ -276,7 +276,7 @@ Returns the name of `value`'s type. The type name can be any of the following:
 * `list`
 * `tuple`
 * `map`
-* `special`
+* `selector`
 * `nothing`
 
 ### Parameters

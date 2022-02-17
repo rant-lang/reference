@@ -90,7 +90,7 @@ Note: you may also use the minus (`-`) symbol when negating numbers (e.g. `-123`
 
 ### Logical AND
 
-`@and` *(binary infix operator)*
+`&` *(binary infix operator)*
 
 Returns `@true` if both operands are `@true`.
 Returns `@false` if both operands are `@false`, or if one is `@true` and the other `@false`.
@@ -101,23 +101,23 @@ This operator is short-circuiting: if LHS is falsy, RHS will not be evaluated.
 
 ```rant
 # Logical AND using booleans
-@true @and @true    # -> @true
-@true @and @false   # -> @false
-@false @and @true   # -> @false
-@false @and @false  # -> @false
+@true & @true    # -> @true
+@true & @false   # -> @false
+@false & @true   # -> @false
+@false & @false  # -> @false
 
 # Logical AND using truthiness
-2 @and 1            # -> 1
-1 @and 2            # -> 2
-1 @and 0            # -> 0
-0 @and 2            # -> 0
-0 @and <>           # -> 0
-<> @and 0           # -> <>
+2 & 1            # -> 1
+1 & 2            # -> 2
+1 & 0            # -> 0
+0 & 2            # -> 0
+0 & <>           # -> 0
+<> & 0           # -> <>
 ```
 
 ### Logical OR
 
-`@or` *(binary infix operator)*
+`|` *(binary infix operator)*
 
 Returns `@true` if one or both operands are `@true`.
 Returns `@false` if both operands are `@false`.
@@ -128,19 +128,29 @@ This operator is short-circuiting: if LHS is truthy, RHS will not be evaluated.
 
 ```rant
 # Logical OR using booleans
-@true @or @true     # -> @true
-@true @or @false    # -> @true
-@false @or @true    # -> @true
-@false @or @false   # -> @false
+@true | @true     # -> @true
+@true | @false    # -> @true
+@false | @true    # -> @true
+@false | @false   # -> @false
 
 # Logical OR using truthiness
-2 @or 1             # -> 2
-1 @or 2             # -> 1
-1 @or 0             # -> 1
-0 @or 2             # -> 2
-0 @or <>            # -> <>
-<> @or 0            # -> 0
+2 | 1             # -> 2
+1 | 2             # -> 1
+1 | 0             # -> 1
+0 | 2             # -> 2
+0 | <>            # -> <>
+<> | 0            # -> 0
 ```
+
+> **Syntax note**
+>
+> In a block context, `|` will be treated as an element separator.
+> To use it as an OR operator, enclose your expression in parentheses first.
+> ```rant
+> foo | bar         # Logical OR
+> {foo | bar}       # Separates two block elements
+> {(foo | bar)}     # Logical OR
+> ```
 
 ### Logical NOT
 
@@ -160,78 +170,25 @@ Returns `@false` if the operand is truthy; otherwise, returns `@true`.
 
 ### Logical XOR
 
-`@xor` *(binary infix operator)*
+`^` *(binary infix operator)*
 
 Returns `@true` if exactly *one* of the two operands is truthy; otherwise, returns `@false`. 
 
 ```rant
 # Logical XOR using booleans
-@true @xor @true    # -> @true
-@true @xor @false   # -> @true
-@false @xor @true   # -> @true
-@false @xor @false  # -> @false
+@true ^ @true    # -> @true
+@true ^ @false   # -> @true
+@false ^ @true   # -> @true
+@false ^ @false  # -> @false
 
 # Logical XOR using truthiness
-2 @xor 1            # -> @false
-1 @xor 2            # -> @false
-1 @xor 0            # -> @true
-0 @xor 2            # -> @true
-0 @xor <>           # -> @false
-<> @xor 0           # -> @false
+2 ^ 1            # -> @false
+1 ^ 2            # -> @false
+1 ^ 0            # -> @true
+0 ^ 2            # -> @true
+0 ^ <>           # -> @false
+<> ^ 0           # -> @false
 ```
-
-### Logical NAND
-
-`@nand` *(binary infix operator)*
-
-Returns `@true` if at least one operand is falsy; otherwise, returns `@false`.
-
-Equivalent to `@not {<lhs> @and <rhs>}` or `@not <lhs> @or @not <rhs>`.
-
-This operator is short-circuiting: if LHS is falsy, RHS will not be evaluated.
-
-```rant
-# Logical AND using booleans
-@true @nand @true   # -> @false
-@true @nand @false  # -> @true
-@false @nand @true  # -> @true
-@false @nand @false # -> @true
-
-# Logical AND using truthiness
-2 @nand 1           # -> @false
-1 @nand 2           # -> @false
-1 @nand 0           # -> @true
-0 @nand 2           # -> @true
-0 @nand <>          # -> @true
-<> @nand 0          # -> @true
-```
-
-### Logical NOR
-
-`@nor` *(binary infix operator)*
-
-Returns `@true` if both operands are falsy; otherwise, returns `@false`.
-
-Equivalent to `@not {<lhs> @or <rhs>}` or `@not <lhs> @and @not <rhs>`. 
-
-This operator is short-circuiting: if LHS is truthy, RHS will not be evaluated.
-
-```rant
-# Logical NOR using booleans
-@true @nor @true    # -> @false
-@true @nor @false   # -> @false
-@false @nor @true   # -> @false
-@false @nor @false  # -> @true
-
-# Logical NOR using truthiness
-2 @nor 1            # -> @false
-1 @nor 2            # -> @false
-1 @nor 0            # -> @false
-0 @nor 2            # -> @false
-0 @nor <>           # -> @true
-<> @nor 0           # -> @true
-```
-
 
 ## Comparison operators
 
@@ -324,6 +281,6 @@ Operators in the same row have the same precedence.
 | `+`, `-`                   | Additive       |
 | `@lt`, `@le`, `@gt`, `@ge` | Relational     |
 | `@eq`, `@neq`              | Equality       |
-| `@and`, `@nor`             | Conjunctive    |
-| `@xor`                     | Logical XOR    |
-| `@or`, `@nand`             | Disjunctive    |
+| `&`                        | Conjunctive    |
+| `^`                        | Logical XOR    |
+| `|`                        | Disjunctive    |

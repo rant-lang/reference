@@ -1,4 +1,4 @@
-# Range
+# The `range` type
 
 The `range` type represents a closed range of integers characterized by three values:
 

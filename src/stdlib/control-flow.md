@@ -71,7 +71,7 @@ Marks the next block as conditional and causes it to resolve iff `condition` is 
 
 ```
 
-&rarr; `special`
+&rarr; `selector`
 
 Creates and returns a selector with the specified mode.
 
