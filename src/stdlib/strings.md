@@ -1,5 +1,23 @@
 # Standard Library: String functions
 
+## char
+
+```rant
+
+[%char: code]
+
+```
+&rarr; `string?`
+
+Prints the Unicode character represented by the Unicode code point `code`. 
+If `code` doesn't correspond to a valid character, prints nothing.
+
+### Parameters
+
+**`code`** &larr; `int` <br/>
+The Unicode code point representing the character to print.
+
+
 ## lines
 
 ```rant
@@ -32,6 +50,62 @@ Converts string `str` to lowercase and returns the result.
 
 **`str`** &larr; `string` <br/>
 The input string.
+
+## ord
+
+```rant
+
+[%ord: ch]
+
+```
+&rarr; `int`
+
+Prints the Unicode code point of the specified character as an `int` value.
+If an empty string is passed, prints nothing.
+
+### Parameters
+
+**`ch`** &larr; `string` <br/>
+The input string that provides the character. This can be any length; the function only uses the first code point in the string.
+
+### Example
+
+```rant
+[ord: \s]
+# -> 32
+```
+
+
+## ord-all
+
+```rant
+
+[%ord-all: str]
+
+```
+&rarr; `list`
+
+Prints a list of `int` values containing the Unicode code points contained in `str`.
+
+### Parameters
+
+**`str`** &larr; `string` <br/>
+The input string.
+
+### Example
+
+```rant
+# Prints a list of hex values of each code point from the input string
+[%as-unicode-hex: str] {
+  [cat: **[ord-all: <str>] 
+    |> cat: [num-fmt: (:: system = hex; upper = @true)] U\+[] 
+    |> tuple
+  ]
+}
+
+[as-unicode-hex: 👨‍👩‍👦‍👦]
+# -> (U+1F468; U+200D; U+1F469; U+200D; U+1F466; U+200D; U+1F466)
+```
 
 
 ## split
