@@ -58,7 +58,7 @@ The input string.
 [%ord: ch]
 
 ```
-&rarr; `int`
+&rarr; `int?`
 
 Prints the Unicode code point of the specified character as an `int` value.
 If an empty string is passed, prints nothing.
